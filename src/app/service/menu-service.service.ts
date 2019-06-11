@@ -38,7 +38,7 @@ export class MenuServiceService {
         menus: []
       },
       {
-        group: { code: 'menu-view-addmin', name: 'View addmin' },
+        group: { code: 'menu-view-admin', name: 'View admin' },
         menus: []
       }
     ];

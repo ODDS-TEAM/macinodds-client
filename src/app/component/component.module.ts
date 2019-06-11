@@ -5,12 +5,12 @@ import { CommonModule } from '@angular/common';
 import { ComponentRoutingModule } from './component-routing.module';
 
 import { MenuAddDeviceComponent } from './menu-add-device/menu-add-device.component';
-import { MenuViewAddminComponent } from './menu-view-addmin/menu-view-addmin.component';
+import { MenuViewAdminComponent } from './menu-view-admin/menu-view-admin.component';
 
 @NgModule({
   declarations: [
     MenuAddDeviceComponent,
-    MenuViewAddminComponent
+    MenuViewAdminComponent
 
   ],
   imports: [

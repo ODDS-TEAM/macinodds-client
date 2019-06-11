@@ -8,14 +8,16 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MenuAddDeviceComponent } from './component/menu-add-device/menu-add-device.component';
-// import { MenuViewAddminComponent } from './component/menu-view-addmin/menu-view-addmin.component';
+// import { MenuViewAdminComponent } from './component/menu-view-admin/menu-view-admin.component';
+
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
     // MenuAddDeviceComponent,
-    // MenuViewAddminComponent
+    // MenuViewAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatListModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
