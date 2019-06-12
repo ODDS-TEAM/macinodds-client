@@ -10,10 +10,13 @@ import {
 } from '@angular/material';
 
 import { SideNavComponent } from './side-nav.component';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SideNavComponent', () => {
   let component: SideNavComponent;
   let fixture: ComponentFixture<SideNavComponent>;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,6 +29,7 @@ describe('SideNavComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        RouterTestingModule.withRoutes([])
       ]
     }).compileComponents();
   }));
@@ -36,7 +40,20 @@ describe('SideNavComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should compile', () => {
-    expect(component).toBeTruthy();
+  describe('templates', () => {
+    
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+  });
+
+  describe('method', () => {
+
+    it('should select menu', () => {
+      component.selectMenu({ code: '', name: '' });
+      expect(component.menuGroupSelected).toBeFalsy();
+    });
+
   });
 });
