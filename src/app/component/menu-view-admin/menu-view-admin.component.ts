@@ -20,7 +20,6 @@ export class MenuViewAdminComponent implements OnInit {
     this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/devices').subscribe(data => {
       // อ่านค่า result จาก JSON response ที่ส่งออกมา
       this.results = data;
-      console.log ("result"  + data );
     });
   }
 

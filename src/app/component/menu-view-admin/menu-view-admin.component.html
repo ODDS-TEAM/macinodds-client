@@ -14,29 +14,30 @@
       <h1>
         Welcome to <span class="font-weight-bold" style="color:#0b98d5">MacinOdds</span>
       </h1>
+      <br>
       <div class="card bg-light " style="max-width: 100%;">
         <div class="card-header mb-3 font-weight-bold">ODDS's DEVICE</div>
         <div class="card-body">
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let result of results">
             <div class="row">
-                <div class="col-4">
-                  <img src= "{{ result.img }}" width="100%">
+                <div class="col-4 align-self-center">
+                  <img src= "{{ result.img }}" width="60%">
                 </div>  
-                <div class="col-6 text-left">
-                  <span> ID : </span> {{ result._id }} <br/>
-                  <span> Name : </span>  {{ result.name }} <br/>
-                  <span>Serial : </span>   {{ result.serial }} <br/>
-                  <span>Spec : </span>  {{ result.spec }} <br/>
-                  <span>Status : </span>  {{ result.status }} <br/>
-                  <span>Holder : </span>  {{ result.holder }} <br/></div>
-                <div class="col-2">
-                      <button type="button" class="btn btn-default btn-sm btn btn-warning">
-                        <i class="fa fa-edit">Edit </i>
+                <div class="col-6  align-self-center text-left">
+                  <span style="color:#0b98d5"> ID: </span> {{ result._id }} <br/>
+                  <span style="color:#0b98d5"> Name: </span>  {{ result.name }} <br/>
+                  <span style="color:#0b98d5">Serial: </span>   {{ result.serial }} <br/>
+                  <span style="color:#0b98d5">Spec: </span>  {{ result.spec }} <br/>
+                  <span style="color:#0b98d5">Status: </span>  {{ result.status }} <br/>
+                  <span style="color:#0b98d5">Holder: </span>  {{ result.holder }} <br/></div>
+                <div class="col-2 align-self-center">
+                      <button type="button" title="Edit" class="btn btn-warning">
+                        <i class="fa fa-edit">  Edit</i>
                       </button>
                       <br><br>
-                      <button type="button" class="btn btn-default btn-sm btn btn-danger">
-                          <i class="fa fa-trash"> Delete </i>
+                      <button type="button" title="Delete" class="btn btn-danger">
+                          <i class="fa fa-trash">  Delete</i>
                       </button>
                 </div>
               </div>
