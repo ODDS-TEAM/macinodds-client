@@ -1,3 +1,15 @@
-<p>
-  menu-view-admin works!
-</p>
+<p>  home works!</p>
+ 
+<ul class="list-group">
+  <li class="list-group-item active">Get json string data from File </li>
+  <li class="list-group-item" *ngFor="let result of results">
+   <span> ID : </span> {{ result._id }} <br/>
+   <span> Name : </span>  {{ result.name }} <br/>
+   <span>Serial : </span>   {{ result.serial }} <br/>
+   <span>Spec : </span>  {{ result.spec }} <br/>
+   <span>Status : </span>  {{ result.status }} <br/>
+   <span>Holder : </span>  {{ result.holder }} <br/>
+   <span>URL IMG : </span>  {{ result.img }} <br/>
+   <img src=  "{{ result.img }}" >
+  </li>
+</ul>

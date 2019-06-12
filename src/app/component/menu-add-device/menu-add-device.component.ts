@@ -12,7 +12,7 @@ export class MenuAddDeviceComponent implements OnInit {
   inImg = "";
   inStatus = "";
   inHolder = "";
-  
+
   constructor() { }
 
   ngOnInit() {
