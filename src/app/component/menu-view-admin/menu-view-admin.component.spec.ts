@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MenuViewAdminComponent } from './menu-view-admin.component';
 
 describe('MenuViewAdminComponent', () => {
@@ -8,7 +8,8 @@ describe('MenuViewAdminComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuViewAdminComponent ]
+      declarations: [ MenuViewAdminComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   }));
