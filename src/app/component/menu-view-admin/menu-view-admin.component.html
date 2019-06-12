@@ -21,16 +21,16 @@
             <li class="list-group-item" *ngFor="let result of results">
             <div class="row">
                 <div class="col-4">
-                  <img src= "{{ result.img }}" width="100%">
+                  <img src= "{{ result.img }}" width="70%">
                 </div>  
                 <div class="col-6 text-left">
-                  <span> ID : </span> {{ result._id }} <br/>
-                  <span> Name : </span>  {{ result.name }} <br/>
-                  <span>Serial : </span>   {{ result.serial }} <br/>
-                  <span>Spec : </span>  {{ result.spec }} <br/>
-                  <span>Status : </span>  {{ result.status }} <br/>
-                  <span>Holder : </span>  {{ result.holder }} <br/></div>
-                <div class="col-2">
+                  <span class="text-primary" > ID : </span> {{ result._id }} <br/>
+                  <span class="text-primary" > Name : </span>  {{ result.name }} <br/>
+                  <span class="text-primary" >Serial : </span>   {{ result.serial }} <br/>
+                  <span class="text-primary" >Spec : </span>  {{ result.spec }} <br/>
+                  <span class="text-primary">Status : </span>  {{ result.status }} <br/>
+                  <span class="text-primary">Holder : </span>  {{ result.holder }} <br/></div>
+                <div class="col-2 align-self-center" >
                       <button type="button" class="btn btn-default btn-sm btn btn-warning">
                         <i class="fa fa-edit">Edit </i>
                       </button>
