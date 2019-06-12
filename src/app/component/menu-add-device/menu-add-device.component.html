@@ -1,82 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
 
-<h2>Register Device</h2>
-<!-- <p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other.</p> -->
+  <div class="container">
+    <div style="text-align:center">
+      <br>
 
-<div class="container">
-  <form action="/action_page.php">
+      <h1>
+        Welcome to <span class="font-weight-bold" style="color:#0b98d5">MacinOdds</span>
+      </h1>
+      <div class="card bg-light " style="max-width: 100%;">
+        <div class="card-header mb-3 font-weight-bold">REGISTER DEVICE</div>
+        <div class="card-body">
+          <div class="form-group text-left">
+            <label for="name">Device's Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your device name..">
+          </div>
+          <div class="form-group text-left">
+            <label for="serial" class="text-left">Serial:</label>
+            <input type="text" id="serial" name="Serial" placeholder="Your serial..">
+          </div>
+          <div class="form-group text-left">
+            <label for="spec">Specification:</label>
+            <textarea rows="5" id="spec" name="Spec" placeholder="Your device specification.."></textarea>
+          </div>
+          <div class="form-group text-left">
+            <label for="img">Image:&nbsp;&nbsp;</label>
+            <input type="file" name="pic" accept="image/*">
+          </div>
+          <div class="form-group text-left">
+            <label for="img">Status:&nbsp;&nbsp;</label>
+            <input type="radio" name="status" value="Avilible"> <span>&nbsp;&nbsp;Avilible </span> &nbsp;
+            <input type="radio" name="status" value="Unavilible"> <span>&nbsp;&nbsp;Unavilible </span>
+          </div>
 
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Name</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+          <div class="form-group text-left">
+            <label for="holder" class="text-left">Holder:</label>
+            <input type="text" id="holder" name="Holder" placeholder="Your name..">
+          </div>
+
+          <div class="form-group text-right">
+              <button type="button" class="btn btn-success">Save</button>&nbsp;&nbsp;
+              <button type="button" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-25">
-        <label for="lname">Serial</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="country">Spec</label>
-      </div>
-      <div class="col-75">
-        <select id="country" name="country">
-          <option value="australia">Macbook Pro 2007 15 inc</option>
-          <option value="canada">Macbook Pro 2007 13 inch</option>
-          <option value="usa">Mac book Pro 2018 15 inch</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Image</label>
-      </div>
-      <div class="col-75">
-          <input type="file" name="pic" accept="image/*">
-      </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-25">
-          <label for="subject">Status</label>
-        </div>
-        <div class="col-75">
-            <input type="radio" name="gender" value="male">  <span>Avilible </span> 
-            <input type="radio" name="gender" value="female">  <span>Unavilible </span> 
-        </div>
-      </div>
-
-
-    <div class="row">
-        <div class="col-25">
-          <label for="fname">holder</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="fname" name="firstname" placeholder="Your name..">
-        </div>
-      </div>
-
-      <div class="row">
-          <input type="submit" value="Submit">
-        </div>
-
-  </form>
-</div>
-
+  </div>
 </body>
+
 </html>
