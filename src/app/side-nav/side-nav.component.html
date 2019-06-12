@@ -8,7 +8,7 @@
       <div *ngFor="let menuGroup of menuList">
         <div *ngIf="menuGroup.menus.length == 0">
           <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/app/'+menuGroup.group.code]">
-            <span>{{ menuGroup.group.name  }}</span>
+            <span>{{ menuGroup.group.name }} </span>
           </a>
         </div>
         <div *ngIf="menuGroup.menus.length > 0" [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}">
@@ -32,7 +32,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>{{title}}</span>
+      <span>Macinodds</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

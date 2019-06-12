@@ -10,7 +10,7 @@ import { MenuServiceService, MenuItem, Menu } from '../service/menu-service.serv
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent {
-  title = 'Macinodds';
+  appName = 'Macinodds';
 
   menuGroupSelected: string;
   menuList: MenuItem[];
