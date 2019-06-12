@@ -6,13 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-add-device.component.css']
 })
 export class MenuAddDeviceComponent implements OnInit {
-  inName = "";
-  inSerial = "";
-  inSpec = "";
-  inImg = "";
-  inStatus = "";
-  inHolder = "";
-  
+
   constructor() { }
 
   ngOnInit() {
