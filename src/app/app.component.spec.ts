@@ -1,6 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { Router } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -25,6 +26,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('macinodds');
   });
+<<<<<<< Updated upstream
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -32,4 +34,6 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     // expect(compiled.querySelector('h1').textContent).toContain('Welcome to macinodds!');
   });
+=======
+>>>>>>> Stashed changes
 });
