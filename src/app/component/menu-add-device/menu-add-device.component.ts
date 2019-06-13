@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 
 
@@ -17,7 +15,7 @@ export class MenuAddDeviceComponent implements OnInit {
   inSerial: string;
   inSpec: string;
   // inImage: string;
-  inImage = "";
+  inImage = '';
   inStatus: boolean;
   inHolder: string;
 
