@@ -4,6 +4,7 @@
   
   body{
     margin-left: 10px;
+    background-color: #fafafa;
   }
   
   input[type=text], select, textarea {
