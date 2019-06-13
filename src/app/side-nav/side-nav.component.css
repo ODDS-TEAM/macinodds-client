@@ -6,31 +6,26 @@
   right: 0;
   }
   .sidenav {
-  width: 200px;
-  background-image: linear-gradient(lightgreen, rgb(57, 195, 241));
+  width: 250px;
+  background-color: #f3f2f2;
   color:#ffffff;
   }
   .sidenav .mat-toolbar {
-  background-image: linear-gradient(rgb(250, 233, 77), rgba(144, 238, 144, 0.959));
+  height: 70px;
+  background-color: white;
   color:#ffffff;
   }
   .mat-toolbar.mat-primary {
+  height: 70px;
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: #f0f0f0;
-  color:#0b98d5;
+  background-color: white;
   }
-
-  .sidenav-container {
-    height: 100%;
-   }
-   เป็น
-   .sidenav-container {
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-   }
+  .body {
+    background-color: #f9f8f8;
+  }
+  h4 {
+    color: black;
+  }
    
