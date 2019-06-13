@@ -15,7 +15,7 @@ export class MenuAddDeviceComponent implements OnInit {
   inSerial: string;
   inSpec: string;
   // inImage: string;
-  inImage = "";
+  inImage = '';
   inStatus: boolean;
   inHolder: string;
 
