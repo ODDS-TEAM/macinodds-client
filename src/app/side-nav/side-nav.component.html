@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar><img src="/assets/imgs/logo4.png" width="auto" height="50" class="d-inline-block align-top" alt=""></mat-toolbar>
+    <mat-toolbar><img src="/assets/imgs/logo4.png" width="auto"  class="d-inline-block align-top center" alt=""></mat-toolbar>
     <mat-nav-list>
       <h4>menu</h4>
       <div *ngFor="let menuGroup of menuList">
