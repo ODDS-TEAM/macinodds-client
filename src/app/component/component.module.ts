@@ -7,6 +7,8 @@ import { ComponentRoutingModule } from './component-routing.module';
 import { MenuAddDeviceComponent } from './menu-add-device/menu-add-device.component';
 import { MenuViewAdminComponent } from './menu-view-admin/menu-view-admin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     ComponentRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class ComponentModule { }
