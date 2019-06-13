@@ -7,14 +7,19 @@
   }
   .sidenav {
   width: 200px;
+  background-image: linear-gradient(lightgreen, rgb(57, 195, 241));
+  color:#ffffff;
   }
   .sidenav .mat-toolbar {
-  background: #3f51b5;
+  background-image: linear-gradient(rgb(250, 233, 77), rgba(144, 238, 144, 0.959));
+  color:#ffffff;
   }
   .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+  background-color: #f0f0f0;
+  color:#0b98d5;
   }
 
   .sidenav-container {
@@ -28,3 +33,4 @@
     left: 0;
     right: 0;
    }
+   

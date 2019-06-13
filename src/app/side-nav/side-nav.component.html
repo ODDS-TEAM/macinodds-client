@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <div *ngFor="let menuGroup of menuList">
         <div *ngIf="menuGroup.menus.length == 0">
@@ -26,13 +26,32 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content >
     <mat-toolbar color="primary">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Macinodds</span>
+      <!-- <span>Macin</span>&nbsp; -->
+
+      <!-- <div class="row">
+          <div class="col-xs-4">
+      <img src="https://seeklogo.com/images/O/odds-logo-53FFA2ED92-seeklogo.com.png" width="auto" height="30" class="d-inline-block align-top" alt="">
+      </div>
+      <div class="col-xs-4">
+      <form class="form-inline md-form form-sm mt-0 control-label pull-right">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+        
+        </form>
+        </div>
+        <div class="col-xs-4">
+        <form class="form-inline md-form form-sm mt-0 control-label pull-right">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </form>
+        </div> 
+        </div>   -->
+        
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
