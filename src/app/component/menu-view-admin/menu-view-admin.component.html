@@ -30,9 +30,8 @@
                   <span class="font-weight-bold" style="color:#0b98d5">Status: </span>  {{ result.status }} <br/>
                   <span class="font-weight-bold" style="color:#0b98d5">Holder: </span>  {{ result.holder }} <br/></div>
                   <div class="col-lg-2 align-self-center my-3">
-                  <a class="btn btn-warning"><i class="fa fa-edit">  Edit</i></a><br><br>
-                  <a class="btn btn-danger" (click)="deleteDevice(result._id , result.serial)" ><i class="fa fa-trash">  Delete</i></a>
-
+                  <button type="button" class="btn btn-sm btn-outline-warning"><i class="fa fa-edit">  Edit</i></button> &nbsp;
+                  <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteDevice(result._id , result.serial)"><i class="fa fa-trash">  Delete</i></button>
                 </div>
               </div>
             </li>
