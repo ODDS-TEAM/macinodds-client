@@ -16,27 +16,65 @@
       </h1> -->
       <br>
 
-        <ul class="list-group">
-            <li class="card shadow-lg bg-light my-3"  *ngFor="let result of results">
-                <div class="row align-items-center my-6">
-                    <div class="col-lg-4">
-                        <img class="img-fluid" src= "{{ result.img }}"  width="100%">
-                </div>  
-                <div class="col-lg-5 text-left mx-4 my-4">
-                  <span class="font-weight-bold" style="color:#53646b"> ID: </span> {{ result._id }} <br/>
+      <ul class="list-group">
+        <li class="card shadow-lg bg-light my-3" *ngFor="let result of results">
+          <div class="row align-items-center my-6">
+            <div class="col-lg-4">
+              <img class="img-fluid" src="{{ result.img }}" width="100%">
+            </div>
+            <div class="col-lg-5 text-left mx-4 my-4">
+              <span class="font-weight-bold" style="color:#53646b"> ID: </span> {{ result._id }} <br />
+              <span class="font-weight-bold" style="color:#0b98d5"> Name: </span> {{ result.name }} <br />
+              <span class="font-weight-bold" style="color:#0b98d5">Spec: </span> {{ result.spec }} <br />
+              <span class="font-weight-bold" style="color:#0b98d5">Status: </span> {{ result.status }} <br />
+              <span class="font-weight-bold" style="color:#0b98d5">Holder: </span> {{ result.holder }} <br />
+            </div>
 
-                  <span class="font-weight-bold" style="color:#0b98d5"> Name: </span>  {{ result.name }} <br/>
-                  <span class="font-weight-bold" style="color:#0b98d5">Spec: </span>  {{ result.spec }} <br/>
-                  <span class="font-weight-bold" style="color:#0b98d5">Status: </span>  {{ result.status }} <br/>
-                  <span class="font-weight-bold" style="color:#0b98d5">Holder: </span>  {{ result.holder }} <br/></div>
-                  <div class="col-lg-2 align-self-center my-3">
-                  <button type="button" class="btn btn-sm btn-outline-warning"><i class="fa fa-edit">  Edit</i></button> &nbsp;
-                  <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteDevice(result._id , result.serial)"><i class="fa fa-trash">  Delete</i></button>
-                </div>
-              </div>
-            </li>
-          </ul>
-        
+            <div class="col-lg-2 align-self-center my-3">
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-edit" (click)="editDevice()" data-target="#editModal" data-toggle="modal" > Edit</i>
+                  </button>
+              <a class="btn btn-danger" (click)="deleteDevice(result._id , result.serial)"><i
+                  class="fa fa-trash">Delete</i></a>
+
+            </div>
+
+          </div>
+        </li>
+      </ul>
+
+      
+
+    </div>   <!-- style -->
+  </div>   <!-- container -->
+
+
+
+
+
+
+
+  <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
   </div>
 </body>
