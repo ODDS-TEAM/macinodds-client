@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 
@@ -14,15 +14,29 @@ export class MenuAddDeviceComponent implements OnInit {
   inName: string;
   inSerial: string;
   inSpec: string;
-   inImage: any;
+  inImage: any;
   //inImage = '';
   inStatus: boolean;
   inHolder: string;
-
-  constructor(private http: HttpClient) { }
+  options: FormGroup;
+  constructor(private http: HttpClient,
+              private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit() {
+    this.createForm();
     this.getDevice();
+  }
+
+  createForm() {
+    this.options = this.formBuilder.group({
+      inName: '',
+      inSerial: '',
+      inSpec: '',
+      inImage: '',
+      inStatus: false,
+      inHolder: ''
+      });
   }
 
   getDevice() {
@@ -43,8 +57,8 @@ export class MenuAddDeviceComponent implements OnInit {
       status: this.inStatus,
       holder: this.inHolder,
       img: this.inImage
-    }
-    
+    };
+
     this.http.post('https://5d008336d021760014b74fa8.mockapi.io/test/devices', addData)
       .subscribe(result => {
         this.getDevice();
@@ -58,8 +72,7 @@ export class MenuAddDeviceComponent implements OnInit {
         //     } else { // กรณี error ฝั่ง server ไม่พบไฟล์ ,server error 
         //       console.log(Backend returned code ${ err.status }, body was: ${ err.error });
         //     }
-        //   
+        //
       });
   }
-
 }
