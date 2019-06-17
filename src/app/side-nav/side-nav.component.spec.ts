@@ -16,7 +16,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('SideNavComponent', () => {
   let component: SideNavComponent;
   let fixture: ComponentFixture<SideNavComponent>;
-  let router: Router;
+  // let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -41,7 +41,6 @@ describe('SideNavComponent', () => {
   });
 
   describe('templates', () => {
-    
     it('should create', () => {
       expect(component).toBeTruthy();
     });
@@ -51,7 +50,7 @@ describe('SideNavComponent', () => {
   describe('method', () => {
 
     it('should select menu', () => {
-      component.selectMenu({ code: '', name: '' });
+      component.selectMenu({ code: '', name: '' , icon: '' });
       expect(component.menuGroupSelected).toBeFalsy();
     });
 

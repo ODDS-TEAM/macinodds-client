@@ -11,14 +11,13 @@ import { puts } from 'util';
 export class MenuViewAdminComponent implements OnInit {
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
+  public editResults: any; // กำหนดตัวแปร เพื่อรับค่า
   name: string;
   serial: string;
   spec: string;
-  // image: string;
   image = '';
-  status= true;
+  status = true;
   holder: string;
-
 
 
   // Inject HttpClient มาใช้ใน component หรือ service.
@@ -28,8 +27,9 @@ export class MenuViewAdminComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.createForm();
+    this.editResults = {}
     this.getDevice();
+    this.createForm();
   }
 
   createForm() {
@@ -51,40 +51,64 @@ export class MenuViewAdminComponent implements OnInit {
     this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/devices').subscribe(data => {
       // อ่านค่า result จาก JSON response ที่ส่งออกมา
       this.results = data;
+      console.log("print get all : " +  JSON.stringify(this.results[0]._id))                                    // <<<<<<<<<<<<<<<<<<<< console.log Here
+      this.getDeviceByID(this.results[0]._id);
     });
+
   }
 
+  getDeviceByID(id) {
+    console.log("print id : " + id)
+    this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/devices/'+id).subscribe(data => {
+      // อ่านค่า result จาก JSON response ที่ส่งออกมา
+      this.editResults = data;
+    });
+  }
 
   deleteDevice(id, serial) {
     console.log('confirem delete : ' + id);
     if (window.confirm('Are you sure, you want to delete device serial number: ' + serial)) {
       this.http.delete('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id).subscribe(data => {
         this.getDevice();
-        // this.getDevice();
-
       });
     }
   }
+
+  editDevice(id,serial) {
+    this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/devices/'+id).subscribe(data => {
+      this.editResults = data;
+    });
+  }
+
+
+
+  onSubmit(id) {
+
+        const saveData = {
+      name: this.name,
+      serial: this.serial,
+      spec: this.spec,
+      status: this.status,
+      holder: this.holder,
+      img: this.image
+    }
+
+    console.log("Put data : " +  JSON.stringify(saveData)) 
+    this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id, saveData).subscribe(data => {
+      this.getDevice();
+      console.log("Put data : " +  JSON.stringify(data))                                                            // <<<<<<<<<<<<<<<<<<<< console.log Here
+    });
+
+  }
+
 
   onDisable(status: boolean) {
     this.status = !status;
     this.holder = '';
   }
 
-  // editDevice(id) {
-  //   const addData = {
-  //     name: this.name,
-  //     serial: this.serial,
-  //     spec: this.spec,
-  //     status: this.status,
-  //     holder: this.holder,
-  //     img: this.image
-  //   }
-
-  //   this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id, addData).subscribe(data => {
-  //     this.getDevice();
-  //     console.log(data);
-  //   });
-  // }
-
+  resetFrom() {
+    this.options.reset();
+    console.log('clear');                                                                                         // <<<<<<<<<<<<<<<<<<<< console.log Here
+  }
 }

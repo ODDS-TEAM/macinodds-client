@@ -26,13 +26,13 @@
               <span class="font-weight-bold" style="color:#53646b"> ID: </span> {{ result._id }} <br />
               <span class="font-weight-bold" style="color:#0b98d5"> Name: </span> {{ result.name }} <br />
               <span class="font-weight-bold" style="color:#0b98d5">Spec: </span> {{ result.spec }} <br />
-              <span class="font-weight-bold" style="color:#0b98d5">Status: </span> 
+              <span class="font-weight-bold" style="color:#0b98d5">Status: </span>
               <div *ngIf=" result.status ; else notShow">
                 <p>
                   <button type="button" class="btn btn-sm btn-outline-success" disabled>AVAILABLE</button>
                 </p>
               </div>
-              
+
               <ng-template #notShow>
                 <p>
                   <button type="button" class="btn btn-sm btn-outline-danger" disabled>UNAVAILABLE</button>
@@ -40,13 +40,14 @@
               </ng-template>
               <span class="font-weight-bold" style="color:#0b98d5">Holder: </span> {{ result.holder }} <br />
             </div>
-            
+
             <div class="col-lg-2 align-self-center my-3">
-              <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editDevice">
-                <i class="fa fa-edit" data-toggle="modal">  Edit</i>
+              <button type="button" class="btn btn-sm btn-warning" (click)="editDevice(result._id , result.serial )"
+                data-toggle="modal" data-target="#editDevice">
+                <i class="fa fa-edit" data-toggle="modal"> Edit</i>
               </button> &nbsp;
               <a class="btn btn-sm btn-danger" (click)="deleteDevice(result._id , result.serial)"><i
-                  class="fa fa-trash">  Delete</i></a>
+                  class="fa fa-trash"> Delete</i></a>
 
             </div>
 
@@ -60,72 +61,75 @@
   </div> <!-- container -->
 
 
+  
 
   <!-- Button trigger modal -->
-
+  <!-- <div class="modal" id="editDevice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true"> -->
 
   <!-- Modal -->
-  <div class="test_form">
-    <form class="example-container" [formGroup]="options">
-      <div class="modal" id="editDevice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Deveice</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group ">
-                <label for="name">Device's Name:</label>
-                <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="name">
-              </div>
-              <div class="form-group  ">
-                <label for="serial" class="text-left">Serial:</label>
-                <input type="text" id="serial" name="Serial" placeholder="Your serial..">
-              </div>
-              <div class="form-group  ">
-                <label for="spec">Specification:</label>
-                <textarea rows="5" id="spec" name="Spec" placeholder="Your device specification.."></textarea>
-              </div>
-              <div class="form-group  ">
-                <label for="img">Image:&nbsp;&nbsp;</label>
-                <!-- <input type="file" name="pic" accept="image/*" [(ngModel)]="inImage">  -->
-                <input type="file" name="pic" accept="image/*">
-              </div>
-              <div class="form-group">
-                <label>Status: </label>
-                <div class="form-group text-left">
-                  <label>Status: </label>
-                  <mat-radio-group formControlName="status" >
-                      <mat-radio-button name="available" value=ture (change)="onDisable(status)" checked=true>Available </mat-radio-button>
-                      <mat-radio-button name="unavailable" value=false (change)="onDisable(status)" >Unavailable</mat-radio-button>
-                  </mat-radio-group>
-              </div>
-              </div>
-              <!-- <form action="" formControlName="inStatus">
-                  <input type="radio" name="status" inStatus=true> Available<br>
-                  <input type="radio" name="status" inStatus=false> Unavailable<br>
-                </form> -->
+  <div class="modal" id="editDevice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div >
+      <div >
 
-              <div class="form-group" [ngClass]="{disabledDiv: status}">
-                <label for="holder" class=" ">Holder:</label>
-                <input type="text" id="holder" name="holder" placeholder="Your name..">
-              </div>
-            </div> <!-- modal-body -->
+        
+  <div class="container" >
 
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success" >Save</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-          </div>
+    <form class="example-container" [formGroup]="options" class="modal-content">
+
+  <div style="text-align:center" class="modal-header">
+    <br>
+
+    <div class="card bg-light shadow-lg " style="max-width: 100%;">
+      <div class="card-header mb-3 font-weight-bold">REGISTER DEVICE</div>
+      <div class="card-body">
+        <div class="form-group text-left">
+          <label for="name">Device's Name:</label>
+          <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="name" [(ngModel)]="name" value="{{editResults.name}}">
+        </div>
+        <div class="form-group text-left">
+          <label for="serial" class="text-left">Serial:</label>
+          <input type="text" id="serial" name="serial" placeholder="Your serial.." formControlName="serial" [(ngModel)]="serial" value="{{editResults.serial}}">
+        </div>
+        <div class="form-group text-left">
+          <label for="spec">Specification:</label>
+          <textarea rows="5" id="spec" name="Spec" placeholder="Your device specification.."
+          formControlName ="spec" [(ngModel)]="spec" value="{{editResults.spec}}" ></textarea>
+        </div>
+        <div class="form-group text-left">
+          <label for="img">Image:&nbsp;&nbsp;</label>
+          <input type="file" name="pic" accept="image/*" >
+        </div>
+        <div class="form-group text-left">
+            <label>Status: </label>
+            <mat-radio-group formControlName="status" >
+                <mat-radio-button name="available" value=ture (change)="onDisable(status)" checked=true>Available </mat-radio-button>
+                <mat-radio-button name="unavailable" value=false (change)="onDisable(status)" >Unavailable</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="form-group text-left" [ngClass]="{disabledDiv: status}" >
+          <label for="holder" class="text-left">Holder:</label>
+          <input type="text" id="holder" name="holder" placeholder="Your name.." formControlName="holder" [(ngModel)]="holder" value="{{editResults.holder}}" >
+        </div>
+
+        <div class="form-group text-right">
+          <button type="button" class="btn btn-success" (click)="onSubmit(editResults._id)">Save </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         </div>
       </div>
-    </form>
+    </div>
   </div>
-  
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </body>
 
 </html>
