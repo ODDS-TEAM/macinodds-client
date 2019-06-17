@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-
-
-
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-menu-add-device',
@@ -19,10 +17,25 @@ export class MenuAddDeviceComponent implements OnInit {
   inStatus: boolean;
   inHolder: string;
 
-  constructor(private http: HttpClient) { }
+  options: FormGroup;
+  constructor(private http: HttpClient,
+              private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit() {
+    this.createForm();
     this.getDevice();
+  }
+
+  createForm() {
+    this.options = this.formBuilder.group({
+      inName: '',
+      inSerial: '',
+      inSpec: '',
+      inImage: '',
+      inStatus: false,
+      inHolder: ''
+      });
   }
 
   getDevice() {
@@ -43,7 +56,7 @@ export class MenuAddDeviceComponent implements OnInit {
       status: this.inStatus,
       holder: this.inHolder,
       img: this.inImage
-    }
+    };
     
     this.http.post('https://5d008336d021760014b74fa8.mockapi.io/test/devices', addData)
       .subscribe(result => {

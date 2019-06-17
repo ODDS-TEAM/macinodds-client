@@ -8,6 +8,7 @@
 <body>
 
   <div class="container">
+      <form class="example-container" [formGroup]="options">
     <div style="text-align:center">
       <br>
 
@@ -19,16 +20,16 @@
         <div class="card-body">
           <div class="form-group text-left">
             <label for="name">Device's Name:</label>
-            <input type="text" id="name" name="name" placeholder="Your device name.." [(ngModel)]="inName">
+            <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="inName">
           </div>
           <div class="form-group text-left">
             <label for="serial" class="text-left">Serial:</label>
-            <input type="text" id="serial" name="Serial" placeholder="Your serial.." [(ngModel)]="inSerial">
+            <input type="text" id="serial" name="Serial" placeholder="Your serial.." formControlName="inSerial">
           </div>
           <div class="form-group text-left">
             <label for="spec">Specification:</label>
             <textarea rows="5" id="spec" name="Spec" placeholder="Your device specification.."
-              [(ngModel)]="inSpec"></textarea>
+            formControlName ="inSpec"></textarea>
           </div>
           <div class="form-group text-left">
             <label for="img">Image:&nbsp;&nbsp;</label>
@@ -36,16 +37,17 @@
             <input type="file" name="pic" accept="image/*" >
           </div>
           <div class="form-group text-left">
-            <label for="img">Status:&nbsp;&nbsp;</label>
-            <input type="radio" name="status" value="Avilible" [(ngModel)]="inStatus"> <span>&nbsp;&nbsp;Avilible
-            </span> &nbsp;
-            <input type="radio" name="status" value="Unavilible"> <span>&nbsp;&nbsp;Unavilible </span>
+              <label>Status: </label>
+              <mat-radio-group formControlName="inStatus">
+                  <mat-radio-button inStatus=true>Available</mat-radio-button>
+                  <mat-radio-button inStatus=false>Unavailable</mat-radio-button>
+              </mat-radio-group>
           </div>
 
 
           <div class="form-group text-left">
             <label for="holder" class="text-left">Holder:</label>
-            <input type="text" id="holder" name="Holder" placeholder="Your name.." [(ngModel)]="inHolder">
+            <input type="text" id="holder" name="Holder" placeholder="Your name.." formControlName="inHolder">
           </div>
 
           <div class="form-group text-right">
@@ -55,6 +57,7 @@
         </div>
       </div>
     </div>
+  </form>
   </div>
 </body>
 
