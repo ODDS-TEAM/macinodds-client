@@ -80,7 +80,7 @@
             <div class="modal-body">
               <div class="form-group ">
                 <label for="name">Device's Name:</label>
-                <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="inName">
+                <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="name">
               </div>
               <div class="form-group  ">
                 <label for="serial" class="text-left">Serial:</label>
@@ -97,19 +97,22 @@
               </div>
               <div class="form-group">
                 <label>Status: </label>
-                <mat-radio-group>
-                  <input type="radio" name="status" inStatus=true> Available
-                  <input type="radio" name="status" inStatus=false> Unavailable
-                </mat-radio-group>
+                <div class="form-group text-left">
+                  <label>Status: </label>
+                  <mat-radio-group formControlName="status" >
+                      <mat-radio-button name="available" value=ture (change)="onDisable(status)" checked=true>Available </mat-radio-button>
+                      <mat-radio-button name="unavailable" value=false (change)="onDisable(status)" >Unavailable</mat-radio-button>
+                  </mat-radio-group>
+              </div>
               </div>
               <!-- <form action="" formControlName="inStatus">
                   <input type="radio" name="status" inStatus=true> Available<br>
                   <input type="radio" name="status" inStatus=false> Unavailable<br>
                 </form> -->
 
-              <div class="form-group">
+              <div class="form-group" [ngClass]="{disabledDiv: status}">
                 <label for="holder" class=" ">Holder:</label>
-                <input type="text" id="holder" name="Holder" placeholder="Your name..">
+                <input type="text" id="holder" name="holder" placeholder="Your name..">
               </div>
             </div> <!-- modal-body -->
 

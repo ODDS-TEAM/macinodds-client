@@ -16,7 +16,7 @@ export class MenuViewAdminComponent implements OnInit {
   spec: string;
   // image: string;
   image = '';
-  status: boolean;
+  status= true;
   holder: string;
 
 
@@ -64,6 +64,11 @@ export class MenuViewAdminComponent implements OnInit {
 
       });
     }
+  }
+
+  onDisable(status: boolean) {
+    this.status = !status;
+    this.holder = '';
   }
 
   // editDevice(id) {
