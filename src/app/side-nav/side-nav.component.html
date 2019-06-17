@@ -9,7 +9,7 @@
         <div *ngIf="menuGroup.menus.length == 0">
           <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/app/'+menuGroup.group.code]">
             <i class="{{ menuGroup.group.icon }}"></i>
-             <span  >{{ menuGroup.group.name }} </span>
+             <span  > &nbsp; {{ menuGroup.group.name }} </span>
           </a>
         </div>
         <div *ngIf="menuGroup.menus.length > 0" [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}">

@@ -34,11 +34,11 @@ export class MenuServiceService {
       //   ]
       // },
       {
-        group: { code: 'menu-add-device', name: 'Add device' , icon: 'fas fa-edit' },
+        group: { code: 'menu-add-device', name: 'Add device' , icon: 'far fa-plus-square' },
         menus: []
       },
       {
-        group: { code: 'menu-view-admin', name: 'View admin' , icon: 'fas fa-file-alt' },
+        group: { code: 'menu-view-admin', name: 'View admin' , icon: 'far fa-list-alt' },
         menus: []
       }
     ];
