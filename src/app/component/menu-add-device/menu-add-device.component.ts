@@ -14,8 +14,10 @@ export class MenuAddDeviceComponent implements OnInit {
   inSpec: string;
   // inImage: string;
   inImage = '';
-  inStatus: boolean;
+  inStatus= true;
   inHolder: string;
+
+  disabled = false;
 
   options: FormGroup;
   constructor(private http: HttpClient,
@@ -37,6 +39,7 @@ export class MenuAddDeviceComponent implements OnInit {
       inHolder: ''
       });
   }
+
 
   getDevice() {
     // ทำการเรียกใช้ HTTP request ผ่าน get() method
@@ -72,7 +75,21 @@ export class MenuAddDeviceComponent implements OnInit {
         //       console.log(Backend returned code ${ err.status }, body was: ${ err.error });
         //     }
         //   
+        this.resetFrom();
       });
+  }
+
+  resetFrom(){
+    this.options.reset();
+    console.log('clear');
+  }
+
+  onHint(status:boolean){
+    console.log('Hint');
+    this.inStatus = !status;
+    // this.options.get('inHolder').disable();
+    // this.inHolder = '';
+    console.log(this.inStatus);
   }
 
 }

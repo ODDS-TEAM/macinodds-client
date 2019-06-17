@@ -67,3 +67,7 @@
       margin-top: 0;
     }
   }
+
+  .disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;   }
