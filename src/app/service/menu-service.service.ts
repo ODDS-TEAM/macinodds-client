@@ -34,11 +34,11 @@ export class MenuServiceService {
       //   ]
       // },
       {
-        group: { code: 'menu-add-device', name: 'Add device' },
+        group: { code: 'menu-add-device', name: 'Add device' , icon: 'fas fa-edit' },
         menus: []
       },
       {
-        group: { code: 'menu-view-admin', name: 'View admin' },
+        group: { code: 'menu-view-admin', name: 'View admin' , icon: 'fas fa-file-alt' },
         menus: []
       }
     ];
@@ -64,4 +64,5 @@ export interface MenuItem {
 export interface Menu {
   code: string;
   name: string;
+  icon: string;
 }
