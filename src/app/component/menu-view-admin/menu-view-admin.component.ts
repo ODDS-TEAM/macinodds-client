@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { puts } from 'util';
 
 @Component({
@@ -18,12 +19,28 @@ export class MenuViewAdminComponent implements OnInit {
   inStatus: boolean;
   inHolder: string;
 
+  
+
   // Inject HttpClient มาใช้ใน component หรือ service.
-  constructor(private http: HttpClient) { }
+  options: FormGroup;
+  constructor(private http: HttpClient,
+              private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit() {
-
+    this.createForm();
     this.getDevice();
+  }
+
+  createForm() {
+    this.options = this.formBuilder.group({
+      inName: '',
+      inSerial: '',
+      inSpec: '',
+      inImage: '',
+      inStatus: false,
+      inHolder: ''
+      });
   }
 
 
@@ -49,20 +66,20 @@ export class MenuViewAdminComponent implements OnInit {
     }
   }
 
-  editDevice(id) {
-    const addData = {
-      name: this.inName,
-      serial: this.inSerial,
-      spec: this.inSpec,
-      status: this.inStatus,
-      holder: this.inHolder,
-      img: this.inImage
-    }
+  // editDevice(id) {
+  //   const addData = {
+  //     name: this.inName,
+  //     serial: this.inSerial,
+  //     spec: this.inSpec,
+  //     status: this.inStatus,
+  //     holder: this.inHolder,
+  //     img: this.inImage
+  //   }
 
-    // this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id, addData).subscribe(data => {
-    //   this.getDevice();
-    //   console.log(data);
-    // });
-  }
+  //   this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id, addData).subscribe(data => {
+  //     this.getDevice();
+  //     console.log(data);
+  //   });
+  // }
 
 }

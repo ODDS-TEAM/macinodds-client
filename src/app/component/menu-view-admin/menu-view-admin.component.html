@@ -32,7 +32,7 @@
 
             <div class="col-lg-2 align-self-center my-3">
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editDevice">
-                <i class="fa fa-edit"  data-toggle="modal"> Edit</i>
+                <i class="fa fa-edit" data-toggle="modal"> Edit</i>
               </button>
               <a class="btn btn-danger" (click)="deleteDevice(result._id , result.serial)"><i
                   class="fa fa-trash">Delete</i></a>
@@ -54,54 +54,64 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="editDevice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Deveice</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="name">Device's Name:</label>
-            <input type="text" id="name" name="name" placeholder="Your device name.." [(ngModel)]="inName">
-          </div>
-          <div class="form-group">
-            <label for="serial" class="text-left">Serial:</label>
-            <input type="text" id="serial" name="Serial" placeholder="Your serial.." [(ngModel)]="inSerial">
-          </div>
-          <div class="form-group">
-            <label for="spec">Specification:</label>
-            <textarea rows="5" id="spec" name="Spec" placeholder="Your device specification.."
-              [(ngModel)]="inSpec"></textarea>
-          </div>
-          <div class="form-group">
-              <label for="img">Image:&nbsp;&nbsp;</label>
-              <!-- <input type="file" name="pic" accept="image/*" [(ngModel)]="inImage">  --> 
-              <input type="file" name="pic" accept="image/*" >
-          </div>
-          <div class="form-group">
-              <label for="img">Status:&nbsp;&nbsp;</label>
-              <input type="radio" name="status" value="Avilible" [(ngModel)]="inStatus"> <span>&nbsp;&nbsp;Avilible
-              </span> &nbsp;
-              <input type="radio" name="status" value="Unavilible"> <span>&nbsp;&nbsp;Unavilible </span>
-          </div>
-          <div class="form-group">
-              <label for="holder" class="text-left">Holder:</label>
-              <input type="text" id="holder" name="Holder" placeholder="Your name.." [(ngModel)]="inHolder">
-          </div>
-        </div> <!-- modal-body -->
+  <div class="test_form">
+    <form class="example-container" [formGroup]="options">
+      <div class="modal" id="editDevice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Deveice</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group ">
+                <label for="name">Device's Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="inName">
+              </div>
+              <div class="form-group  ">
+                <label for="serial" class="text-left">Serial:</label>
+                <input type="text" id="serial" name="Serial" placeholder="Your serial..">
+              </div>
+              <div class="form-group  ">
+                <label for="spec">Specification:</label>
+                <textarea rows="5" id="spec" name="Spec" placeholder="Your device specification.."></textarea>
+              </div>
+              <div class="form-group  ">
+                <label for="img">Image:&nbsp;&nbsp;</label>
+                <!-- <input type="file" name="pic" accept="image/*" [(ngModel)]="inImage">  -->
+                <input type="file" name="pic" accept="image/*">
+              </div>
+              <div class="form-group">
+                <label>Status: </label>
+                <mat-radio-group>
+                  <input type="radio" name="status" inStatus=true> Available
+                  <input type="radio" name="status" inStatus=false> Unavailable
+                </mat-radio-group>
+              </div>
+              <!-- <form action="" formControlName="inStatus">
+                  <input type="radio" name="status" inStatus=true> Available<br>
+                  <input type="radio" name="status" inStatus=false> Unavailable<br>
+                </form> -->
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success">Save</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <div class="form-group">
+                <label for="holder" class=" ">Holder:</label>
+                <input type="text" id="holder" name="Holder" placeholder="Your name..">
+              </div>
+            </div> <!-- modal-body -->
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="editDevice()">Save</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
+  
 </body>
 
 </html>
