@@ -20,33 +20,32 @@
         <div class="card-body">
           <div class="form-group text-left">
             <label for="name">Device's Name:</label>
-            <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="inName">
+            <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="name" [(ngModel)]="name">
           </div>
           <div class="form-group text-left">
             <label for="serial" class="text-left">Serial:</label>
-            <input type="text" id="serial" name="Serial" placeholder="Your serial.." formControlName="inSerial">
+            <input type="text" id="serial" name="serial" placeholder="Your serial.." formControlName="serial" [(ngModel)]="serial">
           </div>
           <div class="form-group text-left">
             <label for="spec">Specification:</label>
             <textarea rows="5" id="spec" name="Spec" placeholder="Your device specification.."
-            formControlName ="inSpec"></textarea>
+            formControlName ="spec" [(ngModel)]="spec"></textarea>
           </div>
           <div class="form-group text-left">
             <label for="img">Image:&nbsp;&nbsp;</label>
-            <!-- <input type="file" name="pic" accept="image/*" [(ngModel)]="inImage">  --> 
             <input type="file" name="pic" accept="image/*" >
           </div>
           <div class="form-group text-left">
               <label>Status: </label>
-              <mat-radio-group formControlName="inStatus" >
-                  <mat-radio-button name="Available" value=ture (change)="onHint(inStatus)" >Available </mat-radio-button>
-                  <mat-radio-button name="Unavailable" value=false (change)="onHint(inStatus)" checked=true>Unavailable</mat-radio-button>
+              <mat-radio-group formControlName="status" >
+                  <mat-radio-button name="available" value=ture (change)="onDisable(status)" checked=true>Available </mat-radio-button>
+                  <mat-radio-button name="unavailable" value=false (change)="onDisable(status)" >Unavailable</mat-radio-button>
               </mat-radio-group>
           </div>
 
-          <div class="form-group text-left" [ngClass]="{disabledDiv: !inStatus}" >
+          <div class="form-group text-left" [ngClass]="{disabledDiv: status}" >
             <label for="holder" class="text-left">Holder:</label>
-            <input type="text" id="holder" name="Holder" placeholder="Your name.." formControlName="inHolder" [(ngModel)]="inHolder" >
+            <input type="text" id="holder" name="holder" placeholder="Your name.." formControlName="holder" [(ngModel)]="holder" >
           </div>
 
           <div class="form-group text-right">

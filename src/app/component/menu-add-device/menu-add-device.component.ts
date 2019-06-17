@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,19 +9,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class MenuAddDeviceComponent implements OnInit {
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
-  inName: string;
-  inSerial: string;
-  inSpec: string;
-  // inImage: string;
-  inImage = '';
-  inStatus= true;
-  inHolder: string;
-
-  disabled = false;
+  name: string;
+  serial: string;
+  spec: string;
+  image = '';
+  status = true;
+  holder: string;
 
   options: FormGroup;
   constructor(private http: HttpClient,
-              private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -31,13 +28,13 @@ export class MenuAddDeviceComponent implements OnInit {
 
   createForm() {
     this.options = this.formBuilder.group({
-      inName: '',
-      inSerial: '',
-      inSpec: '',
-      inImage: '',
-      inStatus: false,
-      inHolder: ''
-      });
+      name: '',
+      serial: '',
+      spec: '',
+      image: '',
+      status: false,
+      holder: ''
+    });
   }
 
 
@@ -53,43 +50,42 @@ export class MenuAddDeviceComponent implements OnInit {
 
   onSubmit() {
     const addData = {
-      name: this.inName,
-      serial: this.inSerial,
-      spec: this.inSpec,
-      status: this.inStatus,
-      holder: this.inHolder,
-      img: this.inImage
+      name: this.name,
+      serial: this.serial,
+      spec: this.spec,
+      status: this.status,
+      holder: this.holder,
+      img: this.image
     };
-    
-    this.http.post('https://5d008336d021760014b74fa8.mockapi.io/test/devices', addData)
-      .subscribe(result => {
-        this.getDevice();
-        console.log(result);
-        // },
-        //   (err: HttpErrorResponse) => {
-        //     // กรณี error
-        //     if (err.error instanceof Error) {
-        //       // กรณี error ฝั่งผู้ใช้งาน หรือ การเชื่อมต่อเกิด error ขึ้น
-        //       console.log('An error occurred:', err.error.message);
-        //     } else { // กรณี error ฝั่ง server ไม่พบไฟล์ ,server error 
-        //       console.log(Backend returned code ${ err.status }, body was: ${ err.error });
-        //     }
-        //   
-        this.resetFrom();
-      });
+
+    if (window.confirm('POST ?')) {
+      this.http.post('https://5d008336d021760014b74fa8.mockapi.io/test/devices', addData)
+        .subscribe(result => {
+          this.getDevice();
+          console.log(result);
+          // },
+          //   (err: HttpErrorResponse) => {
+          //     // กรณี error
+          //     if (err.error instanceof Error) {
+          //       // กรณี error ฝั่งผู้ใช้งาน หรือ การเชื่อมต่อเกิด error ขึ้น
+          //       console.log('An error occurred:', err.error.message);
+          //     } else { // กรณี error ฝั่ง server ไม่พบไฟล์ ,server error
+          //       console.log(Backend returned code ${ err.status }, body was: ${ err.error });
+          //     }
+          //
+          this.resetFrom();
+        });
+    }
   }
 
-  resetFrom(){
+  resetFrom() {
     this.options.reset();
     console.log('clear');
   }
 
-  onHint(status:boolean){
-    console.log('Hint');
-    this.inStatus = !status;
-    // this.options.get('inHolder').disable();
-    // this.inHolder = '';
-    console.log(this.inStatus);
+  onDisable(status: boolean) {
+    this.status = !status;
+    this.holder = '';
   }
 
 }

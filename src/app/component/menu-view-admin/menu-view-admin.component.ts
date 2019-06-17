@@ -11,15 +11,15 @@ import { puts } from 'util';
 export class MenuViewAdminComponent implements OnInit {
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
-  inName: string;
-  inSerial: string;
-  inSpec: string;
-  // inImage: string;
-  inImage = '';
-  inStatus: boolean;
-  inHolder: string;
+  name: string;
+  serial: string;
+  spec: string;
+  // image: string;
+  image = '';
+  status: boolean;
+  holder: string;
 
-  
+
 
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
@@ -34,12 +34,12 @@ export class MenuViewAdminComponent implements OnInit {
 
   createForm() {
     this.options = this.formBuilder.group({
-      inName: '',
-      inSerial: '',
-      inSpec: '',
-      inImage: '',
-      inStatus: false,
-      inHolder: ''
+      name: '',
+      serial: '',
+      spec: '',
+      image: '',
+      status: false,
+      holder: ''
       });
   }
 
@@ -68,12 +68,12 @@ export class MenuViewAdminComponent implements OnInit {
 
   // editDevice(id) {
   //   const addData = {
-  //     name: this.inName,
-  //     serial: this.inSerial,
-  //     spec: this.inSpec,
-  //     status: this.inStatus,
-  //     holder: this.inHolder,
-  //     img: this.inImage
+  //     name: this.name,
+  //     serial: this.serial,
+  //     spec: this.spec,
+  //     status: this.status,
+  //     holder: this.holder,
+  //     img: this.image
   //   }
 
   //   this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id, addData).subscribe(data => {
