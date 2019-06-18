@@ -41,7 +41,7 @@ export class MenuAddDeviceComponent implements OnInit {
     // ทำการเรียกใช้ HTTP request ผ่าน get() method
     // ซึ่งจะได้ข้อมูลกลับมาในรูปแบบ Observable เราต้อง subscibe ตัว observer จึงจะทำงาน
     // พอรอค่าที่จะถูกส่งกลับมาแล้วทำงาน
-    this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/devices').subscribe(data => {
+    this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
       // อ่านค่า result จาก JSON response ที่ส่งออกมา
       this.results = data;
     });
@@ -58,7 +58,7 @@ export class MenuAddDeviceComponent implements OnInit {
     };
 
     if (window.confirm('POST ?')) {
-      this.http.post('https://5d008336d021760014b74fa8.mockapi.io/test/devices', addData)
+      this.http.post('http://139.5.146.213:1323/api/devices', addData)
         .subscribe(result => {
           this.getDevice();
           console.log(result);

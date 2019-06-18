@@ -27,7 +27,7 @@ export class MenuViewAdminComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.editResults = {}
+    this.editResults = {};
     this.getDevice();
     this.createForm();
   }
@@ -48,18 +48,18 @@ export class MenuViewAdminComponent implements OnInit {
     // ทำการเรียกใช้ HTTP request ผ่าน get() method
     // ซึ่งจะได้ข้อมูลกลับมาในรูปแบบ Observable เราต้อง subscibe ตัว observer จึงจะทำงาน
     // พอรอค่าที่จะถูกส่งกลับมาแล้วทำงาน
-    this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/devices').subscribe(data => {
+    this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
       // อ่านค่า result จาก JSON response ที่ส่งออกมา
       this.results = data;
-      console.log("print get all : " +  JSON.stringify(this.results[0]._id))                                    // <<<<<<<<<<<<<<<<<<<< console.log Here
+      console.log('print get all : ' +  JSON.stringify(this.results[0]._id));
       this.getDeviceByID(this.results[0]._id);
     });
 
   }
 
   getDeviceByID(id) {
-    console.log("print id : " + id)
-    this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/devices/'+id).subscribe(data => {
+    console.log('print id : ' + id);
+    this.http.get('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
       // อ่านค่า result จาก JSON response ที่ส่งออกมา
       this.editResults = data;
     });
@@ -68,14 +68,14 @@ export class MenuViewAdminComponent implements OnInit {
   deleteDevice(id, serial) {
     console.log('confirem delete : ' + id);
     if (window.confirm('Are you sure, you want to delete device serial number: ' + serial)) {
-      this.http.delete('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id).subscribe(data => {
+      this.http.delete('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
         this.getDevice();
       });
     }
   }
 
-  editDevice(id,serial) {
-    this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/devices/'+id).subscribe(data => {
+  editDevice(id, serial) {
+    this.http.get('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
       this.editResults = data;
     });
   }
@@ -91,12 +91,12 @@ export class MenuViewAdminComponent implements OnInit {
       status: this.status,
       holder: this.holder,
       img: this.image
-    }
+    };
 
-    console.log("Put data : " +  JSON.stringify(saveData)) 
-    this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id, saveData).subscribe(data => {
+        console.log('Put data : ' +  JSON.stringify(saveData));
+        this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id, saveData).subscribe(data => {
       this.getDevice();
-      console.log("Put data : " +  JSON.stringify(data))                                                            // <<<<<<<<<<<<<<<<<<<< console.log Here
+      console.log('Put data : ' +  JSON.stringify(data));
     });
 
   }
@@ -109,6 +109,6 @@ export class MenuViewAdminComponent implements OnInit {
 
   resetFrom() {
     this.options.reset();
-    console.log('clear');                                                                                         // <<<<<<<<<<<<<<<<<<<< console.log Here
+    console.log('clear');
   }
 }
