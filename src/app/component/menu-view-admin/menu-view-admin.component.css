@@ -4,4 +4,12 @@ body{
 
 .disabledDiv {
     pointer-events: none;
-    opacity: 0.4;   }
+    opacity: 0.4;   
+}
+
+/* .modal-content {
+    width: 700px;
+}
+.modal .card{
+    width: 680px;
+} */
