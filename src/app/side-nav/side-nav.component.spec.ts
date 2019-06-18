@@ -12,6 +12,7 @@ import {
 import { SideNavComponent } from './side-nav.component';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Menu } from '../service/menu-service.service';
 
 describe('SideNavComponent', () => {
   let component: SideNavComponent;
@@ -50,8 +51,13 @@ describe('SideNavComponent', () => {
   describe('method', () => {
 
     it('should select menu', () => {
-      component.selectMenu({ code: '', name: '' , icon: '' });
-      expect(component.menuGroupSelected).toBeFalsy();
+      const data = {
+        code: '',
+        name: '',
+        icon: '',
+      };
+      component.selectMenu(data);
+      expect(component).toBeTruthy();
     });
 
   });
