@@ -17,8 +17,7 @@ export class MenuAddDeviceComponent implements OnInit {
   holder: string;
 
   options: FormGroup;
-  constructor(private http: HttpClient,
-    private formBuilder: FormBuilder,
+  constructor(private http: HttpClient, private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
