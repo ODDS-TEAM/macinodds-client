@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MenuViewAdminComponent } from './menu-view-admin.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MenuViewAdminComponent', () => {
   let component: MenuViewAdminComponent;
@@ -11,9 +13,15 @@ describe('MenuViewAdminComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MenuViewAdminComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [
+        ReactiveFormsModule, 
+        HttpClientTestingModule,
+        MatRadioModule,
+        HttpClientModule
+      ],
       providers: [
-        { provide: FormBuilder, useValue: formBuilder }
+        { provide: FormBuilder, 
+          useValue: formBuilder }
       ]
     })
       .compileComponents();
@@ -31,8 +39,9 @@ describe('MenuViewAdminComponent', () => {
       status: false,
       holder: ''
     });
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
   });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
 });

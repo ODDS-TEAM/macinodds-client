@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MenuAddDeviceComponent } from './menu-add-device.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatRadioModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('MenuAddDeviceComponent', () => {
   let component: MenuAddDeviceComponent;
@@ -10,9 +13,17 @@ describe('MenuAddDeviceComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MenuAddDeviceComponent],
-      imports: [ReactiveFormsModule],
+      imports: [
+        RouterTestingModule, 
+        ReactiveFormsModule,
+        MatRadioModule,
+        HttpClientModule
+      ],
       providers: [
-        { provide: FormBuilder, useValue: formBuilder }
+        {
+          provide: FormBuilder,
+          useValue: formBuilder
+        }
       ]
     })
       .compileComponents();
@@ -31,8 +42,10 @@ describe('MenuAddDeviceComponent', () => {
       holder: ''
     });
 
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
   });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
 });
