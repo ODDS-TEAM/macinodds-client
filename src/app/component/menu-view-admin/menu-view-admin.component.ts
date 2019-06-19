@@ -22,8 +22,7 @@ export class MenuViewAdminComponent implements OnInit {
 
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
-  constructor(private http: HttpClient,
-    private formBuilder: FormBuilder,
+  constructor(private http: HttpClient, private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -80,6 +79,13 @@ export class MenuViewAdminComponent implements OnInit {
       console.log('print edit data : ' + data);
       console.log('print edit data JSON.stringify : ' + JSON.stringify(data));
       console.log('print edit editResults : ' + this.editResults);
+
+      this.name = this.editResults.name;
+      this.serial = this.editResults.serial;
+      this.spec = this.editResults.spec;
+      this.status = this.editResults.status;
+      this.holder = this.editResults.holder;
+      this.image = this.editResults.img;
     });
   }
 
