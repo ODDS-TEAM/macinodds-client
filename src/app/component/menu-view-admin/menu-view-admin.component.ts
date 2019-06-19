@@ -23,7 +23,7 @@ export class MenuViewAdminComponent implements OnInit {
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
   constructor(private http: HttpClient,
-              private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class MenuViewAdminComponent implements OnInit {
       image: '',
       status: false,
       holder: ''
-      });
+    });
   }
 
 
@@ -51,7 +51,7 @@ export class MenuViewAdminComponent implements OnInit {
     this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
       // อ่านค่า result จาก JSON response ที่ส่งออกมา
       this.results = data;
-      console.log('print get all : ' +  JSON.stringify(this.results[0]._id));
+      console.log('print get all : ' + JSON.stringify(this.results[0]._id));
       this.getDeviceByID(this.results[0]._id);
     });
 
@@ -77,6 +77,9 @@ export class MenuViewAdminComponent implements OnInit {
   editDevice(id, serial) {
     this.http.get('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
       this.editResults = data;
+      console.log('print edit data : ' + data);
+      console.log('print edit data JSON.stringify : ' + JSON.stringify(data));
+      console.log('print edit editResults : ' + this.editResults);
     });
   }
 
@@ -84,7 +87,7 @@ export class MenuViewAdminComponent implements OnInit {
 
   onSubmit(id) {
 
-        const saveData = {
+    const saveData = {
       name: this.name,
       serial: this.serial,
       spec: this.spec,
@@ -93,10 +96,10 @@ export class MenuViewAdminComponent implements OnInit {
       img: this.image
     };
 
-        console.log('Put data : ' +  JSON.stringify(saveData));
-        this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/devices/' + id, saveData).subscribe(data => {
+    console.log('Put data **** : ' + JSON.stringify(saveData));
+    this.http.put('http://139.5.146.213:1323/api/devices/' + id, saveData).subscribe(data => {
       this.getDevice();
-      console.log('Put data : ' +  JSON.stringify(data));
+      console.log('Put data : ' + JSON.stringify(data));
     });
 
   }
