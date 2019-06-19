@@ -11,7 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 @media only screen and (min-width : 414px) and (max-width : 736px) {
-    .sidenav li a {
+    .sidenav-container, .sidebar, .sidenav, li a {
       float: left;
       padding: 15px;
       display: block;
