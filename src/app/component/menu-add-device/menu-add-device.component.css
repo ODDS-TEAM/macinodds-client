@@ -71,3 +71,35 @@
   .disabledDiv {
     pointer-events: none;
     opacity: 0.4;   }
+
+    @media only screen and (min-width : 414px) and (max-width : 736px) {
+      .sidenav li a {
+        float: left;
+        padding: 15px;
+        display: block;
+      }
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .sidebar a {float: left;}
+        div.content {margin-left: 0;}
+    }
+       
+    
+       @media screen and (max-width: 900px) {
+        .sidenav li a {
+          float: left;
+          padding: 15px;
+          display: block;
+        }
+          .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+          }
+          .sidebar a {float: left;}
+          div.content {margin-left: 0;}
+        
+      }
