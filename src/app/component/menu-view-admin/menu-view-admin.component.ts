@@ -18,6 +18,9 @@ export class MenuViewAdminComponent implements OnInit {
   image = '';
   status = true;
   holder: string;
+  checker: string;
+  imageDefault = "/assets/imgs/logo4.png";
+  fileToUpload: File = null;
 
 
   // Inject HttpClient มาใช้ใน component หรือ service.
@@ -37,7 +40,7 @@ export class MenuViewAdminComponent implements OnInit {
       serial: '',
       spec: '',
       image: '',
-      status: false,
+      status: '',
       holder: ''
     });
   }
@@ -92,7 +95,6 @@ export class MenuViewAdminComponent implements OnInit {
 
 
   onSubmit(id) {
-
     const saveData = {
       name: this.name,
       serial: this.serial,
@@ -111,9 +113,25 @@ export class MenuViewAdminComponent implements OnInit {
   }
 
 
-  onDisable(status: boolean) {
-    this.status = !status;
-    this.holder = '';
+  onSelectionChange() {
+    if (this.checker === 'false') {
+      this.status = false;
+      this.holder = '';
+    } else {
+      this.status = true;
+      this.holder = '';
+    }
+  }
+
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+
+    //Show image preview
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageDefault = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
   }
 
   resetFrom() {

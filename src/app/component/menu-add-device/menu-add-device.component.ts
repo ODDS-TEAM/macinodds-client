@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatRadioButton } from '@angular/material';
 
 @Component({
   selector: 'app-menu-add-device',
   templateUrl: './menu-add-device.component.html',
-  styleUrls: ['./menu-add-device.component.css']
+  styleUrls: ['./menu-add-device.component.css'],
 })
 export class MenuAddDeviceComponent implements OnInit {
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
@@ -13,16 +14,33 @@ export class MenuAddDeviceComponent implements OnInit {
   serial: string;
   spec: string;
   image = '';
+  checker: string;
   status = true;
   holder: string;
+  imageDefault = "/assets/imgs/logo4.png";
+  fileToUpload: File = null;
 
   options: FormGroup;
   constructor(private http: HttpClient, private formBuilder: FormBuilder,
   ) { }
 
+  @Input()
+  checked: Boolean
+
+  onSelectionChange() {
+    if (this.checker === 'false') {
+      this.status = false;
+      this.holder = '';
+    } else {
+      this.status = true;
+      this.holder = '';
+    }
+  }
+
   ngOnInit() {
     this.createForm();
     this.getDevice();
+    this.onSelectionChange()
   }
 
   createForm() {
@@ -31,7 +49,7 @@ export class MenuAddDeviceComponent implements OnInit {
       serial: '',
       spec: '',
       image: '',
-      status: false,
+      status: '',
       holder: ''
     });
   }
@@ -47,6 +65,17 @@ export class MenuAddDeviceComponent implements OnInit {
     });
   }
 
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+
+    //Show image preview
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageDefault = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
+  }
+
   onSubmit() {
     const addData = {
       name: this.name,
@@ -54,7 +83,7 @@ export class MenuAddDeviceComponent implements OnInit {
       spec: this.spec,
       status: this.status,
       holder: this.holder,
-      img: this.image
+      img: this.imageDefault
     };
 
     if (window.confirm('POST ?')) {
@@ -73,18 +102,16 @@ export class MenuAddDeviceComponent implements OnInit {
           //     }
           //
           this.resetFrom();
+          this.imageDefault = "/assets/imgs/logo4.png";
         });
     }
   }
 
   resetFrom() {
     this.options.reset();
+    this.status = true;
+    this.imageDefault = "/assets/imgs/logo4.png";
     console.log('clear');
-  }
 
-  onDisable(status: boolean) {
-    this.status = !status;
-    this.holder = '';
   }
-
 }
