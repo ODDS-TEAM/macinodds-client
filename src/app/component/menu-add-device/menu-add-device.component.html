@@ -7,46 +7,6 @@
 
 <body>
 
-<<<<<<< Updated upstream
-  <div class="container">
-    <form class="example-container" [formGroup]="options">
-      <div style="text-align:center">
-        <br>
-        <h1>
-          Welcome to <span class="font-weight-bold" style="color:#0b98d5">MacinOdds</span>
-        </h1>
-        <div class="card bg-light shadow-lg " style="max-width: 100%;">
-          <div class="card-header mb-3 font-weight-bold">REGISTER DEVICE</div>
-          <div class="card-body">
-            <div class="form-group text-left">
-              <label for="name">Device's Name:</label>
-              <input type="text" id="name" name="name" placeholder="Your device name.." formControlName="name"
-                [(ngModel)]="name">
-            </div>
-            <div class="form-group text-left">
-              <label for="serial" class="text-left">Serial:</label>
-              <input type="text" id="serial" name="serial" placeholder="Your serial.." formControlName="serial"
-                [(ngModel)]="serial">
-            </div>
-            <div class="form-group text-left">
-              <label for="spec">Specification:</label>
-              <textarea rows="5" id="spec" name="Spec" placeholder="Your device specification.." formControlName="spec"
-                [(ngModel)]="spec"></textarea>
-            </div>
-            <div class="form-group text-left">
-              <label for="img">Image:&nbsp;&nbsp;</label>
-              <input type="file" name="pic" accept="image/*">
-            </div>
-            <div class="form-group text-left">
-              <label>Status: </label>
-              <mat-radio-group formControlName="status">
-                <mat-radio-button name="available" value=true (change)="onDisable(status)" checked=true>Available
-                </mat-radio-button> &nbsp;&nbsp;
-                <mat-radio-button name="unavailable" value=false (change)="onDisable(status)">Unavailable
-                </mat-radio-button>
-              </mat-radio-group>
-            </div>
-=======
     <div class="container">
         <form class="example-container" [formGroup]="options" (change)="canSubmit()">
             <div style="text-align:center">
@@ -83,7 +43,6 @@
                                 <mat-radio-button name="unavailable" value=false #unavailable>Unavailable</mat-radio-button>
                             </mat-radio-group>
                         </div>
->>>>>>> Stashed changes
 
             <div class="form-group text-left" [ngClass]="{disabledDiv: status}">
               <label for="holder" class="text-left">Holder:</label>
