@@ -17,7 +17,7 @@ export class MenuAddDeviceComponent implements OnInit {
   checker: string;
   status = true;
   holder: string;
-  imageDefault = "/assets/imgs/logo4.png";
+  imageDefault = '/assets/imgs/logo4.png';
   fileToUpload: File = null;
   vaildatBT = false;
 
@@ -26,7 +26,7 @@ export class MenuAddDeviceComponent implements OnInit {
   ) { }
 
   @Input()
-  checked: Boolean
+  checked: boolean;
 
   onSelectionChange() {
     if (this.checker === 'false') {
@@ -69,11 +69,11 @@ export class MenuAddDeviceComponent implements OnInit {
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
 
-    //Show image preview
-    var reader = new FileReader();
+    // Show image preview
+    const reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageDefault = event.target.result;
-    }
+    };
     reader.readAsDataURL(this.fileToUpload);
   }
 
@@ -103,7 +103,7 @@ export class MenuAddDeviceComponent implements OnInit {
           //     }
           //
           this.resetFrom();
-          this.imageDefault = "/assets/imgs/logo4.png";
+          this.imageDefault = '/assets/imgs/logo4.png';
         });
     }
   }
@@ -111,7 +111,7 @@ export class MenuAddDeviceComponent implements OnInit {
   resetFrom() {
     this.options.reset();
     this.status = true;
-    this.imageDefault = "/assets/imgs/logo4.png";
+    this.imageDefault = '/assets/imgs/logo4.png';
     console.log('clear');
 
   }
