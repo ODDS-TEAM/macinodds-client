@@ -19,6 +19,7 @@ export class MenuAddDeviceComponent implements OnInit {
   holder: string;
   imageDefault = "/assets/imgs/logo4.png";
   fileToUpload: File = null;
+  vaildatBT = false;
 
   options: FormGroup;
   constructor(private http: HttpClient, private formBuilder: FormBuilder,
@@ -40,7 +41,7 @@ export class MenuAddDeviceComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.getDevice();
-    this.onSelectionChange()
+    this.onSelectionChange();
   }
 
   createForm() {
@@ -113,5 +114,18 @@ export class MenuAddDeviceComponent implements OnInit {
     this.imageDefault = "/assets/imgs/logo4.png";
     console.log('clear');
 
+  }
+
+  canSubmit() {
+    if (this.name && this.serial && this.spec && this.imageDefault && this.status === false && this.holder) {
+      // is not empty
+      this.vaildatBT = true;
+    } else if (this.name && this.serial && this.spec && this.imageDefault && this.status === true && !this.holder) {
+      // is not empty
+      this.vaildatBT = true;
+    } else {
+      // isn't empty
+      this.vaildatBT = false;
+    }
   }
 }

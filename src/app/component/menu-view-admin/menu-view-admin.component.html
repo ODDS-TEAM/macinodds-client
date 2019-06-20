@@ -23,21 +23,23 @@
                             <img class="img-fluid" src="{{ result.img }}" width="100%">
                         </div>
                         <div class="col-lg-5 text-left mx-4 my-4">
-                            <span class="font-weight-bold" style="color:#53646b"> ID: </span> {{ result._id }} <br />
                             <span class="font-weight-bold" style="color:#0b98d5"> Name: </span> {{ result.name }} <br />
+                            <span class="font-weight-bold" style="color:#0b98d5"> serial: </span> {{ result.serial }} <br />
                             <span class="font-weight-bold" style="color:#0b98d5">Spec: </span> {{ result.spec }} <br />
-                            <span class="font-weight-bold" style="color:#0b98d5">Status: </span>
-                            <div *ngIf=" result.status ; else notShow">
-                                <p>
-                                    <button type="button" class="btn btn-sm btn-outline-success" disabled>AVAILABLE</button>
-                                </p>
-                            </div>
+                            <span class="font-weight-bold" style="color:#0b98d5">Status:
+                                <div *ngIf=" result.status ; else notShow">
+                                    <p>
+                                        <button type="button" class="btn btn-sm btn-outline-success" disabled>AVAILABLE</button>
+                                    </p>
+                                </div>
+    
+                                <ng-template #notShow>
+                                    <p>
+                                        <button type="button" class="btn btn-sm btn-outline-danger" disabled>UNAVAILABLE</button>
+                                    </p>
+                                </ng-template>
+                            </span>
 
-                            <ng-template #notShow>
-                                <p>
-                                    <button type="button" class="btn btn-sm btn-outline-danger" disabled>UNAVAILABLE</button>
-                                </p>
-                            </ng-template>
                             <span class="font-weight-bold" style="color:#0b98d5">Holder: </span> {{ result.holder }} <br />
                         </div>
 
@@ -46,7 +48,7 @@
                                 <i class="fa fa-edit" data-toggle="modal" style="width:80px;height:20px">   
                                 Edit  
                                 </i>
-                            </button>&nbsp;
+                            </button> &nbsp;
                             <button class="btn btn-sm btn-danger" (click)="deleteDevice(result._id , result.serial)">
                               <i class="fa fa-trash" style="width:80px;height:20px"> Delete</i>
                             </button>
@@ -98,8 +100,8 @@
                                         </div>
                                         <div class="form-group text-left">
                                             <label for="img">Image:&nbsp;&nbsp;</label>
-                                            <img [src]="imageDefault" style="width:100px;height:125px">
-                                            <input type="file" name="pic" accept="image/*">
+                                            <img [src]="imageDefault" style="width:125px;height:100px">
+                                            <input type="file" name="pic" accept="image/*" (change)="handleFileInput($event.target.files)">
                                         </div>
                                         <div class="form-group text-left">
                                             <label>Status: </label>

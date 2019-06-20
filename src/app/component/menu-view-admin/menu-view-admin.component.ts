@@ -88,7 +88,7 @@ export class MenuViewAdminComponent implements OnInit {
       this.spec = this.editResults.spec;
       this.status = this.editResults.status;
       this.holder = this.editResults.holder;
-      this.image = this.editResults.img;
+      this.imageDefault = this.editResults.img;
     });
   }
 
@@ -138,4 +138,6 @@ export class MenuViewAdminComponent implements OnInit {
     this.options.reset();
     console.log('clear');
   }
+
+  
 }
