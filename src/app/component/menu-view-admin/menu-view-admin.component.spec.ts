@@ -44,4 +44,29 @@ describe('MenuViewAdminComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should be disable when call onDisable', () => {
+    spyOn(component, 'getDevice').and.returnValue();
+
+    component.onDisable(true)
+
+    expect(component).toBeTruthy();
+  });
+
+  it('should be resetFrom() when call resetFrom', () => {
+    spyOn(component, 'getDevice');
+
+    component.resetFrom();
+
+    expect(component.getDevice).toBeTruthy();
+  });
+
+  it('should be put data when call onSubmit', () => {
+    spyOn(component, 'getDevice').and.returnValue();
+
+    component.onSubmit('id')
+
+    expect(component.onSubmit).toBeTruthy();
+  });
+
+  
 });
