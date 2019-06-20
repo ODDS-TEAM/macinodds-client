@@ -24,35 +24,38 @@
                         </div>
                         <div class="col-lg-5 text-left mx-4 my-4">
                             <span class="font-weight-bold" style="color:#0b98d5"> Name: </span> {{ result.name }} <br />
-                            <span class="font-weight-bold" style="color:#0b98d5"> serial: </span> {{ result.serial }} <br />
+                            <span class="font-weight-bold" style="color:#0b98d5"> serial: </span> {{ result.serial }}
+                            <br />
                             <span class="font-weight-bold" style="color:#0b98d5">Spec: </span> {{ result.spec }} <br />
                             <span class="font-weight-bold" style="color:#0b98d5">Status:
                                 <div *ngIf=" result.status ; else notShow">
                                     <p>
-                                        <button type="button" class="btn btn-sm btn-outline-success" disabled>AVAILABLE</button>
+                                        <button type="button" class="btn btn-sm btn-outline-success"
+                                            disabled>AVAILABLE</button>
                                     </p>
                                 </div>
-    
+
                                 <ng-template #notShow>
                                     <p>
-                                        <button type="button" class="btn btn-sm btn-outline-danger" disabled>UNAVAILABLE</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            disabled>UNAVAILABLE</button>
                                     </p>
                                 </ng-template>
                             </span>
 
-                            <span class="font-weight-bold" style="color:#0b98d5">Holder: </span> {{ result.holder }} <br />
+                            <span class="font-weight-bold" style="color:#0b98d5">Holder: </span> {{ result.holder }}
+                            <br />
                         </div>
 
-                        <div class="col-lg-2 align-self-center my-3">
-                            <button type="button" class="btn btn-sm btn-warning" (click)="editDevice(result._id , result.serial )" data-toggle="modal" data-target="#editDevice">
-                                <i class="fa fa-edit" data-toggle="modal" style="width:80px;height:20px">   
-                                Edit  
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-sm btn-warning btn-edit btn-go" (click)="editDevice(result._id , result.serial )" data-toggle="modal" data-target="#editDevice">
+                                <i class="fa fa-edit" data-toggle="modal" style="width:80px;height:20px">
+                                    Edit
                                 </i>
-                            </button> &nbsp;
-                            <button class="btn btn-sm btn-danger" (click)="deleteDevice(result._id , result.serial)">
-                              <i class="fa fa-trash" style="width:80px;height:20px"> Delete</i>
                             </button>
-
+                            <button class="btn btn-sm btn-danger btn-go" (click)="deleteDevice(result._id , result.serial)">
+                                <i class="fa fa-trash" style="width:80px;height:20px"> Delete</i>
+                            </button>
                         </div>
                     </div>
                 </li>
@@ -100,14 +103,22 @@
                                         </div>
                                         <div class="form-group text-left">
                                             <label for="img">Image:&nbsp;&nbsp;</label>
-                                            <img src="imageDefault" style="width:125px;height:100px" #imgSrc>
+                                            <img src="{{imageDefault}}" style="width:125px;height:100px" #imgSrc>
                                             <input type="file" name="pic" accept="image/*" (change)="handleFileInput($event.target.files)">
                                         </div>
                                         <div class="form-group text-left">
                                             <label>Status: </label>
-                                            <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker">
-                                                <mat-radio-button name="available" value=true>Available</mat-radio-button>
-                                                <mat-radio-button name="unavailable" value=false #unavailable>Unavailable</mat-radio-button>
+                                            <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker" *ngIf="status">
+                                                <mat-radio-button name="available" value=true checked>Available
+                                                </mat-radio-button>
+                                                <mat-radio-button name="unavailable" value=false>Unavailable
+                                                </mat-radio-button>
+                                            </mat-radio-group>
+                                            <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker" *ngIf="!status">
+                                                <mat-radio-button name="available" value=true>Available
+                                                </mat-radio-button>
+                                                <mat-radio-button name="unavailable" value=false checked>Unavailable
+                                                </mat-radio-button>
                                             </mat-radio-group>
                                         </div>
 
@@ -117,7 +128,7 @@
                                         </div>
                                         <div class="form-group text-right">
                                             <button type="button" class="btn btn-success" (click)="onSubmit(editResults._id)">Save
-                      </button>&nbsp;&nbsp;
+                                            </button>&nbsp;&nbsp;
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                         </div>
                                     </div>

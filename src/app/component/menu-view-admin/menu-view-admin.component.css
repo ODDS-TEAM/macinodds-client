@@ -1,11 +1,16 @@
-body{
+body {
     background-color: #fafafa;
 }
 
 .disabledDiv {
     pointer-events: none;
-    opacity: 0.4;   
+    opacity: 0.4;
 }
+
+.btn-go {
+    margin: 10px
+}
+
 
 /* .modal-content {
     width: 700px;

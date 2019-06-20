@@ -19,8 +19,7 @@ export class MenuViewAdminComponent implements OnInit {
   status = true;
   holder: string;
   checker: string;
-  imageDefault: string;
-  imageChange: string;
+  imageDefault = '/assets/imgs/logo4.png';
   fileToUpload: File = null;
   disabledDivs = true;
 
@@ -89,8 +88,9 @@ export class MenuViewAdminComponent implements OnInit {
       this.spec = this.editResults.spec;
       this.status = this.editResults.status;
       this.holder = this.editResults.holder;
+      this.image = this.editResults.image;
       this.imageDefault = 'http://139.5.146.213/assets/imgs/devices/' + this.editResults.img;
-
+      console.log('image ==' + this.image);
     });
   }
 
