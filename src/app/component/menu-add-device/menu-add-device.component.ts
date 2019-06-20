@@ -13,9 +13,9 @@ export class MenuAddDeviceComponent implements OnInit {
   name: string;
   serial: string;
   spec: string;
-  image = '';
+  image: File;
   checker: string;
-  status = true;
+  status: boolean;
   holder: string;
   imageDefault = '/assets/imgs/logo4.png';
   fileToUpload: File = null;
@@ -75,20 +75,22 @@ export class MenuAddDeviceComponent implements OnInit {
       this.imageDefault = event.target.result;
     };
     reader.readAsDataURL(this.fileToUpload);
+    console.log('file  reader  ' + this.fileToUpload);
   }
 
   onSubmit() {
-    const addData = {
-      name: this.name,
-      serial: this.serial,
-      spec: this.spec,
-      status: this.status,
-      holder: this.holder,
-      img: this.imageDefault
-    };
+    const formData: FormData = new FormData();
+    formData.append('name', this.name);
+    formData.append('serial', this.serial);
+    formData.append('spec', this.spec);
+    formData.append('status', this.status.toString());
+    formData.append('img', this.fileToUpload);
+    formData.append('holder', this.holder);
 
+
+    console.log(JSON.stringify(formData));
     if (window.confirm('POST ?')) {
-      this.http.post('http://139.5.146.213:1323/api/devices', addData)
+      this.http.post('http://139.5.146.213:1323/api/devices', formData)
         .subscribe(result => {
           this.getDevice();
           console.log(result);

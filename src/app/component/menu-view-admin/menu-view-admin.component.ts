@@ -19,9 +19,10 @@ export class MenuViewAdminComponent implements OnInit {
   status = true;
   holder: string;
   checker: string;
-  imageDefault = "/assets/imgs/logo4.png";
+  imageDefault: string;
+  imageChange: string;
   fileToUpload: File = null;
-
+  disabledDivs = true;
 
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
@@ -88,24 +89,24 @@ export class MenuViewAdminComponent implements OnInit {
       this.spec = this.editResults.spec;
       this.status = this.editResults.status;
       this.holder = this.editResults.holder;
-      this.imageDefault = this.editResults.img;
+      this.imageDefault = 'http://139.5.146.213/assets/imgs/devices/' + this.editResults.img;
+
     });
   }
 
 
 
   onSubmit(id) {
-    const saveData = {
-      name: this.name,
-      serial: this.serial,
-      spec: this.spec,
-      status: this.status,
-      holder: this.holder,
-      img: this.image
-    };
+    const formData: FormData = new FormData();
+    formData.append('name', this.name);
+    formData.append('serial', this.serial);
+    formData.append('spec', this.spec);
+    formData.append('status', this.status.toString());
+    formData.append('holder', this.holder);
+    formData.append('img', this.fileToUpload);
 
-    console.log('Put data **** : ' + JSON.stringify(saveData));
-    this.http.put('http://139.5.146.213:1323/api/devices/' + id, saveData).subscribe(data => {
+    console.log('Put data **** : ' + JSON.stringify(formData));
+    this.http.put('http://139.5.146.213:1323/api/devices/' + id, formData).subscribe(data => {
       this.getDevice();
       console.log('Put data : ' + JSON.stringify(data));
     });
@@ -126,11 +127,12 @@ export class MenuViewAdminComponent implements OnInit {
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
 
-    //Show image preview
-    var reader = new FileReader();
+    // Show image preview
+    const reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageDefault = event.target.result;
-    }
+
+    };
     reader.readAsDataURL(this.fileToUpload);
   }
 
@@ -139,5 +141,4 @@ export class MenuViewAdminComponent implements OnInit {
     console.log('clear');
   }
 
-  
 }

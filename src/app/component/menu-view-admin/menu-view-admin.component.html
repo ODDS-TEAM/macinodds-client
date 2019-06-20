@@ -20,7 +20,7 @@
                 <li class="card shadow-lg bg-light my-3" *ngFor="let result of results">
                     <div class="row align-items-center my-6">
                         <div class="col-lg-4">
-                            <img class="img-fluid" src="{{ result.img }}" width="100%">
+                            <img class="img-fluid" src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}" width="100%">
                         </div>
                         <div class="col-lg-5 text-left mx-4 my-4">
                             <span class="font-weight-bold" style="color:#0b98d5"> Name: </span> {{ result.name }} <br />
@@ -100,13 +100,13 @@
                                         </div>
                                         <div class="form-group text-left">
                                             <label for="img">Image:&nbsp;&nbsp;</label>
-                                            <img [src]="imageDefault" style="width:125px;height:100px">
+                                            <img src="imageDefault" style="width:125px;height:100px" #imgSrc>
                                             <input type="file" name="pic" accept="image/*" (change)="handleFileInput($event.target.files)">
                                         </div>
                                         <div class="form-group text-left">
                                             <label>Status: </label>
                                             <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker">
-                                                <mat-radio-button name="available" value=true checked>Available</mat-radio-button>
+                                                <mat-radio-button name="available" value=true>Available</mat-radio-button>
                                                 <mat-radio-button name="unavailable" value=false #unavailable>Unavailable</mat-radio-button>
                                             </mat-radio-group>
                                         </div>
@@ -115,7 +115,6 @@
                                             <label for="holder" class="text-left">Holder:</label>
                                             <input class="form-control" type="text" id="holder" name="holder" placeholder="Your name.." formControlName="holder" [(ngModel)]="holder" value="{{editResults.holder}}">
                                         </div>
-
                                         <div class="form-group text-right">
                                             <button type="button" class="btn btn-success" (click)="onSubmit(editResults._id)">Save
                       </button>&nbsp;&nbsp;
@@ -133,5 +132,3 @@
     </div>
 
 </body>
-
-</html>
