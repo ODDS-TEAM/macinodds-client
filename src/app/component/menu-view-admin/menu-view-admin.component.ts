@@ -15,7 +15,7 @@ export class MenuViewAdminComponent implements OnInit {
   name: string;
   serial: string;
   spec: string;
-  image = '';
+  image: any = null;
   status = true;
   holder: string;
   checker: string;
@@ -47,26 +47,26 @@ export class MenuViewAdminComponent implements OnInit {
 
 
   getDevice() {
-    // ทำการเรียกใช้ HTTP request ผ่าน get() method
-    // ซึ่งจะได้ข้อมูลกลับมาในรูปแบบ Observable เราต้อง subscibe ตัว observer จึงจะทำงาน
-    // พอรอค่าที่จะถูกส่งกลับมาแล้วทำงาน
+    // HTTP request by get() method
+    // get data from Observable we need subscibe observer to working
     this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
-      // อ่านค่า result จาก JSON response ที่ส่งออกมา
+      // get result from JSON response
       this.results = data;
       console.log('print get all : ' + JSON.stringify(this.results[0]._id));
-      this.getDeviceByID(this.results[0]._id);
     });
 
   }
 
+  // get device id for show data
   getDeviceByID(id) {
     console.log('print id : ' + id);
     this.http.get('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
-      // อ่านค่า result จาก JSON response ที่ส่งออกมา
+      // read result form JSON response
       this.editResults = data;
     });
   }
 
+  // delete device when click button by id device
   deleteDevice(id, serial) {
     console.log('confirem delete : ' + id);
     if (window.confirm('Are you sure, you want to delete device serial number: ' + serial)) {
@@ -76,26 +76,28 @@ export class MenuViewAdminComponent implements OnInit {
     }
   }
 
+  // method for when click edit button
   editDevice(id, serial) {
     this.http.get('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
       this.editResults = data;
       console.log('print edit data : ' + data);
       console.log('print edit data JSON.stringify : ' + JSON.stringify(data));
       console.log('print edit editResults : ' + this.editResults);
+      console.log('picture name : ' + this.editResults.img);
 
       this.name = this.editResults.name;
       this.serial = this.editResults.serial;
       this.spec = this.editResults.spec;
       this.status = this.editResults.status;
       this.holder = this.editResults.holder;
-      this.image = this.editResults.image;
       this.imageDefault = 'http://139.5.146.213/assets/imgs/devices/' + this.editResults.img;
-      console.log('image ==' + this.image);
+      this.fileToUpload = this.editResults.img;
+      console.log('image == set ==> ' + this.fileToUpload);
     });
   }
 
 
-
+  // create formData to post
   onSubmit(id) {
     const formData: FormData = new FormData();
     formData.append('name', this.name);
@@ -113,7 +115,7 @@ export class MenuViewAdminComponent implements OnInit {
 
   }
 
-
+  // method Selection for radio button
   onSelectionChange() {
     if (this.checker === 'false') {
       this.status = false;
@@ -124,6 +126,7 @@ export class MenuViewAdminComponent implements OnInit {
     }
   }
 
+  // check change image and show image in src
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
 
@@ -134,8 +137,10 @@ export class MenuViewAdminComponent implements OnInit {
 
     };
     reader.readAsDataURL(this.fileToUpload);
+    console.log('image == change ==> ' + this.fileToUpload);
   }
 
+  // method for reset data in field
   resetFrom() {
     this.options.reset();
     console.log('clear');

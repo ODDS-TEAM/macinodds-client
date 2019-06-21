@@ -13,7 +13,7 @@ export class MenuAddDeviceComponent implements OnInit {
   name: string;
   serial: string;
   spec: string;
-  image: File;
+  image = '';
   checker: string;
   status: boolean;
   holder: string;
@@ -57,15 +57,15 @@ export class MenuAddDeviceComponent implements OnInit {
 
 
   getDevice() {
-    // ทำการเรียกใช้ HTTP request ผ่าน get() method
-    // ซึ่งจะได้ข้อมูลกลับมาในรูปแบบ Observable เราต้อง subscibe ตัว observer จึงจะทำงาน
-    // พอรอค่าที่จะถูกส่งกลับมาแล้วทำงาน
+    // HTTP request by get() method
+    // get data from Observable we need subscibe observer to working
     this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
-      // อ่านค่า result จาก JSON response ที่ส่งออกมา
+      // get result from JSON response
       this.results = data;
     });
   }
 
+  // check change image and show image in src
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
 
@@ -75,10 +75,11 @@ export class MenuAddDeviceComponent implements OnInit {
       this.imageDefault = event.target.result;
     };
     reader.readAsDataURL(this.fileToUpload);
-    console.log('file  reader  ' + this.fileToUpload);
+    console.log('file  fileToUpload ===  ' + this.fileToUpload);
   }
 
   onSubmit() {
+    // create formData to post
     const formData: FormData = new FormData();
     formData.append('name', this.name);
     formData.append('serial', this.serial);
@@ -89,27 +90,20 @@ export class MenuAddDeviceComponent implements OnInit {
 
 
     console.log(JSON.stringify(formData));
+    // post method
     if (window.confirm('POST ?')) {
       this.http.post('http://139.5.146.213:1323/api/devices', formData)
         .subscribe(result => {
           this.getDevice();
+
           console.log(result);
-          // },
-          //   (err: HttpErrorResponse) => {
-          //     // กรณี error
-          //     if (err.error instanceof Error) {
-          //       // กรณี error ฝั่งผู้ใช้งาน หรือ การเชื่อมต่อเกิด error ขึ้น
-          //       console.log('An error occurred:', err.error.message);
-          //     } else { // กรณี error ฝั่ง server ไม่พบไฟล์ ,server error
-          //       console.log(Backend returned code ${ err.status }, body was: ${ err.error });
-          //     }
-          //
           this.resetFrom();
           this.imageDefault = '/assets/imgs/logo4.png';
         });
     }
   }
 
+  // method for reset data in field
   resetFrom() {
     this.options.reset();
     this.status = true;
@@ -117,7 +111,7 @@ export class MenuAddDeviceComponent implements OnInit {
     console.log('clear');
 
   }
-
+  // check input in form
   canSubmit() {
     if (this.name && this.serial && this.spec && this.imageDefault && this.status === false && this.holder) {
       // is not empty
@@ -126,7 +120,7 @@ export class MenuAddDeviceComponent implements OnInit {
       // is not empty
       this.vaildatBT = true;
     } else {
-      // isn't empty
+      // is empty
       this.vaildatBT = false;
     }
   }
