@@ -7,7 +7,7 @@
     <mat-nav-list>
       <div *ngFor="let menuGroup of menuList">
         <div *ngIf="menuGroup.menus.length == 0">
-          <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/app/'+menuGroup.group.code]">
+          <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code]">
             <i class="{{ menuGroup.group.icon }}"></i>
              <span  > &nbsp; {{ menuGroup.group.name }} </span>
           </a>
@@ -18,7 +18,7 @@
             <span>{{ menuGroup.group.name }}</span>
           </a>
           <div *ngIf="menuGroupSelected==menuGroup.group.code">
-            <a *ngFor="let menu of menuGroup.menus" mat-list-item class="line" routerLinkActive="active" [routerLink]="['/app/'+menuGroup.group.code+'/'+menu.code]">
+            <a *ngFor="let menu of menuGroup.menus" mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code+'/'+menu.code]">
               <span>{{ menu.name }}</span>
             </a>
           </div>

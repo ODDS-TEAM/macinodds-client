@@ -14,10 +14,11 @@ import { MatRadioModule } from '@angular/material';
 import { MenuAddDeviceComponent } from './menu-add-device/menu-add-device.component';
 import { MenuViewAdminComponent } from './menu-view-admin/menu-view-admin.component';
 
+
 @NgModule({
   declarations: [
     MenuAddDeviceComponent,
-    MenuViewAdminComponent
+    MenuViewAdminComponent,
 
   ],
   imports: [

@@ -11,12 +11,18 @@ import { MatRadioModule } from '@angular/material/radio';
 // import { MenuAddDeviceComponent } from './component/menu-add-device/menu-add-device.component';
 // import { MenuViewAdminComponent } from './component/menu-view-admin/menu-view-admin.component';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
+import { ViewUserComponent } from './view-user/view-user.component';
+import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
+    ViewUserComponent,
+    MenuViewUserComponent,
     // MenuAddDeviceComponent,
     // MenuViewAdminComponent
   ],
@@ -33,10 +39,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     MatRadioModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
+    HttpClientModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: PathLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
