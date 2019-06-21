@@ -43,7 +43,7 @@ import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
   providers: [
-    {provide: LocationStrategy, useClass: PathLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
