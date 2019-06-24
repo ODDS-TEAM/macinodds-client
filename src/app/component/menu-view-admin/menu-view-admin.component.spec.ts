@@ -14,13 +14,13 @@ describe('MenuViewAdminComponent', () => {
     TestBed.configureTestingModule({
       declarations: [MenuViewAdminComponent],
       imports: [
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
         HttpClientTestingModule,
         MatRadioModule,
         HttpClientModule
       ],
       providers: [
-        { provide: FormBuilder, 
+        { provide: FormBuilder,
           useValue: formBuilder }
       ]
     })

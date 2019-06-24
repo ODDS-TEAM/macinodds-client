@@ -4,7 +4,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 
 const routes: Routes = [
-  {path: 'user', component: ViewUserComponent,
+  {path: '', component: ViewUserComponent,
   // children: [
   //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
   // ]
@@ -16,7 +16,7 @@ const routes: Routes = [
     ]
   },
   // { path: 'view-user', component: ViewUserComponent },
-   { path: '', redirectTo: 'user' , pathMatch: 'full' },
+   // { path: '', redirectTo: 'user' , pathMatch: 'full' },
   //  { path: '**', redirectTo: '' },
 
 
