@@ -81,6 +81,11 @@ input[type=submit]:hover {
     opacity: 0.4;
 }
 
+.disabledBT {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 @media only screen and (min-width: 414px) and (max-width: 736px) {
     .sidenav li a {
         float: left;
@@ -117,9 +122,4 @@ input[type=submit]:hover {
     div.content {
         margin-left: 0;
     }
-}
-
-.disabledBT {
-    pointer-events: none;
-    opacity: 0.4;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, ViewRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatRadioButton } from '@angular/material';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-menu-add-device',
@@ -17,7 +18,8 @@ export class MenuAddDeviceComponent implements OnInit {
   checker: string;
   status: boolean;
   holder: string;
-  imageDefault = '/assets/imgs/logo4.png';
+  tel: string;
+  imageDefault = '';
   fileToUpload: File = null;
   vaildatBT = false;
 
@@ -32,9 +34,11 @@ export class MenuAddDeviceComponent implements OnInit {
     if (this.checker === 'false') {
       this.status = false;
       this.holder = '';
+      this.tel;
     } else {
       this.status = true;
       this.holder = '';
+      this.tel;
     }
   }
 
@@ -51,7 +55,8 @@ export class MenuAddDeviceComponent implements OnInit {
       spec: '',
       image: '',
       status: '',
-      holder: ''
+      holder: '',
+      tel: ''
     });
   }
 
@@ -87,18 +92,19 @@ export class MenuAddDeviceComponent implements OnInit {
     formData.append('status', this.status.toString());
     formData.append('img', this.fileToUpload);
     formData.append('holder', this.holder);
+    formData.append('tel', this.tel);
 
-
+    console.log(this.tel);
     console.log(JSON.stringify(formData));
     // post method
-    if (window.confirm('POST ?')) {
+    if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
       this.http.post('http://139.5.146.213:1323/api/devices', formData)
         .subscribe(result => {
           this.getDevice();
 
           console.log(result);
           this.resetFrom();
-          this.imageDefault = '/assets/imgs/logo4.png';
+          this.imageDefault = '';
         });
     }
   }
@@ -107,21 +113,21 @@ export class MenuAddDeviceComponent implements OnInit {
   resetFrom() {
     this.options.reset();
     this.status = true;
-    this.imageDefault = '/assets/imgs/logo4.png';
+    this.imageDefault = '';
     console.log('clear');
 
   }
   // check input in form
-  canSubmit() {
-    if (this.name && this.serial && this.spec && this.imageDefault && this.status === false && this.holder) {
-      // is not empty
-      this.vaildatBT = true;
-    } else if (this.name && this.serial && this.spec && this.imageDefault && this.status === true && !this.holder) {
-      // is not empty
-      this.vaildatBT = true;
-    } else {
-      // is empty
-      this.vaildatBT = false;
-    }
-  }
+  // canSubmit() {
+  //   if (this.name && this.serial && this.spec && this.imageDefault && this.status === false && this.holder && this.tel) {
+  //     // is not empty
+  //     this.vaildatBT = true;
+  //   } else if (this.name && this.serial && this.spec && this.imageDefault && this.status === true && !this.holder && !this.tel) {
+  //     // is not empty
+  //     this.vaildatBT = true;
+  //   } else {
+  //     // is empty
+  //     this.vaildatBT = false;
+  //   }
+  // }
 }
