@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, ViewRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatRadioButton } from '@angular/material';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-menu-add-device',
@@ -24,7 +24,7 @@ export class MenuAddDeviceComponent implements OnInit {
   vaildatBT = false;
 
   options: FormGroup;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder,
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router,
   ) { }
 
   @Input()
@@ -103,14 +103,18 @@ export class MenuAddDeviceComponent implements OnInit {
           this.getDevice();
 
           console.log(result);
-          this.resetFrom();
+          this.resetForm();
           this.imageDefault = '';
+
+          this.router.navigate(['/admin/app/menu-view-admin']);
+
         });
     }
+
   }
 
   // method for reset data in field
-  resetFrom() {
+  resetForm() {
     this.options.reset();
     this.status = true;
     this.imageDefault = '';

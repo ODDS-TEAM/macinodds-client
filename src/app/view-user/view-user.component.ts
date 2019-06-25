@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+
 @Component({
   selector: 'app-view-user',
   templateUrl: './view-user.component.html',
@@ -24,8 +25,8 @@ export class ViewUserComponent implements OnInit {
 
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) { }
-
+  constructor(private http: HttpClient, private formBuilder: FormBuilder ) { }
+  
   ngOnInit() {
     this.getDevice();
   }
@@ -39,7 +40,5 @@ export class ViewUserComponent implements OnInit {
       this.results = data;
       console.log('print get all : ' + JSON.stringify(this.results[0]._id));
     });
-
   }
-
 }

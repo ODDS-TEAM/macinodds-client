@@ -52,10 +52,10 @@ describe('MenuViewAdminComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be resetFrom() when call resetFrom', () => {
+  it('should be resetForm() when call resetForm', () => {
     spyOn(component, 'getDevice');
 
-    component.resetFrom();
+    component.resetForm();
 
     expect(component.getDevice).toBeTruthy();
   });

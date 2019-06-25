@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'menu-add-device', component: MenuAddDeviceComponent },
   { path: 'menu-view-admin', component: MenuViewAdminComponent },
   { path: 'edit-admin', component: EditAdminComponent},
+  // { path: 'path?refresh=1', redirectTo: 'menu-view-admin' },
 
 ];
 

@@ -14,7 +14,7 @@ describe('MenuAddDeviceComponent', () => {
     TestBed.configureTestingModule({
       declarations: [MenuAddDeviceComponent],
       imports: [
-        RouterTestingModule, 
+        RouterTestingModule,
         ReactiveFormsModule,
         MatRadioModule,
         HttpClientModule
@@ -48,10 +48,10 @@ describe('MenuAddDeviceComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should clear data when call resetFrom()', () => {
+  it('should clear data when call resetForm()', () => {
     spyOn(component, 'getDevice');
 
-    component.resetFrom();
+    component.resetForm();
 
     expect(component.getDevice).toBeTruthy();
   });

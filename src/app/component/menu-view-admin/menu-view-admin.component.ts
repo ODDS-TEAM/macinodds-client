@@ -54,7 +54,6 @@ export class MenuViewAdminComponent implements OnInit {
       this.results = data;
       console.log('print get all : ' + JSON.stringify(this.results[0]._id));
     });
-
   }
 
   // get device id for show data
@@ -141,7 +140,7 @@ export class MenuViewAdminComponent implements OnInit {
   }
 
   // method for reset data in field
-  resetFrom() {
+  resetForm() {
     this.options.reset();
     console.log('clear');
   }
