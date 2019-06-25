@@ -1,0 +1,29 @@
+p {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.logo{
+    height: auto;
+    width: 150px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.btn-user {
+    background-color: #0e98d5;
+}
+
+.btn-admin {
+    background-color: #212121;
+}
+
+.btn-icon {
+    width: 17px;
+}
