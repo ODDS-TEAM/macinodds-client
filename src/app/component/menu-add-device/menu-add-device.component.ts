@@ -34,11 +34,11 @@ export class MenuAddDeviceComponent implements OnInit {
     if (this.checker === 'false') {
       this.status = false;
       this.holder = '';
-      this.tel;
+      this.tel = '';
     } else {
       this.status = true;
       this.holder = '';
-      this.tel;
+      this.tel = '';
     }
   }
 
