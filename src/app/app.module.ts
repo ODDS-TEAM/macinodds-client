@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ViewUserComponent } from './view-user/view-user.component';
 import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component
     SideNavComponent,
     ViewUserComponent,
     MenuViewUserComponent,
+    LoginComponent,
     // MenuAddDeviceComponent,
     // MenuViewAdminComponent
   ],
