@@ -34,7 +34,7 @@ export class MenuServiceService {
       //   ]
       // },
       {
-        group: { code: 'menu-add-device', name: 'Add device' , icon: 'far fa-plus-square' },
+        group: { code: 'menu-add-device', name: 'Add device' , icon: 'fas fa-file-medical' },
         menus: []
       },
       {
