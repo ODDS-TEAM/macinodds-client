@@ -64,6 +64,10 @@ input[type=submit]:hover {
     clear: both;
 }
 
+input[type="file"] {
+    display: none;
+}
+
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 
@@ -122,4 +126,10 @@ input[type=submit]:hover {
     div.content {
         margin-left: 0;
     }
+}
+
+.upload-image {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 5px;
 }

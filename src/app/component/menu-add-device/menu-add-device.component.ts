@@ -1,15 +1,16 @@
-import { Component, OnInit, Input, ViewChild, ViewRef } from '@angular/core';
+import { environment } from './../../../environments/environment.prod';
+import { Component, OnInit, Input, ViewChild, ViewRef, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatRadioButton } from '@angular/material';
 import { RouterLink, Router, RouterModule } from '@angular/router';
-
 @Component({
   selector: 'app-menu-add-device',
   templateUrl: './menu-add-device.component.html',
   styleUrls: ['./menu-add-device.component.css'],
 })
 export class MenuAddDeviceComponent implements OnInit {
+
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   name: string;
   serial: string;
@@ -19,10 +20,9 @@ export class MenuAddDeviceComponent implements OnInit {
   status: boolean;
   holder: string;
   tel: string;
-  imageDefault = '';
+  imageDefault = '/assets/imgs/add_device.jpg';
   fileToUpload: File = null;
   vaildatBT = false;
-
   options: FormGroup;
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router,
   ) { }
@@ -35,10 +35,12 @@ export class MenuAddDeviceComponent implements OnInit {
       this.status = false;
       this.holder = '';
       this.tel = '';
+      this.canSubmit();
     } else {
       this.status = true;
       this.holder = '';
       this.tel = '';
+      this.canSubmit();
     }
   }
 
@@ -80,7 +82,6 @@ export class MenuAddDeviceComponent implements OnInit {
       this.imageDefault = event.target.result;
     };
     reader.readAsDataURL(this.fileToUpload);
-    console.log('file  fileToUpload ===  ' + this.fileToUpload);
   }
 
   onSubmit() {
@@ -104,10 +105,9 @@ export class MenuAddDeviceComponent implements OnInit {
 
           console.log(result);
           this.resetForm();
-          this.imageDefault = '';
+          this.imageDefault = '/assets/imgs/add_image_icon.png';
 
           this.router.navigate(['/admin/app/menu-view-admin']);
-
         });
     }
 
@@ -117,21 +117,35 @@ export class MenuAddDeviceComponent implements OnInit {
   resetForm() {
     this.options.reset();
     this.status = true;
-    this.imageDefault = '';
+    this.image = '';
+    this.imageDefault = '/assets/imgs/add_image_icon.png';
     console.log('clear');
+  }
 
+
+  checkPhoneNum(event: any) {
+    const pattern = /[0-9]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
   }
   // check input in form
-  // canSubmit() {
-  //   if (this.name && this.serial && this.spec && this.imageDefault && this.status === false && this.holder && this.tel) {
-  //     // is not empty
-  //     this.vaildatBT = true;
-  //   } else if (this.name && this.serial && this.spec && this.imageDefault && this.status === true && !this.holder && !this.tel) {
-  //     // is not empty
-  //     this.vaildatBT = true;
-  //   } else {
-  //     // is empty
-  //     this.vaildatBT = false;
-  //   }
-  // }
+  canSubmit() {
+    if (this.name && this.serial && this.spec && this.fileToUpload && this.status === false && this.holder && this.tel) {
+      // is not empty check unavalible
+      this.vaildatBT = true;
+
+    } else if (this.name && this.serial && this.spec && this.fileToUpload && this.status === true && !this.holder && !this.tel) {
+      // is not empty check avalible
+      this.vaildatBT = true;
+
+    } else {
+      // is empty
+      this.vaildatBT = false;
+
+    }
+
+  }
 }

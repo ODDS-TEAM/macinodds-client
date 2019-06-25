@@ -26,7 +26,7 @@ export class ViewUserComponent implements OnInit {
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
   constructor(private http: HttpClient, private formBuilder: FormBuilder ) { }
-  
+
   ngOnInit() {
     this.getDevice();
   }

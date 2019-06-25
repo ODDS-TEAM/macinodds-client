@@ -7,8 +7,13 @@
 
 <body>
 
+<<<<<<< Updated upstream
     <div class="container font-style">
         <form class="example-container" [formGroup]="options">
+=======
+    <div class="container">
+        <form class="example-container" [formGroup]="options" (change)="canSubmit()">
+>>>>>>> Stashed changes
             <!-- <form class="example-container" [formGroup]="options" (change)="canSubmit()"> -->
             <div style="text-align:center">
                 <br>
@@ -17,41 +22,59 @@
                     <div class="card-header mb-3 font-weight-bold">ลงทะเบียนอุปกรณ์</div>
                     <div class="card-body">
                         <div class="form-group text-left">
-                            <label for="name">ชื่ออุปกรณ์ :</label>
+                            <label for="name" class="font-weight-bold">ชื่ออุปกรณ์</label>
                             <input type="text" id="name" name="name" placeholder="ระบุชื่ออุปกรณ์" formControlName="name" [(ngModel)]="name">
                         </div>
                         <div class="form-group text-left">
-                            <label for="serial" class="text-left">Serial:</label>
+                            <label for="serial" class="text-left font-weight-bold">Serial</label>
                             <input type="text" id="serial" name="serial" placeholder="ระบุ serial.." formControlName="serial" [(ngModel)]="serial">
                         </div>
                         <div class="form-group text-left">
-                            <label for="spec">สเปค :</label>
+                            <label for="spec" class="font-weight-bold">สเปค</label>
                             <textarea rows="5" id="spec" name="Spec" placeholder="ระบุสเปคเครื่อง" formControlName="spec" [(ngModel)]="spec"></textarea>
                         </div>
-                        <div class="form-group text-left">
-                            <label for="img">รูปภาพเครื่อง :&nbsp;&nbsp;</label>
-                            <img [src]="imageDefault" style="width:250px;height:200px;background-color: #DCDCDC">&nbsp;&nbsp;
-                            <input type="file" name="pic" accept="image/*" (change)="handleFileInput($event.target.files)">
+                        <div class="form-group text-left row">
+                            <div class="col-auto my-auto font-weight-bold font-weight-bold">
+                                รูปภาพเครื่อง
+                            </div>
+                            <div class="col-7 col-lg-2 col-md-5 file-field">
+                                <div>
+                                    <label class="py-0 px-0 my-0">
+                                        <img class="upload-image rounded center-cropped" [src]="imageDefault">
+                                        <input type="file" name="pic" accept="image/*"
+                                            (change)="handleFileInput($event.target.files)">
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="py-0 px-0 my-0 btn btn-dark btn-md btn-block">
+                                        <span>upload file</span>
+                                        <input type="file" name="pic" accept="image/*"
+                                            (change)="handleFileInput($event.target.files)">
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group text-left">
-                            <label>สถานะ : </label>
-                            <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker">
-                                <mat-radio-button name="available" value=true checked>ว่าง</mat-radio-button>
-                                &nbsp;&nbsp;
-                                <mat-radio-button name="unavailable" value=false>ไม่ว่าง</mat-radio-button>
-                            </mat-radio-group>
+                        <div class="form-group text-left row">
+                            <div class="font-weight-bold col-auto pr-0">สถานะ</div>
+                            <div class="col-auto ml-0">
+                                <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker">
+                                    <mat-radio-button name="available" value=true checked>ว่าง</mat-radio-button>
+                                    &nbsp;&nbsp;
+                                    <mat-radio-button name="unavailable" value=false>ไม่ว่าง</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
                         </div>
 
                         <div class="form-group text-left" [ngClass]="{disabledDiv: status}">
-                            <label for="holder" class="text-left">ผู้ยืม :</label>
+                            <label for="holder" class="text-left font-weight-bold">ผู้ยืม</label>
                             <input type="text" id="holder" name="holder" placeholder="ระบุชื่อผู้ยืม" formControlName="holder" [(ngModel)]="holder">
-                            <label for="tel" class="text-left">เบอร์ผู้ยืม :</label>
-                            <input type="text" id="tel" name="tel" placeholder="ระบุเบอร์ติดต่อ" formControlName="tel" [(ngModel)]="tel">
+                            <label for="tel" class="text-left font-weight-bold">เบอร์ผู้ยืม</label>
+                            <input type="text" id="tel" name="tel" placeholder="ระบุเบอร์ติดต่อ" formControlName="tel" [(ngModel)]="tel" (keypress)="checkPhoneNum($event)" maxLength='10' minlength="10">
                         </div>
 
                         <div class="form-group text-right">
-                            <button type="button" class="btn btn-success" (click)="onSubmit()" [ngClass]="{disabledBT: vaildatBT}">Save </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-success" (click)="onSubmit()" [ngClass]="{disabledBT: !vaildatBT}">Save </button>&nbsp;&nbsp;
                             <button type="button" class="btn btn-danger" (click)="resetForm()">Clear</button>
                         </div>
                     </div>
