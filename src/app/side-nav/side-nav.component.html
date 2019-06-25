@@ -1,9 +1,9 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container \">
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
         <mat-toolbar><img src="/assets/imgs/logo4.png" width="auto" height="50" class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
         <mat-nav-list>
             <div *ngFor="let menuGroup of menuList">
-                <div *ngIf="menuGroup.menus.length == 0">
+                <div *ngIf="menuGroup.menus.length == 0 ">
                     <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code]">
                         <i class="{{ menuGroup.group.icon }}"></i>
                         <span> &nbsp; {{ menuGroup.group.name }} </span>

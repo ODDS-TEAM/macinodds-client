@@ -11,6 +11,15 @@ body {
     margin: 10px
 }
 
+.btn-edit {
+    background-color: #0E98D5;
+}
+
+.btn-delete {
+    color: #fafafa;
+    background-color: #212121;
+}
+
 
 /* .modal-content {
     width: 700px;

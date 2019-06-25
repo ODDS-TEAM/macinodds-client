@@ -1,6 +1,6 @@
 <app-menu-view-user></app-menu-view-user>
 
-<div class="container">
+<div class="container font-style ">
     <!-- <div style="text-align:center" class="margin-page"> -->
     <div style="text-align:center">
         <br>
@@ -18,18 +18,18 @@
                     </div>
                     <div class="col-lg-5 text-left mx-4 my-4">
                         <span class="font-weight-bold"></span> {{ result.name }} <br />
-                        <span class="font-weight-bold" style="color:#0b98d5">serial : </span> {{ result.serial }} <br />
-                        <span class="font-weight-bold" style="color:#0b98d5">สเปค : </span> {{ result.spec }} <br />
-                        <span class="font-weight-bold" style="color:#0b98d5">สถานะ : <span *ngIf=" result.status ; else show"
-                style="color:#1cd604; font-size: 23px;">ว่าง</span>
+                        <span class="font-weight-bold" style="color:#0077b3">serial : </span> {{ result.serial }} <br />
+                        <span class="font-weight-bold" style="color:#0077b3">สเปค : </span> {{ result.spec }} <br />
+                        <span class="font-weight-bold" style="color:#0077b3">สถานะ : <span *ngIf=" result.status ; else show"
+                style="color:#00cc44; font-size: 18px;">ว่าง</span>
                         <ng-template #show>
-                            <span style="color:#d60404; font-size: 23px;">ไม่ว่าง</span><br>
+                            <span style="color:#d60404; font-size: 18px;">ไม่ว่าง</span><br>
                         </ng-template>
 
                         </span>
 
-                        <span *ngIf="!result.status" class="font-weight-bold" style="color:#0b98d5">Holder: </span> {{ result.holder }} <br />
-                        <span *ngIf="!result.status" class="font-weight-bold" style="color:#0b98d5">tel : </span> {{ result.tel }} <br />
+                        <span *ngIf="!result.status" class="font-weight-bold" style="color:#0077b3">Holder: </span> {{ result.holder }} <br />
+                        <span *ngIf="!result.status" class="font-weight-bold" style="color:#0077b3">tel : </span> {{ result.tel }} <br />
 
                     </div>
 
