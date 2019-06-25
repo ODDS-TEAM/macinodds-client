@@ -13,7 +13,10 @@ body {
 }
 
 .font-style {
+ 
     font-family: 'Sarabun', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+
 }
 
 .modal-backdrop.show {
