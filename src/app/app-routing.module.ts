@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: 'app', loadChildren: './component/component.module#ComponentModule' }
     ]
   },
-  {path: 'viewUser', component: ViewUserComponent,}
+  {path: 'viewUser', component: ViewUserComponent}
   // { path: 'view-user', component: ViewUserComponent },
    // { path: '', redirectTo: 'user' , pathMatch: 'full' },
   //  { path: '**', redirectTo: '' },
