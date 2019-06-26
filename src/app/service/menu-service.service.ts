@@ -40,7 +40,7 @@ export class MenuServiceService {
       {
         group: { code: 'menu-view-admin', name: 'View admin' , icon: 'far fa-list-alt' },
         menus: []
-      }
+      },
     ];
     return menuList;
   }

@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container p-0">
+<mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
@@ -7,17 +7,18 @@
         <mat-nav-list>
             <div *ngFor="let menuGroup of menuList">
                 <div *ngIf="menuGroup.menus.length == 0 ">
-                    <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code]">
+                    <a mat-list-item class="line" routerLinkActive="active"
+                        [routerLink]="['/admin/app/'+menuGroup.group.code]">
                         <div class="container">
-                        <div class="row">
-                         <div class="col-1">
-                        <i class="{{ menuGroup.group.icon }}"></i>
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="{{ menuGroup.group.icon }}"></i>
+                                </div>
+                                <div class="col-10">
+                                    <span class="font-style">{{ menuGroup.group.name }} </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-10">
-                        <span class="font-style" >{{ menuGroup.group.name }} </span>
-                        </div>
-                        </div>
-                    </div>
                     </a>
                 </div>
                 <div *ngIf="menuGroup.menus.length > 0"
@@ -37,20 +38,31 @@
                 </div>
             </div>
 
-            <div class="container clearfix" *ngIf="isHandset$ | async">
-                <button class="btn btn-outline-dark  float-right" type="submit"
-                    [routerLink]="['/admin/app/menu-view-admin']">Logout</button>
-            </div>
+
+                <div class="container clearfix p-0 set-bottom"  >
+                    <a mat-list-item class="line" [routerLink]="['/admin/app/menu-view-admin']">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class='fas fa-sign-out-alt'></i>
+                                </div>
+                                <div class="col-10">
+                                    <span class="font-style">Logout</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
         </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content class="p-0">
         <mat-toolbar color="primary">
 
-                <div class="container clearfix" >
-                        <button class="btn btn-outline-light  float-right " type="submit" 
-                            [routerLink]="['/admin/app/menu-view-admin']" *ngIf="isWeb$ | async" >Logout</button>
-                    </div>
+            <!-- <div class="container clearfix">
+                <button class="btn btn-outline-light  float-right " type="submit"
+                    [routerLink]="['/admin/app/menu-view-admin']" *ngIf="isWeb$ | async">Logout</button>
+            </div> -->
 
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
                 *ngIf="isHandset$ | async">

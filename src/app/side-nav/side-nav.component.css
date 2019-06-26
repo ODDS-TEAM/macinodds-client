@@ -1,4 +1,5 @@
 .sidenav-container {
+  padding: 0;
   height: 100%;
   position: fixed;
   top: 0;
@@ -6,6 +7,7 @@
   right: 0;
   }
   .sidenav {
+  padding: 0;
   width: 250px;
   background-color: #f3f2f2;
   color:#ffffff;
@@ -36,9 +38,27 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width: 50%;
+    height: auto;
   }
 
   .mat-drawer-side {
     border-right: solid 0px rgba(0,0,0,0);
+}
+
+.container-full {
+  justify-content: space-between;
+  flex-direction: row;
+  height: 100%;
+  display: flex;
+}
+
+.container-full .btn-holder {
+  justify-content: flex-end;
+  display: flex;
+}
+
+.set-bottom {
+    position: absolute;
+    bottom: 0;
 }
