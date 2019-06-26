@@ -29,11 +29,11 @@
                             <span style="color:#0077b3">สเปค : </span> {{ result.spec }} <br />
                             <span style="color:#0077b3">สถานะ : <span *ngIf=" result.status ; else show"
                                 style="color:#00cc44; font-size: 18px;">ว่าง</span>
-                                        <ng-template #show>
-                                            <span style="color:#d60404; font-size: 18px;">ไม่ว่าง</span><br>
-                                        </ng-template>
-                
-                                        </span>
+                            <ng-template #show>
+                                <span style="color:#d60404; font-size: 18px;">ไม่ว่าง</span><br>
+                            </ng-template>
+
+                            </span>
 
                             <span *ngIf="!result.status" class="font-weight-bold" style="color:#0077b3">ผู้ยืม : </span> {{ result.holder }} <br />
                             <span *ngIf="!result.status" class="font-weight-bold" style="color:#0077b3">เบอร์ผู้ยืม : </span> {{ result.tel }} <br />
@@ -41,14 +41,13 @@
                         </div>
 
                         <div class="col-lg-2">
-                            <button type="button" class="btn btn-sm btn-warning btn-edit btn-go" routerLink="/admin/app/edit-admin" 
-                            (click)="editDevice(result._id , result.serial)" data-toggle="modal" data-target="#editDevice">
+                            <button type="button" class="btn btn-sm btn-warning btn-edit btn-go" (click)="editDevice(result._id)" data-toggle="modal" data-target="#editDevice">
                                 <i class="fa fa-edit" data-toggle="modal" style="width:80px;height:20px">
-                                    Edit
+                                   <span style="font-family:Sarabun;"> Edit </span>
                                 </i>
                             </button>
                             <button class="btn btn-sm btn-delete btn-go" (click)="deleteDevice(result._id , result.serial)">
-                                <i class="fa fa-trash" style="width:80px;height:20px"> Delete</i>
+                                <i class="fa fa-trash" style="width:80px;height:20px"><span style="font-family:Sarabun;"> Delete</span></i>
                             </button>
                         </div>
                     </div>
