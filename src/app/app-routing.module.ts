@@ -5,7 +5,7 @@ import { ViewUserComponent } from './view-user/view-user.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent,
+  {path: 'login', component: LoginComponent,
   // children: [
   //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
   // ]
@@ -16,9 +16,9 @@ const routes: Routes = [
       { path: 'app', loadChildren: './component/component.module#ComponentModule' }
     ]
   },
-  {path: 'viewUser', component: ViewUserComponent}
+  {path: 'viewUser', component: ViewUserComponent},
   // { path: 'view-user', component: ViewUserComponent },
-   // { path: '', redirectTo: 'user' , pathMatch: 'full' },
+   { path: '', redirectTo: 'login' , pathMatch: 'full' }
   //  { path: '**', redirectTo: '' },
 
 

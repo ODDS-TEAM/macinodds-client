@@ -1,35 +1,75 @@
-<mat-sidenav-container class="sidenav-container \">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
-        <mat-toolbar><img src="/assets/imgs/logo4.png" width="auto" height="50" class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)">
+        <mat-toolbar><img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
+                class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
         <mat-nav-list>
             <div *ngFor="let menuGroup of menuList">
                 <div *ngIf="menuGroup.menus.length == 0 ">
-                    <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code]">
-                        <i class="{{ menuGroup.group.icon }}"></i>
-                        <span> &nbsp; {{ menuGroup.group.name }} </span>
+                    <a mat-list-item class="line" routerLinkActive="active"
+                        [routerLink]="['/admin/app/'+menuGroup.group.code]">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="{{ menuGroup.group.icon }}"></i>
+                                </div>
+                                <div class="col-10">
+                                    <span class="font-style">{{ menuGroup.group.name }} </span>
+                                </div>
+                            </div>
+                        </div>
                     </a>
                 </div>
-                <div *ngIf="menuGroup.menus.length > 0" [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}">
+                <div *ngIf="menuGroup.menus.length > 0"
+                    [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}">
                     <a mat-list-item class="line" (click)="selectMenu(menuGroup.group)">
-                        <mat-icon>{{menuGroupSelected==menuGroup.group.code? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
+                        <mat-icon>
+                            {{menuGroupSelected==menuGroup.group.code? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
                         </mat-icon>
-                        <span>{{ menuGroup.group.name }}</span>
+                        <span class="font-style">{{ menuGroup.group.name }}</span>
                     </a>
                     <div *ngIf="menuGroupSelected==menuGroup.group.code">
-                        <a *ngFor="let menu of menuGroup.menus" mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code+'/'+menu.code]">
+                        <a *ngFor="let menu of menuGroup.menus" mat-list-item class="line" routerLinkActive="active"
+                            [routerLink]="['/admin/app/'+menuGroup.group.code+'/'+menu.code]">
                             <span>{{ menu.name }}</span>
                         </a>
                     </div>
                 </div>
             </div>
+
+
+            <div class="container clearfix p-0 set-bottom">
+                <a mat-list-item class="line" [routerLink]="['/login']">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-1">
+                                <i class='fas fa-sign-out-alt'></i>
+                            </div>
+                            <div class="col-10">
+                                <span class="font-style">Sign out</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content class="p-0">
         <mat-toolbar color="primary">
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+
+            <!-- <div class="container clearfix">
+                <button class="btn btn-outline-light  float-right " type="submit"
+                    [routerLink]="['/admin/app/menu-view-admin']" *ngIf="isWeb$ | async">Logout</button>
+            </div> -->
+
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async">
+
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+
+            </button>
 
         </mat-toolbar>
         <!-- Add Content Here -->

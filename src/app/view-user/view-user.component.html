@@ -1,45 +1,38 @@
 <app-menu-view-user></app-menu-view-user>
 
-<div class="container font-style ">
-    <!-- <div style="text-align:center" class="margin-page"> -->
+<div class="container">
     <div style="text-align:center">
         <br>
-        <h1>Clear cache</h1>
-        <!-- <h1>
-  Welcome to <span class="font-weight-bold" style="color:#0b98d5">MacinOdds</span>
-</h1> -->
-        <br>
-
         <ul class="list-group">
-            <li class="card shadow-lg bg-light my-3" *ngFor="let result of results">
-                <div class="row align-items-center my-7">
-                    <div class="col-lg-4">
-                        <img class="img-fluid" src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}" width="100%" style='height: 300px; width: 350px;'>
+                <li class="card shadow-lg bg-light my-3 size-card" *ngFor="let result of results">
+                    <div class="row mx-0 my-6">
+                        <div class="col-lg-3 px-0">
+                            <img class="img-device img-rounded-left" src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}">
+                        </div>
+
+                        <div class="col-lg-8 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
+                            <span class="font-weight-bold head-content-card">{{ result.name }} </span><br/>
+                            <span class="font-weight-bold title-content-card "> Serial </span> {{ result.serial }}
+                            <br />
+                            <span class="font-weight-bold title-content-card ">สเปค </span> {{ result.spec }} <br/>
+                            <span class="font-weight-bold title-content-card">สถานะ
+                                <span class="status-true-card" *ngIf=" result.status ; else show">ว่าง</span>
+                                <ng-template #show>
+                                <span class="status-false-card">ไม่ว่าง</span>
+                                </ng-template><br/>
+                            </span>
+
+                            <span *ngIf="!result.status" class="font-weight-bold title-content-card ">ผู้ยืม </span>
+                            {{ result.holder }} <br/>
+                            <span *ngIf="!result.status" class="font-weight-bold title-content-card ">เบอร์ผู้ยืม
+                            </span> {{ result.tel }}
+                        </div>
+
+                        
+
+
                     </div>
-                    <div class="col-lg-5 text-left mx-4 my-4">
-                            <span class="font-weight-bold" style="font-size: 20px;">{{ result.name }} </span><br />
-                        <span class="font-weight-bold" style="color:#0077b3">serial : </span> {{ result.serial }} <br />
-                        <span  style="color:#0077b3">สเปค : </span> {{ result.spec }} <br />
-                        <span  style="color:#0077b3">สถานะ : <span *ngIf=" result.status ; else show"
-                style="color:#00cc44; font-size: 18px;">ว่าง</span>
-                        <ng-template #show>
-                            <span style="color:#d60404; font-size: 18px;">ไม่ว่าง</span><br>
-                        </ng-template>
-
-                        </span>
-
-                        <span *ngIf="!result.status" class="font-weight-bold" style="color:#0077b3">Holder: </span> {{ result.holder }} <br />
-                        <span *ngIf="!result.status" class="font-weight-bold" style="color:#0077b3">tel : </span> {{ result.tel }} <br />
-
-                    </div>
-
-
-                    <div class="col-lg-2 align-self-center my-3">
-
-
-                    </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
     </div>
 </div>

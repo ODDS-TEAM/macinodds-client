@@ -1,7 +1,9 @@
+import { MyDataServiceService } from './../my-data-service.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { puts } from 'util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-view-admin',
@@ -18,20 +20,20 @@ export class MenuViewAdminComponent implements OnInit {
   image: any = null;
   status = true;
   holder: string;
-  checker: string;
-  imageDefault = '/assets/imgs/logo4.png';
-  fileToUpload: File = null;
-  disabledDivs = true;
 
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder
-  ) { }
+  constructor(private http: HttpClient,
+              private formBuilder: FormBuilder,
+              private data: MyDataServiceService,
+              private router: Router,
+            ) { }
 
   ngOnInit() {
     this.editResults = {};
     this.getDevice();
     this.createForm();
+    this.data.currentData.subscribe(data => this.name = data);
   }
 
   createForm() {
@@ -76,73 +78,12 @@ export class MenuViewAdminComponent implements OnInit {
   }
 
   // method for when click edit button
-  editDevice(id, serial) {
-    this.http.get('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
-      this.editResults = data;
-      console.log('print edit data : ' + data);
-      console.log('print edit data JSON.stringify : ' + JSON.stringify(data));
-      console.log('print edit editResults : ' + this.editResults);
-      console.log('picture name : ' + this.editResults.img);
-
-      this.name = this.editResults.name;
-      this.serial = this.editResults.serial;
-      this.spec = this.editResults.spec;
-      this.status = this.editResults.status;
-      this.holder = this.editResults.holder;
-      this.imageDefault = 'http://139.5.146.213/assets/imgs/devices/' + this.editResults.img;
-      this.fileToUpload = this.editResults.img;
-      console.log('image == set ==> ' + this.fileToUpload);
-    });
+  editDevice(id) {
+    this.data.changeData(id);
+    this.router.navigate(['/admin/app/edit-admin']);
   }
-
-
-  // create formData to post
-  onSubmit(id) {
-    const formData: FormData = new FormData();
-    formData.append('name', this.name);
-    formData.append('serial', this.serial);
-    formData.append('spec', this.spec);
-    formData.append('status', this.status.toString());
-    formData.append('holder', this.holder);
-    formData.append('img', this.fileToUpload);
-
-    console.log('Put data **** : ' + JSON.stringify(formData));
-    this.http.put('http://139.5.146.213:1323/api/devices/' + id, formData).subscribe(data => {
-      this.getDevice();
-      console.log('Put data : ' + JSON.stringify(data));
-    });
-
-  }
-
-  // method Selection for radio button
-  onSelectionChange() {
-    if (this.checker === 'false') {
-      this.status = false;
-      this.holder = '';
-    } else {
-      this.status = true;
-      this.holder = '';
-    }
-  }
-
-  // check change image and show image in src
-  handleFileInput(file: FileList) {
-    this.fileToUpload = file.item(0);
-
-    // Show image preview
-    const reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageDefault = event.target.result;
-
-    };
-    reader.readAsDataURL(this.fileToUpload);
-    console.log('image == change ==> ' + this.fileToUpload);
-  }
-
-  // method for reset data in field
-  resetForm() {
-    this.options.reset();
-    console.log('clear');
-  }
-
 }
+
+
+
+
