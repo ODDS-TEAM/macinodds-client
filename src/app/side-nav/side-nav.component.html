@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container \">
+<mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
         <mat-toolbar><img src="/assets/imgs/logo4.png" width="auto" height="50" class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
         <mat-nav-list>
@@ -6,14 +6,14 @@
                 <div *ngIf="menuGroup.menus.length == 0 ">
                     <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code]">
                         <i class="{{ menuGroup.group.icon }}"></i>
-                        <span> &nbsp; {{ menuGroup.group.name }} </span>
+                        <span class="font-style" > &nbsp; {{ menuGroup.group.name }} </span>
                     </a>
                 </div>
                 <div *ngIf="menuGroup.menus.length > 0" [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}">
                     <a mat-list-item class="line" (click)="selectMenu(menuGroup.group)">
                         <mat-icon>{{menuGroupSelected==menuGroup.group.code? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
                         </mat-icon>
-                        <span>{{ menuGroup.group.name }}</span>
+                        <span class="font-style">{{ menuGroup.group.name }}</span>
                     </a>
                     <div *ngIf="menuGroupSelected==menuGroup.group.code">
                         <a *ngFor="let menu of menuGroup.menus" mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code+'/'+menu.code]">

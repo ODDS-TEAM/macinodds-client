@@ -17,43 +17,57 @@
             <br>
 
             <ul class="list-group">
-                <li class="card shadow-lg bg-light my-3" *ngFor="let result of results">
-                    <div class="row align-items-center my-6">
-                        <div class="col-lg-4">
-                            <img class="img-fluid" src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}" width="100%" style='height: 300px; width: 350px;'>
-                        </div>
-                        <div class="col-lg-5 text-left mx-4 my-4">
-                            <span class="font-weight-bold" style="font-size: 20px;">{{ result.name }} </span><br />
-                            <span class="font-weight-bold" style="color:#0077b3"> Serial : </span> {{ result.serial }}
-                            <br />
-                            <span style="color:#0077b3">สเปค : </span> {{ result.spec }} <br />
-                            <span style="color:#0077b3">สถานะ : <span *ngIf=" result.status ; else show"
-                                style="color:#00cc44; font-size: 18px;">ว่าง</span>
-                                        <ng-template #show>
-                                            <span style="color:#d60404; font-size: 18px;">ไม่ว่าง</span><br>
-                                        </ng-template>
-                
-                                        </span>
-
-                            <span *ngIf="!result.status" class="font-weight-bold" style="color:#0077b3">ผู้ยืม : </span> {{ result.holder }} <br />
-                            <span *ngIf="!result.status" class="font-weight-bold" style="color:#0077b3">เบอร์ผู้ยืม : </span> {{ result.tel }} <br />
-                            <br />
+                <li class="card shadow-lg bg-light my-3 size-card" *ngFor="let result of results">
+                    <div class="row mx-0 my-6">
+                        <div class="col-lg-3 px-0">
+                            <img class="img-device img-rounded-left" src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}">
                         </div>
 
-                        <div class="col-lg-2">
-                            <button type="button" class="btn btn-sm btn-warning btn-edit btn-go" routerLink="/admin/app/edit-admin" 
-                            (click)="editDevice(result._id , result.serial)" data-toggle="modal" data-target="#editDevice">
-                                <i class="fa fa-edit" data-toggle="modal" style="width:80px;height:20px">
-                                    Edit
-                                </i>
-                            </button>
-                            <button class="btn btn-sm btn-delete btn-go" (click)="deleteDevice(result._id , result.serial)">
-                                <i class="fa fa-trash" style="width:80px;height:20px"> Delete</i>
-                            </button>
+                        <div class="col-lg-6 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
+                            <span class="font-weight-bold head-content-card">{{ result.name }} </span><br/>
+                            <span class="font-weight-bold title-content-card "> Serial </span> {{ result.serial }}
+                            <br />
+                            <span class="font-weight-bold title-content-card ">สเปค </span> {{ result.spec }} <br/>
+                            <span class="font-weight-bold title-content-card">สถานะ
+                                <span class="status-true-card" *ngIf=" result.status ; else show">ว่าง</span>
+                                <ng-template #show>
+                                <span class="status-false-card">ไม่ว่าง</span>
+                                </ng-template><br/>
+                            </span>
+
+                            <span *ngIf="!result.status" class="font-weight-bold title-content-card ">ผู้ยืม </span>
+                            {{ result.holder }} <br/>
+                            <span *ngIf="!result.status" class="font-weight-bold title-content-card ">เบอร์ผู้ยืม
+                            </span> {{ result.tel }}
                         </div>
+
+                        <div class="col-lg-3 px-0 my-auto">
+                            <div class="col-10 col-lg-8 px-0 mx-auto">
+                                <button class="btn btn-sm btn-primary btn-block my-2 font-weight-bold"
+                                    routerLink="/admin/app/edit-admin" (click)="editDevice(result._id , result.serial)"
+                                    data-toggle="modal" data-target="#editDevice">
+                                    <i class="fa fa-edit mr-1" data-toggle="modal">
+                                    </i>Edit
+                                </button>
+                            </div>
+                            <div class="col-10 col-lg-8 px-0 mx-auto">
+                                <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold"
+                                    (click)="deleteDevice(result._id , result.serial)">
+                                    <i class="fa fa-trash mr-1"> </i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+
+
                     </div>
                 </li>
             </ul>
+
+
+
+
+
 
 
 
