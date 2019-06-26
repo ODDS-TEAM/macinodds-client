@@ -7,10 +7,17 @@
         <mat-nav-list>
             <div *ngFor="let menuGroup of menuList">
                 <div *ngIf="menuGroup.menus.length == 0 ">
-                    <a mat-list-item class="line" routerLinkActive="active"
-                        [routerLink]="['/admin/app/'+menuGroup.group.code]">
+                    <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/admin/app/'+menuGroup.group.code]">
+                        <div class="container">
+                        <div class="row">
+                         <div class="col-1">
                         <i class="{{ menuGroup.group.icon }}"></i>
-                        <span class="font-style"> &nbsp; {{ menuGroup.group.name }} </span>
+                        </div>
+                        <div class="col-10">
+                        <span class="font-style" >{{ menuGroup.group.name }} </span>
+                        </div>
+                        </div>
+                    </div>
                     </a>
                 </div>
                 <div *ngIf="menuGroup.menus.length > 0"
