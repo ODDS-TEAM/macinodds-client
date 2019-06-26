@@ -10,15 +10,30 @@ const routes: Routes = [
   //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
   // ]
 },
+
   {
-    path: 'admin', component: SideNavComponent,
+    path: '',
+    component: LoginComponent,
+    // children: [
+    //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
+    // ]
+  },
+  {
+    path: 'admin',
+    component: SideNavComponent,
     children: [
-      { path: 'app', loadChildren: './component/component.module#ComponentModule' }
+      {
+        path: 'app',
+        loadChildren: './component/component.module#ComponentModule'
+      }
     ]
   },
   {path: 'viewUser', component: ViewUserComponent},
   // { path: 'view-user', component: ViewUserComponent },
    { path: '', redirectTo: 'login' , pathMatch: 'full' }
+
+  // { path: 'view-user', component: ViewUserComponent },
+  // { path: '', redirectTo: 'user' , pathMatch: 'full' },
   //  { path: '**', redirectTo: '' },
 
 
