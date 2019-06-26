@@ -20,6 +20,16 @@ export class SideNavComponent {
       map(result => result.matches)
     );
 
+    isWeb$: Observable<boolean> = this.breakpointObserver.observe([
+      Breakpoints.WebLandscape,
+      Breakpoints.WebPortrait,
+      Breakpoints.Web,
+      Breakpoints.Tablet
+    ])
+    .pipe(
+      map(result => result.matches)
+    );
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private menuService: MenuServiceService,

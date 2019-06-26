@@ -12,7 +12,7 @@
   }
   .sidenav .mat-toolbar {
   height: 70px;
-  background-color: white;
+  background-color: #212121;
   color:#ffffff;
   box-shadow: 0px 1px 10px #999;
   }
@@ -21,7 +21,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: white;
+  background-color: #212121;
   color: #0b98d5;
   box-shadow: 0px 1px 10px #999;
   }
@@ -38,3 +38,7 @@
     margin-right: auto;
     width: 60%;
   }
+
+  .mat-drawer-side {
+    border-right: solid 0px rgba(0,0,0,0);
+}
