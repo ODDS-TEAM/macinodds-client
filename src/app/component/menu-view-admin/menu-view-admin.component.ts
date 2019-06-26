@@ -25,8 +25,7 @@ export class MenuViewAdminComponent implements OnInit {
 
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder
-  ) { }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.editResults = {};
@@ -144,5 +143,4 @@ export class MenuViewAdminComponent implements OnInit {
     this.options.reset();
     console.log('clear');
   }
-
 }

@@ -1,3 +1,63 @@
-<p>
-  edit-admin works!
-</p>
+<div class="container">
+  <form class="example-container" [formGroup]="options">
+
+    <div style="text-align:center">
+      <br>
+
+      <div class="card bg-light shadow-lg " style="max-width: 100%;">
+        <div class="card-header mb-3 font-weight-bold">EDIT</div>
+        <div class="card-body">
+          <div class="form-group text-left">
+            <label for="name">Device's Name:</label>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Your device name.."
+              formControlName="name" [(ngModel)]="name" value="{{editResults.name}}">
+          </div>
+          <div class="form-group text-left">
+            <label for="serial" class="text-left">Serial:</label>
+            <input class="form-control" type="text" id="serial" name="serial" placeholder="Your serial.."
+              formControlName="serial" [(ngModel)]="serial" value="{{editResults.serial}}">
+          </div>
+          <div class="form-group text-left">
+            <label for="spec">Specification:</label>
+            <textarea class="form-control" rows="3" id="spec" name="Spec" placeholder="Your device specification.."
+              formControlName="spec" [(ngModel)]="spec" value="{{editResults.spec}}"></textarea>
+          </div>
+          <div class="form-group text-left">
+            <label for="img">Image:&nbsp;&nbsp;</label>
+            <img src="{{imageDefault}}" style="width:125px;height:100px" #imgSrc>
+            <input type="file" name="pic" accept="image/*" (change)="handleFileInput($event.target.files)">
+          </div>
+          <div class="form-group text-left">
+            <label>Status: </label>
+            <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker"
+              *ngIf="status">
+              <mat-radio-button name="available" value=true checked>Available
+              </mat-radio-button>
+              <mat-radio-button name="unavailable" value=false>Unavailable
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker"
+              *ngIf="!status">
+              <mat-radio-button name="available" value=true>Available
+              </mat-radio-button>
+              <mat-radio-button name="unavailable" value=false checked>Unavailable
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="form-group text-left" [ngClass]="{disabledDiv: status}">
+            <label for="holder" class="text-left">Holder:</label>
+            <input class="form-control" type="text" id="holder" name="holder" placeholder="Your name.."
+              formControlName="holder" [(ngModel)]="holder" value="{{editResults.holder}}">
+          </div>
+          <div class="form-group text-right">
+            <button type="button" class="btn btn-success" (click)="onSubmit(editResults._id)">Save
+            </button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
