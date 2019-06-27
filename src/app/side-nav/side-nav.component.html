@@ -5,23 +5,23 @@
             <mat-toolbar><img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
                     class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
             <mat-nav-list>
-                <div *ngFor="let menuGroup of menuList">
-                    <div *ngIf="menuGroup.menus.length == 0 ">
+                <div *ngFor="let menuGroupUser of menuList">
+                    <div *ngIf="menuGroupUser.menus.length == 0 ">
                         <a mat-list-item class="line" routerLinkActive="active"
-                            [routerLink]="['/admin/app/'+menuGroup.group.code]">
+                            [routerLink]="['/admin/app/'+menuGroupUser.group.code]">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-1">
-                                        <i class="{{ menuGroup.group.icon }}"></i>
+                                        <i class="{{ menuGroupUser.group.icon }}"></i>
                                     </div>
                                     <div class="col-10">
-                                        <span class="font-style">{{ menuGroup.group.name }} </span>
+                                        <span >{{ menuGroupUser.group.name }} </span>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div *ngIf="menuGroup.menus.length > 0"
+                    <!-- <div *ngIf="menuGroup.menus.length > 0"
                         [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}">
                         <a mat-list-item class="line" (click)="selectMenu(menuGroup.group)">
                             <mat-icon>
@@ -35,7 +35,7 @@
                                 <span>{{ menu.name }}</span>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
     
     
@@ -47,7 +47,7 @@
                                     <i class='fas fa-sign-out-alt'></i>
                                 </div>
                                 <div class="col-10">
-                                    <span class="font-style">Sign out</span>
+                                    <span>Sign out</span>
                                 </div>
                             </div>
                         </div>

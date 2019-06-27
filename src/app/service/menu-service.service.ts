@@ -10,22 +10,6 @@ export class MenuServiceService {
   getMenuList() {
     const menuList: MenuItem[] = [
       // {
-      //   group: { code: 'menu1', name: 'Menu 1' },
-      //   menus: [
-      //     { code: 'subMenu1', name: 'Sub Menu 1' },
-      //     { code: 'subMenu2', name: 'Sub Menu 2' },
-      //     { code: 'subMenu3', name: 'Sub Menu 3' }
-      //   ]
-      // },
-      // {
-      //   group: { code: 'menu2', name: 'Menu 2' },
-      //   menus: [
-      //     { code: 'subMenu1', name: 'Sub Menu 1' },
-      //     { code: 'subMenu2', name: 'Sub Menu 2' },
-      //     { code: 'subMenu3', name: 'Sub Menu 3' }
-      //   ]
-      // },
-      // {
       //   group: { code: 'menu3', name: 'Menu 3' },
       //   menus: [
       //     { code: 'subMenu1', name: 'Sub Menu 1' },
