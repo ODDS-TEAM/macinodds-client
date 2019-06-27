@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
-
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-view-user',
   templateUrl: './view-user.component.html',
@@ -25,7 +26,24 @@ export class ViewUserComponent implements OnInit {
 
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder ) { }
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
+  isWeb$: Observable<boolean> = this.breakpointObserver.observe([
+    Breakpoints.WebLandscape,
+    Breakpoints.WebPortrait,
+    Breakpoints.Web,
+    Breakpoints.Tablet
+  ])
+    .pipe(
+      map(result => result.matches)
+    );
+
+
+  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.getDevice();

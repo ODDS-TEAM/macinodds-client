@@ -6,10 +6,14 @@
         <ul class="list-group">
                 <li class="card shadow-lg bg-light my-3 size-card" *ngFor="let result of results">
                     <div class="row mx-0 my-6">
-                        <div class="col-lg-3 px-0">
-                            <img class="img-device img-rounded-left" src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}">
+                        <div class="col-lg-3 px-0 thumbnail-web" *ngIf="isWeb$ | async">
+                            <img class="img-device img-rounded-left portrait" src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}">
                         </div>
 
+                        <div class="col-lg-3 px-0 thumbnail-res"  *ngIf="isHandset$ | async">
+                            <img class="img-device img-rounded-left portrait" src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}">
+                        </div>
+                        
                         <div class="col-lg-8 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
                             <span class="font-weight-bold head-content-card">{{ result.name }} </span><br/>
                             <span class="font-weight-bold title-content-card "> Serial </span> {{ result.serial }}
