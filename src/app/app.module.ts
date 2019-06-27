@@ -17,6 +17,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component';
 import { LoginComponent } from './login/login.component';
+import { from } from 'rxjs';
+import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
+
+
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig(
+    [
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider('15378607653-f9lfgsml8th6lf50jfq93v3v2f4vpkpr.apps.googleusercontent.com')
+      },
+
+    ]
+  );
+  return config;
+}
+
+
+
 
 @NgModule({
   declarations: [
@@ -42,10 +61,14 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     MatRadioModule,
     HttpClientModule,
+    SocialLoginModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
   providers: [
-    {provide: LocationStrategy, useClass: PathLocationStrategy }
+    {provide: LocationStrategy,
+     useClass: PathLocationStrategy },
+     {provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs}
   ],
   bootstrap: [AppComponent]
 })
