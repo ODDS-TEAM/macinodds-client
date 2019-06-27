@@ -19,6 +19,7 @@ const routes: Routes = [
     // ]
   },
   {
+
     path: 'admin',
     component: SideNavComponent,
     children: [
@@ -43,6 +44,7 @@ const routes: Routes = [
   // {path: 'viewUser', component: ViewUserComponent},
   // { path: 'view-user', component: ViewUserComponent },
    { path: '', redirectTo: 'login' , pathMatch: 'full' }
+
 
   // { path: 'view-user', component: ViewUserComponent },
   // { path: '', redirectTo: 'user' , pathMatch: 'full' },
