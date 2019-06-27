@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
+        console.log("User data : " + userData)
         if (this.isOddsTeam(userData.email)){
         // this.loginGoogle(userData.idToken)
         this.router.navigate(['/admin/app/menu-view-admin']);
