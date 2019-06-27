@@ -9,6 +9,7 @@
                 <div *ngIf="menuGroup.menus.length == 0 ">
                     <a mat-list-item class="line" routerLinkActive="active"
                         [routerLink]="['/admin/app/'+menuGroup.group.code]">
+
                         <div class="container">
                             <div class="row">
                                 <div class="col-1">
@@ -19,15 +20,19 @@
                                 </div>
                             </div>
                         </div>
+
+                        <i class="{{ menuGroup.group.icon }}"></i>
+                        <span > &nbsp; {{ menuGroup.group.name }} </span>
+
                     </a>
                 </div>
                 <div *ngIf="menuGroup.menus.length > 0"
-                    [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}">
+                    [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}" >
                     <a mat-list-item class="line" (click)="selectMenu(menuGroup.group)">
                         <mat-icon>
                             {{menuGroupSelected==menuGroup.group.code? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
                         </mat-icon>
-                        <span class="font-style">{{ menuGroup.group.name }}</span>
+                        <span >{{ menuGroup.group.name }}</span>
                     </a>
                     <div *ngIf="menuGroupSelected==menuGroup.group.code">
                         <a *ngFor="let menu of menuGroup.menus" mat-list-item class="line" routerLinkActive="active"
