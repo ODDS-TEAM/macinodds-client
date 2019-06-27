@@ -4,12 +4,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+
 @Component({
-  selector: 'app-view-user',
-  templateUrl: './view-user.component.html',
-  styleUrls: ['./view-user.component.css']
+  selector: 'app-menu-view-user',
+  templateUrl: './menu-view-user.component.html',
+  styleUrls: ['./menu-view-user.component.css']
 })
-export class ViewUserComponent implements OnInit {
+export class MenuViewUserComponent implements OnInit {
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   public editResults: any; // กำหนดตัวแปร เพื่อรับค่า
   name: string;

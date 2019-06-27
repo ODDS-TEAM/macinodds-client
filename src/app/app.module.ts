@@ -14,11 +14,10 @@ import { MatRadioModule } from '@angular/material/radio';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { ViewUserComponent } from './view-user/view-user.component';
-import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component';
 import { LoginComponent } from './login/login.component';
 import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
+import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 
 
 export function getAuthServiceConfigs() {
@@ -41,9 +40,8 @@ export function getAuthServiceConfigs() {
   declarations: [
     AppComponent,
     SideNavComponent,
-    ViewUserComponent,
-    MenuViewUserComponent,
     LoginComponent,
+    SideNavUserComponent,
     // MenuAddDeviceComponent,
     // MenuViewAdminComponent
   ],

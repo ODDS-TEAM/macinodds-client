@@ -63,8 +63,8 @@ body {
 
 .thumbnail-web {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     overflow: hidden;
   }
   .thumbnail-web img {
@@ -79,7 +79,7 @@ body {
   }
   .thumbnail-web img.portrait {
     width: auto;
-    height: 110%;
+    height: 120%;
   }
 
 
@@ -101,6 +101,6 @@ body {
   }
   .thumbnail-res img.portrait {
     width: auto;
-    height: 140%;
+    height: 150%;
   }
 
