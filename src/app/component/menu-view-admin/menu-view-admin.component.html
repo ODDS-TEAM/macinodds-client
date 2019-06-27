@@ -4,47 +4,42 @@
     <div style="text-align:center">
         <br>
         <ul class="list-group">
-            <li class="card shadow-lg bg-light my-3 size-card" *ngFor="let result of results">
-                <div class="row mx-0 my-6">
-                    <div class="col-lg-3 px-0 thumbnail-web" *ngIf="isWeb$ | async">
-                        <img class="img-device img-rounded-left portrait"
-                            src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}">
-                    </div>
-
-                    <div class="col-lg-3 px-0 thumbnail-res" *ngIf="isHandset$ | async">
-                        <img class="img-device img-rounded-left portrait"
+            <li class="card shadow-lg bg-light my-3 size-card" *ngFor="let result of results ; let i = index">
+                <div class="row mx-0 my-6" id="id-card-{{i}}">
+                    <div class="col-lg-3 px-0 " >
+                        <img class="img-device img-rounded-left " id="img-{{i}}"
                             src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}">
                     </div>
 
                     <div class="col-lg-6 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
-                        <span class="font-weight-bold head-content-card" id = "name">{{ result.name }} </span><br />
-                        <span class="font-weight-bold title-content-card " > Serial </span> <span id="serial">{{ result.serial }}</span> 
+                        <span class="font-weight-bold head-content-card" id = "name" id="name-{{i}}">{{ result.name }} </span><br />
+                        <span class="font-weight-bold title-content-card " > Serial </span> <span id="serial-{{i}}">{{ result.serial }}</span> 
                         <br />
-                        <span class="font-weight-bold title-content-card ">สเปค </span> <span id="spec"> {{ result.spec }}</span> <br />
-                        <span class="font-weight-bold title-content-card">สถานะ
-                            <span class="status-true-card" id="status" *ngIf=" result.status ; else show">ว่าง</span>
+                        <span class="font-weight-bold title-content-card ">สเปค </span> <span id="spec-{{i}}"> {{ result.spec }}</span> <br />
+                        <span class="font-weight-bold title-content-card" id="status-all-{{i}}">สถานะ
+                            <span class="status-true-card" id="status-av-{{i}}" *ngIf=" result.status ; else show">ว่าง</span>
                             <ng-template #show>
-                                <span class="status-false-card">ไม่ว่าง</span>
+                                <span class="status-false-card" id="status-uv-{{i}}">ไม่ว่าง</span>
                             </ng-template><br />
                         </span>
 
-                        <span *ngIf="!result.status" class="font-weight-bold title-content-card ">ผู้ยืม </span><span id="holder">{{ result.holder }}</span> <br />
+                        <span *ngIf="!result.status" class="font-weight-bold title-content-card ">ผู้ยืม </span><span id="holder-{{i}}">{{ result.holder }}</span> <br />
                         <span *ngIf="!result.status" class="font-weight-bold title-content-card ">เบอร์ผู้ยืม
-                        </span> <span id="tel">{{ result.tel }}</span>
+                        </span> <span id="tel-{{i}}">{{ result.tel }}</span>
                     </div>
 
                     <div class="col-lg-3 px-0 my-auto">
                         <div class="col-10 col-lg-8 px-0 mx-auto">
                             <button class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit"
                                 routerLink="/admin/app/edit-admin" (click)="editDevice(result._id , result.serial)"
-                                data-toggle="modal" data-target="#editDevice">
+                                data-toggle="modal" data-target="#editDevice" id="btn-edit-{{i}}">
                                 <i class="fa fa-edit mr-1" data-toggle="modal">
                                 </i>Edit
                             </button>
                         </div>
                         <div class="col-10 col-lg-8 px-0 mx-auto">
                             <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold"
-                                (click)="deleteDevice(result._id , result.serial)">
+                                (click)="deleteDevice(result._id , result.serial)" id="btn-delete-{{i}}">
                                 <i class="fa fa-trash mr-1"> </i>
                                 Delete
                             </button>

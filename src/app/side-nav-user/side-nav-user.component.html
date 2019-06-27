@@ -8,7 +8,7 @@
             <div *ngFor="let menuGroupUser of menuListUser">
                 <div *ngIf="menuGroupUser.menus.length == 0 ">
                     <a mat-list-item class="line" routerLinkActive="active"
-                        [routerLink]="['/user/app/'+menuGroupUser.group.code]">
+                        [routerLink]="['/user/app/'+menuGroupUser.group.code]" id="botton-{{ menuGroupUser.group.code }}">
                         <div class="container">
                             <div class="row">
                                 <div class="col-1">
@@ -40,8 +40,8 @@
 
 
             <div class="container clearfix p-0 ">
-                <a mat-list-item class="line" [routerLink]="['/login']">
-                    <div class="container">
+                <a mat-list-item class="line" [routerLink]="['/login']" id="sign-out">
+                    <div class="container" >
                         <div class="row">
                             <div class="col-1">
                                 <i class='fas fa-sign-out-alt'></i>
