@@ -25,6 +25,7 @@ export class MenuServiceService {
         group: { code: 'menu-view-admin', name: 'View admin' , icon: 'far fa-list-alt', checkView: '' },
         menus: []
       },
+
       // {
       //   group: { code: 'menu-view-admin', name: 'logout' , icon: 'fas fa-sign-out-alt' , checkView: 'isHandset$git  | async'},
       //   menus: []
