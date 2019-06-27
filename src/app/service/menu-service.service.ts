@@ -18,13 +18,20 @@ export class MenuServiceService {
       //   ]
       // },
       {
-        group: { code: 'menu-add-device', name: 'Add device' , icon: 'fas fa-file-medical' },
+        group: { code: 'menu-add-device', name: 'Add device' , icon: 'fas fa-file-medical', checkView: '' },
         menus: []
       },
       {
-        group: { code: 'menu-view-admin', name: 'View admin' , icon: 'far fa-list-alt' },
+        group: { code: 'menu-view-admin', name: 'View admin' , icon: 'far fa-list-alt', checkView: '' },
         menus: []
       },
+<<<<<<< Updated upstream
+=======
+      // {
+      //   group: { code: 'menu-view-admin', name: 'logout' , icon: 'fas fa-sign-out-alt' , checkView: 'isHandset$git  | async'},
+      //   menus: []
+      // }
+>>>>>>> Stashed changes
     ];
     return menuList;
   }
@@ -49,4 +56,5 @@ export interface Menu {
   code: string;
   name: string;
   icon: string;
+  checkView: string;
 }
