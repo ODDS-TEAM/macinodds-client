@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { puts } from 'util';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu-view-admin',
@@ -17,9 +20,14 @@ export class MenuViewAdminComponent implements OnInit {
   name: string;
   serial: string;
   spec: string;
-  image: any = null;
+  image = '';
   status = true;
   holder: string;
+  checker: string;
+  imageDefault: string;
+  imageChange: string;
+  fileToUpload: File = null;
+  disabledDivs = true;
 
   // Inject HttpClient มาใช้ใน component หรือ service.
   options: FormGroup;
@@ -27,7 +35,23 @@ export class MenuViewAdminComponent implements OnInit {
               private formBuilder: FormBuilder,
               private data: MyDataServiceService,
               private router: Router,
+              private breakpointObserver: BreakpointObserver,
             ) { }
+
+            isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+            .pipe(
+              map(result => result.matches)
+            );
+
+          isWeb$: Observable<boolean> = this.breakpointObserver.observe([
+            Breakpoints.WebLandscape,
+            Breakpoints.WebPortrait,
+            Breakpoints.Web,
+            Breakpoints.Tablet
+          ])
+            .pipe(
+              map(result => result.matches)
+            );
 
   ngOnInit() {
     this.editResults = {};

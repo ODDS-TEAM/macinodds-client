@@ -9,11 +9,7 @@ body {
 
 
 .btn-edit {
-    background-color: #0077b3;
-    opacity: 0.9;
-}
-.btn-edit:hover{
-    opacity: 1;
+    background-color: #0E98D5;
 }
 
 .btn-delete {
@@ -21,13 +17,6 @@ body {
     background-color: #212121;
 }
 
-
-/* .modal-content {
-    width: 700px;
-}
-.modal .card{
-    width: 680px;
-} */
 .btn-font {
     width:80px;
     height:30px;
@@ -66,3 +55,52 @@ body {
     width: 100%;
     height: auto;
 }
+
+.img-rounded-left {
+    border-radius:.20rem 0 0 .20rem!important
+}
+
+
+.thumbnail-web {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+  }
+  .thumbnail-web img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+  }
+  .thumbnail-web img.portrait {
+    width: auto;
+    height: 110%;
+  }
+
+
+  .thumbnail-res {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    overflow: hidden;
+  }
+  .thumbnail-res img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+  }
+  .thumbnail-res img.portrait {
+    width: auto;
+    height: 140%;
+  }
+
