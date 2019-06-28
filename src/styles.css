@@ -65,3 +65,47 @@ body,div {
         margin-left: 0;
     }
 }
+
+
+
+
+
+
+
+/* button animation for side-nev */
+.btn-side{
+    background: none;
+    cursor: pointer;
+    transition: 0.8s;
+    position: relative;
+  }
+  .btn-side1,.btn-side2{
+    color: #212121;
+  }
+  
+  .btn-side1:hover,.btn-side2:hover{
+    color: #fff;
+  }
+  
+  .btn-side::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: #212121;
+    z-index: -1;
+    transition: 0.8s;
+  }
+  .btn-side1::before,.btn-side3::before{
+    top: 0;
+    border-radius: 0 5% 5% 0%;
+  }
+  
+  .btn-side1:hover::before,.btn-side2:hover::before{
+    width: 180%;
+  }
+  
+  .btn-side3:hover::before,.btn-side4:hover::before{
+    width: 0%;
+  }
