@@ -22,12 +22,13 @@ export class LoginComponent implements OnInit {
   }
 
   
-  socialSignIn(socialPlatform : string) {
+  oddsSignIn(socialPlatform : string) {
     let socialPlatformProvider;
+    console.log(socialPlatformProvider)
     socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log("User data : " + userData)
+        console.log("User data : " , JSON.stringify(userData));
         if (this.isOddsTeam(userData.email)){
         // this.loginGoogle(userData.idToken)
         this.router.navigate(['/admin/app/menu-view-admin']);
@@ -54,19 +55,12 @@ export class LoginComponent implements OnInit {
   }
 
   private isOddsTeam(email: string): boolean {
-    if (!email || email.length < 10) {
-      alert('Email is invalid.');
-      return false;
-    }
-
     const host = email.slice(-10);
     if (host !== '@odds.team') {
       alert(`Sorry, account isn't Odds Team.`);
       return false;
     }
-
     return true;
-
   }
 
   // function not complete
