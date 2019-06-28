@@ -19,6 +19,12 @@ import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
 import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 
+import { LyThemeModule, LY_THEME } from '@alyle/ui';
+import { MinimaLight } from '@alyle/ui/themes/minima';
+import { LyButtonModule } from '@alyle/ui/button';
+import { LyToolbarModule } from '@alyle/ui/toolbar';
+import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
+
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
     [
@@ -60,12 +66,17 @@ export function getAuthServiceConfigs() {
     HttpClientModule,
     SocialLoginModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    LyThemeModule.setTheme('minima-light'),
+    LyButtonModule,
+    LyToolbarModule,
+    LyResizingCroppingImageModule
   ],
   providers: [
     {provide: LocationStrategy,
      useClass: PathLocationStrategy },
      {provide: AuthServiceConfig,
-    useFactory: getAuthServiceConfigs}
+    useFactory: getAuthServiceConfigs},
+     { provide: LY_THEME, useClass: MinimaLight, multi: true }
   ],
   bootstrap: [AppComponent]
 })
