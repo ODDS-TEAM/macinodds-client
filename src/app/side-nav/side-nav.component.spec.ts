@@ -47,18 +47,4 @@ describe('SideNavComponent', () => {
     });
 
   });
-
-  describe('method', () => {
-
-    it('should select menu', () => {
-      const data = {
-        code: '',
-        name: '',
-        icon: '',
-      };
-      component.selectMenu(data);
-      expect(component).toBeTruthy();
-    });
-
-  });
 });

@@ -4,6 +4,8 @@ import { MenuViewAdminComponent } from './menu-view-admin.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+
 
 describe('MenuViewAdminComponent', () => {
   let component: MenuViewAdminComponent;
@@ -17,7 +19,8 @@ describe('MenuViewAdminComponent', () => {
         ReactiveFormsModule,
         HttpClientTestingModule,
         MatRadioModule,
-        HttpClientModule
+        HttpClientModule,
+        RouterModule.forRoot([])
       ],
       providers: [
         { provide: FormBuilder,
@@ -44,29 +47,4 @@ describe('MenuViewAdminComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('should be disable when call onDisable', () => {
-    spyOn(component, 'getDevice').and.returnValue();
-
-    // component.onDisable(true)
-
-    expect(component).toBeTruthy();
-  });
-
-  it('should be resetForm() when call resetForm', () => {
-    spyOn(component, 'getDevice');
-
-    component.resetForm();
-
-    expect(component.getDevice).toBeTruthy();
-  });
-
-  it('should be put data when call onSubmit', () => {
-    spyOn(component, 'getDevice').and.returnValue();
-
-    component.onSubmit('id')
-
-    expect(component.onSubmit).toBeTruthy();
-  });
-
-  
 });

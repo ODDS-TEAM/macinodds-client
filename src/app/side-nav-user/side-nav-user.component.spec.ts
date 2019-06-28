@@ -10,6 +10,7 @@ import {
 } from '@angular/material';
 
 import { SideNavUserComponent } from './side-nav-user.component';
+import { RouterModule } from '@angular/router';
 
 describe('SideNavUserComponent', () => {
   let component: SideNavUserComponent;
@@ -26,6 +27,7 @@ describe('SideNavUserComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        RouterModule.forRoot([])
       ]
     }).compileComponents();
   }));

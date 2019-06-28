@@ -18,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
 import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MenuViewUserComponent } from './component/menu-view-user/menu-view-user.component';
 
 
 export function getAuthServiceConfigs() {
@@ -59,6 +61,7 @@ export function getAuthServiceConfigs() {
     ReactiveFormsModule,
     MatRadioModule,
     HttpClientModule,
+    RouterTestingModule,
     SocialLoginModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],

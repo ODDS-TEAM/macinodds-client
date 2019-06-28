@@ -12,7 +12,8 @@ import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private socialAuthService: AuthService,
+  constructor(
+    private socialAuthService: AuthService,
     private router: Router,
     private macinoddsService: MacinoddsApiService
   ) { }
