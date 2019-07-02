@@ -109,3 +109,22 @@ body,div {
   .btn-side3:hover::before,.btn-side4:hover::before{
     width: 0%;
   }
+
+
+
+
+    .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+        
+        background-color: #0e98d5 !important;
+  }
+
+  .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: #0e98d5!important;   /*inner circle color change*/
+  }
+
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+       border-color:#0e98d5!important; /*outer ring color change*/
+  }
+
+
+

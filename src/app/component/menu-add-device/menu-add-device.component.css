@@ -137,3 +137,29 @@ input[type="file"] {
 
 
 
+.if {
+    color: #0E98D5;
+}
+
+
+
+
+.btn-default-blue ,
+.btn-default-blue :hover,
+.btn-default-blue :active,
+.btn-default-blue :visited,
+.btn-default-blue :focus {
+    color: #ffffff;
+    background-color: #0e98d5;
+    border-color: #0e98d5;
+}
+
+.btn-default-black ,
+.btn-default-black :hover,
+.btn-default-black :active,
+.btn-default-black :visited,
+.btn-default-black :focus {
+    color: #ffffff;
+    background-color: #212121;
+    border-color: #212121;
+}

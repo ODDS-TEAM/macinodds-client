@@ -19,7 +19,7 @@ import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
 import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 
-import { LyThemeModule, LY_THEME } from '@alyle/ui';
+import { LyThemeModule, LY_THEME ,LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
 import { MinimaLight } from '@alyle/ui/themes/minima';
 import { LyButtonModule } from '@alyle/ui/button';
 import { LyToolbarModule } from '@alyle/ui/toolbar';
@@ -39,7 +39,25 @@ export function getAuthServiceConfigs() {
 }
 
 
-
+export class GlobalVariables {
+  testVal = '#00bcd4';
+  Quepal = {
+    default: `linear-gradient(135deg,#11998e 0%,#38ef7d 100%)`,
+    contrast: '#fff',
+    shadow: '#11998e'
+  };
+  SublimeLight = {
+    default: `linear-gradient(135deg,#FC5C7D 0%,#6A82FB 100%)`,
+    contrast: '#fff',
+    shadow: '#B36FBC'
+  };
+  Amber = {
+    default: '#ffc107',
+    contrast: 'rgba(0, 0, 0, 0.87)'
+  };
+}
+import { LyIconModule } from '@alyle/ui/icon';
+import { LyTypographyModule } from '@alyle/ui/typography';
 
 @NgModule({
   declarations: [
@@ -69,14 +87,25 @@ export function getAuthServiceConfigs() {
     LyThemeModule.setTheme('minima-light'),
     LyButtonModule,
     LyToolbarModule,
-    LyResizingCroppingImageModule
+    LyResizingCroppingImageModule,
+    LyIconModule,
+    LyTypographyModule
   ],
   providers: [
     {provide: LocationStrategy,
      useClass: PathLocationStrategy },
      {provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs},
-     { provide: LY_THEME, useClass: MinimaLight, multi: true }
+     { provide: LY_THEME, useClass: MinimaLight, multi: true },
+     {
+      provide: LY_THEME,
+      useClass: MinimaLight,
+      multi: true
+    },
+    {
+      provide: LY_THEME_GLOBAL_VARIABLES,
+      useClass: GlobalVariables
+    } // global variables
   ],
   bootstrap: [AppComponent]
 })

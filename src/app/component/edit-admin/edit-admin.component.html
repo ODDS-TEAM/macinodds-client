@@ -17,15 +17,18 @@
                     <div class="card-body">
                         <div class="form-group text-left">
                             <label for="name" class="font-weight-bold">ชื่ออุปกรณ์</label>
-                            <input type="text" id="name" name="name" placeholder="ระบุชื่ออุปกรณ์" formControlName="name" [(ngModel)]="name">
+                            <input type="text" id="name" name="name" placeholder="ระบุชื่ออุปกรณ์"
+                                formControlName="name" [(ngModel)]="name">
                         </div>
                         <div class="form-group text-left">
                             <label for="serial" class="text-left font-weight-bold">Serial</label>
-                            <input type="text" id="serial" name="serial" placeholder="ระบุ serial.." formControlName="serial" [(ngModel)]="serial">
+                            <input type="text" id="serial" name="serial" placeholder="ระบุ serial.."
+                                formControlName="serial" [(ngModel)]="serial">
                         </div>
                         <div class="form-group text-left">
                             <label for="spec" class="font-weight-bold">สเปค</label>
-                            <textarea rows="5" id="spec" name="Spec" placeholder="ระบุสเปคเครื่อง" formControlName="spec" [(ngModel)]="spec"></textarea>
+                            <textarea rows="5" id="spec" name="Spec" placeholder="ระบุสเปคเครื่อง"
+                                formControlName="spec" [(ngModel)]="spec"></textarea>
                         </div>
                         <div class="form-group text-left row">
                             <div class="col-auto my-auto font-weight-bold font-weight-bold">
@@ -33,16 +36,16 @@
                             </div>
                             <div class="col-7 col-lg-2 col-md-5 file-field">
                                 <div>
-                                    <label class="py-0 px-0 my-0">
-                    <img class="upload-image rounded center-cropped" [src]="imageDefault">
-                    <input type="file" id="pic" name="pic" accept="image/*" (change)="handleFileInput($event.target.files)">
-                  </label>
+                                    <label (click)='uploadCropImg()' class="py-0 px-0 my-0" data-toggle="modal" data-target="#uploadModal">
+                                        <img id="img-show-upload" class="upload-image rounded center-cropped" [src]="imageDefault">
+                                    </label>
                                 </div>
                                 <div>
-                                    <label class="py-0 px-0 my-0 btn btn-dark btn-md btn-block">
-                    <span>upload file</span>
-                    <input type="file" id="pic" name="pic" accept="image/*" (change)="handleFileInput($event.target.files)">
-                  </label>
+                                    <label id="btn-upload-file" (click)='uploadCropImg()' class="py-0 px-0 my-0 btn btn-dark btn-md btn-block" data-toggle="modal"
+                                        data-target="#uploadModal">
+                                        <span>upload file</span>
+                                    </label>
+
                                 </div>
                             </div>
                         </div>
@@ -50,16 +53,19 @@
                         <div class="form-group text-left row">
                             <div class="font-weight-bold col-auto pr-0">สถานะ</div>
                             <div class="col-auto ml-0">
-                                <mat-radio-group *ngIf="status; else chcek2" id="status" (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker">
+                                <mat-radio-group *ngIf="status; else chcek2" id="status" (change)="onSelectionChange()"
+                                    formControlName="status" [(ngModel)]="checker">
                                     <mat-radio-button name="available" value=true checked>ว่าง</mat-radio-button>
                                     &nbsp;&nbsp;
                                     <mat-radio-button name="unavailable" value=false>ไม่ว่าง</mat-radio-button>
                                 </mat-radio-group>
                                 <ng-template #chcek2>
-                                    <mat-radio-group (change)="onSelectionChange()" formControlName="status" [(ngModel)]="checker">
+                                    <mat-radio-group (change)="onSelectionChange()" formControlName="status"
+                                        [(ngModel)]="checker">
                                         <mat-radio-button name="available" value=true>ว่าง</mat-radio-button>
                                         &nbsp;&nbsp;
-                                        <mat-radio-button name="unavailable" value=false checked>ไม่ว่าง</mat-radio-button>
+                                        <mat-radio-button name="unavailable" value=false checked>ไม่ว่าง
+                                        </mat-radio-button>
                                     </mat-radio-group>
                                 </ng-template>
                             </div>
@@ -67,20 +73,92 @@
 
                         <div class="form-group text-left" [ngClass]="{disabledDiv: status}">
                             <label for="holder" class="text-left font-weight-bold">ผู้ยืม</label>
-                            <input type="text" id="holder" name="holder" placeholder="ระบุชื่อผู้ยืม" formControlName="holder" [(ngModel)]="holder">
+                            <input type="text" id="holder" name="holder" placeholder="ระบุชื่อผู้ยืม"
+                                formControlName="holder" [(ngModel)]="holder">
                             <label for="tel" class="text-left font-weight-bold">เบอร์ผู้ยืม</label>
-                            <input type="text" id="tel" name="tel" placeholder="ระบุเบอร์ติดต่อ" formControlName="tel" [(ngModel)]="tel" (keypress)="checkPhoneNum($event)" maxLength='10' minlength="10">
+                            <input type="text" id="tel" name="tel" placeholder="ระบุเบอร์ติดต่อ" formControlName="tel"
+                                [(ngModel)]="tel" (keypress)="checkPhoneNum($event)" maxLength='10' minlength="10">
                         </div>
 
                         <div class="form-group text-right">
-                            <button type="button" class="btn btn-success" (click)="onSubmit()" [ngClass]="{disabledBT: !vaildatBT}">Save </button>&nbsp;&nbsp;
-                            <button type="button" class="btn btn-danger" (click)="backView()">Clear</button>
+                            <button type="button" class="btn btn-default-blue" (click)="onSubmit()"
+                                [ngClass]="{disabledBT: !vaildatBT}">Save </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-default-black" (click)="backView()">Clear</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
     </div>
+
+
+
+
+    <!-- modol cropping image -->
+    <div class="modal fade" id="uploadModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div *ngIf="cropping.isLoaded" class="container">
+                    <div class="row">
+                        <div class="col-1 p-0">
+                            <button class="p-0" (click)="cropping.zoomIn()" ly-button appearance="icon">
+                                <ly-icon>zoom_in</ly-icon>
+                            </button>
+                        </div>
+                        <div class="col-1 p-0">
+                            <button class="p-0" (click)="cropping.zoomOut()" ly-button appearance="icon">
+                                <ly-icon>zoom_out</ly-icon>
+                            </button>
+                        </div>
+                        <div class="col-1 p-0">
+                            <button class="p-0" (click)="cropping.center()" ly-button appearance="icon">
+                                <ly-icon>filter_center_focus</ly-icon>
+                            </button>
+                        </div>
+                        <div class="col-1 p-0">
+                            <button class="p-0" (click)="cropping.rotate(-90)" ly-button appearance="icon">
+                                <ly-icon>rotate_90_degrees_ccw</ly-icon>
+                            </button>
+                        </div>
+                        <div class="col-2 p-0">
+                            <button class="p-0" (click)="cropping.fit()" ly-button>Fit</button>
+                        </div>
+                        <div class="col-2 p-0">
+                            <button class="p-0" (click)="cropping.fitToScreen()" ly-button>Fit to screen</button>
+                        </div>
+                        <div class="col-2 p-0">
+                            <button class="p-0" (click)="cropping.setScale(1)" ly-button>1:1</button>
+                        </div>
+                        <div class="col-2 p-0">
+                            <button class="p-0" (click)="cropping.clean()" ly-button>Clean</button>
+                        </div>
+                    </div>
+                </div>
+
+                <ly-img-cropper [withClass]="classes.cropping" #cropping [config]="myConfig"
+                    (cropped)="onCropped($event)">
+                    <span>Drag and drop image</span>
+                </ly-img-cropper>
+
+                <div [className]="classes.actions" class="row">
+                    <button id="button-select-crop" ly-button color="primary" (click)="_fileInput.click()" class="col-12">
+                        <ly-icon>image</ly-icon>
+                        <span>Select File</span>
+                    </button>
+                    <span [className]="classes.flex"></span>
+                    <!-- Hidden input -->
+                    <input #_fileInput type="file" (change)="cropping.selectInputEvent($event)" accept="image/*" hidden>
+                </div>
+
+                <button id="button-cropping" *ngIf="cropping.isLoaded" color="accent" (click)="cropping.crop()" ly-button
+                    data-dismiss="modal">
+                    <ly-icon>crop</ly-icon>crop
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End modol cropping image -->
+
 </body>
 
 </html>

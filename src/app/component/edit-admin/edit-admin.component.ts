@@ -1,8 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ViewRef, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MyDataServiceService } from '../my-data-service.service';
 import { Router } from '@angular/router';
+
+
+import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
+import { LyTheme2 } from '@alyle/ui';
+import { AutofillMonitor } from '@angular/cdk/text-field';
+
+// Set Size of cropping
+const styles = {
+  actions: {
+    display: 'flex'
+  },
+  cropping: {
+    maxWidth: '500px',
+    height: '300px'
+  },
+  flex: {
+    flex: 1
+  }
+};
 
 @Component({
   selector: 'app-edit-admin',
@@ -10,6 +29,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-admin.component.css']
 })
 export class EditAdminComponent implements OnInit {
+
+
+
+  // Set size image at cropping
+  classes = this.theme.addStyleSheet(styles);
+  croppedImage?: string;
+  result: string;
+  myConfig: ImgCropperConfig = {
+    width: 300, // Default `250`
+    height: 300, // Default `200`,
+    output: {
+      width: 400,
+      height: 400
+    }
+  };
+  base64DefaultURL: any;
+
   public results: any;
   public editResults: any;
   idEditDevice: string;
@@ -22,14 +58,15 @@ export class EditAdminComponent implements OnInit {
   options: FormGroup;
   checker: string;
   tel: string;
-  imageDefault = '/assets/imgs/logo4.png';
+  imageDefault = '/assets/imgs/add_device.jpg';
   fileToUpload: File = null;
   vaildatBT = false;
 
   constructor(private http: HttpClient,
-    private formBuilder: FormBuilder,
-    private data: MyDataServiceService,
-    private router: Router,
+              private formBuilder: FormBuilder,
+              private data: MyDataServiceService,
+              private router: Router,
+              private theme: LyTheme2
   ) { }
 
   ngOnInit() {
@@ -153,4 +190,48 @@ export class EditAdminComponent implements OnInit {
       event.preventDefault();
     }
   }
+
+
+
+  // Click cropped
+// This use function have covert dataURL to file for add image cropped to imageFile (Send to API)
+onCropped(e) {
+  this.croppedImage = e.dataURL;
+  console.log(typeof (this.croppedImage));
+  const cropNew = this.croppedImage.replace(/^data:image\/(png|jpg);base64,/, '');
+  const date = new Date().valueOf();
+  const text = '';
+  const imageName = date + '.' + text + '.jpeg';
+  const imageBlob = this.dataURItoBlob(cropNew);
+  const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+  console.log(typeof (imageFile));
+
+  // this.fileToUpload = imageFile;
+  this.fileToUpload = imageFile;
+  this.imageDefault = this.croppedImage;
+  this.canSubmit();
 }
+
+
+// function for convert dataURL to file
+dataURItoBlob(dataURI) {
+  const byteString = window.atob(dataURI);
+  const arrayBuffer = new ArrayBuffer(byteString.length);
+  const int8Array = new Uint8Array(arrayBuffer);
+  for (let i = 0; i < byteString.length; i++) {
+    int8Array[i] = byteString.charCodeAt(i);
+  }
+  const blob = new Blob([int8Array], { type: 'image/jpeg' });
+  return blob;
+}
+
+
+uploadCropImg() {
+  document.getElementById('upload-crop-img').click();
+}
+
+}
+
+
+
+

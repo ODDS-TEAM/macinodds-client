@@ -1,17 +1,16 @@
 import { environment } from './../../../environments/environment.prod';
-import { Component, OnInit, Input, ViewChild, ViewRef, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ViewRef, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatRadioButton } from '@angular/material';
 import { RouterLink, Router, RouterModule } from '@angular/router';
 
 
-import { ChangeDetectionStrategy } from '@angular/core';
 import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 
-
+// Set Size of cropping
 const styles = {
   actions: {
     display: 'flex'
@@ -34,10 +33,9 @@ const styles = {
 })
 export class MenuAddDeviceComponent implements OnInit {
 
-
+// Set size image at cropping
   classes = this.theme.addStyleSheet(styles);
   croppedImage?: string;
-  // @ViewChild(LyResizingCroppingImages) img: LyResizingCroppingImages;
   result: string;
   myConfig: ImgCropperConfig = {
     width: 300, // Default `250`
@@ -47,6 +45,8 @@ export class MenuAddDeviceComponent implements OnInit {
       height: 400
     }
   };
+  base64DefaultURL: any;
+
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   name: string;
@@ -61,7 +61,6 @@ export class MenuAddDeviceComponent implements OnInit {
   fileToUpload: File = null;
   vaildatBT = false;
   options: FormGroup;
-  base64DefaultURL: any;
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private theme: LyTheme2
   ) { }
 
@@ -178,26 +177,27 @@ export class MenuAddDeviceComponent implements OnInit {
   }
 
 
-
+// Click cropped
+// This use function have covert dataURL to file for add image cropped to imageFile (Send to API)
   onCropped(e) {
     this.croppedImage = e.dataURL;
-    console.log(typeof(this.croppedImage));
-    const cropNew  = this.croppedImage.replace(/^data:image\/(png|jpg);base64,/, '');
+    console.log(typeof (this.croppedImage));
+    const cropNew = this.croppedImage.replace(/^data:image\/(png|jpg);base64,/, '');
     const date = new Date().valueOf();
     const text = '';
     const imageName = date + '.' + text + '.jpeg';
     const imageBlob = this.dataURItoBlob(cropNew);
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    console.log(typeof(imageFile));
+    console.log(typeof (imageFile));
 
     // this.fileToUpload = imageFile;
     this.fileToUpload = imageFile;
     this.imageDefault = this.croppedImage;
-    this.canSubmit() ;
+    this.canSubmit();
   }
 
 
-
+// function for convert dataURL to file
   dataURItoBlob(dataURI) {
     const byteString = window.atob(dataURI);
     const arrayBuffer = new ArrayBuffer(byteString.length);
@@ -207,6 +207,15 @@ export class MenuAddDeviceComponent implements OnInit {
     }
     const blob = new Blob([int8Array], { type: 'image/jpeg' });
     return blob;
- }
+  }
+
+
+  uploadCropImg() {
+    console.log('>>>>>>>>>><<<<<<<<<<');
+    document.getElementById('upload-crop-img').click();
+}
+
+
+
 
 }
