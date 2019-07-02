@@ -141,13 +141,13 @@
                 </ly-img-cropper>
 
                 <div [className]="classes.actions" class="row">
-                    <button id="button-select-crop" ly-button color="primary" (click)="_fileInput.click()" class="col-12">
+                    <button  ly-button color="primary" (click)="_fileInput.click()" class="col-12">
                         <ly-icon>image</ly-icon>
                         <span>Select File</span>
                     </button>
                     <span [className]="classes.flex"></span>
                     <!-- Hidden input -->
-                    <input #_fileInput type="file" (change)="cropping.selectInputEvent($event)" accept="image/*" hidden>
+                    <input id="button-select-crop" #_fileInput type="file" (change)="cropping.selectInputEvent($event)" accept="image/*" hidden>
                 </div>
 
                 <button id="button-cropping" *ngIf="cropping.isLoaded" color="accent" (click)="cropping.crop()" ly-button
