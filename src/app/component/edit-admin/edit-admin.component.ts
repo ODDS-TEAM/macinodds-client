@@ -9,6 +9,8 @@ import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-c
 import { LyTheme2 } from '@alyle/ui';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 
+
+
 // Set Size of cropping
 const styles = {
   actions: {

@@ -43,8 +43,6 @@ describe('MenuViewAdminComponent', () => {
       holder: ''
     });
   });
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
 
 });

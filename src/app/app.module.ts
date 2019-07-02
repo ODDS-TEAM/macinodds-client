@@ -19,7 +19,7 @@ import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
 import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 
-import { LyThemeModule, LY_THEME ,LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
+import { LyThemeModule, LY_THEME , LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
 import { MinimaLight } from '@alyle/ui/themes/minima';
 import { LyButtonModule } from '@alyle/ui/button';
 import { LyToolbarModule } from '@alyle/ui/toolbar';

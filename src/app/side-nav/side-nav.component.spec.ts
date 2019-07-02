@@ -41,10 +41,5 @@ describe('SideNavComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('templates', () => {
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
 
-  });
 });

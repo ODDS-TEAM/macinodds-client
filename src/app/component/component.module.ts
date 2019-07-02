@@ -40,6 +40,7 @@ import { LyIconModule } from '@alyle/ui/icon';
     LyResizingCroppingImageModule,
     LyButtonModule,
     LyIconModule
-  ]
+  ],
+  exports: [MenuAddDeviceComponent],
 })
 export class ComponentModule { }

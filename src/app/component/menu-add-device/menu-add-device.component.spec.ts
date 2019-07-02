@@ -46,9 +46,7 @@ describe('MenuAddDeviceComponent', () => {
 
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
 
   xit('should clear data when call resetForm()', () => {
     spyOn(component, 'getDevice');
@@ -69,7 +67,7 @@ describe('MenuAddDeviceComponent', () => {
   xit('should be put data when call onSubmit', () => {
   spyOn(component, 'getDevice').and.returnValue();
 
-  component.onSubmit()
+  component.onSubmit();
 
   expect(component.onSubmit).toBeTruthy();
  });
