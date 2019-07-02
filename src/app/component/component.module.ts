@@ -15,6 +15,10 @@ import { MenuAddDeviceComponent } from './menu-add-device/menu-add-device.compon
 import { MenuViewAdminComponent } from './menu-view-admin/menu-view-admin.component';
 import { EditAdminComponent} from './edit-admin/edit-admin.component';
 import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component';
+import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
+import { LyButtonModule } from '@alyle/ui/button';
+
+import { LyIconModule } from '@alyle/ui/icon';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component
     FormsModule,
     ReactiveFormsModule,
     MatRadioModule,
+    LyResizingCroppingImageModule,
+    LyButtonModule,
+    LyIconModule
   ]
 })
 export class ComponentModule { }

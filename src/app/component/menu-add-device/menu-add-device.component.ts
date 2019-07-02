@@ -4,12 +4,49 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatRadioButton } from '@angular/material';
 import { RouterLink, Router, RouterModule } from '@angular/router';
+
+
+import { ChangeDetectionStrategy } from '@angular/core';
+import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
+import { LyTheme2 } from '@alyle/ui';
+import { AutofillMonitor } from '@angular/cdk/text-field';
+
+
+const styles = {
+  actions: {
+    display: 'flex'
+  },
+  cropping: {
+    maxWidth: '500px',
+    height: '300px'
+  },
+  flex: {
+    flex: 1
+  }
+};
+
+
 @Component({
   selector: 'app-menu-add-device',
   templateUrl: './menu-add-device.component.html',
   styleUrls: ['./menu-add-device.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuAddDeviceComponent implements OnInit {
+
+
+  classes = this.theme.addStyleSheet(styles);
+  croppedImage?: string;
+  // @ViewChild(LyResizingCroppingImages) img: LyResizingCroppingImages;
+  result: string;
+  myConfig: ImgCropperConfig = {
+    width: 300, // Default `250`
+    height: 300, // Default `200`,
+    output: {
+      width: 400,
+      height: 400
+    }
+  };
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   name: string;
@@ -24,7 +61,8 @@ export class MenuAddDeviceComponent implements OnInit {
   fileToUpload: File = null;
   vaildatBT = false;
   options: FormGroup;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router,
+  base64DefaultURL: any;
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private theme: LyTheme2
   ) { }
 
   @Input()
@@ -72,17 +110,7 @@ export class MenuAddDeviceComponent implements OnInit {
     });
   }
 
-  // check change image and show image in src
-  handleFileInput(file: FileList) {
-    this.fileToUpload = file.item(0);
 
-    // Show image preview
-    const reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageDefault = event.target.result;
-    };
-    reader.readAsDataURL(this.fileToUpload);
-  }
 
   onSubmit() {
     // create formData to post
@@ -148,4 +176,37 @@ export class MenuAddDeviceComponent implements OnInit {
     }
 
   }
+
+
+
+  onCropped(e) {
+    this.croppedImage = e.dataURL;
+    console.log(typeof(this.croppedImage));
+    const cropNew  = this.croppedImage.replace(/^data:image\/(png|jpg);base64,/, '');
+    const date = new Date().valueOf();
+    const text = '';
+    const imageName = date + '.' + text + '.jpeg';
+    const imageBlob = this.dataURItoBlob(cropNew);
+    const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+    console.log(typeof(imageFile));
+
+    // this.fileToUpload = imageFile;
+    this.fileToUpload = imageFile;
+    this.imageDefault = this.croppedImage;
+    this.canSubmit() ;
+  }
+
+
+
+  dataURItoBlob(dataURI) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/jpeg' });
+    return blob;
+ }
+
 }
