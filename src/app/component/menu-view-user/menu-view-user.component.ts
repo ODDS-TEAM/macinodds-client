@@ -54,7 +54,7 @@ export class MenuViewUserComponent implements OnInit {
     // ทำการเรียกใช้ HTTP request ผ่าน get() method
     // ซึ่งจะได้ข้อมูลกลับมาในรูปแบบ Observable เราต้อง subscibe ตัว observer จึงจะทำงาน
     // พอรอค่าที่จะถูกส่งกลับมาแล้วทำงาน
-    this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
+    this.http.get('http://mac.odds.team/api/mac').subscribe(data => {
       // อ่านค่า result จาก JSON response ที่ส่งออกมา
       this.results = data;
       console.log('print get all : ' + JSON.stringify(this.results[0]._id));

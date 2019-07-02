@@ -75,7 +75,7 @@ export class MenuViewAdminComponent implements OnInit {
   getDevice() {
     // HTTP request by get() method
     // get data from Observable we need subscibe observer to working
-    this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
+    this.http.get('http://mac.odds.team/api/mac').subscribe(data => {
       // get result from JSON response
       this.results = data;
       console.log('print get all : ' + JSON.stringify(this.results[0]._id));
@@ -85,7 +85,7 @@ export class MenuViewAdminComponent implements OnInit {
   // get device id for show data
   getDeviceByID(id) {
     console.log('print id : ' + id);
-    this.http.get('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
+    this.http.get('http://mac.odds.team/api/mac/' + id).subscribe(data => {
       // read result form JSON response
       this.editResults = data;
     });
@@ -95,7 +95,7 @@ export class MenuViewAdminComponent implements OnInit {
   deleteDevice(id, serial) {
     console.log('confirem delete : ' + id);
     if (window.confirm('Are you sure, you want to delete device serial number: ' + serial)) {
-      this.http.delete('http://139.5.146.213:1323/api/devices/' + id).subscribe(data => {
+      this.http.delete('http://mac.odds.team/api/mac/' + id).subscribe(data => {
         this.getDevice();
       });
     }

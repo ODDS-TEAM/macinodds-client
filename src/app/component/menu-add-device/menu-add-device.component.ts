@@ -103,7 +103,7 @@ export class MenuAddDeviceComponent implements OnInit {
   getDevice() {
     // HTTP request by get() method
     // get data from Observable we need subscibe observer to working
-    this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
+    this.http.get('http://mac.odds.team/api/mac').subscribe(data => {
       // get result from JSON response
       this.results = data;
     });
@@ -126,7 +126,7 @@ export class MenuAddDeviceComponent implements OnInit {
     console.log(JSON.stringify(formData));
     // post method
     if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-      this.http.post('http://139.5.146.213:1323/api/devices', formData)
+      this.http.post('http://mac.odds.team/api/mac', formData)
         .subscribe(result => {
           this.getDevice();
 

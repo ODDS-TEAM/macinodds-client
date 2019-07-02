@@ -114,7 +114,7 @@ export class EditAdminComponent implements OnInit {
     formData.append('img', this.fileToUpload);
 
     console.log('Put data **** : ' + JSON.stringify(formData));
-    this.http.put('http://139.5.146.213:1323/api/devices/' + this.idEditDevice, formData).subscribe(data => {
+    this.http.put('http://mac.odds.team/api/mac/' + this.idEditDevice, formData).subscribe(data => {
       this.getDevice();
       console.log('Put data : ' + JSON.stringify(data));
       this.backView();
@@ -136,14 +136,14 @@ export class EditAdminComponent implements OnInit {
   getDevice() {
     // HTTP request by get() method
     // get data from Observable we need subscibe observer to working
-    this.http.get('http://139.5.146.213:1323/api/devices').subscribe(data => {
+    this.http.get('http://mac.odds.team/api/mac').subscribe(data => {
       // get result from JSON response
       this.results = data;
     });
   }
 
   editDevice() {
-    this.http.get('http://139.5.146.213:1323/api/devices/' + this.idEditDevice).subscribe(data => {
+    this.http.get('http://mac.odds.team/api/mac/' + this.idEditDevice).subscribe(data => {
       this.editResults = data;
       console.log('print edit data : ' + data);
       console.log('print edit data JSON.stringify : ' + JSON.stringify(data));
