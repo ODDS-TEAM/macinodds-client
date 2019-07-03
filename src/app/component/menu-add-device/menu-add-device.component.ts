@@ -211,7 +211,6 @@ export class MenuAddDeviceComponent implements OnInit {
 
 
   uploadCropImg() {
-    console.log('>>>>>>>>>><<<<<<<<<<');
     document.getElementById('upload-crop-img').click();
 }
 
