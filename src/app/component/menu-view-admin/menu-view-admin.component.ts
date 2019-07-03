@@ -36,22 +36,22 @@ export class MenuViewAdminComponent implements OnInit {
               private data: MyDataServiceService,
               private router: Router,
               private breakpointObserver: BreakpointObserver,
-            ) { }
+  ) { }
 
-            isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-            .pipe(
-              map(result => result.matches)
-            );
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
 
-          isWeb$: Observable<boolean> = this.breakpointObserver.observe([
-            Breakpoints.WebLandscape,
-            Breakpoints.WebPortrait,
-            Breakpoints.Web,
-            Breakpoints.Tablet
-          ])
-            .pipe(
-              map(result => result.matches)
-            );
+  isWeb$: Observable<boolean> = this.breakpointObserver.observe([
+    Breakpoints.WebLandscape,
+    Breakpoints.WebPortrait,
+    Breakpoints.Web,
+    Breakpoints.Tablet
+  ])
+    .pipe(
+      map(result => result.matches)
+    );
 
   ngOnInit() {
     this.editResults = {};

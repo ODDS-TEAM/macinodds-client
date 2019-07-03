@@ -11,7 +11,7 @@ export class MenuServiceUserService {
   getMenuList() {
     const menuList: MenuItemUser[] = [
       {
-        group: { code: 'menu-view-user', name: 'Menu User Test' , icon: 'fas fa-file-medical' },
+        group: { code: 'menu-view-user', name: 'Menu User Test', icon: 'fas fa-file-medical' },
         menus: []
       }
     ];

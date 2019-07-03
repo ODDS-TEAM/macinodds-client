@@ -7,6 +7,7 @@
 
 <body>
 
+    <!-- Form edit data -->
     <div class="container font-style">
         <form class="example-container" [formGroup]="options" (change)="canSubmit()">
             <div style="text-align:center">
@@ -36,12 +37,15 @@
                             </div>
                             <div class="col-7 col-lg-2 col-md-5 file-field">
                                 <div>
-                                    <label (click)='uploadCropImg()' class="py-0 px-0 my-0" data-toggle="modal" data-target="#uploadModal">
-                                        <img id="img-show-upload" class="upload-image rounded center-cropped" [src]="imageDefault">
+                                    <label (click)='uploadCropImg()' class="py-0 px-0 my-0" data-toggle="modal"
+                                        data-target="#uploadModal">
+                                        <img id="img-show-upload" class="upload-image rounded center-cropped"
+                                            [src]="imageDefault">
                                     </label>
                                 </div>
                                 <div>
-                                    <label id="btn-upload-file" (click)='uploadCropImg()' class="py-0 px-0 my-0 btn btn-dark btn-md btn-block" data-toggle="modal"
+                                    <label id="btn-upload-file" (click)='uploadCropImg()'
+                                        class="py-0 px-0 my-0 btn btn-dark btn-md btn-block" data-toggle="modal"
                                         data-target="#uploadModal">
                                         <span>upload file</span>
                                     </label>
@@ -90,11 +94,11 @@
             </div>
         </form>
     </div>
+    <!--End form edit data -->
 
 
 
-
-    <!-- modol cropping image -->
+    <!-- Modol cropping image -->
     <div class="modal fade" id="uploadModal" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -146,12 +150,12 @@
                         <span>Select File</span>
                     </button>
                     <span [className]="classes.flex"></span>
-                    <!-- Hidden input -->
-                    <input id="button-select-crop" #_fileInput type="file" (change)="cropping.selectInputEvent($event)" accept="image/*" hidden>
+                    <input id="button-select-crop" #_fileInput type="file" (change)="cropping.selectInputEvent($event)"
+                        accept="image/*" hidden>
                 </div>
 
-                <button id="button-cropping" *ngIf="cropping.isLoaded" color="accent" (click)="cropping.crop()" ly-button
-                    data-dismiss="modal">
+                <button id="button-cropping" *ngIf="cropping.isLoaded" color="accent" (click)="cropping.crop()"
+                    ly-button data-dismiss="modal">
                     <ly-icon>crop</ly-icon>crop
                 </button>
             </div>

@@ -10,7 +10,7 @@ import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-c
 import { LyTheme2 } from '@alyle/ui';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 
-// Set Size of cropping
+// Set Size of cropping by alyle
 const styles = {
   actions: {
     display: 'flex'
@@ -24,28 +24,14 @@ const styles = {
   }
 };
 
-
 @Component({
   selector: 'app-menu-add-device',
   templateUrl: './menu-add-device.component.html',
   styleUrls: ['./menu-add-device.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuAddDeviceComponent implements OnInit {
 
-// Set size image at cropping
-  classes = this.theme.addStyleSheet(styles);
-  croppedImage?: string;
-  result: string;
-  myConfig: ImgCropperConfig = {
-    width: 300, // Default `250`
-    height: 300, // Default `200`,
-    output: {
-      width: 400,
-      height: 400
-    }
-  };
-  base64DefaultURL: any;
+export class MenuAddDeviceComponent implements OnInit {
 
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
@@ -61,8 +47,30 @@ export class MenuAddDeviceComponent implements OnInit {
   fileToUpload: File = null;
   vaildatBT = false;
   options: FormGroup;
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private theme: LyTheme2
+
+
+  base64DefaultURL: any;
+  // Set size image at cropping modal
+  classes = this.theme.addStyleSheet(styles);
+  croppedImage?: string;
+  result: string;
+  myConfig: ImgCropperConfig = {
+    width: 300, // Default `250`
+    height: 300, // Default `200`,
+    output: {
+      width: 400,
+      height: 400
+    }
+  };
+  // End set size image at cropping modal
+
+
+  constructor(private http: HttpClient,
+              private formBuilder: FormBuilder,
+              private router: Router,
+              private theme: LyTheme2
   ) { }
+
 
   @Input()
   checked: boolean;
@@ -177,8 +185,8 @@ export class MenuAddDeviceComponent implements OnInit {
   }
 
 
-// Click cropped
-// This use function have covert dataURL to file for add image cropped to imageFile (Send to API)
+  // Click cropped
+  // This use function have covert dataURL to file for add image cropped to imageFile (Send to API)
   onCropped(e) {
     this.croppedImage = e.dataURL;
     console.log(typeof (this.croppedImage));
@@ -197,7 +205,7 @@ export class MenuAddDeviceComponent implements OnInit {
   }
 
 
-// function for convert dataURL to file
+  // function for convert dataURL to file
   dataURItoBlob(dataURI) {
     const byteString = window.atob(dataURI);
     const arrayBuffer = new ArrayBuffer(byteString.length);
@@ -209,10 +217,10 @@ export class MenuAddDeviceComponent implements OnInit {
     return blob;
   }
 
-
+  // onclick upload btn to open modol and click button upload image
   uploadCropImg() {
     document.getElementById('upload-crop-img').click();
-}
+  }
 
 
 

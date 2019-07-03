@@ -24,14 +24,14 @@ export class SideNavUserComponent {
   constructor(private breakpointObserver: BreakpointObserver,
               private menuServiceUser: MenuServiceUserService,
               private router: Router) {
-                this.menuListUser = this.menuServiceUser.getMenuList();
-              }
-              selectMenu(menuGroup: MenuUser) {
-                if (this.menuGroupSelected === menuGroup.code) {
-                  this.menuGroupSelected = null;
-                  return;
-                }
-                this.menuGroupSelected = menuGroup.code;
-              }
+    this.menuListUser = this.menuServiceUser.getMenuList();
+  }
+  selectMenu(menuGroup: MenuUser) {
+    if (this.menuGroupSelected === menuGroup.code) {
+      this.menuGroupSelected = null;
+      return;
+    }
+    this.menuGroupSelected = menuGroup.code;
+  }
 
 }

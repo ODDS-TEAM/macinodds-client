@@ -6,16 +6,17 @@
                 class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
         <mat-nav-list>
             <div *ngFor="let menuGroupUser of menuList ; let i = index">
-                <div *ngIf="menuGroupUser.menus.length == 0 " >
+                <div *ngIf="menuGroupUser.menus.length == 0 ">
                     <a mat-list-item class="line btn-side btn-side1 " routerLinkActive="active"
-                        [routerLink]="['/admin/app/'+menuGroupUser.group.code]" id="botton-{{ menuGroupUser.group.code }}">
+                        [routerLink]="['/admin/app/'+menuGroupUser.group.code]"
+                        id="botton-{{ menuGroupUser.group.code }}">
                         <div class="container">
                             <div class="row">
                                 <div class="col-1">
                                     <i class="{{ menuGroupUser.group.icon }}"></i>
                                 </div>
                                 <div class="col-10">
-                                    <span >{{ menuGroupUser.group.name }} </span>
+                                    <span>{{ menuGroupUser.group.name }} </span>
                                 </div>
                             </div>
                         </div>
@@ -80,4 +81,3 @@
 
 
 </mat-sidenav-container>
-

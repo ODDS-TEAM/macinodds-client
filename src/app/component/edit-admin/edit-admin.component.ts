@@ -10,8 +10,7 @@ import { LyTheme2 } from '@alyle/ui';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 
 
-
-// Set Size of cropping
+// Set Size of cropping by alyle
 const styles = {
   actions: {
     display: 'flex'
@@ -30,24 +29,9 @@ const styles = {
   templateUrl: './edit-admin.component.html',
   styleUrls: ['./edit-admin.component.css']
 })
+
+
 export class EditAdminComponent implements OnInit {
-
-
-
-  // Set size image at cropping
-  classes = this.theme.addStyleSheet(styles);
-  croppedImage?: string;
-  result: string;
-  myConfig: ImgCropperConfig = {
-    width: 300, // Default `250`
-    height: 300, // Default `200`,
-    output: {
-      width: 400,
-      height: 400
-    }
-  };
-  base64DefaultURL: any;
-
   public results: any;
   public editResults: any;
   idEditDevice: string;
@@ -63,6 +47,23 @@ export class EditAdminComponent implements OnInit {
   imageDefault = '/assets/imgs/add_device.jpg';
   fileToUpload: File = null;
   vaildatBT = false;
+
+
+  base64DefaultURL: any;
+  // Set size image at cropping modal
+  classes = this.theme.addStyleSheet(styles);
+  croppedImage?: string;
+  result: string;
+  myConfig: ImgCropperConfig = {
+    width: 300, // Default `250`
+    height: 300, // Default `200`,
+    output: {
+      width: 400,
+      height: 400
+    }
+  };
+  // End set size image at cropping modal
+
 
   constructor(private http: HttpClient,
               private formBuilder: FormBuilder,
@@ -94,12 +95,10 @@ export class EditAdminComponent implements OnInit {
       this.status = false;
       this.holder = '';
       this.tel = '';
-      // this.canSubmit();
     } else {
       this.status = true;
       this.holder = '';
       this.tel = '';
-      // this.canSubmit();
     }
   }
 
@@ -196,41 +195,41 @@ export class EditAdminComponent implements OnInit {
 
 
   // Click cropped
-// This use function have covert dataURL to file for add image cropped to imageFile (Send to API)
-onCropped(e) {
-  this.croppedImage = e.dataURL;
-  console.log(typeof (this.croppedImage));
-  const cropNew = this.croppedImage.replace(/^data:image\/(png|jpg);base64,/, '');
-  const date = new Date().valueOf();
-  const text = '';
-  const imageName = date + '.' + text + '.jpeg';
-  const imageBlob = this.dataURItoBlob(cropNew);
-  const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-  console.log(typeof (imageFile));
+  // This use function have covert dataURL to file for add image cropped to imageFile (Send to API)
+  onCropped(e) {
+    this.croppedImage = e.dataURL;
+    console.log(typeof (this.croppedImage));
+    const cropNew = this.croppedImage.replace(/^data:image\/(png|jpg);base64,/, '');
+    const date = new Date().valueOf();
+    const text = '';
+    const imageName = date + '.' + text + '.jpeg';
+    const imageBlob = this.dataURItoBlob(cropNew);
+    const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+    console.log(typeof (imageFile));
 
-  // this.fileToUpload = imageFile;
-  this.fileToUpload = imageFile;
-  this.imageDefault = this.croppedImage;
-  this.canSubmit();
-}
-
-
-// function for convert dataURL to file
-dataURItoBlob(dataURI) {
-  const byteString = window.atob(dataURI);
-  const arrayBuffer = new ArrayBuffer(byteString.length);
-  const int8Array = new Uint8Array(arrayBuffer);
-  for (let i = 0; i < byteString.length; i++) {
-    int8Array[i] = byteString.charCodeAt(i);
+    // this.fileToUpload = imageFile;
+    this.fileToUpload = imageFile;
+    this.imageDefault = this.croppedImage;
+    this.canSubmit();
   }
-  const blob = new Blob([int8Array], { type: 'image/jpeg' });
-  return blob;
-}
 
 
-uploadCropImg() {
-  document.getElementById('upload-crop-img').click();
-}
+  // function for convert dataURL to file
+  dataURItoBlob(dataURI) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/jpeg' });
+    return blob;
+  }
+
+  // onclick upload btn to open modol and click button upload image
+  uploadCropImg() {
+    document.getElementById('upload-crop-img').click();
+  }
 
 }
 
