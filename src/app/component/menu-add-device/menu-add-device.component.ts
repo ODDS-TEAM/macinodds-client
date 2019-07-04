@@ -9,6 +9,8 @@ import { RouterLink, Router, RouterModule } from '@angular/router';
 import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
+
 
 // Set Size of cropping by alyle
 const styles = {
@@ -68,7 +70,8 @@ export class MenuAddDeviceComponent implements OnInit {
   constructor(private http: HttpClient,
               private formBuilder: FormBuilder,
               private router: Router,
-              private theme: LyTheme2
+              private theme: LyTheme2,
+              private macApiService: MacinoddsApiService
   ) { }
 
 
@@ -111,7 +114,7 @@ export class MenuAddDeviceComponent implements OnInit {
   getDevice() {
     // HTTP request by get() method
     // get data from Observable we need subscibe observer to working
-    this.http.get('http://mac.odds.team/api/mac').subscribe(data => {
+    this.macApiService.getMacApi().subscribe(data => {
       // get result from JSON response
       this.results = data;
     });
@@ -134,7 +137,7 @@ export class MenuAddDeviceComponent implements OnInit {
     console.log(JSON.stringify(formData));
     // post method
     if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-      this.http.post('http://mac.odds.team/api/mac', formData)
+      this.macApiService.postMacAPI(formData)
         .subscribe(result => {
           this.getDevice();
 

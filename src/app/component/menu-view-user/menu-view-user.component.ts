@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
 
 @Component({
   selector: 'app-menu-view-user',
@@ -44,7 +45,10 @@ export class MenuViewUserComponent implements OnInit {
     );
 
 
-  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient, private formBuilder: FormBuilder) { }
+  constructor(private breakpointObserver: BreakpointObserver,
+              private http: HttpClient,
+              private formBuilder: FormBuilder,
+              private macApiService: MacinoddsApiService) { }
 
   ngOnInit() {
     this.getDevice();

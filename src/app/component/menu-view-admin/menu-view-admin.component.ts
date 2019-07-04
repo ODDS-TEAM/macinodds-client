@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
 
 @Component({
   selector: 'app-menu-view-admin',
@@ -36,6 +37,7 @@ export class MenuViewAdminComponent implements OnInit {
               private data: MyDataServiceService,
               private router: Router,
               private breakpointObserver: BreakpointObserver,
+              private macApiService: MacinoddsApiService
   ) { }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

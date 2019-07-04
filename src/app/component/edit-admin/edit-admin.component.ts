@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
+
 
 
 // Set Size of cropping by alyle
@@ -69,7 +71,9 @@ export class EditAdminComponent implements OnInit {
               private formBuilder: FormBuilder,
               private data: MyDataServiceService,
               private router: Router,
-              private theme: LyTheme2
+              private theme: LyTheme2,
+              private macApiService: MacinoddsApiService
+
   ) { }
 
   ngOnInit() {
@@ -113,7 +117,7 @@ export class EditAdminComponent implements OnInit {
     formData.append('img', this.fileToUpload);
 
     console.log('Put data **** : ' + JSON.stringify(formData));
-    this.http.put('http://mac.odds.team/api/mac/' + this.idEditDevice, formData).subscribe(data => {
+    this.macApiService.putMacAPI (this.idEditDevice, formData).subscribe(data => {
       this.getDevice();
       console.log('Put data : ' + JSON.stringify(data));
       this.backView();
@@ -135,14 +139,14 @@ export class EditAdminComponent implements OnInit {
   getDevice() {
     // HTTP request by get() method
     // get data from Observable we need subscibe observer to working
-    this.http.get('http://mac.odds.team/api/mac').subscribe(data => {
+    this.macApiService.getMacApi().subscribe(data => {
       // get result from JSON response
       this.results = data;
     });
   }
 
   editDevice() {
-    this.http.get('http://mac.odds.team/api/mac/' + this.idEditDevice).subscribe(data => {
+    this.macApiService.getMacIDApi(this.idEditDevice).subscribe(data => {
       this.editResults = data;
       console.log('print edit data : ' + data);
       console.log('print edit data JSON.stringify : ' + JSON.stringify(data));
@@ -155,7 +159,7 @@ export class EditAdminComponent implements OnInit {
       this.status = this.editResults.status;
       this.holder = this.editResults.holder;
       this.tel = this.editResults.tel;
-      this.imageDefault = 'http://139.5.146.213/assets/imgs/devices/' + this.editResults.img;
+      this.imageDefault = 'http://mac.odds.team/assets/imgs/devices/' + this.editResults.img;
       this.fileToUpload = this.editResults.img;
 
       console.log('image == set ==> ' + this.fileToUpload);

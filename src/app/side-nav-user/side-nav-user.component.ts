@@ -25,7 +25,7 @@ export class SideNavUserComponent {
   constructor(private breakpointObserver: BreakpointObserver,
               private menuServiceUser: MenuServiceUserService,
               private router: Router,
-              private signoutService: MacinoddsApiService) {
+              private macApiService : MacinoddsApiService) {
     this.menuListUser = this.menuServiceUser.getMenuList();
   }
   selectMenu(menuGroup: MenuUser) {
@@ -36,8 +36,8 @@ export class SideNavUserComponent {
     this.menuGroupSelected = menuGroup.code;
   }
 
-  signOut(){
-    this.signoutService.signOut();
+  signOut() {
+    this.macApiService.signOut();
   }
 
 }

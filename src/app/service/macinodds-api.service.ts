@@ -1,3 +1,4 @@
+import { puts } from 'util';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, from, BehaviorSubject } from 'rxjs';
@@ -98,10 +99,27 @@ export class MacinoddsApiService {
 
   signOut() {
     this.authService.signOut();
-    console.log(" You are sign out ");
+    console.log(' You are sign out ');
     this.route.navigate(['/login']);
     sessionStorage.clear();
 
+  }
+
+
+  getMacApi() {
+    return this.http.get('http://mac.odds.team/api/mac');
+  }
+
+  getMacIDApi(id) {
+    return this.http.get('http://mac.odds.team/api/mac/' + id);
+  }
+
+  putMacAPI(id, data) {
+    return this.http.put('http://mac.odds.team/api/mac/' + id, data);
+  }
+
+  postMacAPI(data) {
+    return this.http.post('http://mac.odds.team/api/mac', data);
   }
 
 }
