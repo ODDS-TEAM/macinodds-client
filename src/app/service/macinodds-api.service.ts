@@ -4,6 +4,7 @@ import { Observable, from, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Login } from '../shared/login';
 import { User } from '../shared/user'
+import { AuthService } from 'angular-6-social-login';
 
 
 
@@ -26,71 +27,79 @@ export class MacinoddsApiService {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService) { }
 
   // getIndividualListed = () => this.individualListed;
 
 
   forCheckTokenPleaseRemoveMeIfFlowLoginFinnished(): Observable<any> {
     return Observable.create(observer => {
-        const checkTokenInterval = setInterval(() => {
-            if (sessionStorage.getItem('token')) {
-                observer.next();
-                clearInterval(checkTokenInterval);
-            }
-        }, 200);
+      const checkTokenInterval = setInterval(() => {
+        if (sessionStorage.getItem('token')) {
+          observer.next();
+          clearInterval(checkTokenInterval);
+        }
+      }, 200);
     });
-}
+  }
 
-initDataService() {
-  if (this.forCheckTokenPleaseRemoveMeIfFlowLoginFinnished()) {
+  initDataService() {
+    if (this.forCheckTokenPleaseRemoveMeIfFlowLoginFinnished()) {
       this.getListIncomeIndividual().subscribe(individual => {
-          this.individualListed = individual;
+        this.individualListed = individual;
       });
 
       this.getListIncomeCorporate().subscribe(corporate => {
-          this.corporateListed = corporate;
+        this.corporateListed = corporate;
       });
+    }
   }
-}
 
-getListIncomeIndividual(): Observable<User> {
-  return this.http.get<User>(
+  getListIncomeIndividual(): Observable<User> {
+    return this.http.get<User>(
       `${this.apiPath}incomes/status/individual`,
       this.getHttpHeaderOption()
-  );
-}
+    );
+  }
 
-getListIncomeCorporate(): Observable<User> {
-  return this.http.get<User>(
+  getListIncomeCorporate(): Observable<User> {
+    return this.http.get<User>(
       `${this.apiPath}incomes/status/corporate`,
       this.getHttpHeaderOption()
-  );
-}
+    );
+  }
 
 
 
-getHttpHeaderOption(): { headers: HttpHeaders } {
-  const httpOptions = {
+  getHttpHeaderOption(): { headers: HttpHeaders } {
+    const httpOptions = {
       headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: sessionStorage.getItem('token')
+        'Content-Type': 'application/json',
+        Authorization: sessionStorage.getItem('token')
       })
-  };
-  return httpOptions;
-}
+    };
+    return httpOptions;
+  }
 
-// updateUser(id: string, user: User): Observable<User> {
-//   return this.http.put<User>(`${this.apiPath}users/${id}`, user,
-//       this.getHttpHeaderOption()
-//   );
-// }
-
-
-getLoginGoogle(idtoken: string): Observable<Login> {
-  return this.http.post<any>(`${this.apiPath}login-google`, { 'token': idtoken });
-}
+  // updateUser(id: string, user: User): Observable<User> {
+  //   return this.http.put<User>(`${this.apiPath}users/${id}`, user,
+  //       this.getHttpHeaderOption()
+  //   );
+  // }
 
 
+  getLoginGoogle(idtoken: string): Observable<Login> {
+    return this.http.post<any>(`${this.apiPath}login-google`, { 'token': idtoken });
+  }
+
+  signOut() {
+    this.authService.signOut();
+    console.log(" You are sign out ");
+    // this.route.navigate(['/']);
+    sessionStorage.clear();
+
+  }
 
 }

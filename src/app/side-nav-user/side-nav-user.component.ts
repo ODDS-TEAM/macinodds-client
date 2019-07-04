@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MenuServiceUserService, MenuItemUser, MenuUser } from '../service/menu-service-user.service';
 import { Router } from '@angular/router';
+import { MacinoddsApiService } from '../service/macinodds-api.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class SideNavUserComponent {
 
   constructor(private breakpointObserver: BreakpointObserver,
               private menuServiceUser: MenuServiceUserService,
-              private router: Router) {
+              private router: Router,
+              private mac: MacinoddsApiService) {
     this.menuListUser = this.menuServiceUser.getMenuList();
   }
   selectMenu(menuGroup: MenuUser) {
@@ -32,6 +34,10 @@ export class SideNavUserComponent {
       return;
     }
     this.menuGroupSelected = menuGroup.code;
+  }
+
+  logOut(){
+    this.mac.signOut;
   }
 
 }
