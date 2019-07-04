@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, from, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Login } from '../shared/login';
-import { User } from '../shared/user'
+import { User } from '../shared/user';
 import { AuthService } from 'angular-6-social-login';
 import { Router } from '@angular/router';
 
@@ -106,6 +106,7 @@ export class MacinoddsApiService {
   }
 
 
+  // API for Mac device
   getMacApi() {
     return this.http.get('http://mac.odds.team/api/mac');
   }
@@ -121,5 +122,10 @@ export class MacinoddsApiService {
   postMacAPI(data) {
     return this.http.post('http://mac.odds.team/api/mac', data);
   }
+
+  deleteMacAPI(id) {
+    return this.http.delete('http://mac.odds.team/api/mac/' + id);
+  }
+  // End API for Mac device
 
 }

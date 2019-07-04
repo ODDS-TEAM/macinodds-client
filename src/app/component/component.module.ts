@@ -20,6 +20,7 @@ import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component
 import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
 import { LyButtonModule } from '@alyle/ui/button';
 import { LyIconModule } from '@alyle/ui/icon';
+import { CardComponent } from './common/card/card.component';
 
 
 
@@ -29,6 +30,7 @@ import { LyIconModule } from '@alyle/ui/icon';
     MenuViewAdminComponent,
     EditAdminComponent,
     MenuViewUserComponent,
+    CardComponent,
 
   ],
   imports: [
