@@ -1,10 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MenuAddDeviceComponent } from './menu-add-device.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatRadioModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LyIconModule } from '@alyle/ui/icon';
+import { LyResizingCroppingImageModule, ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
+import { LyTheme2, LY_THEME } from '@alyle/ui';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { ComponentRoutingModule } from '../component-routing.module';
+
 
 describe('MenuAddDeviceComponent', () => {
   let component: MenuAddDeviceComponent;
@@ -13,19 +19,26 @@ describe('MenuAddDeviceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MenuAddDeviceComponent],
       imports: [
         RouterTestingModule,
         ReactiveFormsModule,
         MatRadioModule,
         HttpClientModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        LyIconModule,
+        LyResizingCroppingImageModule,
+        ChangeDetectionStrategy,
+        HttpClient,
+        ComponentRoutingModule
+
       ],
+      declarations: [MenuAddDeviceComponent, LY_THEME],
       providers: [
         {
           provide: FormBuilder,
           useValue: formBuilder
-        }
+        },
+        LyTheme2,
       ]
     })
       .compileComponents();
@@ -46,30 +59,8 @@ describe('MenuAddDeviceComponent', () => {
 
   });
 
-
-
-  xit('should clear data when call resetForm()', () => {
-    spyOn(component, 'getDevice');
-
-    component.resetForm();
-
-    expect(component.getDevice).toBeTruthy();
-  });
-
-  xit('should holder be disabled when call onDisable', () => {
-    spyOn(component, 'getDevice').and.returnValue();
-
-    // component.onDisable(true)
-
-    expect(component).toBeTruthy();
-  });
-
-  xit('should be put data when call onSubmit', () => {
-  spyOn(component, 'getDevice').and.returnValue();
-
-  component.onSubmit();
-
-  expect(component.onSubmit).toBeTruthy();
- });
+  // it('should create MenuAddDeviceComponent', () => {
+  //   expect(component).toBeTruthy();
+  // });
 
 });

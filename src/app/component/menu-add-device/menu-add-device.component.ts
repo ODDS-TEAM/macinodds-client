@@ -179,7 +179,6 @@ export class MenuAddDeviceComponent implements OnInit {
     } else {
       // is empty
       this.vaildatBT = false;
-
     }
 
   }

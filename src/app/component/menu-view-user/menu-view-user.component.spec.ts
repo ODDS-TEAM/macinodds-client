@@ -7,6 +7,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { LoginComponent } from 'src/app/login/login.component';
+import { RouterModule } from '@angular/router';
+import { SideNavComponent } from 'src/app/side-nav/side-nav.component';
+import { SideNavUserComponent } from 'src/app/side-nav-user/side-nav-user.component';
 
 describe('MenuViewUserComponent', () => {
   let component: MenuViewUserComponent;
@@ -15,7 +19,6 @@ describe('MenuViewUserComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuViewUserComponent ],
       imports: [
         RouterTestingModule,
         HttpClientModule,
@@ -26,12 +29,14 @@ describe('MenuViewUserComponent', () => {
         ReactiveFormsModule,
         HttpClientTestingModule,
         AppRoutingModule,
+        RouterModule.forRoot([]),
       ],
+      declarations: [ MenuViewUserComponent, LoginComponent , SideNavUserComponent , SideNavComponent ],
       providers: [
         {
           provide: FormBuilder,
           useValue: formBuilder
-        }
+        },
       ]
     })
     .compileComponents();
@@ -41,6 +46,10 @@ describe('MenuViewUserComponent', () => {
     fixture = TestBed.createComponent(MenuViewUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('should create MenuViewUserComponent', () => {
+    expect(component).toBeTruthy();
   });
 
 });

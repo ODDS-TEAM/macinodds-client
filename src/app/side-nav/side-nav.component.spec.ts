@@ -12,8 +12,8 @@ import {
 import { SideNavComponent } from './side-nav.component';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Menu } from '../service/menu-service.service';
 
+import { MenuServiceService, MenuItem, Menu } from '../service/menu-service.service';
 describe('SideNavComponent', () => {
   let component: SideNavComponent;
   let fixture: ComponentFixture<SideNavComponent>;
@@ -40,6 +40,11 @@ describe('SideNavComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
 
 
 });

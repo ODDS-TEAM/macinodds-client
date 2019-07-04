@@ -20,10 +20,13 @@ import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angul
 import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 
 import { LyThemeModule, LY_THEME , LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
+
+import { LyIconModule } from '@alyle/ui/icon';
 import { MinimaLight } from '@alyle/ui/themes/minima';
 import { LyButtonModule } from '@alyle/ui/button';
 import { LyToolbarModule } from '@alyle/ui/toolbar';
 import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
+import { LyTypographyModule } from '@alyle/ui/typography';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -56,8 +59,7 @@ export class GlobalVariables {
     contrast: 'rgba(0, 0, 0, 0.87)'
   };
 }
-import { LyIconModule } from '@alyle/ui/icon';
-import { LyTypographyModule } from '@alyle/ui/typography';
+
 
 @NgModule({
   declarations: [

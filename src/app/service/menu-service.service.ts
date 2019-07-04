@@ -18,11 +18,11 @@ export class MenuServiceService {
       //   ]
       // },
       {
-        group: { code: 'menu-add-device', name: 'Add device', icon: 'fas fa-file-medical', checkView: '' },
+        group: { code: 'menu-add-device', name: 'Add device', icon: 'fas fa-file-medical'},
         menus: []
       },
       {
-        group: { code: 'menu-view-admin', name: 'View admin', icon: 'far fa-list-alt', checkView: '' },
+        group: { code: 'menu-view-admin', name: 'View admin', icon: 'far fa-list-alt'},
         menus: []
       },
 
@@ -54,5 +54,4 @@ export interface Menu {
   code: string;
   name: string;
   icon: string;
-  checkView: string;
 }

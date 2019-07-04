@@ -44,5 +44,13 @@ describe('MenuViewAdminComponent', () => {
     });
   });
 
+  it('should create MenuViewAdminComponent', () => {
+    expect(component).toBeTruthy();
+  });
+
+
+
+
+
 
 });
