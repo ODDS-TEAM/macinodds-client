@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Login } from '../shared/login';
 import { User } from '../shared/user'
 import { AuthService } from 'angular-6-social-login';
+import { Router } from '@angular/router';
 
 
 
@@ -29,7 +30,8 @@ export class MacinoddsApiService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private route: Router) { }
 
   // getIndividualListed = () => this.individualListed;
 
@@ -97,7 +99,7 @@ export class MacinoddsApiService {
   signOut() {
     this.authService.signOut();
     console.log(" You are sign out ");
-    // this.route.navigate(['/']);
+    this.route.navigate(['/login']);
     sessionStorage.clear();
 
   }
