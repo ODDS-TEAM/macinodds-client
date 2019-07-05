@@ -194,8 +194,10 @@ export class EditAdminComponent implements OnInit {
     if (event.keyCode !== 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
+    if (this.tel.length === 9) {
+      this.canSubmit();
   }
-
+  }
 
 
   // Click cropped

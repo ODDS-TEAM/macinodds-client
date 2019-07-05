@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-view-admin.component.css']
 })
 export class MenuViewAdminComponent implements OnInit {
+  [x: string]: any;
 
   constructor() { }
 

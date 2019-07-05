@@ -31,16 +31,16 @@
                         </span> <span id="tel-{{i}}">{{ result.tel }}</span>
                     </div>
 
-                    <div class="col-lg-3 px-0 my-auto" [hidden]= hide>
-                        <div class="col-10 col-lg-8 px-0 mx-auto" >
+                    <div class="col-lg-3 px-0 my-auto" [hidden]=hide>
+                        <div class="col-10 col-lg-8 px-0 mx-auto">
                             <button class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit"
                                 routerLink="/admin/app/edit-admin" (click)="editDevice(result._id , result.serial)"
                                 data-toggle="modal" data-target="#editDevice" id="btn-edit-{{i}}">
                                 <i class="fa fa-edit mr-1" data-toggle="modal">
-                                </i>Edit 
+                                </i>Edit
                             </button>
                         </div>
-                        <div class="col-10 col-lg-8 px-0 mx-auto" [hidden]= hide >
+                        <div class="col-10 col-lg-8 px-0 mx-auto" [hidden]=hide>
                             <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold"
                                 (click)="deleteDevice(result._id , result.serial)" id="btn-delete-{{i}}">
                                 <i class="fa fa-trash mr-1"> </i>
@@ -52,4 +52,4 @@
             </li>
         </ul>
     </div>
-  </div>
+</div>

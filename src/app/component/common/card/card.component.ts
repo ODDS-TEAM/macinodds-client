@@ -30,6 +30,8 @@ export class CardComponent implements OnInit {
   status = true;
   holder: string;
 
+
+
   constructor( private data: MyDataServiceService,
                private router: Router,
                private breakpointObserver: BreakpointObserver,

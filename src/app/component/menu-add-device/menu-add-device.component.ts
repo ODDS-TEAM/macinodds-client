@@ -156,7 +156,7 @@ export class MenuAddDeviceComponent implements OnInit {
     this.options.reset();
     this.status = true;
     this.image = '';
-    this.imageDefault = '/assets/imgs/add_image_icon.png';
+    this.imageDefault = '/assets/imgs/add_device.jpg';
     console.log('clear');
   }
 
@@ -168,7 +168,11 @@ export class MenuAddDeviceComponent implements OnInit {
     if (event.keyCode !== 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
+    if (this.tel.length === 9) {
+      this.canSubmit();
   }
+  }
+
   // check input in form
   canSubmit() {
     if (this.name && this.serial && this.spec && this.fileToUpload && this.status === false && this.holder && this.tel) {
