@@ -158,6 +158,8 @@ export class MenuAddDeviceComponent implements OnInit {
     this.image = '';
     this.imageDefault = '/assets/imgs/add_device.jpg';
     console.log('clear');
+    this.checker = 'true';
+    this.canSubmit();
   }
 
 
