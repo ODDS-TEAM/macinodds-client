@@ -28,3 +28,7 @@ p {
 .btn-icon {
     width: 17px;
 }
+
+.mw-500 {
+    max-width: 500px;
+}

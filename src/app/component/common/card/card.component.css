@@ -7,7 +7,6 @@ body {
     opacity: 0.4;
 }
 
-
 .btn-edit {
     background-color: #0E98D5;
 }
@@ -18,13 +17,11 @@ body {
 }
 
 .btn-font {
-    width:80px;
-    height:30px;
+    width: 80px;
+    height: 30px;
 }
 
-
-
-.head-content-card{
+.head-content-card {
     font-size: 20px;
     font-weight: 900;
 }
@@ -33,13 +30,13 @@ body {
     color: #0077b3;
 }
 
-.status-true-card{
-    color:#00a035; 
+.status-true-card {
+    color: #00a035;
     font-size: 18px;
 }
 
-.status-false-card{
-    color:#d60404; 
+.status-false-card {
+    color: #d60404;
     font-size: 18px;
 }
 
@@ -57,50 +54,56 @@ body {
 }
 
 .img-rounded-left {
-    border-radius:.20rem 0 0 .20rem!important
+    border-radius: .20rem 0 0 .20rem!important
 }
-
 
 .thumbnail-web {
     position: relative;
     width: 220px;
     height: 220px;
     overflow: hidden;
-  }
-  .thumbnail-web img {
+}
+
+.thumbnail-web img {
     position: absolute;
     left: 50%;
     top: 50%;
     height: 100%;
     width: auto;
-    -webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
-  }
-  .thumbnail-web img.portrait {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.thumbnail-web img.portrait {
     width: auto;
     height: 120%;
-  }
+}
 
-
-  .thumbnail-res {
+.thumbnail-res {
     position: relative;
     width: 400px;
     height: 200px;
     overflow: hidden;
-  }
-  .thumbnail-res img {
+}
+
+.thumbnail-res img {
     position: absolute;
     left: 50%;
     top: 50%;
     height: 100%;
     width: auto;
-    -webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
-  }
-  .thumbnail-res img.portrait {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.thumbnail-res img.portrait {
     width: auto;
     height: 150%;
-  }
+}
 
+.mw-900 {
+    max-width: 1200px;
+    text-align:center;
+}

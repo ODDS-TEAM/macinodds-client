@@ -68,10 +68,10 @@ export class MenuAddDeviceComponent implements OnInit {
 
 
   constructor(private http: HttpClient,
-              private formBuilder: FormBuilder,
-              private router: Router,
-              private theme: LyTheme2,
-              private macApiService: MacinoddsApiService
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private theme: LyTheme2,
+    private macApiService: MacinoddsApiService
   ) { }
 
 
@@ -164,15 +164,25 @@ export class MenuAddDeviceComponent implements OnInit {
 
 
   checkPhoneNum(event: any) {
-    const pattern = /[0-9]/;
+    const pattNum = /[0-9]/;
+    const pattTel = /[0][0-9]{0,9}/g;
 
-    const inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+    const numIn = String.fromCharCode(event.charCode);
+
+    if (!pattNum.test(numIn)) {
       event.preventDefault();
+    } else {
+      const input = this.tel + numIn;
+      console.log(input);
+
+      if (!pattTel.test(input)) {
+        event.preventDefault();
+      }
     }
+
     if (this.tel.length === 9) {
       this.canSubmit();
-  }
+    }
   }
 
   // check input in form

@@ -19,24 +19,24 @@
                     <div class="card-body">
                         <div class="form-group text-left">
                             <label for="name" class="font-weight-bold">ชื่ออุปกรณ์</label>
-                            <input type="text" id="name" name="name" placeholder="ระบุชื่ออุปกรณ์"
+                            <input type="text" id="name" name="name" placeholder="ระบุชื่ออุปกรณ์ เช่น Macbook Pro 2017 13&quot;"
                                 formControlName="name" [(ngModel)]="name">
                         </div>
                         <div class="form-group text-left">
                             <label for="serial" class="text-left font-weight-bold">Serial</label>
-                            <input type="text" id="serial" name="serial" placeholder="ระบุ serial.."
+                            <input type="text" id="serial" name="serial" placeholder="ระบุ serial เช่น ABCD1234ODDS"
                                 formControlName="serial" [(ngModel)]="serial">
                         </div>
                         <div class="form-group text-left">
                             <label for="spec" class="font-weight-bold">สเปค</label>
-                            <textarea rows="5" id="spec" name="Spec" placeholder="ระบุสเปคเครื่อง"
+                            <textarea rows="5" id="spec" name="Spec" placeholder="ระบุสเปคเครื่อง เช่น 2.3 GHz Intel Core i5 Memory 8 Gb 13-inch "
                                 formControlName="spec" [(ngModel)]="spec"></textarea>
                         </div>
                         <div class="form-group text-left row">
                             <div class="col-auto my-auto font-weight-bold font-weight-bold">
                                 รูปภาพเครื่อง
                             </div>
-                            <div class="col-7 col-lg-2 col-md-5 file-field">
+                            <div class="col-7 col-lg-3 col-md-5 file-field">
                                 <div>
                                     <label (click)='uploadCropImg()' class="py-0 px-0 my-0" data-toggle="modal"
                                         data-target="#uploadModal">
@@ -70,10 +70,10 @@
 
                         <div class="form-group text-left" [ngClass]="{disabledDiv: status}">
                             <label for="holder" class="text-left font-weight-bold">ผู้ยืม</label>
-                            <input type="text" id="holder" name="holder" placeholder="ระบุชื่อผู้ยืม"
+                            <input type="text" id="holder" name="holder" placeholder="ระบุชื่อผู้ยืม เช่น พี่วี มีแมค"
                                 formControlName="holder" [(ngModel)]="holder">
                             <label for="tel" class="text-left font-weight-bold">เบอร์ผู้ยืม</label>
-                            <input type="text" id="tel" name="tel" placeholder="ระบุเบอร์ติดต่อ" formControlName="tel"
+                            <input type="text" id="tel" name="tel" placeholder="ระบุเบอร์ติดต่อ เช่น" formControlName="tel"
                                 [(ngModel)]="tel" (keypress)="checkPhoneNum($event)" maxLength='10' minlength="10">
                         </div>
 
