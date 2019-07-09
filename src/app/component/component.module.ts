@@ -21,6 +21,8 @@ import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-image
 import { LyButtonModule } from '@alyle/ui/button';
 import { LyIconModule } from '@alyle/ui/icon';
 import { CardComponent } from './common/card/card.component';
+import { HistoryComponent } from './common/history/history.component';
+import { CdkTableModule } from '@angular/cdk/table';
 
 
 
@@ -31,6 +33,7 @@ import { CardComponent } from './common/card/card.component';
     EditAdminComponent,
     MenuViewUserComponent,
     CardComponent,
+    HistoryComponent,
 
   ],
   imports: [
@@ -42,7 +45,8 @@ import { CardComponent } from './common/card/card.component';
     MatRadioModule,
     LyResizingCroppingImageModule,
     LyButtonModule,
-    LyIconModule
+    LyIconModule,
+    CdkTableModule
   ],
   exports: [MenuAddDeviceComponent],
 })

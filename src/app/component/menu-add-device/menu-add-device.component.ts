@@ -68,10 +68,10 @@ export class MenuAddDeviceComponent implements OnInit {
 
 
   constructor(private http: HttpClient,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private theme: LyTheme2,
-    private macApiService: MacinoddsApiService
+              private formBuilder: FormBuilder,
+              private router: Router,
+              private theme: LyTheme2,
+              private macApiService: MacinoddsApiService
   ) { }
 
 

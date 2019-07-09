@@ -1,0 +1,38 @@
+<table cdk-table [dataSource]="dataSource">
+  <!-- Number Column -->
+  <ng-container cdkColumnDef="number">
+    <th cdk-header-cell *cdkHeaderCellDef> ลำดับ </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.number}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container cdkColumnDef="name">
+    <th cdk-header-cell *cdkHeaderCellDef> ชื่อผู้ยืม </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- macName Column -->
+  <ng-container cdkColumnDef="macName">
+    <th cdk-header-cell *cdkHeaderCellDef> ชื่ออุปกรณ์ </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.macName}} </td>
+  </ng-container>
+
+  <!-- loanDate Column -->
+  <ng-container cdkColumnDef="loanDate">
+    <th cdk-header-cell *cdkHeaderCellDef> วันที่ยืม </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.loanDate}} </td>
+  </ng-container>
+
+  <!-- returnedDate Column -->
+  <ng-container cdkColumnDef="returnedDate">
+    <th cdk-header-cell *cdkHeaderCellDef> วันที่ยืม </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.returnedDate}} </td>
+  </ng-container>
+  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<!-- Copyright 2019 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
