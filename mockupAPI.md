@@ -1,4 +1,4 @@
-[![N|Solid](http://mac.odds.team/assets/imgs/mac_odds_logo_color.png)](https://nodesource.com/products/nsolid)
+[![N|Solid](https://www142.lunapic.com/do-not-link-here-use-hosting-instead/156266858828253765?6442269776)](https://nodesource.com/products/nsolid)
 
 #
 #
