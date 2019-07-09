@@ -70,9 +70,14 @@ export class MenuAddDeviceComponent implements OnInit {
   constructor(private http: HttpClient,
               private formBuilder: FormBuilder,
               private router: Router,
+<<<<<<< Updated upstream
               private theme: LyTheme2,
               private macApiService: MacinoddsApiService
   ) { }
+=======
+              private theme: LyTheme2
+            ) { }
+>>>>>>> Stashed changes
 
 
   @Input()
@@ -143,7 +148,7 @@ export class MenuAddDeviceComponent implements OnInit {
 
           console.log(result);
           this.resetForm();
-          this.imageDefault = '/assets/imgs/add_image_icon.png';
+          this.imageDefault = '/assets/imgs/add_device.png';
 
           this.router.navigate(['/admin/app/menu-view-admin']);
         });
@@ -156,7 +161,11 @@ export class MenuAddDeviceComponent implements OnInit {
     this.options.reset();
     this.status = true;
     this.image = '';
+<<<<<<< Updated upstream
     this.imageDefault = '/assets/imgs/add_device.jpg';
+=======
+    this.imageDefault = '/assets/imgs/add_device.png';
+>>>>>>> Stashed changes
     console.log('clear');
     this.checker = 'true';
     this.canSubmit();
@@ -181,6 +190,10 @@ export class MenuAddDeviceComponent implements OnInit {
     }
 
     if (this.tel.length === 9) {
+      this.canSubmit();
+    }
+
+    if (this.tel.length === 10) {
       this.canSubmit();
     }
   }
