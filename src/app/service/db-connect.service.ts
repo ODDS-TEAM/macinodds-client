@@ -9,8 +9,8 @@ import { Observable, from, BehaviorSubject } from 'rxjs';
 })
 export class DbConnectService {
 
-  macDeviceAPI: 'http://mac.odds.team/api/mac';
-  historyDeviceAPI: 'https://5d008336d021760014b74fa8.mockapi.io/history';
+  macDeviceAPI = 'http://mac.odds.team/api/mac';
+  historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
 
   constructor(
     private http: HttpClient,
