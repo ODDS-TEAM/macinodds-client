@@ -56,7 +56,7 @@ export class FormDeviceComponent implements OnInit {
   CardHeaderLabel = 'ลงทะเบียนอุปกรณ์';
 
 
-  data = {
+  data: any = {
     name: '',
     serial: '',
     spec: '',
