@@ -224,6 +224,7 @@ export class MenuAddDeviceComponent implements OnInit {
     this.fileToUpload = imageFile;
     this.imageDefault = this.croppedImage;
     this.canSubmit();
+
   }
 
 

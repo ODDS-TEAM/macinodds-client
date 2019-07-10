@@ -63,6 +63,7 @@ export class CardComponent implements OnInit {
     this.macApiService.getMacIDApi(id).subscribe(data => {
       // read result form JSON response
       this.editResults = data;
+      console.log(this.editResults); 
     });
   }
 

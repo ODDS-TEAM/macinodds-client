@@ -9,22 +9,23 @@ import { LyResizingCroppingImages, ImgCropperConfig } from '@alyle/ui/resizing-c
 import { LyTheme2 } from '@alyle/ui';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
+import { error } from 'util';
 
 
 
 // Set Size of cropping by alyle
-const styles = {
-  actions: {
-    display: 'flex'
-  },
-  cropping: {
-    maxWidth: '500px',
-    height: '300px'
-  },
-  flex: {
-    flex: 1
-  }
-};
+// const styles = {
+//   actions: {
+//     display: 'flex'
+//   },
+//   cropping: {
+//     maxWidth: '500px',
+//     height: '300px'
+//   },
+//   flex: {
+//     flex: 1
+//   }
+// };
 
 @Component({
   selector: 'app-edit-admin',
@@ -34,24 +35,27 @@ const styles = {
 
 
 export class EditAdminComponent implements OnInit {
-  public results: any;
-  public editResults: any;
+  // public results: any;
+  // public editResults: any;
+  // idEditDevice: string;
+  // name: string;
+  // serial: string;
+  // spec: string;
+  // image: any = null;
+  // status = true;
+  // holder: string;
+  // options: FormGroup;
+  // checker: string;
+  // tel: string;
+  // imageDefault = '/assets/imgs/add_device.jpg';
+  // fileToUpload: File = null;
+  // vaildatBT = false;
+
+
+  editCompCheck = true;
   idEditDevice: string;
-  name: string;
-  serial: string;
-  spec: string;
-  image: any = null;
-  status = true;
-  holder: string;
-  options: FormGroup;
-  checker: string;
-  tel: string;
-  imageDefault = '/assets/imgs/add_device.jpg';
-  fileToUpload: File = null;
-  vaildatBT = false;
 
-
-  base64DefaultURL: any;
+  /*base64DefaultURL: any;
   // Set size image at cropping modal
   classes = this.theme.addStyleSheet(styles);
   croppedImage?: string;
@@ -63,179 +67,163 @@ export class EditAdminComponent implements OnInit {
       width: 400,
       height: 400
     }
-  };
+  };*/
   // End set size image at cropping modal
 
 
-  constructor(private http: HttpClient,
-              private formBuilder: FormBuilder,
-              private data: MyDataServiceService,
+  constructor(private data: MyDataServiceService,
               private router: Router,
-              private theme: LyTheme2,
-              private macApiService: MacinoddsApiService
+    // private theme: LyTheme2,
+    // private macApiService: MacinoddsApiService
 
-  ) { }
+  ) {
+    // tslint:disable-next-line:no-shadowed-variable
+    this.data.currentData.subscribe(data => {
+      this.idEditDevice = data;
+      if (data === 'id') {
+        this.router.navigate(['/admin/app/menu-view-admin']);
+      }
+    });
+  }
 
   ngOnInit() {
-    this.editResults = {};
-    this.createForm();
-    this.data.currentData.subscribe(data => this.idEditDevice = data);
-    this.editDevice();
-  }
+    // this.editResults = {};
+    // this.createForm();
 
-  createForm() {
-    this.options = this.formBuilder.group({
-      name: '',
-      serial: '',
-      spec: '',
-      image: '',
-      status: '',
-      holder: '',
-      tel: ''
-    });
+    // this.editDevice();
   }
-  onSelectionChange() {
-    if (this.checker === 'false') {
-      this.status = false;
-      this.holder = '';
-      this.tel = '';
-    } else {
-      this.status = true;
-      this.holder = '';
-      this.tel = '';
+  /*
+    createForm() {
+      this.options = this.formBuilder.group({
+        name: '',
+        serial: '',
+        spec: '',
+        image: '',
+        status: '',
+        holder: '',
+        tel: ''
+      });
     }
-  }
-
-  onSubmit(id) {
-    const formData: FormData = new FormData();
-    formData.append('name', this.name);
-    formData.append('serial', this.serial);
-    formData.append('spec', this.spec);
-    formData.append('status', this.status.toString());
-    formData.append('holder', this.holder);
-    formData.append('tel', this.tel);
-    formData.append('img', this.fileToUpload);
-
-    console.log('Put data **** : ' + JSON.stringify(formData));
-    this.macApiService.putMacAPI (this.idEditDevice, formData).subscribe(data => {
-      this.getDevice();
-      console.log('Put data : ' + JSON.stringify(data));
-      this.backView();
-    });
-
-  }
-
-  handleFileInput(file: FileList) {
-    this.fileToUpload = file.item(0);
-
-    // Show image preview
-    const reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageDefault = event.target.result;
-    };
-    reader.readAsDataURL(this.fileToUpload);
-  }
-
-  getDevice() {
-    // HTTP request by get() method
-    // get data from Observable we need subscibe observer to working
-    this.macApiService.getMacApi().subscribe(data => {
-      // get result from JSON response
-      this.results = data;
-    });
-  }
-
-  editDevice() {
-    this.macApiService.getMacIDApi(this.idEditDevice).subscribe(data => {
-      this.editResults = data;
-      console.log('print edit data : ' + data);
-      console.log('print edit data JSON.stringify : ' + JSON.stringify(data));
-      console.log('print edit editResults : ' + this.editResults);
-      console.log('picture name : ' + this.editResults.img);
-
-      this.name = this.editResults.name;
-      this.serial = this.editResults.serial;
-      this.spec = this.editResults.spec;
-      this.status = this.editResults.status;
-      this.holder = this.editResults.holder;
-      this.tel = this.editResults.tel;
-      this.imageDefault = 'http://mac.odds.team/assets/imgs/devices/' + this.editResults.img;
-      this.fileToUpload = this.editResults.img;
-
-      console.log('image == set ==> ' + this.fileToUpload);
-    });
-  }
-
-  canSubmit() {
-    if (this.name && this.serial && this.spec && this.fileToUpload && this.status === false && this.holder && this.tel) {
-      // is not empty check unavalible
-      this.vaildatBT = true;
-
-    } else if (this.name && this.serial && this.spec && this.fileToUpload && this.status === true && !this.holder && !this.tel) {
-      // is not empty check avalible
-      this.vaildatBT = true;
-
-    } else {
-      // is empty
-      this.vaildatBT = false;
-
+    onSelectionChange() {
+      if (this.checker === 'false') {
+        this.status = false;
+        this.holder = '';
+        this.tel = '';
+      } else {
+        this.status = true;
+        this.holder = '';
+        this.tel = '';
+      }
     }
-
-  }
-
-  backView() {
-    this.router.navigate(['/admin/app/menu-view-admin']);
-  }
-
-  checkPhoneNum(event: any) {
-    const pattern = /[0-9]/;
-
-    const inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
+    onSubmit(id) {
+      const formData: FormData = new FormData();
+      formData.append('name', this.name);
+      formData.append('serial', this.serial);
+      formData.append('spec', this.spec);
+      formData.append('status', this.status.toString());
+      formData.append('holder', this.holder);
+      formData.append('tel', this.tel);
+      formData.append('img', this.fileToUpload);
+      console.log('Put data **** : ' + JSON.stringify(formData));
+      this.macApiService.putMacAPI (this.idEditDevice, formData).subscribe(data => {
+        this.getDevice();
+        console.log('Put data : ' + JSON.stringify(data));
+        this.backView();
+      });
     }
-    if (this.tel.length === 9) {
+    handleFileInput(file: FileList) {
+      this.fileToUpload = file.item(0);
+      // Show image preview
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imageDefault = event.target.result;
+      };
+      reader.readAsDataURL(this.fileToUpload);
+    }
+    getDevice() {
+      // HTTP request by get() method
+      // get data from Observable we need subscibe observer to working
+      this.macApiService.getMacApi().subscribe(data => {
+        // get result from JSON response
+        this.results = data;
+        console.log(data);
+      });
+    }
+    editDevice() {
+      this.macApiService.getMacIDApi(this.idEditDevice).subscribe(data => {
+        this.editResults = data;
+        console.log('print edit data : ' + data);
+        console.log('print edit data JSON.stringify : ' + JSON.stringify(data));
+        console.log('print edit editResults : ' + this.editResults);
+        console.log('picture name : ' + this.editResults.img);
+        this.name = this.editResults.name;
+        this.serial = this.editResults.serial;
+        this.spec = this.editResults.spec;
+        this.status = this.editResults.status;
+        this.holder = this.editResults.holder;
+        this.tel = this.editResults.tel;
+        this.imageDefault = 'http://mac.odds.team/assets/imgs/devices/' + this.editResults.img;
+        this.fileToUpload = this.editResults.img;
+        console.log('image == set ==> ' + this.fileToUpload);
+      });
+    }
+    canSubmit() {
+      if (this.name && this.serial && this.spec && this.fileToUpload && this.status === false && this.holder && this.tel) {
+        // is not empty check unavalible
+        this.vaildatBT = true;
+      } else if (this.name && this.serial && this.spec && this.fileToUpload && this.status === true && !this.holder && !this.tel) {
+        // is not empty check avalible
+        this.vaildatBT = true;
+      } else {
+        // is empty
+        this.vaildatBT = false;
+      }
+    }
+    backView() {
+      this.router.navigate(['/admin/app/menu-view-admin']);
+    }
+    checkPhoneNum(event: any) {
+      const pattern = /[0-9]/;
+      const inputChar = String.fromCharCode(event.charCode);
+      if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+      }
+      if (this.tel.length === 9) {
+        this.canSubmit();
+    }
+    }
+    // Click cropped
+    // This use function have covert dataURL to file for add image cropped to imageFile (Send to API)
+    onCropped(e) {
+      this.croppedImage = e.dataURL;
+      console.log(typeof (this.croppedImage));
+      const cropNew = this.croppedImage.replace(/^data:image\/(png|jpg);base64,/, '');
+      const date = new Date().valueOf();
+      const text = '';
+      const imageName = date + '.' + text + '.jpeg';
+      const imageBlob = this.dataURItoBlob(cropNew);
+      const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+      console.log(typeof (imageFile));
+      // this.fileToUpload = imageFile;
+      this.fileToUpload = imageFile;
+      this.imageDefault = this.croppedImage;
       this.canSubmit();
-  }
-  }
-
-
-  // Click cropped
-  // This use function have covert dataURL to file for add image cropped to imageFile (Send to API)
-  onCropped(e) {
-    this.croppedImage = e.dataURL;
-    console.log(typeof (this.croppedImage));
-    const cropNew = this.croppedImage.replace(/^data:image\/(png|jpg);base64,/, '');
-    const date = new Date().valueOf();
-    const text = '';
-    const imageName = date + '.' + text + '.jpeg';
-    const imageBlob = this.dataURItoBlob(cropNew);
-    const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    console.log(typeof (imageFile));
-
-    // this.fileToUpload = imageFile;
-    this.fileToUpload = imageFile;
-    this.imageDefault = this.croppedImage;
-    this.canSubmit();
-  }
-
-
-  // function for convert dataURL to file
-  dataURItoBlob(dataURI) {
-    const byteString = window.atob(dataURI);
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const int8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < byteString.length; i++) {
-      int8Array[i] = byteString.charCodeAt(i);
     }
-    const blob = new Blob([int8Array], { type: 'image/jpeg' });
-    return blob;
-  }
-
-  // onclick upload btn to open modol and click button upload image
-  uploadCropImg() {
-    document.getElementById('upload-crop-img').click();
-  }
+    // function for convert dataURL to file
+    dataURItoBlob(dataURI) {
+      const byteString = window.atob(dataURI);
+      const arrayBuffer = new ArrayBuffer(byteString.length);
+      const int8Array = new Uint8Array(arrayBuffer);
+      for (let i = 0; i < byteString.length; i++) {
+        int8Array[i] = byteString.charCodeAt(i);
+      }
+      const blob = new Blob([int8Array], { type: 'image/jpeg' });
+      return blob;
+    }
+    // onclick upload btn to open modol and click button upload image
+    uploadCropImg() {
+      document.getElementById('upload-crop-img').click();
+    }*/
 
 }
 

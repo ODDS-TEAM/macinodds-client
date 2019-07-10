@@ -8,7 +8,7 @@ import { ComponentRoutingModule } from './component-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatRadioModule } from '@angular/material';
+import { MatRadioModule, MatCard, MatCardModule } from '@angular/material';
 
 
 import { MenuAddDeviceComponent } from './menu-add-device/menu-add-device.component';
@@ -21,8 +21,16 @@ import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-image
 import { LyButtonModule } from '@alyle/ui/button';
 import { LyIconModule } from '@alyle/ui/icon';
 import { CardComponent } from './common/card/card.component';
+<<<<<<< Updated upstream
 import { HistoryComponent } from './common/history/history.component';
 import { CdkTableModule } from '@angular/cdk/table';
+=======
+import { FormDeviceComponent } from './common/form-device/form-device.component';
+import { MaterialModule } from './material-module';
+
+
+
+>>>>>>> Stashed changes
 
 
 
@@ -33,7 +41,11 @@ import { CdkTableModule } from '@angular/cdk/table';
     EditAdminComponent,
     MenuViewUserComponent,
     CardComponent,
+<<<<<<< Updated upstream
     HistoryComponent,
+=======
+    FormDeviceComponent
+>>>>>>> Stashed changes
 
   ],
   imports: [
@@ -46,7 +58,13 @@ import { CdkTableModule } from '@angular/cdk/table';
     LyResizingCroppingImageModule,
     LyButtonModule,
     LyIconModule,
+<<<<<<< Updated upstream
     CdkTableModule
+=======
+    MatCardModule,
+    MaterialModule
+
+>>>>>>> Stashed changes
   ],
   exports: [MenuAddDeviceComponent],
 })
