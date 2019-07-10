@@ -6,7 +6,6 @@ import { MenuServiceUserService, MenuItemUser, MenuUser } from '../service/menu-
 import { Router } from '@angular/router';
 import { MacinoddsApiService } from '../service/macinodds-api.service';
 
-
 @Component({
   selector: 'app-side-nav-user',
   templateUrl: './side-nav-user.component.html',

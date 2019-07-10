@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
 import { forkJoin } from 'rxjs';
@@ -11,7 +11,9 @@ import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  //test
+  user: any;
+  public name: any;
   constructor(
     private socialAuthService: AuthService,
     private router: Router,
@@ -76,5 +78,15 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  //test
+  getUser() {
+    this.macinoddsService.getUserAPI().subscribe(data => {
+      this.user = data;
+      localStorage.setItem('Username', this.user.name);
+      localStorage.setItem('email', this.user.email);
+      localStorage.setItem('image', this.user.imgProfile);
+      localStorage.setItem('role', this.user.role);
+    });
+  }
 
 }

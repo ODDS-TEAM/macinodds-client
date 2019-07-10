@@ -19,7 +19,7 @@ import { MenuViewUserComponent } from '../../menu-view-user/menu-view-user.compo
 
 
 export class CardComponent implements OnInit {
-  @Input() hide = false;
+  @Input() hide = true;
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   public editResults: any; // กำหนดตัวแปร เพื่อรับค่า

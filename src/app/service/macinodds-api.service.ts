@@ -128,4 +128,9 @@ export class MacinoddsApiService {
   }
   // End API for Mac device
 
+  //test
+  getUserAPI() {
+    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d25038577a26e3df3f6eea1');
+  }
+
 }

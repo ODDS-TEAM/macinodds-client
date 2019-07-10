@@ -5,6 +5,7 @@ import { MenuAddDeviceComponent } from './menu-add-device/menu-add-device.compon
 import { MenuViewAdminComponent } from './menu-view-admin/menu-view-admin.component';
 import { EditAdminComponent } from './edit-admin/edit-admin.component';
 import { MenuViewUserComponent } from './menu-view-user/menu-view-user.component';
+import { MenuViewHistoryComponent } from './menu-view-history/menu-view-history.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'menu-view-admin', component: MenuViewAdminComponent },
   { path: 'edit-admin', component: EditAdminComponent },
   { path: 'menu-view-user', component: MenuViewUserComponent },
+  { path: 'menu-view-history', component: MenuViewHistoryComponent},
   // { path: 'path?refresh=1', redirectTo: 'menu-view-admin' },
 
 ];

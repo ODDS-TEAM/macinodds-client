@@ -21,7 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
 import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
-
+import { StorageServiceModule} from 'angular-webstorage-service';
 import { LyThemeModule, LY_THEME , LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
 
 import { MacinoddsApiService } from './service/macinodds-api.service'
@@ -97,7 +97,8 @@ export class GlobalVariables {
     LyResizingCroppingImageModule,
     LyIconModule,
     LyTypographyModule,
-    MatCardModule
+    MatCardModule,
+    StorageServiceModule
   ],
   providers: [
     {provide: LocationStrategy,

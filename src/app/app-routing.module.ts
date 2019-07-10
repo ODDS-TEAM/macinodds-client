@@ -32,7 +32,7 @@ const routes: Routes = [
 
   {
     path: 'user',
-    component: SideNavUserComponent,
+    component: SideNavComponent,
     children: [
       {
         path: 'app',

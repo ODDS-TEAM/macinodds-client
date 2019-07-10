@@ -9,30 +9,33 @@ export class MenuServiceService {
 
   getMenuList() {
     const menuList: MenuItem[] = [
-      // {
-      //   group: { code: 'menu3', name: 'Menu 3' },
-      //   menus: [
-      //     { code: 'subMenu1', name: 'Sub Menu 1' },
-      //     { code: 'subMenu2', name: 'Sub Menu 2' },
-      //     { code: 'subMenu3', name: 'Sub Menu 3' }
-      //   ]
-      // },
+      {
+        group: { code: 'menu-view-admin', name: 'View admin', icon: 'far fa-list-alt'},
+        menus: []
+      },
       {
         group: { code: 'menu-add-device', name: 'Add device', icon: 'fas fa-file-medical'},
         menus: []
       },
       {
-        group: { code: 'menu-view-admin', name: 'View admin', icon: 'far fa-list-alt'},
+        group: { code: 'menu-view-history', name: 'History', icon: 'fas fa-history'},
         menus: []
       },
 
-      // {
-      //   group: { code: 'menu-view-admin', name: 'logout' , icon: 'fas fa-sign-out-alt' , checkView: 'isHandset$git  | async'},
-      //   menus: []
-      // }
     ];
     return menuList;
   }
+
+  getMenuListUser() {
+    const menuList: MenuItem[] = [
+      {
+        group: { code: 'menu-view-user', name: 'Menu User Test', icon: 'fas fa-file-medical' },
+        menus: []
+      }
+    ];
+    return menuList;
+  }
+
 
   getSubMenuName(menuCode: string) {
     const menuList = this.getMenuList();
@@ -44,6 +47,7 @@ export class MenuServiceService {
     return '';
   }
 }
+
 
 export interface MenuItem {
   group: Menu;

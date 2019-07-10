@@ -66,3 +66,14 @@
 span,i{
   color: #ffffff;
 }
+
+.img_pro {
+  border-radius: 50%;
+  width: 50%;
+  height: auto;
+  margin-left: 25%;
+}
+
+.icon {
+  width: 23px;
+}

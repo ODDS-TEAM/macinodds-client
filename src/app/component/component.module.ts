@@ -25,6 +25,7 @@ import { HistoryComponent } from './common/history/history.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FormDeviceComponent } from './common/form-device/form-device.component';
 import { MaterialModule } from './material-module';
+import { MenuViewHistoryComponent } from './menu-view-history/menu-view-history.component';
 
 
 
@@ -39,7 +40,8 @@ import { MaterialModule } from './material-module';
     MenuViewUserComponent,
     CardComponent,
     HistoryComponent,
-    FormDeviceComponent
+    FormDeviceComponent,
+    MenuViewHistoryComponent
 
   ],
   imports: [

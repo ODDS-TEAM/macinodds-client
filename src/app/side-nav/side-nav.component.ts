@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,8 +11,21 @@ import { MacinoddsApiService } from '../service/macinodds-api.service';
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css']
 })
-export class SideNavComponent {
-  appName = 'Macinodds';
+export class SideNavComponent implements OnInit{
+  name = localStorage.getItem('Username');
+  email = localStorage.getItem('email');
+  profilePic = localStorage.getItem('image');
+  UserRole : any;
+  role : any;
+  ngOnInit() {
+      this.role = (localStorage.getItem('role') === 'admin');
+      console.log(localStorage.getItem('role'));
+      if (this.role == true){
+        this.menuList = this.menuService.getMenuList();
+      }
+      else
+        this.menuList = this.menuService.getMenuListUser();
+  }
 
   menuGroupSelected: string;
   menuList: MenuItem[];
@@ -21,12 +34,12 @@ export class SideNavComponent {
       map(result => result.matches)
     );
 
-    isWeb$: Observable<boolean> = this.breakpointObserver.observe([
-      Breakpoints.WebLandscape,
-      Breakpoints.WebPortrait,
-      Breakpoints.Web,
-      Breakpoints.Tablet
-    ])
+  isWeb$: Observable<boolean> = this.breakpointObserver.observe([
+    Breakpoints.WebLandscape,
+    Breakpoints.WebPortrait,
+    Breakpoints.Web,
+    Breakpoints.Tablet
+  ])
     .pipe(
       map(result => result.matches)
     );
@@ -39,7 +52,8 @@ export class SideNavComponent {
     private router: Router,
     private macApiService: MacinoddsApiService
   ) {
-    this.menuList = this.menuService.getMenuList();
+    // boolean check role
+    
   }
 
   selectMenu(menuGroup: Menu) {
@@ -53,6 +67,4 @@ export class SideNavComponent {
   signOut() {
     this.macApiService.signOut();
   }
-
-
 }
