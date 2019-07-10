@@ -24,18 +24,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  
-  oddsSignIn(socialPlatform : string) {
+
+  oddsSignIn(socialPlatform: string) {
     let socialPlatformProvider;
     console.log(socialPlatformProvider)
     socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log("User data : " , JSON.stringify(userData));
-        if (this.isOddsTeam(userData.email)){
-        // this.loginGoogle(userData.idToken)
-        this.router.navigate(['/admin/app/menu-view-admin']);
-        console.log(socialPlatform + " sign in data : " , userData);
+        console.log("User data : ", JSON.stringify(userData));
+        if (this.isOddsTeam(userData.email)) {
+          // this.loginGoogle(userData.idToken)
+          this.router.navigate(['/admin/app/menu-view-admin']);
+          console.log(socialPlatform + " sign in data : ", userData);
         }
       }
     );
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       this.macinoddsService.initDataService();
       sessionStorage.setItem('idUser', res.user.id);
       sessionStorage.setItem('firstName', res.user.firstName);
-      if (res.user.role === 'admin'){
+      if (res.user.role === 'admin') {
         this.router.navigate(['/admin/app/menu-view-admin']);
       } else {
         this.router.navigate([res.user.role]);
