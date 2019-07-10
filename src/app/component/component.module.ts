@@ -21,16 +21,13 @@ import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-image
 import { LyButtonModule } from '@alyle/ui/button';
 import { LyIconModule } from '@alyle/ui/icon';
 import { CardComponent } from './common/card/card.component';
-<<<<<<< Updated upstream
 import { HistoryComponent } from './common/history/history.component';
 import { CdkTableModule } from '@angular/cdk/table';
-=======
 import { FormDeviceComponent } from './common/form-device/form-device.component';
 import { MaterialModule } from './material-module';
 
 
 
->>>>>>> Stashed changes
 
 
 
@@ -41,11 +38,8 @@ import { MaterialModule } from './material-module';
     EditAdminComponent,
     MenuViewUserComponent,
     CardComponent,
-<<<<<<< Updated upstream
     HistoryComponent,
-=======
     FormDeviceComponent
->>>>>>> Stashed changes
 
   ],
   imports: [
@@ -58,13 +52,10 @@ import { MaterialModule } from './material-module';
     LyResizingCroppingImageModule,
     LyButtonModule,
     LyIconModule,
-<<<<<<< Updated upstream
-    CdkTableModule
-=======
+    CdkTableModule,
     MatCardModule,
     MaterialModule
 
->>>>>>> Stashed changes
   ],
   exports: [MenuAddDeviceComponent],
 })
