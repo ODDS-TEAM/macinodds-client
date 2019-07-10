@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private socialAuthService: AuthService,
     private router: Router,
-    private macinoddsService: MacinoddsApiService
+    private macinoddsService: MacinoddsApiService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -79,13 +80,27 @@ export class LoginComponent implements OnInit {
   }
 
   //test
-  getUser() {
-    this.macinoddsService.getUserAPI().subscribe(data => {
+  getAdmin() {
+    this.macinoddsService.getAdminAPI().subscribe(data => {
       this.user = data;
       localStorage.setItem('Username', this.user.name);
       localStorage.setItem('email', this.user.email);
       localStorage.setItem('image', this.user.imgProfile);
       localStorage.setItem('role', this.user.role);
+      this.route.navigate(['/user/app/menu-view-admin']);
+
+    });
+
+  }
+  getUser() {
+    this.macinoddsService.getUserAPI().subscribe(data => {
+      console.log(data)
+      this.user = data;
+      localStorage.setItem('Username', this.user.name);
+      localStorage.setItem('email', this.user.email);
+      localStorage.setItem('image', this.user.imgProfile);
+      localStorage.setItem('role', this.user.role);
+      this.route.navigate(['/user/app/menu-view-user']);
     });
   }
 

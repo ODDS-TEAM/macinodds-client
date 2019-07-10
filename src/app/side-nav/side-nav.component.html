@@ -6,8 +6,8 @@
                 class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
         <mat-nav-list>
             <img class="img_pro"
-                src= "{{profilePic}}"
-                alt="Avatar">
+                [src]= "profilePic"
+                alt="Avatar" />
             <div class="d-flex my-3 justify-content-center">
                 <p><img class="icon" src="/assets/imgs/user.ico" alt="icon"> Username : {{name}}
                     <br><br><img class="icon" src="/assets/imgs/email.ico" alt="icon"> E-mail : {{email}}</p>
