@@ -10,11 +10,11 @@ export class MenuServiceService {
   getMenuList() {
     const menuList: MenuItem[] = [
       {
-        group: { code: 'menu-view-admin', name: 'View admin', icon: 'far fa-list-alt'},
+        group: { code: 'menu-view-admin', name: 'View Admin', icon: 'far fa-list-alt'},
         menus: []
       },
       {
-        group: { code: 'menu-add-device', name: 'Add device', icon: 'fas fa-file-medical'},
+        group: { code: 'menu-add-device', name: 'Add Device', icon: 'fas fa-file-medical'},
         menus: []
       },
       {

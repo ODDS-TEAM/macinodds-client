@@ -75,5 +75,12 @@ span,i{
 }
 
 .icon {
-  width: 23px;
+  width: 17px;
+}
+
+.divider {
+  background-color: #212121;
+  width: 80%;
+  height: 3px;
+  margin-left: 10%;
 }

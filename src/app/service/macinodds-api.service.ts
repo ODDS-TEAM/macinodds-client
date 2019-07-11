@@ -134,6 +134,6 @@ export class MacinoddsApiService {
   }
   getUserAPI() {
 
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385cbdb06abb4574eef');
+    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385a67b86e4230cd5d5');
   }
 }
