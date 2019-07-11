@@ -83,6 +83,8 @@ export class LoginComponent implements OnInit {
   getAdmin() {
     this.macinoddsService.getAdminAPI().subscribe(data => {
       this.user = data;
+      console.log(data + '<<<<<<YYYY')
+      localStorage.setItem('userId', this.user._id);
       localStorage.setItem('Username', this.user.name);
       localStorage.setItem('email', this.user.email);
       localStorage.setItem('image', this.user.imgProfile);
@@ -96,6 +98,7 @@ export class LoginComponent implements OnInit {
     this.macinoddsService.getUserAPI().subscribe(data => {
       console.log(data)
       this.user = data;
+      localStorage.setItem('userId', this.user._id);
       localStorage.setItem('Username', this.user.name);
       localStorage.setItem('email', this.user.email);
       localStorage.setItem('image', this.user.imgProfile);
