@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
 import { MenuViewUserComponent } from '../../menu-view-user/menu-view-user.component';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { formatDate } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -21,6 +24,7 @@ import { MenuViewUserComponent } from '../../menu-view-user/menu-view-user.compo
 export class CardComponent implements OnInit {
   @Input() hide = true;
 
+
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   public editResults: any; // กำหนดตัวแปร เพื่อรับค่า
   name: string;
@@ -29,18 +33,25 @@ export class CardComponent implements OnInit {
   image = '';
   status = true;
   holder: string;
+  borrowForm: FormGroup;
+  dateNow = new Date();
+  maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 3)) ;
+  returnDate: any;
+  localtime: any;
 
-
-
-  constructor( private data: MyDataServiceService,
-               private router: Router,
-               private breakpointObserver: BreakpointObserver,
-               private macApiService: MacinoddsApiService) { }
+  constructor(private data: MyDataServiceService,
+              private router: Router,
+              private breakpointObserver: BreakpointObserver,
+              private macApiService: MacinoddsApiService,
+              private formBuilder: FormBuilder,
+              private http: HttpClient) { }
 
   ngOnInit() {
     this.editResults = {};
     this.getDevice();
     this.data.currentData.subscribe(data => this.name = data);
+    this.createBorrowForm();
+    console.log(this.returnDate);
   }
 
   // public hideButton() {
@@ -81,6 +92,40 @@ export class CardComponent implements OnInit {
   editDevice(id) {
     this.data.changeData(id);
     this.router.navigate(['/admin/app/edit-admin']);
+  }
+
+  createBorrowForm() {
+    this.borrowForm = this.formBuilder.group({
+      borrow: ['', Validators.required]
+      // borrow: new FormControl('', Validators.required)
+    });
+  }
+  onSubmitBorrow() {
+
+    const tzoffset = (new Date()).getTimezoneOffset() * 60000;
+    this.localtime = (new Date(this.returnDate - tzoffset));
+    this.localtime.setHours(12, 0, 0);
+    console.log('localtime >>>>>>>>>', this.localtime);
+
+    const localISOTime = (new Date(this.localtime)).toISOString();
+
+    console.log('localISOTime >>>>>>>>>', localISOTime);
+
+
+    // console.log('form here >>>>>>>' + JSON.stringify( '>>>> date >>>' + localISOTime));
+    // post method
+    if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
+      this.http.post('http://mac.odds.team/api/mac', localISOTime)
+        .subscribe(result => {
+
+          console.log(result);
+          this.router.navigate(['/admin/app/menu-view-admin']);
+        });
+    }
+
+  }
+  check() {
+    console.log(this.returnDate);
   }
 
 

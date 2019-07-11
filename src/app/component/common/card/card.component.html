@@ -1,4 +1,4 @@
-<div >
+<div>
     <div class="container">
         <br>
         <ul class="list-group">
@@ -48,8 +48,49 @@
                             </button>
                         </div>
                     </div>
+                    <div class="col-lg-3 px-0 my-auto" [hidden]=!hide>
+                        <div class="col-10 col-lg-8 px-0 mx-auto" *ngIf="result.status">
+                            <button class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit waves-light"
+                                data-toggle="modal" data-target="#BorrowForm" id="btn-borrow-{{i}}">
+                                <i class="fas fa-laptop mr-1" data-toggle="modal">
+                                </i>Borrow
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </li>
         </ul>
+    </div>
+</div>
+
+<!-- Modal Lend -->
+<div class="modal fade" id="BorrowForm" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="container">
+                
+                <div class="modal-header">
+                    <h4 class="modal-title">ฟอร์มบันทึกการคืน </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [min]="dateNow" [max]="maxDate" [matDatepicker]="picker" (click)="check()"
+                            placeholder="Choose a date" [(ngModel)]="returnDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success waves-light"
+                            (click)="onSubmitBorrow()">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>

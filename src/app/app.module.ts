@@ -24,7 +24,7 @@ import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 import { StorageServiceModule} from 'angular-webstorage-service';
 import { LyThemeModule, LY_THEME , LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
 
-import { MacinoddsApiService } from './service/macinodds-api.service'
+import { MacinoddsApiService } from './service/macinodds-api.service';
 
 import { LyIconModule } from '@alyle/ui/icon';
 import { MinimaLight } from '@alyle/ui/themes/minima';

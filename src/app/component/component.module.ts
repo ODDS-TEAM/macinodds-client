@@ -31,6 +31,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 
 
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -60,8 +63,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     CdkTableModule,
     MatCardModule,
     MaterialModule,
-    MatDialogModule
-
+    MatDialogModule,
+    MatDatepickerModule,
+    MatFormFieldModule, MatNativeDateModule, MatInputModule
   ],
   exports: [MenuAddDeviceComponent]
 
