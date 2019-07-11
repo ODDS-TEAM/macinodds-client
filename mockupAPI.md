@@ -5,9 +5,10 @@
 #
 # Welcome to maockAPI mac.odds.team
 
-  - https://5d008336d021760014b74fa8.mockapi.io/test/mac
-  - https://5d008336d021760014b74fa8.mockapi.io/test/user
-  - https://5d008336d021760014b74fa8.mockapi.io/test/history
+  - API MAC
+  - hAPI My user
+  - API History
+  - API My Mac
 
 
 
