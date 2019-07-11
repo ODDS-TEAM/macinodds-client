@@ -22,8 +22,8 @@ import { HttpClient } from '@angular/common/http';
 
 
 export class CardComponent implements OnInit {
-  @Input() hide = true;
-
+  @Input() role: boolean;
+  btnRole: boolean;
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   public editResults: any; // กำหนดตัวแปร เพื่อรับค่า
@@ -35,16 +35,16 @@ export class CardComponent implements OnInit {
   holder: string;
   borrowForm: FormGroup;
   dateNow = new Date();
-  maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 3)) ;
+  maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 3));
   returnDate: any;
   localtime: any;
 
   constructor(private data: MyDataServiceService,
-              private router: Router,
-              private breakpointObserver: BreakpointObserver,
-              private macApiService: MacinoddsApiService,
-              private formBuilder: FormBuilder,
-              private http: HttpClient) { }
+    private router: Router,
+    private breakpointObserver: BreakpointObserver,
+    private macApiService: MacinoddsApiService,
+    private formBuilder: FormBuilder,
+    private http: HttpClient) { }
 
   ngOnInit() {
     this.editResults = {};
@@ -74,7 +74,7 @@ export class CardComponent implements OnInit {
     this.macApiService.getMacIDApi(id).subscribe(data => {
       // read result form JSON response
       this.editResults = data;
-      console.log(this.editResults); 
+      console.log(this.editResults);
     });
   }
 

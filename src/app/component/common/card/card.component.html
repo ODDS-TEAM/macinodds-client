@@ -1,7 +1,10 @@
 <div>
+
     <div class="container">
         <br>
         <ul class="list-group">
+            <app-my-card></app-my-card>
+            <h3>All Mac</h3><br>
             <li class="card shadow-lg bg-light mb-3 size-card" *ngFor="let result of results ; let i = index">
                 <div class="row justify-content-md-center mx-0 my-6" id="id-card-{{i}}">
                     <div class="col-lg-3 px-0 ">
@@ -31,16 +34,16 @@
                         </span> <span id="tel-{{i}}">{{ result.tel }}</span>
                     </div>
 
-                    <div class="col-lg-3 px-0 my-auto" [hidden]=hide>
+                    <div class="col-lg-3 px-0 my-auto" [hidden]=role>
                         <div class="col-10 col-lg-8 px-0 mx-auto">
                             <button *ngIf="result.status" class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit"
                                 routerLink="/admin/app/edit-admin" (click)="editDevice(result._id)"
                                 data-toggle="modal" data-target="#editDevice" id="btn-edit-{{i}}">
                                 <i class="fa fa-edit mr-1" data-toggle="modal">
-                                </i>Edit
+                                </i>Edit {{btnRole}}
                             </button>
                         </div>
-                        <div class="col-10 col-lg-8 px-0 mx-auto" [hidden]=hide>
+                        <div class="col-10 col-lg-8 px-0 mx-auto" [hidden]=role>
                             <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold"
                                 (click)="deleteDevice(result._id , result.serial)" id="btn-delete-{{i}}">
                                 <i class="fa fa-trash mr-1"> </i>
@@ -48,7 +51,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-lg-3 px-0 my-auto" [hidden]=!hide>
+                    <div class="col-lg-3 px-0 my-auto" [hidden]=!role>
                         <div class="col-10 col-lg-8 px-0 mx-auto" *ngIf="result.status">
                             <button class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit waves-light"
                                 data-toggle="modal" data-target="#BorrowForm" id="btn-borrow-{{i}}">

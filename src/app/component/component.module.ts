@@ -34,6 +34,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { MyCardComponent } from './common/my-card/my-card.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {MatInputModule} from '@angular/material/input';
     CardComponent,
     HistoryComponent,
     FormDeviceComponent,
-    MenuViewHistoryComponent
+    MenuViewHistoryComponent,
+    MyCardComponent
 
 
 
