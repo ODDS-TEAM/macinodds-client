@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+.modal-popup {
+    position: fixed;
+    translate: (-50%, -50%);
+    top: 70%;
+}
+
 body {
     margin-left: 10px;
     background-color: #fafafa;
@@ -10,7 +16,7 @@ body {
 .card {
     padding: 30px 30px;
     width: 90%;
-    min-width: 500px;
+    min-width: 300px;
     margin: 50px auto;
 }
 
@@ -38,10 +44,12 @@ body {
 p {
     margin-bottom: 0px !important;
 }
+
 .mat-form-field-infix {
     padding: .5em 0;
     border-top: .64375em solid transparent !important;
 }
+
 /* ----------------- */
 
 input[type=text], select, textarea {

@@ -26,6 +26,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { FormDeviceComponent } from './common/form-device/form-device.component';
 import { MaterialModule } from './material-module';
 import { MenuViewHistoryComponent } from './menu-view-history/menu-view-history.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -43,6 +44,8 @@ import { MenuViewHistoryComponent } from './menu-view-history/menu-view-history.
     FormDeviceComponent,
     MenuViewHistoryComponent
 
+
+
   ],
   imports: [
     CommonModule,
@@ -56,9 +59,11 @@ import { MenuViewHistoryComponent } from './menu-view-history/menu-view-history.
     LyIconModule,
     CdkTableModule,
     MatCardModule,
-    MaterialModule
+    MaterialModule,
+    MatDialogModule
 
   ],
-  exports: [MenuAddDeviceComponent],
+  exports: [MenuAddDeviceComponent]
+
 })
 export class ComponentModule { }

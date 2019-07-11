@@ -33,7 +33,7 @@
 
                     <div class="col-lg-3 px-0 my-auto" [hidden]=hide>
                         <div class="col-10 col-lg-8 px-0 mx-auto">
-                            <button class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit"
+                            <button *ngIf="result.status" class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit"
                                 routerLink="/admin/app/edit-admin" (click)="editDevice(result._id)"
                                 data-toggle="modal" data-target="#editDevice" id="btn-edit-{{i}}">
                                 <i class="fa fa-edit mr-1" data-toggle="modal">
