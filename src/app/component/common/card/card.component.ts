@@ -38,6 +38,9 @@ export class CardComponent implements OnInit {
   maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 3));
   returnDate: any;
   localtime: any;
+  userId = localStorage.getItem('userId');
+  userData: any;
+  @Input() cantBorrow: boolean = false;
 
   constructor(private data: MyDataServiceService,
     private router: Router,
@@ -48,6 +51,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.editResults = {};
+    this.checkBorrow();
     this.getDevice();
     this.data.currentData.subscribe(data => this.name = data);
     this.createBorrowForm();
@@ -128,5 +132,11 @@ export class CardComponent implements OnInit {
     console.log(this.returnDate);
   }
 
+  checkBorrow() {
+    this.macApiService.getData(this.userId).subscribe(data => {
+      this.userData = data;
+      this.cantBorrow = this.userData.status;
+    });
+  }
 
 }

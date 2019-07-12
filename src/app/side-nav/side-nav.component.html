@@ -5,14 +5,14 @@
         <mat-toolbar><img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
                 class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
         <mat-nav-list>
-            <img class="img_pro" [src]="profilePic" alt="Avatar" />
+            <img class="img_pro mb-2" [src]="profilePic" alt="Avatar" />
             <div class="d-flex justify-content-center">
                 <p><img class="icon" src="/assets/imgs/user.ico" alt="icon"> {{name}}
             </div>
             <div class="d-flex justify-content-center">
                 <p><img class="icon" src="/assets/imgs/email.ico" alt="icon"> {{email}}</p>
             </div>
-            <div class="divider">
+            <div class="divider mb-1">
             </div>
             <div *ngFor="let menuGroupUser of menuList ; let i = index">
                 <div *ngIf="menuGroupUser.menus.length == 0 ">

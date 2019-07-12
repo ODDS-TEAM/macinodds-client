@@ -13,6 +13,8 @@ export class MyCardComponent implements OnInit {
   hideCard = false;
   borrowDate: any;
   returnDate: any;
+  returnMemo: string;
+  returnLocation: string;
 
   constructor(
     private macApiService: MacinoddsApiService
@@ -36,6 +38,8 @@ export class MyCardComponent implements OnInit {
         this.borrowDate = new Date(this.result.borrowDate).toLocaleDateString("pt-PT");
         this.returnDate = new Date(this.result.returnDate).toLocaleDateString("pt-PT");
       });
+      this.result = {};
     }
   }
+  
 }

@@ -105,5 +105,9 @@ body {
 
 .mw-900 {
     max-width: 1200px;
-    text-align:center;
+    text-align: center;
+}
+
+.return-input {
+    width: 100%;
 }
