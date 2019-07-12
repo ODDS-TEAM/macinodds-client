@@ -1,34 +1,31 @@
 <div class="container">
-    <div class="row">
-        <div class="panel panel-primary filterable">
-            <div class="panel-heading">
-                <h3 class="panel-title">History</h3>
-
-            </div>
-            <table class="table">
-                <thead>
-                    <tr class="filters">
-                        <th>วัน</th>
-                        <th>ผู้ใช้</th>
-                        <th>กิจกรรม</th>
-                        <th>เครื่อง Mac</th>
-                        <th>วันคืน</th>
-                        <th>เกี่ยวกับ</th>
-                        <th>สถานที่คืน</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="list-table" *ngFor="let result of results">
-                        <td>{{result.date}}</td>
-                        <td>{{result.userID}}</td>
-                        <td>{{result.activity}}</td>
-                        <td>{{result.macID}}</td>
-                        <td>{{result.returnedDate}}</td>
-                        <td>{{result.memo}}</td>
-                        <td>{{result.location}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="panel-heading">
+        <h3 class="panel-title">History</h3>
+    </div>
+    <div class="panel panel-primary table-responsive">
+        <table class="table ">
+            <thead>
+                <tr  >
+                    <th class="text-nowrap text-center" scope="col">วัน</th>
+                    <th class="text-nowrap text-center" scope="col">ผู้ใช้</th>
+                    <th class="text-nowrap text-center" scope="col">กิจกรรม</th>
+                    <th class="text-nowrap text-center" scope="col">เครื่อง Mac</th>
+                    <th class="text-nowrap text-center" scope="col">วันคืน</th>
+                    <th class="text-nowrap text-center" scope="col">เกี่ยวกับ</th>
+                    <th class="text-nowrap text-center" scope="col">สถานที่คืน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let result of results">
+                    <td class="text-nowrap text-center">{{result.date| date:'dd/MM/yyyy'}}</td>
+                    <td class="text-nowrap">{{result.userName}}</td>
+                    <td class="text-nowrap">{{result.activity}}</td>
+                    <td class="text-nowrap">{{result.macName}}</td>
+                    <td class="text-nowrap text-center w-20">{{result.returnDate| date:'dd/MM/yyyy'}}</td>
+                    <td class="">{{result.memo}}</td>
+                    <td class="text-nowrap">{{result.location}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
