@@ -94,7 +94,7 @@ export class MacinoddsApiService {
 
 
   getLoginGoogle(idtoken: string): Observable<Login> {
-    return this.http.post<any>(`${this.apiPath}login-google`, { 'token': idtoken });
+    return this.http.post<any>('http://localhost:8080/v1/login-google', { 'token': idtoken });
   }
 
   signOut() {
@@ -137,5 +137,5 @@ export class MacinoddsApiService {
   }
   getData(id) {
     return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/myMac/' + id);
-  }
+  }  
 }

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
-  MatListModule, MatCard, MatCardModule } from '@angular/material';
+  MatListModule, MatCard, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
 
@@ -32,12 +32,14 @@ import { LyButtonModule } from '@alyle/ui/button';
 import { LyToolbarModule } from '@alyle/ui/toolbar';
 import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
 import { LyTypographyModule } from '@alyle/ui/typography';
+import { FirstLoginComponent } from './first-login/first-login.component';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
     [
       {
         id: GoogleLoginProvider.PROVIDER_ID,
+        // provider: new GoogleLoginProvider('956316396976-mhb092ad69gn2olis0mtmc1fpe8blgn8.apps.googleusercontent.com')
         provider: new GoogleLoginProvider('15378607653-f9lfgsml8th6lf50jfq93v3v2f4vpkpr.apps.googleusercontent.com')
       },
 
@@ -72,6 +74,7 @@ export class GlobalVariables {
     SideNavComponent,
     LoginComponent,
     SideNavUserComponent,
+    FirstLoginComponent,
     // MenuAddDeviceComponent,
     // MenuViewAdminComponent
   ],
@@ -98,6 +101,7 @@ export class GlobalVariables {
     LyIconModule,
     LyTypographyModule,
     MatCardModule,
+    MatFormFieldModule, MatNativeDateModule, MatInputModule,
     StorageServiceModule
   ],
   providers: [

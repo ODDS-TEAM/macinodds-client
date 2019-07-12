@@ -3,6 +3,7 @@ import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 import { LoginComponent } from './login/login.component';
+import { FirstLoginComponent } from './first-login/first-login.component'
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent,
@@ -17,6 +18,10 @@ const routes: Routes = [
     // children: [
     //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
     // ]
+  }, 
+  {
+    path: 'first-login',
+    component: FirstLoginComponent
   },
   {
 

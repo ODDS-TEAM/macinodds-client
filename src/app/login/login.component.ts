@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
 import { forkJoin } from 'rxjs';
 import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
+import { User } from '../shared/user';
 
 
 @Component({
@@ -16,7 +17,6 @@ export class LoginComponent implements OnInit {
   public name: any;
   constructor(
     private socialAuthService: AuthService,
-    private router: Router,
     private macinoddsService: MacinoddsApiService,
     private route: Router
   ) { }
@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
       (userData) => {
         console.log("User data : ", JSON.stringify(userData));
         if (this.isOddsTeam(userData.email)) {
-          // this.loginGoogle(userData.idToken)
-          this.router.navigate(['/admin/app/menu-view-admin']);
+          this.loginGoogle(userData.idToken)
+        //  this.route.navigate(['/first-login']);
           console.log(socialPlatform + " sign in data : ", userData);
         }
       }
@@ -43,17 +43,22 @@ export class LoginComponent implements OnInit {
 
   loginGoogle(idToken: string) {
     this.macinoddsService.getLoginGoogle(idToken).subscribe(res => {
+      console.log('res : ' + JSON.stringify(res));
       sessionStorage.setItem('token', 'Bearer' + res.token);
-      this.macinoddsService.initDataService();
+      // this.macinoddsService.initDataService();
       sessionStorage.setItem('idUser', res.user.id);
       sessionStorage.setItem('firstName', res.user.firstName);
-      if (res.user.role === 'admin') {
-        this.router.navigate(['/admin/app/menu-view-admin']);
+      if (res.firstLogin === 'Y') {
+        this.route.navigate(['/first-login'])
       } else {
-        this.router.navigate([res.user.role]);
+        if (res.user.role === 'admin') {
+          this.route.navigate(['/admin/app/menu-view-admin']);
+        } else {
+          this.route.navigate(['/admin/app/menu-view-admin']);
+        }
       }
       //function is empty
-      this.cacheData();
+      // this.cacheData();
     })
   }
 
@@ -67,17 +72,17 @@ export class LoginComponent implements OnInit {
   }
 
   // function not complete
-  cacheData() {
-    const individualListed = this.macinoddsService.getListIncomeIndividual();
-    const corporateListed = this.macinoddsService.getListIncomeCorporate();
+  // cacheData() {
+  //   const individualListed = this.macinoddsService.getListIncomeIndividual();
+  //   const corporateListed = this.macinoddsService.getListIncomeCorporate();
 
-    forkJoin([corporateListed, individualListed]).subscribe(
-      result => {
-        this.macinoddsService.corporateListed = result[0];
-        this.macinoddsService.individualListed = result[1];
-      }
-    );
-  }
+  //   forkJoin([corporateListed, individualListed]).subscribe(
+  //     result => {
+  //       this.macinoddsService.corporateListed = result[0];
+  //       this.macinoddsService.individualListed = result[1];
+  //     }
+  //   );
+  // }
 
   //test
   getAdmin() {
