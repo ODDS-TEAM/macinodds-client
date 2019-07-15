@@ -108,23 +108,23 @@ export class MacinoddsApiService {
 
   // API for Mac device
   getMacApi() {
-    return this.http.get('http://mac.odds.team/api/mac');
+    return this.http.get('http://mac.odds.team/api/devices');
   }
 
   getMacIDApi(id) {
-    return this.http.get('http://mac.odds.team/api/mac/' + id);
+    return this.http.get('http://mac.odds.team/api/devices/' + id);
   }
 
   putMacAPI(id, data) {
-    return this.http.put('http://mac.odds.team/api/mac/' + id, data);
+    return this.http.put('http://mac.odds.team/api/devices/' + id, data);
   }
 
   postMacAPI(data) {
-    return this.http.post('http://mac.odds.team/api/mac', data);
+    return this.http.post('http://mac.odds.team/api/devices', data);
   }
 
   deleteMacAPI(id) {
-    return this.http.delete('http://mac.odds.team/api/mac/' + id);
+    return this.http.delete('http://mac.odds.team/api/devices/' + id);
   }
   // End API for Mac device
 
