@@ -24,10 +24,10 @@
 
 
 
-## API My user profile
+## API My  profile
 | API | URL |method|header|
 | ------ | ------ | ------ | ------ | 
-| view user profile| https://5d008336d021760014b74fa8.mockapi.io/test/user/(:userID) |GET|bearer|
+| view profile by uid| https://5d008336d021760014b74fa8.mockapi.io/test/user/(:userID) |GET|bearer|
 
 
 
