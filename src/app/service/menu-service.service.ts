@@ -31,6 +31,10 @@ export class MenuServiceService {
       {
         group: { code: 'menu-view-user', name: 'Menu User Test', icon: 'fas fa-file-medical' },
         menus: []
+      },
+      {
+        group: { code: 'menu-view-history', name: 'History', icon: 'fas fa-history'},
+        menus: []
       }
     ];
     return menuList;

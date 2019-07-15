@@ -44,8 +44,8 @@ export class DbConnectService {
     return this.http.get(this.historyDeviceAPI);
   }
 
-  getHistoryIDApi(id) {
-    return this.http.get(this.historyDeviceAPI + '/' + id);
+  getHistoryIDApi() {
+    return this.http.get('https://5d2bf6108c90070014971ed9.mockapi.io/userHistory');
   }
 
 

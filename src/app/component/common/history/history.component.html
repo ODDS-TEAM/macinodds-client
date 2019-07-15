@@ -7,7 +7,7 @@
             <thead>
                 <tr  >
                     <th class="text-nowrap text-center" scope="col">วัน</th>
-                    <th class="text-nowrap text-center" scope="col">ผู้ใช้</th>
+                    <th *ngIf="role" class="text-nowrap text-center" scope="col">ผู้ใช้</th>
                     <th class="text-nowrap text-center" scope="col">กิจกรรม</th>
                     <th class="text-nowrap text-center" scope="col">เครื่อง Mac</th>
                     <th class="text-nowrap text-center" scope="col">วันคืน</th>
@@ -18,12 +18,12 @@
             <tbody>
                 <tr *ngFor="let result of results">
                     <td class="text-nowrap text-center">{{result.date| date:'dd/MM/yyyy'}}</td>
-                    <td class="text-nowrap">{{result.userName}}</td>
-                    <td class="text-nowrap">{{result.activity}}</td>
-                    <td class="text-nowrap">{{result.macName}}</td>
+                    <td *ngIf="role" class="text-nowrap">{{result.userName}}</td>
+                    <td class="text-nowrap text-center">{{result.activity}}</td>
+                    <td class="text-nowrap text-center">{{result.macName}}</td>
                     <td class="text-nowrap text-center w-20">{{result.returnDate| date:'dd/MM/yyyy'}}</td>
-                    <td class="">{{result.memo}}</td>
-                    <td class="text-nowrap">{{result.location}}</td>
+                    <td class="td-memo">{{result.memo}}</td>
+                    <td class="text-nowrap text-center">{{result.location}}</td>
                 </tr>
             </tbody>
         </table>
