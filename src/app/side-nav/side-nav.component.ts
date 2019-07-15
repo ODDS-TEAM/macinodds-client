@@ -36,7 +36,10 @@ export class SideNavComponent implements OnInit {
 
   menuGroupSelected: string;
   menuList: MenuItem[];
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe([
+    Breakpoints.Handset,
+    Breakpoints.TabletPortrait
+  ])
     .pipe(
       map(result => result.matches)
     );
@@ -52,7 +55,8 @@ export class SideNavComponent implements OnInit {
     // boolean check role
     breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
-      Breakpoints.HandsetPortrait
+      Breakpoints.HandsetPortrait,
+      
     ]).subscribe(
       result => {
         if (result.matches) {
