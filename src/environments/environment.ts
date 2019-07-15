@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: `http://mac.odds.team/api/mac`
+  api: `http://mac.odds.team/api`
 };
 
 /*
