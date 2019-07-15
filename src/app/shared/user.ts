@@ -3,4 +3,5 @@ export class User {
     role: string;
     firstName: string;
     lastName: string;
+    photoUrl: string;
 }
