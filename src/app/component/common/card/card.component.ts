@@ -24,6 +24,7 @@ import { HttpClient } from '@angular/common/http';
 export class CardComponent implements OnInit {
   @Input() role: boolean;
   btnRole: boolean;
+  @Input() hide = true;
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   public editResults: any; // กำหนดตัวแปร เพื่อรับค่า
