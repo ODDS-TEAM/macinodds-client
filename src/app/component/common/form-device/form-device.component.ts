@@ -119,6 +119,7 @@ export class FormDeviceComponent implements OnInit {
     private macApiService: MacinoddsApiService,
     public dialog: MatDialog) {
     this.imageDefault === this.imageDefaultPath ? this.vaildatBT = false : this.vaildatBT = true;
+    console.log(this.vaildatBT)
     // boolean check role
     breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
@@ -208,10 +209,6 @@ export class FormDeviceComponent implements OnInit {
     const fileName = e.srcElement.value.toString().split("\\");
     this.fileNameEventInput = fileName[fileName.length - 1];
     document.getElementById('openUploadModal').click();
-
-
-
-
   }
 
   cancel() {
@@ -248,26 +245,30 @@ export class FormDeviceComponent implements OnInit {
       // post method
       if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
         this.macApiService.postMacAPI(formData).subscribe(data => {
-            console.log(formData);
-            this.cancel();
-            this.router.navigate(['/admin/app/menu-view-admin']);
-          });
+          console.log(formData);
+          this.cancel();
+          this.router.navigate(['/admin/app/menu-view-admin']);
+        });
       }
     }
   }
 
   // validat จ้า
   validatorName() {
-    this.data.name !== this.backupData.name ? this.vaildatBT = true : this.vaildatBT = false;
+    if (this.editCompoCheck)
+      this.data.name !== this.backupData.name ? this.vaildatBT = true : this.vaildatBT = false;
   }
   validatorSerial() {
-    this.data.serial !== this.backupData.serial ? this.vaildatBT = true : this.vaildatBT = false;
+    if (this.editCompoCheck)
+      this.data.serial !== this.backupData.serial ? this.vaildatBT = true : this.vaildatBT = false;
   }
   validatorSpec() {
-    this.data.spec !== this.backupData.spec ? this.vaildatBT = true : this.vaildatBT = false;
+    if (this.editCompoCheck)
+      this.data.spec !== this.backupData.spec ? this.vaildatBT = true : this.vaildatBT = false;
   }
   validatorImg() {
-    this.data.img !== this.backupData.img ? this.vaildatBT = true : this.vaildatBT = false;
+    if (this.editCompoCheck)
+      this.data.img !== this.backupData.img ? this.vaildatBT = true : this.vaildatBT = false;
   }
 
 }
