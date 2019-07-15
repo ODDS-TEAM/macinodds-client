@@ -7,6 +7,7 @@
             <h3>All Mac</h3><br>
             <li class="card shadow-lg bg-light mb-3 size-card" *ngFor="let result of results ; let i = index">
                 <div class="row justify-content-md-center mx-0 my-6" id="id-card-{{i}}">
+
                     <div class="col-lg-3 px-0 ">
                         <img class="img-device img-rounded-left " id="img-{{i}}"
                             src="http://139.5.146.213/assets/imgs/devices/{{ result.img }}">
@@ -14,24 +15,27 @@
 
                     <div class="col-lg-6 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
                         <span class="font-weight-bold head-content-card" id="name" id="name-{{i}}">{{ result.name }}
-                        </span><br />
+                        </span>
+                        <img *ngIf="result.status" class="icon" src="/assets/imgs/available.ico" alt="icon">
+                        <img *ngIf="!result.status" class="icon" src="/assets/imgs/unavailable.ico" alt="icon">
+                        <br />
                         <span class="font-weight-bold title-content-card "> Serial </span> <span
                             id="serial-{{i}}">{{ result.serial }}</span>
                         <br />
                         <span class="font-weight-bold title-content-card ">สเปค </span> <span id="spec-{{i}}">
                             {{ result.spec }}</span> <br />
-                        <span class="font-weight-bold title-content-card" id="status-all-{{i}}">สถานะ
-                            <span class="status-true-card" id="status-av-{{i}}"
-                                *ngIf=" result.status ; else show">ว่าง</span>
-                            <ng-template #show>
-                                <span class="status-false-card" id="status-uv-{{i}}">ไม่ว่าง</span>
-                            </ng-template><br />
-                        </span>
-
-                        <span *ngIf="!result.status" class="font-weight-bold title-content-card ">ผู้ยืม </span><span
-                            id="holder-{{i}}">{{ result.holder }}</span> <br />
-                        <span *ngIf="!result.status" class="font-weight-bold title-content-card ">เบอร์ผู้ยืม
-                        </span> <span id="tel-{{i}}">{{ result.tel }}</span>
+                        <div *ngIf="result.status"><span class="font-weight-bold title-content-card ">สถานที่ </span>
+                            <span id="borrower-{{i}}"> {{ result.location }}</span> <br />
+                        </div>
+                        <div *ngIf="!result.status"><span class="font-weight-bold title-content-card ">ผู้ยืม </span>
+                            <span id="borrower-{{i}}"> {{ result.uname }} ({{ result.slack }})</span> <br />
+                        </div>
+                        <div *ngIf="!result.status"><span class="font-weight-bold title-content-card ">โทร </span>
+                            <span id="borrower-{{i}}"> {{ result.tel }}</span> <br />
+                        </div>
+                        <div *ngIf="!result.status"><span class="font-weight-bold title-content-card ">กำหนดคืน </span>
+                            <span id="borrower-{{i}}"> {{result.returnDate| date:'dd/MM/yyyy'}}</span> <br />
+                        </div>
                     </div>
 
                     <div class="col-lg-3 px-0 my-auto" [hidden]=role>
@@ -89,7 +93,8 @@
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
 
-                    <button type="submit" class="btn btn-success waves-light float-sm-right ml-4 mt-2" (click)="onSubmitBorrow()">
+                    <button type="submit" class="btn btn-success waves-light float-sm-right ml-4 mt-2"
+                        (click)="onSubmitBorrow()">
                         Submit
                     </button>
 
