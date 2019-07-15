@@ -66,8 +66,7 @@ export class FormDeviceComponent implements OnInit {
     spec: '',
     // memo: '',
     img: '',
-    location: '',
-    status: true
+    location: ''
   };
 
   data: any = {
@@ -76,8 +75,7 @@ export class FormDeviceComponent implements OnInit {
     spec: '',
     // memo: '',
     imgs: null,
-    location: '',
-    status: true
+    location: ''
 
   };
 
@@ -116,7 +114,6 @@ export class FormDeviceComponent implements OnInit {
     private macApiService: MacinoddsApiService) {
     this.imageDefault === this.imageDefaultPath ? this.vaildatBT = false : this.vaildatBT = true;
 
-
   }
 
   @Input()
@@ -132,12 +129,12 @@ export class FormDeviceComponent implements OnInit {
       nameDevice: ['', Validators.required],
       serial: ['', Validators.required],
       spec: ['', Validators.required],
-      location: [{ value: 'Hard code', disabled: this.editCompoCheck }, [Validators.required, Validators.minLength(1)]],
+      location: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
   onCropped(e) {
-    console.log('eeee')
+    console.log('eeee');
     this.croppedImage = e.dataURL;
     const cropNew = this.croppedImage.replace(/^data:image\/(png|jpeg);base64,/, '');
     console.log((cropNew));
@@ -147,7 +144,7 @@ export class FormDeviceComponent implements OnInit {
     const imageName = date + '.' + text + '.jpeg';
     const imageBlob = this.dataURItoBlob(cropNew);
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    this.fileName = this.fileNameEventInput
+    this.fileName = this.fileNameEventInput;
     // this.fileToUpload = imageFile;
     this.fileToUpload = imageFile;
     this.imageDefault = this.croppedImage;
@@ -213,8 +210,8 @@ export class FormDeviceComponent implements OnInit {
     formData.append('name', this.data.name);
     formData.append('serial', this.data.serial);
     formData.append('spec', this.data.spec);
-    formData.append('status', 'true');
     formData.append('img', this.fileToUpload);
+    formData.append('location', this.data.location);
 
     // check page is edit
     if (this.editCompoCheck) {
@@ -226,9 +223,8 @@ export class FormDeviceComponent implements OnInit {
       // page is add device
       // post method
       if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-        this.http.post('http://mac.odds.team/api/mac', formData)
-          .subscribe(result => {
-            console.log(result);
+        this.macApiService.postMacAPI(formData).subscribe(data => {
+            console.log(formData);
             this.cancel();
             this.router.navigate(['/admin/app/menu-view-admin']);
           });
