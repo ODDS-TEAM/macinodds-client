@@ -122,7 +122,7 @@ export class MacinoddsApiService {
   postMacAPI(data) {
     return this.http.post('http://mac.odds.team/api/devices', data);
   }
-
+  
   deleteMacAPI(id) {
     return this.http.delete('http://mac.odds.team/api/devices/' + id);
   }

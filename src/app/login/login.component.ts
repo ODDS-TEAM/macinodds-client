@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
       // this.macinoddsService.initDataService();
       sessionStorage.setItem('idUser', res.user.id);
       sessionStorage.setItem('firstName', res.user.firstName);
+      sessionStorage.setItem('photoURL', res.user.photoUrl)
       if (res.firstLogin === 'Y') {
         this.route.navigate(['/first-login'])
       } else {
@@ -72,23 +73,23 @@ export class LoginComponent implements OnInit {
   }
 
   // function not complete
-  // cacheData() {
-  //   const individualListed = this.macinoddsService.getListIncomeIndividual();
-  //   const corporateListed = this.macinoddsService.getListIncomeCorporate();
+  cacheData() {
+    const individualListed = this.macinoddsService.getListIncomeIndividual();
+    const corporateListed = this.macinoddsService.getListIncomeCorporate();
 
-  //   forkJoin([corporateListed, individualListed]).subscribe(
-  //     result => {
-  //       this.macinoddsService.corporateListed = result[0];
-  //       this.macinoddsService.individualListed = result[1];
-  //     }
-  //   );
-  // }
+    forkJoin([corporateListed, individualListed]).subscribe(
+      result => {
+        this.macinoddsService.corporateListed = result[0];
+        this.macinoddsService.individualListed = result[1];
+      }
+    );
+  }
 
   //test
   getAdmin() {
     this.macinoddsService.getAdminAPI().subscribe(data => {
       this.user = data;
-      console.log(data + '<<<<<<YYYY')
+      console.log(JSON.stringify(data)  + '<<<<<<YYYY')
       localStorage.setItem('userId', this.user._id);
       localStorage.setItem('Username', this.user.name);
       localStorage.setItem('email', this.user.email);
