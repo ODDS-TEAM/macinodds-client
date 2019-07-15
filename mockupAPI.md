@@ -6,14 +6,14 @@
 # Welcome to maockAPI mac.odds.team
 
   - API MAC
-  - hAPI My user
+  - API user profile
   - API History
   - API My Mac
 
 
 
 
-## API MAC
+## API MAC DEVICE
 | API | URL |method|header|
 | ------ | ------ | ------ | ------ | 
 | List all macs | https://5d008336d021760014b74fa8.mockapi.io/test/macs |GET|bearer|
@@ -24,16 +24,20 @@
 
 
 
-## API My user
+## API My  profile
 | API | URL |method|header|
 | ------ | ------ | ------ | ------ | 
-| list your mac borrowing | https://5d008336d021760014b74fa8.mockapi.io/test/user/(:userID) |GET|bearer|
+| view profile by uid| https://5d008336d021760014b74fa8.mockapi.io/test/user/(:userID) |GET|bearer|
+
 
 
 ## API History
 | API | URL |method|header|
 | ------ | ------ | ------ | ------ | 
-| view list all mac | https://5d008336d021760014b74fa8.mockapi.io/test/history |GET|bearer|
+| view list all history | https://5d008336d021760014b74fa8.mockapi.io/test/history |GET|bearer|
+| view list user history | https://5d2bf6108c90070014971ed9.mockapi.io/userHistory/(:userID) |GET|bearer|
+
+
 
 
 ## API My Mac

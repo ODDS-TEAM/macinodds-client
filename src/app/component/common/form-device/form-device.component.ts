@@ -25,6 +25,9 @@ const styles = {
   },
   flex: {
     flex: 1
+  },
+  range: {
+    textAlign: 'center'
   }
 
 };
@@ -40,6 +43,8 @@ const styles = {
 export class FormDeviceComponent implements OnInit {
 
   readonly imageDefaultPath: string = '/assets/imgs/add_device.jpg';
+
+
 
   addDeviceForm: FormGroup;
 
@@ -132,6 +137,7 @@ export class FormDeviceComponent implements OnInit {
   }
 
   onCropped(e) {
+    console.log('eeee')
     this.croppedImage = e.dataURL;
     const cropNew = this.croppedImage.replace(/^data:image\/(png|jpeg);base64,/, '');
     console.log((cropNew));
@@ -181,7 +187,6 @@ export class FormDeviceComponent implements OnInit {
       this.vaildatBT = false;
     }
   }
-
   openUploadModal(e) {
     const fileName = e.srcElement.value.toString().split("\\");
     this.fileNameEventInput = fileName[fileName.length - 1];
