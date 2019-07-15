@@ -34,6 +34,8 @@ import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-image
 import { LyTypographyModule } from '@alyle/ui/typography';
 import { FirstLoginComponent } from './first-login/first-login.component';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
     [
@@ -102,7 +104,8 @@ export class GlobalVariables {
     LyTypographyModule,
     MatCardModule,
     MatFormFieldModule, MatNativeDateModule, MatInputModule,
-    StorageServiceModule
+    StorageServiceModule,
+    FlexLayoutModule
   ],
   providers: [
     {provide: LocationStrategy,

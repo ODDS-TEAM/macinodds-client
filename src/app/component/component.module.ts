@@ -71,7 +71,7 @@ import { MyCardComponent } from './common/my-card/my-card.component';
     MatDatepickerModule,
     MatFormFieldModule, MatNativeDateModule, MatInputModule
   ],
-  exports: [MenuAddDeviceComponent]
+  exports: [MenuAddDeviceComponent],
 
 })
 export class ComponentModule { }

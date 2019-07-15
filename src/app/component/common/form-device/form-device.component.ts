@@ -2,13 +2,14 @@ import { MacinoddsApiService } from './../../../service/macinodds-api.service';
 import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ViewRef, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatRadioButton, MatCardModule, MatDialog } from '@angular/material';
+import { MatRadioButton, MatCardModule, MatDialog, MatDialogRef } from '@angular/material';
 import { RouterLink, Router, RouterModule } from '@angular/router';
 
 
 import { LyResizingCroppingImages, ImgCropperConfig, ImgResolution } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 
@@ -92,6 +93,9 @@ export class FormDeviceComponent implements OnInit {
   croppedImage?: string;
   result: string;
 
+
+  isHandset: boolean = false;
+
   myConfig: ImgCropperConfig = {
 
     autoCrop: false,
@@ -107,12 +111,28 @@ export class FormDeviceComponent implements OnInit {
 
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private router: Router,
     private theme: LyTheme2,
-    private macApiService: MacinoddsApiService) {
+    private macApiService: MacinoddsApiService,
+    public dialog: MatDialog) {
     this.imageDefault === this.imageDefaultPath ? this.vaildatBT = false : this.vaildatBT = true;
+    // boolean check role
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(
+      result => {
+        if (result.matches) {
+          this.isHandset = true;
+        } else {
+          this.isHandset = false;
+        }
+        console.log('isHandSet = ', this.isHandset)
+      }
+    )
 
   }
 
@@ -188,6 +208,10 @@ export class FormDeviceComponent implements OnInit {
     const fileName = e.srcElement.value.toString().split("\\");
     this.fileNameEventInput = fileName[fileName.length - 1];
     document.getElementById('openUploadModal').click();
+
+
+
+
   }
 
   cancel() {
@@ -247,3 +271,4 @@ export class FormDeviceComponent implements OnInit {
   }
 
 }
+

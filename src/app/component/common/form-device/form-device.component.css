@@ -1,11 +1,21 @@
 * {
     box-sizing: border-box;
 }
+.modal{
+    padding: 1px;
+    position: fixed;
+    /* width: 300px !important; */
+    transform: translate(-50%,-50%);
+    top: 65%;
+    left: 50%;
+    padding-bottom: 50px;
+    z-index:1000 !important;
+
+}
 
 .modal-popup {
-    position: fixed;
-    translate: (-50%, -50%);
-    top: 70%;
+    transform: translate(-50%,-50%);
+    margin: auto auto;
 }
 
 body {
@@ -17,7 +27,8 @@ body {
     padding: 30px 30px;
     width: 90%;
     min-width: 300px;
-    margin: 50px auto;
+    margin: 5% auto;
+    
 }
 
 .full {
@@ -109,6 +120,9 @@ input[type=submit]:hover {
 input[type="file"] {
     display: none;
 }
+.grap-btn{
+    margin-right: 5%;
+}
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 
@@ -117,6 +131,7 @@ input[type="file"] {
         width: 100%;
         margin-top: 0;
     }
+
 }
 
 .disabledDiv {
@@ -130,6 +145,7 @@ input[type="file"] {
 }
 
 @media only screen and (min-width: 414px) and (max-width: 736px) {
+   
     .sidenav li a {
         float: left;
         padding: 15px;
@@ -149,6 +165,7 @@ input[type="file"] {
 }
 
 @media screen and (max-width: 900px) {
+   
     .sidenav li a {
         float: left;
         padding: 15px;
@@ -164,6 +181,9 @@ input[type="file"] {
     }
     div.content {
         margin-left: 0;
+    }
+    .grap-btn{
+        margin-right: 3%;
     }
 }
 
