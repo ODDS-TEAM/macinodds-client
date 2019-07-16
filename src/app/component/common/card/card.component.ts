@@ -93,7 +93,7 @@ export class CardComponent implements OnInit {
   // method for when click edit button
   editDevice(id) {
     this.data.changeData(id);
-    this.router.navigate(['/admin/app/edit-admin']);
+    this.router.navigate(['/admin/edit']);
   }
 
   createBorrowForm() {
