@@ -2,8 +2,8 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
-        <mat-toolbar><img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
-                class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
+        <!-- <mat-toolbar><img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
+                class="d-inline-block align-top logo_center" alt=""></mat-toolbar> -->
         <mat-nav-list>
             <div *ngFor="let menuGroupUser of menuListUser">
                 <div *ngIf="menuGroupUser.menus.length == 0 ">

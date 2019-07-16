@@ -89,3 +89,19 @@ span, i {
   height: 3px;
   margin-left: 10%;
 }
+
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+.slacklink{
+  margin: 0 20px 0 10px !important;
+  color: #f9f8f8 !important;
+  font-size: 16px !important;
+}
+.slacklink:hover {
+  cursor: pointer;
+  color: #bdb9b9 !important;
+
+}
