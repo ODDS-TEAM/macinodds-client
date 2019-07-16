@@ -1,16 +1,10 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
-import { MenuViewAdminComponent } from '../../menu-view-admin/menu-view-admin.component';
 import { MyDataServiceService } from '../../my-data-service.service';
 import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
-import { MenuViewUserComponent } from '../../menu-view-user/menu-view-user.component';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { formatDate } from '@angular/common';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
-
-
 
 
 
@@ -41,14 +35,14 @@ export class CardComponent implements OnInit {
   localtime: any;
   userId = localStorage.getItem('userId');
   userData: any;
-  @Input() cantBorrow: boolean = false;
+  @Input() cantBorrow = false;
 
   constructor(private data: MyDataServiceService,
-    private router: Router,
-    private breakpointObserver: BreakpointObserver,
-    private macApiService: MacinoddsApiService,
-    private formBuilder: FormBuilder,
-    private http: HttpClient) { }
+              private router: Router,
+              private breakpointObserver: BreakpointObserver,
+              private macApiService: MacinoddsApiService,
+              private formBuilder: FormBuilder,
+              private http: HttpClient) { }
 
   ngOnInit() {
     this.editResults = {};

@@ -34,8 +34,7 @@
 
 
         <div class="d-flex flex-row">
-            <button id="btn-upload-file" mat-flat-button (click)="_fileInput.click()"
-                style="background-color: #212121;color:white">Upload
+            <button id="btn-upload-file" mat-flat-button (click)="_fileInput.click()" style="background-color: #212121;color:white">Upload
                 Image</button>
             <div *ngIf="!isHandset">
                 <p style="margin-top: 7px; margin-left: 7px; text-align: center;">{{fileName}}</p>
@@ -44,10 +43,8 @@
         </div>
         <div style="margin-top: 25px;">
             <div class="btn-gruop">
-                <button [disabled]="!addDeviceForm.valid || !vaildatBT" type="submit" class="btn" mat-flat-button
-                    style="background-color: #0E98D5;color:white;" (click)="onSubmit()">Save</button>
-                <button class="btn btn-default-black" (click)="_fileInput.value = ''" mat-flat-button
-                    (click)="cancel()">{{btnLabel}}</button>
+                <button [disabled]="!addDeviceForm.valid || !vaildatBT" type="submit" class="btn" mat-flat-button id="saveBt" style="background-color: #0E98D5;color:white;" (click)="onSubmit()">Save</button>
+                <button class="btn btn-default-black" (click)="_fileInput.value = ''" mat-flat-button id="cancelBt" (click)="cancel()">{{btnLabel}}</button>
             </div>
         </div>
 
@@ -69,24 +66,24 @@
             <div *ngIf="cropping.isLoaded" class="container">
                 <mat-grid-list cols="1" rowHeight="50px">
                     <mat-grid-tile>
-                                    <button (click)="cropping.zoomIn()" class="grap-btn" ly-button appearance="icon">
+                        <button (click)="cropping.zoomIn()" class="grap-btn" ly-button appearance="icon">
                                         <ly-icon>zoom_in</ly-icon>
                                     </button>
-                                    <button (click)="cropping.zoomOut()" class="grap-btn" ly-button appearance="icon">
+                        <button (click)="cropping.zoomOut()" class="grap-btn" ly-button appearance="icon">
                                         <ly-icon>zoom_out</ly-icon>
                                     </button>
-                                    <button (click)="cropping.center()" class="grap-btn" ly-button appearance="icon">
+                        <button (click)="cropping.center()" class="grap-btn" ly-button appearance="icon">
                                         <ly-icon>filter_center_focus</ly-icon>
                                     </button>
-                                    <button (click)="cropping.rotate(-90)" class="grap-btn" ly-button appearance="icon">
+                        <button (click)="cropping.rotate(-90)" class="grap-btn" ly-button appearance="icon">
                                         <ly-icon>rotate_90_degrees_ccw</ly-icon>
                                     </button>
-                                    <button (click)="cropping.fit()" class="grap-btn" ly-button>Fit</button>
-                                    <button *ngIf="!isHandset" class="grap-btn" (click)="cropping.clean()" ly-button>Clean</button>
+                        <button (click)="cropping.fit()" class="grap-btn" ly-button>Fit</button>
+                        <button *ngIf="!isHandset" class="grap-btn" (click)="cropping.clean()" ly-button>Clean</button>
                     </mat-grid-tile>
 
                 </mat-grid-list>
-                
+
 
             </div>
             <ly-img-cropper [withClass]="classes.cropping" #cropping [config]="myConfig" (cropped)="onCropped($event)">

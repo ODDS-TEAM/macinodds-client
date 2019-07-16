@@ -1,14 +1,13 @@
 import { MacinoddsApiService } from './../../../service/macinodds-api.service';
-import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ViewRef, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatRadioButton, MatCardModule, MatDialog, MatDialogRef } from '@angular/material';
-import { RouterLink, Router, RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 
 
-import { LyResizingCroppingImages, ImgCropperConfig, ImgResolution } from '@alyle/ui/resizing-cropping-images';
+import { ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
-import { AutofillMonitor } from '@angular/cdk/text-field';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
@@ -94,7 +93,7 @@ export class FormDeviceComponent implements OnInit {
   result: string;
 
 
-  isHandset: boolean = false;
+  isHandset = false;
 
   myConfig: ImgCropperConfig = {
 
@@ -206,7 +205,7 @@ export class FormDeviceComponent implements OnInit {
     }
   }
   openUploadModal(e) {
-    const fileName = e.srcElement.value.toString().split("\\");
+    const fileName = e.srcElement.value.toString().split('\\');
     this.fileNameEventInput = fileName[fileName.length - 1];
     document.getElementById('openUploadModal').click();
   }
@@ -215,9 +214,8 @@ export class FormDeviceComponent implements OnInit {
     // edit form
     if (this.editCompoCheck) {
       this.router.navigate(['/admin/app/menu-view-admin']);
-    }
-    // add form 
-    else {
+    } else {
+      // add form
       this.addDeviceForm.reset();
       this.imageDefault = this.imageDefaultPath;
       this.fileName = '';
@@ -255,20 +253,24 @@ export class FormDeviceComponent implements OnInit {
 
   // validat จ้า
   validatorName() {
-    if (this.editCompoCheck)
+    if (this.editCompoCheck) {
       this.data.name !== this.backupData.name ? this.vaildatBT = true : this.vaildatBT = false;
+    }
   }
   validatorSerial() {
-    if (this.editCompoCheck)
+    if (this.editCompoCheck) {
       this.data.serial !== this.backupData.serial ? this.vaildatBT = true : this.vaildatBT = false;
+    }
   }
   validatorSpec() {
-    if (this.editCompoCheck)
+    if (this.editCompoCheck) {
       this.data.spec !== this.backupData.spec ? this.vaildatBT = true : this.vaildatBT = false;
+    }
   }
   validatorImg() {
-    if (this.editCompoCheck)
+    if (this.editCompoCheck) {
       this.data.img !== this.backupData.img ? this.vaildatBT = true : this.vaildatBT = false;
+    }
   }
 
 }
