@@ -114,9 +114,8 @@ checkRow(){
 
   slackLink(){
     console.log('slackLink')
-    location.href = 'slack://channel?team=T8M23SGFQ&id=C8L3ZDNUB'
-     setTimeout(function(){location.href = 'https://app.slack.com/client/T8M23SGFQ/C8L3ZDNUB'}, 3500);
-
+    window.open('slack://channel?team=T8M23SGFQ&id=C8L3ZDNUB')
+    setTimeout(function(){window.open('https://app.slack.com/client/T8M23SGFQ/C8L3ZDNUB', '_blank')}, 1000);
   }
 
   webSlack(){
