@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         if (this.isOddsTeam(userData.email)) {
           this.loginGoogle(userData.idToken)
           sessionStorage.setItem('photo', userData.image)
-        //  this.route.navigate(['/first-login']);
+          //  this.route.navigate(['/first-login']);
           console.log(socialPlatform + " sign in data : ", userData);
         }
       }
@@ -58,8 +58,6 @@ export class LoginComponent implements OnInit {
       console.log('res.user.id : ' + res.user.id);
       console.log('res.user.role : ' + res.user.role);
       console.log('res.user.photo : ' + res.user.photoUrl);
-      console.log('res.user.slackACC : ' + res.user.slackAccount);
-      console.log('res.user.slackACC : ' + res.user.email);
       console.log('res.user : ' + JSON.stringify(res.user));
 
       //..............RES............................
