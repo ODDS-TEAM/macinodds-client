@@ -1,20 +1,20 @@
 * {
     box-sizing: border-box;
 }
-.modal{
+
+.modal {
     padding: 1px;
     position: fixed;
     /* width: 300px !important; */
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 65%;
     left: 50%;
     padding-bottom: 50px;
-    z-index:1000 !important;
-
+    z-index: 1000 !important;
 }
 
 .modal-popup {
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     margin: auto auto;
 }
 
@@ -27,8 +27,7 @@ body {
     padding: 30px 30px;
     width: 90%;
     min-width: 300px;
-    margin: 5% auto;
-    
+    margin: 3% auto;
 }
 
 .full {
@@ -41,6 +40,7 @@ body {
 
 .head-card {
     text-align: center;
+    font-size: 18px;
 }
 
 .btn-gruop {
@@ -120,7 +120,8 @@ input[type=submit]:hover {
 input[type="file"] {
     display: none;
 }
-.grap-btn{
+
+.grap-btn {
     margin-right: 5%;
 }
 
@@ -131,7 +132,6 @@ input[type="file"] {
         width: 100%;
         margin-top: 0;
     }
-
 }
 
 .disabledDiv {
@@ -145,8 +145,8 @@ input[type="file"] {
 }
 
 @media only screen and (min-width: 414px) and (max-width: 736px) {
-    .modal{
-        transform: translate(-50%,-50%);
+    .modal {
+        transform: translate(-50%, -50%);
     }
     .sidenav li a {
         float: left;
@@ -167,10 +167,9 @@ input[type="file"] {
 }
 
 @media screen and (max-width: 900px) {
-    .modal{
-        transform: translate(-50%,-50%);
+    .modal {
+        transform: translate(-50%, -50%);
     }
-   
     .sidenav li a {
         float: left;
         padding: 15px;
@@ -187,7 +186,7 @@ input[type="file"] {
     div.content {
         margin-left: 0;
     }
-    .grap-btn{
+    .grap-btn {
         margin-right: 3%;
     }
 }
@@ -210,4 +209,15 @@ input[type="file"] {
     color: #ffffff;
     background-color: #212121;
     border-color: #212121;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: #0e98d5 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #0e98d5 !important;
+    ;
 }

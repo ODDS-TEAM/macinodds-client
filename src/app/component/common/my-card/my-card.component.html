@@ -16,10 +16,7 @@
                 <span class="font-weight-bold title-content-card ">สเปค </span> <span id="spec">
                     {{ result.spec }}
                 </span> <br />
-                <span class="font-weight-bold title-content-card ">สถานที่คืน </span> <span id="spec">
-                    {{ result.location }}
-                </span> <br />
-                <span class="font-weight-bold title-content-card ">กำหนดคืน </span> <span id="spec">
+                <span class="font-weight-bold title-content-card ">กำหนดคืน </span> <span id="returnDate">
                     {{ returnDate }}
                 </span> <br />
 
@@ -53,16 +50,19 @@
                     </button>
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body" [formGroup]="modalForm">
                     <mat-form-field class="return-input">
-                        <input matInput placeholder="สภาพเครื่อง" [(ngModel)]="returnMemo">
+                        <input matInput placeholder="สภาพเครื่อง" id="memo" [(ngModel)]="returnMemo"
+                            formControlName="memo" required>
                     </mat-form-field>
                     <mat-form-field class="return-input">
-                        <input matInput placeholder="สถานที่คืน" [(ngModel)]="returnLocation">
+                        <input matInput placeholder="สถานที่คืน" id="location" [(ngModel)]="returnLocation"
+                            formControlName="location" required>
                     </mat-form-field>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success waves-light"
-                            (click)="onSubmitBorrow()">Submit</button>
+                        <button [disabled]="!modalForm.valid" type="submit" class="btn btn-success waves-light"
+                            id="btn-Submit" (click)="onSubmitBorrow()">Submit</button>
+
                     </div>
                 </div>
 
