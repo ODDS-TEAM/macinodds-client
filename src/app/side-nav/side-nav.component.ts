@@ -48,6 +48,7 @@ export class SideNavComponent implements OnInit {
     private router: Router,
     private macApiService: MacinoddsApiService
   ) {
+    
     // boolean check role
     breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
@@ -110,6 +111,7 @@ checkRow(){
   signOut() {
     this.macApiService.signOut();
   }
+
 
   test() {
     console.log("hhh");

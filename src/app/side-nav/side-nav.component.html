@@ -2,8 +2,10 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true" style="z-index: 5;"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
-        <mat-toolbar><img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
-                class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
+        <mat-toolbar>
+            <img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
+                class="d-inline-block align-top logo_center" alt="">
+        </mat-toolbar>
         <mat-nav-list>
 
             <div class="bg-profile">
@@ -55,19 +57,23 @@
 
     <mat-sidenav-content class="p-0">
         <mat-toolbar color="primary">
+            <mat-toolbar-row style="height: 70px;">
 
-            <!-- <div class="container clearfix">
+                <!-- <div class="container clearfix">
                 <button class="btn btn-outline-light  float-right " type="submit"
                     [routerLink]="['/admin/app/menu-view-admin']" *ngIf="isWeb$ | async">Logout</button>
             </div> -->
 
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-                *ngIf="isHandset$ | async">
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                    *ngIf="isHandset$ | async">
 
-                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
 
-            </button>
-
+                </button>
+                <span class="spacer"></span>
+                <img src="/assets/imgs/slack_ico.png" height="22" >
+                <a class="slacklink" href="https://channel?team=T8M23SGFQ&id=C8L3ZDNUB" >@odds.team</a>
+            </mat-toolbar-row>
         </mat-toolbar>
         <!-- Add Content Here -->
         <router-outlet></router-outlet>

@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class MacinoddsApiService {
+  //  urlPath = "https://atb-macinodds.herokuapp.com/devices";
+   urlPath = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs/';
 
   listData: User[] = [];
   siteName: string;
@@ -94,7 +96,7 @@ export class MacinoddsApiService {
 
 
   getLoginGoogle(idtoken: string): Observable<Login> {
-    return this.http.post<any>('http://localhost:8080/v1/login-google', { 'token': idtoken });
+    return this.http.post<Login>('http://localhost:8080/v1/login-google', { 'token': idtoken });
   }
 
   signOut() {
@@ -106,25 +108,26 @@ export class MacinoddsApiService {
   }
 
 
+  
 // Mock API
   getMacApi() {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/macs');
+    return this.http.get(this.urlPath);
   }
 
   getMacIDApi(id) {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/macs/' + id);
+    return this.http.get(this.urlPath +'/' + id);
   }
 
   putMacAPI(id, data) {
-    return this.http.put('https://5d008336d021760014b74fa8.mockapi.io/test/macs/' + id, data);
+    return this.http.put(this.urlPath +'/' + id, data);
   }
 
   postMacAPI(data) {
-    return this.http.post('https://5d008336d021760014b74fa8.mockapi.io/test/macs', data);
+    return this.http.post(this.urlPath, data);
   }
-  
+
   deleteMacAPI(id) {
-    return this.http.delete('https://5d008336d021760014b74fa8.mockapi.io/test/macs/' + id);
+    return this.http.delete(this.urlPath +'/' + id);
   }
 
 //Real API
