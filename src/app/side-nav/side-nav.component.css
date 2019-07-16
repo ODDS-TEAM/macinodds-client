@@ -10,7 +10,7 @@
 .sidenav {
   padding: 0;
   width: 250px;
-  background-color: #343434;
+  background-color: #212121;
   color: #ffffff;
 }
 
@@ -48,7 +48,7 @@ h4 {
 }
 
 .mat-drawer-side {
-  border-right: solid 0px rgba(0, 0, 0, 0);
+  border-right: solid 0px rgba(197, 30, 30, 0);
 }
 
 .container-full {
@@ -73,19 +73,24 @@ span, i {
 }
 
 .img_pro {
+  position: relative;
   border-radius: 50%;
   width: 50%;
   height: auto;
   margin-left: 25%;
+  box-shadow: 0px 0px 0px 10px #343434;
 }
 
 .icon {
   width: 17px;
 }
 
-.divider {
-  background-color: #212121;
-  width: 80%;
-  height: 3px;
-  margin-left: 10%;
+.bg-profile {
+  background: linear-gradient(0deg, #343434 75%, #212121 25%);
+}
+
+.btn-signout::before {
+  background: red ;
+  opacity: 0.5 ;
+  color: red !important;
 }

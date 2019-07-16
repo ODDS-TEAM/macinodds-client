@@ -1,24 +1,24 @@
-<mat-sidenav-container class="sidenav-container" >
+<mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true" style="z-index: 5;"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="!(isHandset$ | async)"   >
+        [opened]="!(isHandset$ | async)">
         <mat-toolbar><img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
                 class="d-inline-block align-top logo_center" alt=""></mat-toolbar>
         <mat-nav-list>
-            <img class="img_pro mb-2" [src]="profilePic" alt="Avatar" />
-            <div class="d-flex justify-content-center">
-                <p><img class="icon" src="/assets/imgs/user.ico" alt="icon"> {{name}}
-            </div>
-            <div class="d-flex justify-content-center">
-                <p><img class="icon" src="/assets/imgs/email.ico" alt="icon"> {{email}}</p>
-            </div>
-            <div class="divider mb-1">
+
+            <div class="bg-profile">
+                <img class="img_pro mt-4" [src]="profilePic" alt="Avatar" />
+                <div class="d-flex justify-content-center mt-3">
+                    <p><img class="icon" src="/assets/imgs/user.ico" alt="icon"> {{name}}
+                </div>
+                <div class="d-flex justify-content-center mt-n2 mb-4 pb-2">
+                    <p><img class="icon" src="/assets/imgs/email.ico" alt="icon"> {{email}}</p>
+                </div>
             </div>
             <div *ngFor="let menuGroupUser of menuList ; let i = index">
                 <div *ngIf="menuGroupUser.menus.length == 0 ">
                     <a mat-list-item class="line btn-side btn-side1 " routerLinkActive="active"
-                        [routerLink]="[rountPath +menuGroupUser.group.code]"
-                        id="botton-{{ menuGroupUser.group.code }}"
+                        [routerLink]="[rountPath +menuGroupUser.group.code]" id="botton-{{ menuGroupUser.group.code }}"
                         (click)="openedSide()">
                         <div class="container">
 
@@ -37,7 +37,7 @@
 
 
             <div class="container clearfix p-0 ">
-                <a mat-list-item class="line btn-side btn-side1" id="sign-out" (click)="signOut()">
+                <a mat-list-item class="line btn-side btn-side1 btn-signout" id="sign-out" (click)="signOut()">
                     <div class="container">
                         <div class="row">
                             <div class="col-1">
@@ -54,7 +54,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="p-0">
-        <mat-toolbar color="primary" >
+        <mat-toolbar color="primary">
 
             <!-- <div class="container clearfix">
                 <button class="btn btn-outline-light  float-right " type="submit"
