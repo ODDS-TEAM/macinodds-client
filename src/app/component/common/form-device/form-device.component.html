@@ -42,6 +42,7 @@
 
         </div>
         <div style="margin-top: 25px;">
+            
             <div class="btn-gruop">
                 <button [disabled]="!addDeviceForm.valid || !vaildatBT" type="submit" class="btn" mat-flat-button id="saveBt" style="background-color: #0E98D5;color:white;" (click)="onSubmit()">Save</button>
                 <button class="btn btn-default-black" (click)="_fileInput.value = ''" mat-flat-button id="cancelBt" (click)="cancel()">{{btnLabel}}</button>
