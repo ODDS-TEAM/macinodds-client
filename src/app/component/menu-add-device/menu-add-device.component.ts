@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ViewRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatRadioButton } from '@angular/material';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-menu-add-device',
