@@ -112,15 +112,7 @@ checkRow(){
     this.macApiService.signOut();
   }
 
-  slackLink(){
-    console.log('slackLink')
-    window.open('slack://channel?team=T8M23SGFQ&id=C8L3ZDNUB')
-    setTimeout(function(){window.open('https://app.slack.com/client/T8M23SGFQ/C8L3ZDNUB', '_blank')}, 1000);
-  }
 
-  webSlack(){
-
-  }
   test() {
     console.log("hhh");
   }
