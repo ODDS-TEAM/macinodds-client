@@ -6,13 +6,14 @@ import { LoginComponent } from './login/login.component';
 import { FirstLoginComponent } from './first-login/first-login.component'
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent,
-},
+  {
+    path: 'login', component: LoginComponent,
+  },
 
   {
     path: '',
     component: LoginComponent,
-  }, 
+  },
   {
     path: 'first-login',
     component: FirstLoginComponent
@@ -39,7 +40,7 @@ const routes: Routes = [
       }
     ]
   },
-   { path: '', redirectTo: 'login' , pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 

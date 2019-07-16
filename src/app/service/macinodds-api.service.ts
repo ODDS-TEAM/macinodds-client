@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class MacinoddsApiService {
+  //  urlPath = "https://atb-macinodds.herokuapp.com/devices";
+   urlPath = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs/';
 
   listData: User[] = [];
   siteName: string;
@@ -106,36 +108,47 @@ export class MacinoddsApiService {
   }
 
 
-  // API for Mac device
   
-  // getMacApi() {
-  //   return this.http.get('http://mac.odds.team/api/devices');
-  // }
-
-  // getMacIDApi(id) {
-  //   return this.http.get('http://mac.odds.team/api/devices/' + id);
-  // }
-
-
+// Mock API
   getMacApi() {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/macs');
+    return this.http.get(this.urlPath);
   }
 
   getMacIDApi(id) {
-    return this.http.get('http://mac.odds.team/api/devices/' + id);
+    return this.http.get(this.urlPath +'/' + id);
   }
 
   putMacAPI(id, data) {
-    return this.http.put('http://mac.odds.team/api/devices/' + id, data);
+    return this.http.put(this.urlPath +'/' + id, data);
   }
 
   postMacAPI(data) {
-    return this.http.post('http://mac.odds.team/api/devices', data);
+    return this.http.post(this.urlPath, data);
   }
 
   deleteMacAPI(id) {
-    return this.http.delete('http://mac.odds.team/api/devices/' + id);
+    return this.http.delete(this.urlPath +'/' + id);
   }
+
+//Real API
+  // getMacApi() {
+  //   return this.http.get('http://mac.odds.team/api/devices');
+  // }
+    
+  // getMacIDApi(id) {
+  //   return this.http.get('http://mac.odds.team/api/devices/' + id);
+  // }
+    
+  // putMacAPI(id, data) {
+  //   return this.http.put('http://mac.odds.team/api/devices/' + id, data);
+  // }
+    
+  // postMacAPI(data) {
+  //   return this.http.post('http://mac.odds.team/api/devices', data);
+  // deleteMacAPI(id) {
+  //       return this.http.delete('http://mac.odds.team/api/devices/' + id);
+  // }
+
   // End API for Mac device
 
   //test
@@ -143,7 +156,11 @@ export class MacinoddsApiService {
     return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d25038577a26e3df3f6eea1');
   }
   getUserAPI() {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385a67b86e4230cd5d5');
+    //borrowed user
+    // return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385a67b86e4230cd5d5');
+
+    //not borrow user
+    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385aa920601650f984d');
   }
   getData(id) {
     return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/myMac/' + id);

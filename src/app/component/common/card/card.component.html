@@ -16,10 +16,8 @@
                     <div class="col-lg-6 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
                         <span class="font-weight-bold head-content-card" id="name" id="name-{{i}}">{{ result.name }}
                         </span>
-                        <img *ngIf="result.borrowing" class="icon" src="/assets/imgs/available.ico" alt="icon"
-                            id="status-av-{{i}}">
-                        <img *ngIf="!result.borrowing" class="icon" src="/assets/imgs/unavailable.ico" alt="icon"
-                            id="status-uv">
+                        <img *ngIf="result.borrowing" class="icon" src="/assets/imgs/available.ico" alt="icon">
+                        <img *ngIf="!result.borrowing" class="icon" src="/assets/imgs/unavailable.ico" alt="icon">
                         <br />
                         <span class="font-weight-bold title-content-card "> Serial </span> <span
                             id="serial-{{i}}">{{ result.serial }}</span>
@@ -35,8 +33,7 @@
                         <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">โทร </span>
                             <span id="borrower-{{i}}"> {{ result.tel }}</span> <br />
                         </div>
-                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">กำหนดคืน
-                            </span>
+                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">กำหนดคืน </span>
                             <span id="borrower-{{i}}"> {{result.returnDate| date:'dd/MM/yyyy'}}</span> <br />
                         </div>
                     </div>
@@ -52,7 +49,7 @@
                             </button>
                         </div>
                         <div class="col-10 col-lg-8 px-0 mx-auto" [hidden]=role>
-                            <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold" *ngIf="result.borrowing"
+                            <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold"  *ngIf="result.borrowing"
                                 (click)="deleteDevice(result._id , result.serial)" id="btn-delete-{{i}}">
                                 <i class="fa fa-trash mr-1"> </i>
                                 Delete
@@ -97,7 +94,7 @@
                     </mat-form-field>
 
                     <button type="submit" class="btn btn-success waves-light float-sm-right ml-4 mt-2"
-                        (click)="onSubmitBorrow()" id="Btn-submit">
+                        (click)="onSubmitBorrow()">
                         Submit
                     </button>
 
