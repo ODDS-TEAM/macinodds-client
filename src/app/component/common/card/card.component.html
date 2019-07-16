@@ -90,14 +90,14 @@
 
                 <div class="modal-body ">
                     <mat-form-field class="example-full-width">
-                        <input matInput [min]="dateNow" [max]="maxDate" [matDatepicker]="picker" (click)="check()"
-                            placeholder="Choose a date" [(ngModel)]="returnDate">
+                        <input matInput [min]="dateNow" [max]="maxDate" [matDatepicker]="picker" (dateInput)="check($event)"
+                            placeholder="Choose a date" [(ngModel)]="returnDate" >
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-datepicker touchUi #picker></mat-datepicker>
                     </mat-form-field>
 
                     <button type="submit" class="btn btn-success waves-light float-sm-right ml-4 mt-2"
-                        (click)="onSubmitBorrow()" id="Btn-submit">
+                        (click)="onSubmitBorrow()" [disabled]="!btnValid" id="Btn-submit">
                         Submit
                     </button>
 

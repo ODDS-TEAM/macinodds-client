@@ -37,6 +37,8 @@ export class CardComponent implements OnInit {
   userData: any;
   @Input() cantBorrow = false;
 
+  btnValid: boolean = false;
+
   constructor(private data: MyDataServiceService,
               private router: Router,
               private breakpointObserver: BreakpointObserver,
@@ -125,7 +127,10 @@ export class CardComponent implements OnInit {
 
   }
   check() {
-    console.log(this.returnDate);
+  
+      this.btnValid = true;
+
+    
   }
 
   checkBorrow() {
@@ -134,5 +139,6 @@ export class CardComponent implements OnInit {
       this.cantBorrow = this.userData.status;
     });
   }
+
 
 }
