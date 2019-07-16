@@ -17,7 +17,7 @@
             <div *ngFor="let menuGroupUser of menuList ; let i = index">
                 <div *ngIf="menuGroupUser.menus.length == 0 ">
                     <a mat-list-item class="line btn-side btn-side1 " routerLinkActive="active"
-                        [routerLink]="['/admin/app/'+menuGroupUser.group.code]"
+                        [routerLink]="[rountPath +menuGroupUser.group.code]"
                         id="botton-{{ menuGroupUser.group.code }}"
                         (click)="openedSide()">
                         <div class="container">

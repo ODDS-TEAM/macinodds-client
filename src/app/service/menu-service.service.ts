@@ -10,15 +10,15 @@ export class MenuServiceService {
   getMenuList() {
     const menuList: MenuItem[] = [
       {
-        group: { code: 'menu-view-admin', name: 'View Admin', icon: 'far fa-list-alt'},
+        group: { code: '', name: 'View Admin', icon: 'far fa-list-alt'},
         menus: []
       },
       {
-        group: { code: 'menu-add-device', name: 'Add Device', icon: 'fas fa-file-medical'},
+        group: { code: 'create', name: 'Add Device', icon: 'fas fa-file-medical'},
         menus: []
       },
       {
-        group: { code: 'menu-view-history', name: 'History', icon: 'fas fa-history'},
+        group: { code: 'history', name: 'History', icon: 'fas fa-history'},
         menus: []
       },
 
@@ -29,11 +29,11 @@ export class MenuServiceService {
   getMenuListUser() {
     const menuList: MenuItem[] = [
       {
-        group: { code: 'menu-view-user', name: 'Menu User Test', icon: 'fas fa-file-medical' },
+        group: { code: '', name: 'Menu User Test', icon: 'fas fa-file-medical' },
         menus: []
       },
       {
-        group: { code: 'menu-view-history', name: 'History', icon: 'fas fa-history'},
+        group: { code: 'history', name: 'History', icon: 'fas fa-history'},
         menus: []
       }
     ];

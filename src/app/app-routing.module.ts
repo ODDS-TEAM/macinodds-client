@@ -7,17 +7,11 @@ import { FirstLoginComponent } from './first-login/first-login.component'
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent,
-  // children: [
-  //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
-  // ]
 },
 
   {
     path: '',
     component: LoginComponent,
-    // children: [
-    //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
-    // ]
   }, 
   {
     path: 'first-login',
@@ -29,7 +23,7 @@ const routes: Routes = [
     component: SideNavComponent,
     children: [
       {
-        path: 'app',
+        path: '',
         loadChildren: './component/component.module#ComponentModule'
       }
     ]
@@ -40,22 +34,12 @@ const routes: Routes = [
     component: SideNavComponent,
     children: [
       {
-        path: 'app',
+        path: '',
         loadChildren: './component/component.module#ComponentModule'
       }
     ]
   },
-
-  // {path: 'viewUser', component: ViewUserComponent},
-  // { path: 'view-user', component: ViewUserComponent },
    { path: '', redirectTo: 'login' , pathMatch: 'full' }
-
-
-  // { path: 'view-user', component: ViewUserComponent },
-  // { path: '', redirectTo: 'user' , pathMatch: 'full' },
-  //  { path: '**', redirectTo: '' },
-
-
 ];
 
 

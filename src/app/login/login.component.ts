@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('email', this.user.email);
       localStorage.setItem('image', this.user.imgProfile);
       localStorage.setItem('role', this.user.role);
-      this.route.navigate(['/user/app/menu-view-admin']);
+      this.route.navigate(['/admin']);
 
     });
 
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('email', this.user.email);
       localStorage.setItem('image', this.user.imgProfile);
       localStorage.setItem('role', this.user.role);
-      this.route.navigate(['/user/app/menu-view-user']);
+      this.route.navigate(['/user']);
     });
   }
 

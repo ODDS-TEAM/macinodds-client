@@ -13,6 +13,8 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
+  roleCheck : Boolean;
+  rountPath:string;
   name = localStorage.getItem('Username');
   email = localStorage.getItem('email');
   profilePic = localStorage.getItem('image');
@@ -25,13 +27,7 @@ export class SideNavComponent implements OnInit {
 
 
   ngOnInit() {
-    this.role = (localStorage.getItem('role') === 'admin');
-    console.log(localStorage.getItem('role'));
-    if (this.role == true) {
-      this.menuList = this.menuService.getMenuList();
-    }
-    else
-      this.menuList = this.menuService.getMenuListUser();
+    this.checkRow();
   }
 
   menuGroupSelected: string;
@@ -71,6 +67,33 @@ export class SideNavComponent implements OnInit {
       }
     )
   }
+
+
+
+checkRow(){
+   
+  // this.roleCheck = (localStorage.getItem('role') == 'admin');
+  // console.log('roleCheck >>>>>  '+this.roleCheck);
+
+  // console.log('Role >>>>>  '+localStorage.getItem('role') + '>>>>>' +this.role);
+  if (localStorage.getItem('role') == 'admin') {
+    this.menuList = this.menuService.getMenuList();
+
+    this.rountPath = '/admin/'
+
+    console.log('Role top >>>>' +this.rountPath);
+
+  }else {
+    this.menuList = this.menuService.getMenuListUser();
+
+    this.rountPath = '/user/'
+
+    console.log('Role >>>>>  ' +this.rountPath);
+    
+  }
+}
+
+
 
   openedSide() {
     if (this.isHandset)
