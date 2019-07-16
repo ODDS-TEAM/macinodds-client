@@ -37,8 +37,6 @@ export class CardComponent implements OnInit {
   userData: any;
   @Input() cantBorrow = false;
 
-  btnValid: boolean = false;
-
   constructor(private data: MyDataServiceService,
               private router: Router,
               private breakpointObserver: BreakpointObserver,
@@ -93,7 +91,7 @@ export class CardComponent implements OnInit {
   // method for when click edit button
   editDevice(id) {
     this.data.changeData(id);
-    this.router.navigate(['/admin/edit']);
+    this.router.navigate(['/admin/app/edit-admin']);
   }
 
   createBorrowForm() {
@@ -127,10 +125,7 @@ export class CardComponent implements OnInit {
 
   }
   check() {
-  
-      this.btnValid = true;
-
-    
+    console.log(this.returnDate);
   }
 
   checkBorrow() {
@@ -139,6 +134,5 @@ export class CardComponent implements OnInit {
       this.cantBorrow = this.userData.status;
     });
   }
-
 
 }
