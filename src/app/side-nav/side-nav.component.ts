@@ -48,6 +48,7 @@ export class SideNavComponent implements OnInit {
     private router: Router,
     private macApiService: MacinoddsApiService
   ) {
+    
     // boolean check role
     breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
@@ -111,6 +112,16 @@ checkRow(){
     this.macApiService.signOut();
   }
 
+  slackLink(){
+    console.log('slackLink')
+    location.href = 'slack://channel?team=T8M23SGFQ&id=C8L3ZDNUB'
+     setTimeout(function(){location.href = 'https://app.slack.com/client/T8M23SGFQ/C8L3ZDNUB'}, 3500);
+
+  }
+
+  webSlack(){
+
+  }
   test() {
     console.log("hhh");
   }
