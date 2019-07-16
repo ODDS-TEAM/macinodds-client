@@ -96,7 +96,7 @@ export class MacinoddsApiService {
 
 
   getLoginGoogle(idtoken: string): Observable<Login> {
-    return this.http.post<any>('http://localhost:8080/v1/login-google', { 'token': idtoken });
+    return this.http.post<Login>('http://localhost:8080/v1/login-google', { 'token': idtoken });
   }
 
   signOut() {
@@ -125,7 +125,7 @@ export class MacinoddsApiService {
   postMacAPI(data) {
     return this.http.post(this.urlPath, data);
   }
-  
+
   deleteMacAPI(id) {
     return this.http.delete(this.urlPath +'/' + id);
   }

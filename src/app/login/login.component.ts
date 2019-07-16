@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
         console.log("User data : ", JSON.stringify(userData));
         if (this.isOddsTeam(userData.email)) {
           this.loginGoogle(userData.idToken)
-        //  this.route.navigate(['/first-login']);
+          sessionStorage.setItem('photo', userData.image)
+          //  this.route.navigate(['/first-login']);
           console.log(socialPlatform + " sign in data : ", userData);
         }
       }
@@ -45,10 +46,40 @@ export class LoginComponent implements OnInit {
     this.macinoddsService.getLoginGoogle(idToken).subscribe(res => {
       console.log('res : ' + JSON.stringify(res));
       sessionStorage.setItem('token', 'Bearer' + res.token);
-      // this.macinoddsService.initDataService();
+      console.log('res.token : ' + res.token);
+      this.macinoddsService.initDataService();
       sessionStorage.setItem('idUser', res.user.id);
       sessionStorage.setItem('firstName', res.user.firstName);
-      sessionStorage.setItem('photoURL', res.user.photoUrl)
+      sessionStorage.getItem('photo');
+
+      //...............USER...........................
+      console.log('res.user.first : ' + res.user.firstName);
+      console.log('res.user.last : ' + res.user.lastName);
+      console.log('res.user.id : ' + res.user.id);
+      console.log('res.user.role : ' + res.user.role);
+      console.log('res.user.photo : ' + res.user.photoUrl);
+      console.log('res.user : ' + JSON.stringify(res.user));
+
+      //..............RES............................
+      // console.log('res.first : ' + res.firstName);
+      // console.log('res.last : ' + res.lastName);
+      // console.log('res.id : ' + res.id);
+      // console.log('res.role : ' + res.role);
+      // console.log('res.photo : ' + res.image);
+      // console.log('res.firstLogin : ' + res.firstLogin);
+
+      // //...................LOGIN...................
+      // console.log('res.login : ' + res.login);
+      // console.log('res.login.firstLogin : ' + res.login.firstLogin);
+      // console.log('res.login.token : ' + res.login.token);
+      // console.log('res.login.idToken : ' + res.login.idToken);
+
+      //..............SESSIONSTORAGE.................
+      // console.log('session-idUser : ' + res.login);
+      // console.log('session-firstName : ' + res.login.firstLogin);
+      // console.log('session-photoURL : ' + res.login.token);
+      // console.log('session- : ' + res.login.idToken);
+
       if (res.firstLogin === 'Y') {
         this.route.navigate(['/first-login'])
       } else {
