@@ -13,7 +13,7 @@ import { DeviceApiService } from 'src/app/service/device-api.service';
 
 export class HistoryComponent implements OnInit {
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
-  role: boolean = true;
+  role = true;
   userId = localStorage.getItem('userId');
 
   // id: string;
@@ -56,7 +56,7 @@ export class HistoryComponent implements OnInit {
       console.log(this.results);
     });
   }
-  
+
 }
 
 

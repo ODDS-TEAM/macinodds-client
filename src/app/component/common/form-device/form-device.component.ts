@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-
-
 import { ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -118,7 +116,7 @@ export class FormDeviceComponent implements OnInit {
     private macApiService: DeviceApiService,
     public dialog: MatDialog) {
     this.imageDefault === this.imageDefaultPath ? this.vaildatBT = false : this.vaildatBT = true;
-    console.log(this.vaildatBT)
+    console.log(this.vaildatBT);
     // boolean check role
     breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
@@ -130,9 +128,9 @@ export class FormDeviceComponent implements OnInit {
         } else {
           this.isHandset = false;
         }
-        console.log('isHandSet = ', this.isHandset)
+        console.log('isHandSet = ', this.isHandset);
       }
-    )
+    );
 
   }
 
@@ -170,9 +168,9 @@ export class FormDeviceComponent implements OnInit {
     this.imageDefault = this.croppedImage;
     this.vaildatBT = true;
     // this.canSubmit();
-    console.log("fileupload ====> " + this.fileToUpload);
+    console.log('fileupload ====> ' + this.fileToUpload);
     this.data.img = imageFile;
-    console.log("file data ====> " + this.data.img);
+    console.log('file data ====> ' + this.data.img);
   }
 
   dataURItoBlob(dataURI) {
