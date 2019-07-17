@@ -2,6 +2,6 @@ import { User } from './user';
 
 export interface Login {
     token: string;
-    firstLogin: string;
+    firstLogin: boolean;
     user: User;
 }
