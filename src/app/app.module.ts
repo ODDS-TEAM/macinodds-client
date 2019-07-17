@@ -34,6 +34,9 @@ import { LyTypographyModule } from '@alyle/ui/typography';
 import { FirstLoginComponent } from './first-login/first-login.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { NotFoundComponent } from './not-found/not-found.component';
+
+import { LottieAnimationViewModule } from 'ng-lottie';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -75,6 +78,7 @@ export class GlobalVariables {
     SideNavComponent,
     LoginComponent,
     FirstLoginComponent,
+    NotFoundComponent,
     // MenuAddDeviceComponent,
     // MenuViewAdminComponent
   ],
@@ -103,7 +107,8 @@ export class GlobalVariables {
     MatCardModule,
     MatFormFieldModule, MatNativeDateModule, MatInputModule,
     StorageServiceModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    LottieAnimationViewModule.forRoot()
   ],
   providers: [
     {provide: LocationStrategy,

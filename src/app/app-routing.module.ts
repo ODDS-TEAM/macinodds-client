@@ -3,6 +3,7 @@ import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LoginComponent } from './login/login.component';
 import { FirstLoginComponent } from './first-login/first-login.component'
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'first-login',
     component: FirstLoginComponent
+  },
+  {
+    path: '404',
+    component: NotFoundComponent
   },
   {
 
@@ -39,7 +44,11 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/404', pathMatch: 'full' }
+
+  
+
 ];
 
 
