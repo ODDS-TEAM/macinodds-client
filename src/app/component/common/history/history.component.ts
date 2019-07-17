@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
-import { DbConnectService } from 'src/app/service/db-connect.service';
+import { DeviceApiService } from 'src/app/service/device-api.service';
 
 @Component({
   selector: 'app-history',
@@ -25,7 +25,7 @@ export class HistoryComponent implements OnInit {
   // memo: string;
   // location: string;
 
-  constructor(private dbConnect: DbConnectService) { }
+  constructor(private device: DeviceApiService) { }
 
   ngOnInit() {
     this.checkRole();
@@ -43,14 +43,14 @@ export class HistoryComponent implements OnInit {
 
   getHistory() {
     console.log('get history -------');
-    this.dbConnect.getHistoryAPI().subscribe(data => {
+    this.device.getHistoryAPI().subscribe(data => {
       // get result from JSON response
       this.results = data;
       console.log(this.results);
     });
   }
   getUserHistory() {
-    this.dbConnect.getHistoryIDApi().subscribe(data => {
+    this.device.getHistoryIDApi().subscribe(data => {
       // get result from JSON response
       this.results = data;
       console.log(this.results);

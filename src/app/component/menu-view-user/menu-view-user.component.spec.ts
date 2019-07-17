@@ -10,7 +10,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { LoginComponent } from 'src/app/login/login.component';
 import { RouterModule } from '@angular/router';
 import { SideNavComponent } from 'src/app/side-nav/side-nav.component';
-import { SideNavUserComponent } from 'src/app/side-nav-user/side-nav-user.component';
 
 describe('MenuViewUserComponent', () => {
   let component: MenuViewUserComponent;

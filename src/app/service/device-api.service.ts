@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, from, BehaviorSubject } from 'rxjs';
-
-
 @Injectable({
   providedIn: 'root'
 })
-export class DbConnectService {
+export class DeviceApiService {
 
   macDeviceAPI = 'http://mac.odds.team/api/devices';
   historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
@@ -16,8 +13,6 @@ export class DbConnectService {
     private http: HttpClient,
     private route: Router
   ) { }
-
-
 
   getMacApi() {
     return this.http.get(this.macDeviceAPI);
@@ -47,6 +42,4 @@ export class DbConnectService {
   getHistoryIDApi() {
     return this.http.get('https://5d2bf6108c90070014971ed9.mockapi.io/userHistory');
   }
-
-
 }
