@@ -14,7 +14,7 @@ export class NotFoundComponent  {
 
   constructor() {
       this.lottieConfig = {
-          path: '/assets/data/404-animation-2.json', 
+          path: '/assets/data/404-animation.json', 
           autoplay: true,
           loop: true
       };
