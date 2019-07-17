@@ -92,10 +92,8 @@ span, i {
   background: linear-gradient(0deg, #343434 75%, #212121 25%);
 }
 
-.btn-signout::before {
-  background: red ;
-  opacity: 0.5 ;
-  color: red !important;
+.btn-signout {
+  cursor:w-resize !important;
 }
 
 .spacer {
