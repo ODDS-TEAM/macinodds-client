@@ -95,7 +95,7 @@ input[type=submit]:hover {
     border-radius: 10px;
     /* background-color: #f2f2f2; */
     /* background-color:white; */
-    padding: 20px;
+    padding: 15px;
 }
 
 .col-25 {
@@ -123,7 +123,7 @@ input[type="file"] {
 }
 
 .grap-btn {
-    margin-right: 5%;
+    margin-right: 23px;
 }
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
@@ -149,6 +149,8 @@ input[type="file"] {
     .modal {
         transform: translate(-50%, -50%);
     }
+ 
+    
     .sidenav li a {
         float: left;
         padding: 15px;

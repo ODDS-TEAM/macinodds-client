@@ -97,13 +97,13 @@ export class FormDeviceComponent implements OnInit {
 
   myConfig: ImgCropperConfig = {
 
-    autoCrop: false,
+    autoCrop: true,
     // extraZoomOut: true,
     width: 300, // Default `250`
     height: 300, // Default `200`
-    fill: '#fff', // Default transparent if type = png else #000,
+    // fill: '#fff', // Default transparent if type = png else #000,
     // type: 'image/jpeg',
-    extraZoomOut: true
+    extraZoomOut: false
   };
 
   // End set size image at cropping modal
@@ -208,6 +208,7 @@ export class FormDeviceComponent implements OnInit {
     const fileName = e.srcElement.value.toString().split('\\');
     this.fileNameEventInput = fileName[fileName.length - 1];
     document.getElementById('openUploadModal').click();
+    document.getElementById('fitScreen').click();
   }
 
   cancel() {

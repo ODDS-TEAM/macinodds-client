@@ -79,7 +79,7 @@
                         <button (click)="cropping.rotate(-90)" class="grap-btn" ly-button appearance="icon">
                                         <ly-icon>rotate_90_degrees_ccw</ly-icon>
                                     </button>
-                        <button (click)="cropping.fit()" class="grap-btn" ly-button>Fit</button>
+                        <button (click)="cropping.fitToScreen()" class="grap-btn" id="fitScreen" ly-button>Fit</button>
                         <button *ngIf="!isHandset" class="grap-btn" (click)="cropping.clean()" ly-button>Clean</button>
                     </mat-grid-tile>
 
@@ -91,7 +91,7 @@
                 <span>Drag and drop image</span>
             </ly-img-cropper>
 
-            <button id="button-cropping" *ngIf="cropping.isLoaded" color="accent" (click)="cropping.crop() || cropping.setScale(0)" ly-button data-dismiss="modal">
+            <button id="button-cropping" *ngIf="cropping.isLoaded" color="#212121" (click)="cropping.crop() || cropping.setScale(0)" ly-button data-dismiss="modal">
                 <ly-icon>crop</ly-icon>crop
             </button>
         </div>
