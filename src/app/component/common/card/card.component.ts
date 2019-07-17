@@ -36,11 +36,13 @@ export class CardComponent implements OnInit {
   userId = localStorage.getItem('userId');
   userData: any;
   @Input() cantBorrow = false;
+  idDeviceBorrow: any;
+  btnValid = false;
 
 
   objectToMyCard: any = {
     name: '',
-    serial:'',
+    serial: '',
     spec: '',
     returnDate: '',
     img: ''
@@ -63,8 +65,8 @@ export class CardComponent implements OnInit {
     this.data.currentData.subscribe(data => this.name = data);
     this.createBorrowForm();
     console.log(this.returnDate);
-    this.btnRole = (localStorage.getItem('role') == 'individuel');
-    console.log(this.btnRole + '<<<<<<< here >>>>' + localStorage.getItem('role'))
+    this.btnRole = (localStorage.getItem('role') === 'individuel');
+    console.log(this.btnRole + '<<<<<<< here >>>>' + localStorage.getItem('role'));
   }
 
   // public hideButton() {
@@ -114,8 +116,14 @@ export class CardComponent implements OnInit {
       // borrow: new FormControl('', Validators.required)
     });
   }
-  onSubmitBorrow() {
 
+  borrowDevice(id) {
+    console.log('click borrow');
+    this.idDeviceBorrow = '' + id;
+    console.log('borrow id =====> ' + this.idDeviceBorrow);
+  }
+
+  onSubmitBorrow(id) {
     const tzoffset = (new Date()).getTimezoneOffset() * 60000;
     this.localtime = (new Date(this.returnDate - tzoffset));
     this.localtime.setHours(12, 0, 0);
@@ -125,11 +133,13 @@ export class CardComponent implements OnInit {
 
     console.log('localISOTime >>>>>>>>>', localISOTime);
 
+    const borrowData: FormData = new FormData();
+    borrowData.append('returnDate', this.returnDate);
+    // borrowData.append('token', token);
 
-    // console.log('form here >>>>>>>' + JSON.stringify( '>>>> date >>>' + localISOTime));
     // post method
-    if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-      this.http.post('http://mac.odds.team/api/mac', localISOTime)
+    if (window.confirm('ยืนยันการยืมเครื่อง')) {
+      this.http.post('http://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData)
         .subscribe(result => {
 
           console.log(result);
@@ -139,7 +149,7 @@ export class CardComponent implements OnInit {
 
   }
   check() {
-    console.log(this.returnDate);
+    this.btnValid = true;
   }
 
   checkBorrow() {
