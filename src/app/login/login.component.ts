@@ -47,9 +47,10 @@ export class LoginComponent implements OnInit {
       console.log('res : ' + JSON.stringify(res));
       sessionStorage.setItem('token', 'Bearer' + res.token);
       console.log('res.token : ' + res.token);
-      this.macinoddsService.initDataService();
+      // this.macinoddsService.initDataService();
       sessionStorage.setItem('idUser', res.user.id);
       sessionStorage.setItem('firstName', res.user.firstName);
+      sessionStorage.setItem('role', res.user.role);
       sessionStorage.getItem('photo');
 
       //...............USER...........................
@@ -80,13 +81,13 @@ export class LoginComponent implements OnInit {
       // console.log('session-photoURL : ' + res.login.token);
       // console.log('session- : ' + res.login.idToken);
 
-      if (res.firstLogin === 'Y') {
+      if (res.firstLogin === true) {
         this.route.navigate(['/first-login'])
       } else {
         if (res.user.role === 'admin') {
-          this.route.navigate(['/admin/app/menu-view-admin']);
+          this.route.navigate(['/admin']);
         } else {
-          this.route.navigate(['/admin/app/menu-view-admin']);
+          this.route.navigate(['/user']);
         }
       }
       //function is empty
