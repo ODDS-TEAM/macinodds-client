@@ -50,7 +50,7 @@ export class HistoryComponent implements OnInit {
     });
   }
   getUserHistory() {
-    this.macApiService.getHistoryIDApi().subscribe(data => {
+    this.macApiService.getHistoryIDApi(localStorage.getItem('userId')).subscribe(data => {
       // get result from JSON response
       this.results = data;
       console.log(this.results);

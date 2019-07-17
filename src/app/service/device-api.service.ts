@@ -8,7 +8,9 @@ export class DeviceApiService {
 
   // macDeviceAPI = 'http://mac.odds.team/api/devices';
   macDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs';
-  historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
+  // historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
+  historyDeviceAPI = 'http://mac.odds.team/api/borrowings';
+
 
   constructor(
     private http: HttpClient,
@@ -40,8 +42,8 @@ export class DeviceApiService {
     return this.http.get(this.historyDeviceAPI);
   }
 
-  getHistoryIDApi() {
-    return this.http.get('https://5d2bf6108c90070014971ed9.mockapi.io/userHistory');
+  getHistoryIDApi(id) {
+    return this.http.get(this.historyDeviceAPI+'/users/'+id);
   }
 
 
