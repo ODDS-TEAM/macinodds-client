@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MyDataServiceService } from '../../my-data-service.service';
 import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -49,7 +49,8 @@ export class CardComponent implements OnInit {
   } ;
   hiddenMyCard = false;
 
-  constructor(private data: MyDataServiceService,
+  constructor(
+    private data: MyDataServiceService,
     private router: Router,
     private breakpointObserver: BreakpointObserver,
     private macApiService: DeviceApiService,
