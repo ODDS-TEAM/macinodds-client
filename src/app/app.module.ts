@@ -20,7 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
-import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 import { StorageServiceModule} from 'angular-webstorage-service';
 import { LyThemeModule, LY_THEME , LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
 
@@ -75,7 +74,6 @@ export class GlobalVariables {
     AppComponent,
     SideNavComponent,
     LoginComponent,
-    SideNavUserComponent,
     FirstLoginComponent,
     // MenuAddDeviceComponent,
     // MenuViewAdminComponent
