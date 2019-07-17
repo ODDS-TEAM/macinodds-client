@@ -17,9 +17,7 @@ export class EditAdminComponent implements OnInit {
     // tslint:disable-next-line:no-shadowed-variable
     this.data.currentData.subscribe(data => {
       this.idEditDevice = data;
-      if (data === 'id') {
-        this.router.navigate(['/admin/app/menu-view-admin']);
-      }
+
     });
   }
 

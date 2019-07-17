@@ -2,9 +2,9 @@ import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { MyDataServiceService } from '../../my-data-service.service';
 import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { DeviceApiService } from 'src/app/service/device-api.service';
 
 
 
@@ -52,7 +52,7 @@ export class CardComponent implements OnInit {
   constructor(private data: MyDataServiceService,
     private router: Router,
     private breakpointObserver: BreakpointObserver,
-    private macApiService: MacinoddsApiService,
+    private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
     private http: HttpClient) {
       this.setHiddenMyCard() ;

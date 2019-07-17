@@ -120,25 +120,25 @@ export class MacinoddsApiService {
 
 
   // Mock API
-  getMacApi() {
-    return this.http.get(this.urlPath);
-  }
+  // getMacApi() {
+  //   return this.http.get(this.urlPath);
+  // }
 
-  getMacIDApi(id) {
-    return this.http.get(this.urlPath + '/' + id);
-  }
+  // getMacIDApi(id) {
+  //   return this.http.get(this.urlPath + '/' + id);
+  // }
 
-  putMacAPI(id, data) {
-    return this.http.put(this.urlPath + '/' + id, data);
-  }
+  // putMacAPI(id, data) {
+  //   return this.http.put(this.urlPath + '/' + id, data);
+  // }
 
-  postMacAPI(data) {
-    return this.http.post(this.urlPath, data);
-  }
+  // postMacAPI(data) {
+  //   return this.http.post(this.urlPath, data);
+  // }
 
-  deleteMacAPI(id) {
-    return this.http.delete(this.urlPath + '/' + id);
-  }
+  // deleteMacAPI(id) {
+  //   return this.http.delete(this.urlPath + '/' + id);
+  // }
 
   //Real API
   // getMacApi() {
@@ -172,7 +172,7 @@ export class MacinoddsApiService {
     //not borrow user
     return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385aa920601650f984d');
   }
-  getData(id) {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/myMac/' + id);
-  }
+  // getData(id) {
+  //   return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/myMac/' + id);
+  // }
 }

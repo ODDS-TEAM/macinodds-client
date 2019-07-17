@@ -25,7 +25,7 @@ export class HistoryComponent implements OnInit {
   // memo: string;
   // location: string;
 
-  constructor(private device: DeviceApiService) { }
+  constructor(private macApiService: DeviceApiService) { }
 
   ngOnInit() {
     this.checkRole();
@@ -43,14 +43,14 @@ export class HistoryComponent implements OnInit {
 
   getHistory() {
     console.log('get history -------');
-    this.device.getHistoryAPI().subscribe(data => {
+    this.macApiService.getHistoryAPI().subscribe(data => {
       // get result from JSON response
       this.results = data;
       console.log(this.results);
     });
   }
   getUserHistory() {
-    this.device.getHistoryIDApi().subscribe(data => {
+    this.macApiService.getHistoryIDApi().subscribe(data => {
       // get result from JSON response
       this.results = data;
       console.log(this.results);

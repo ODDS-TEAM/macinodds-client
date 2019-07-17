@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { DeviceApiService } from 'src/app/service/device-api.service';
 
 
 
@@ -115,7 +116,7 @@ export class FormDeviceComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private theme: LyTheme2,
-    private macApiService: MacinoddsApiService,
+    private macApiService: DeviceApiService,
     public dialog: MatDialog) {
     this.imageDefault === this.imageDefaultPath ? this.vaildatBT = false : this.vaildatBT = true;
     console.log(this.vaildatBT)
@@ -214,7 +215,7 @@ export class FormDeviceComponent implements OnInit {
   cancel() {
     // edit form
     if (this.editCompoCheck) {
-      this.router.navigate(['/admin/app/menu-view-admin']);
+      this.router.navigate(['/admin']);
     } else {
       // add form
       this.addDeviceForm.reset();
@@ -235,9 +236,9 @@ export class FormDeviceComponent implements OnInit {
 
     // check page is edit
     if (this.editCompoCheck) {
-      formData.append('img', this.fileToUpload);
+      // formData.append('img', this.fileToUpload);
       this.macApiService.putMacAPI(this.idEditDevice, formData).subscribe(data => {
-        this.router.navigate(['/admin/app/menu-view-admin']);
+        this.router.navigate(['/admin']);
       });
     } else {
       // page is add device
@@ -246,7 +247,7 @@ export class FormDeviceComponent implements OnInit {
         this.macApiService.postMacAPI(formData).subscribe(data => {
           console.log(formData);
           this.cancel();
-          this.router.navigate(['/admin/app/menu-view-admin']);
+          this.router.navigate(['/admin']);
         });
       }
     }

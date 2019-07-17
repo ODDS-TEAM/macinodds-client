@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MacinoddsApiService } from '../../../service/macinodds-api.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { DeviceApiService } from 'src/app/service/device-api.service';
 
 @Component({
   selector: 'app-my-card',
@@ -32,7 +33,7 @@ export class MyCardComponent implements OnInit {
 
 
   constructor(
-    private macApiService: MacinoddsApiService,
+    private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
   ) {
   }
