@@ -46,6 +46,9 @@ h4 {
   width: 50%;
   height: auto;
 }
+.logo_center:hover{
+  cursor: pointer;
+}
 
 .mat-drawer-side {
   border-right: solid 0px rgba(197, 30, 30, 0);

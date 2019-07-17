@@ -37,12 +37,24 @@ export class CardComponent implements OnInit {
   userData: any;
   @Input() cantBorrow = false;
 
+
+  objectToMyCard: any = {
+    name: '',
+    serial:'',
+    spec: '',
+    returnDate: '',
+    img: ''
+  } ;
+  hiddenMyCard = false;
+
   constructor(private data: MyDataServiceService,
-              private router: Router,
-              private breakpointObserver: BreakpointObserver,
-              private macApiService: MacinoddsApiService,
-              private formBuilder: FormBuilder,
-              private http: HttpClient) { }
+    private router: Router,
+    private breakpointObserver: BreakpointObserver,
+    private macApiService: MacinoddsApiService,
+    private formBuilder: FormBuilder,
+    private http: HttpClient) {
+      this.setHiddenMyCard() ;
+     }
 
   ngOnInit() {
     this.editResults = {};
@@ -52,7 +64,7 @@ export class CardComponent implements OnInit {
     this.createBorrowForm();
     console.log(this.returnDate);
     this.btnRole = (localStorage.getItem('role') == 'individuel');
-    console.log(this.btnRole+ '<<<<<<< here >>>>' + localStorage.getItem('role'))
+    console.log(this.btnRole + '<<<<<<< here >>>>' + localStorage.getItem('role'))
   }
 
   // public hideButton() {
@@ -136,5 +148,24 @@ export class CardComponent implements OnInit {
       this.cantBorrow = this.userData.status;
     });
   }
+
+  setHiddenMyCard() {
+    if (localStorage.getItem('role') === 'admin') {
+      this.hiddenMyCard = false;
+    } else {
+      this.macApiService.getData(this.userId).subscribe(data => {
+        this.objectToMyCard = data;
+        if (this.objectToMyCard.status) {
+          this.hiddenMyCard = false;
+          this.objectToMyCard = null;
+        } else {
+          this.hiddenMyCard = true;
+        }
+      });
+
+    }
+
+  }
+
 
 }

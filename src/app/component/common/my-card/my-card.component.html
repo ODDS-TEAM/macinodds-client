@@ -1,20 +1,20 @@
-<div [hidden]=hideCard>
+<div>
     <h5 class="margin-header"> My Device </h5>
     <li class="card shadow-lg bg-light mb-3 size-card">
         <div class="row justify-content-md-center mx-0 my-6" id="id-card">
             <div class="col-lg-3 px-0 ">
-                <img class="img-device img-rounded-left " id="img" src="{{pathImg}}">
+                <img class="img-device img-rounded-left " id="img" src="http://139.5.146.213/assets/imgs/devices/{{dataObject.img}}">
 
             </div>
 
             <div class="col-lg-6 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
-                <span class="font-weight-bold head-content-card" id="name"> {{result.name}}
+                <span class="font-weight-bold head-content-card" id="name"> {{dataObject.name}}
                 </span><br />
                 <span class="font-weight-bold title-content-card "> Serial </span> <span
-                    id="serial">{{ result.serial }}</span>
+                    id="serial">{{ dataObject.serial }}</span>
                 <br />
                 <span class="font-weight-bold title-content-card ">สเปค </span> <span id="spec">
-                    {{ result.spec }}
+                    {{ dataObject.spec }}
                 </span> <br />
                 <span class="font-weight-bold title-content-card ">กำหนดคืน </span> <span id="returnDate">
                     {{ returnDate }}

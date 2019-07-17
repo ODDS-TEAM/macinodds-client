@@ -2,9 +2,10 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport="true" style="z-index: 5;"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
-        <mat-toolbar>
-            <img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
-                class="d-inline-block align-top logo_center" alt="">
+        <mat-toolbar class="odds-logo">
+                <img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
+                    class="d-inline-block align-top logo_center" alt="" (click)="navigateToHome()">
+
         </mat-toolbar>
         <mat-nav-list>
 
@@ -71,8 +72,9 @@
 
                 </button>
                 <span class="spacer"></span>
-                <img src="/assets/imgs/slack_ico.png" height="22" >
-                <a class="slacklink" href="https://app.slack.com/client/T8M23SGFQ/C8L3ZDNUB" target="_blank" >@odds.team</a>
+                <img src="/assets/imgs/slack_ico.png" height="22">
+                <a class="slacklink" href="https://app.slack.com/client/T8M23SGFQ/C8L3ZDNUB"
+                    target="_blank">@odds.team</a>
             </mat-toolbar-row>
         </mat-toolbar>
         <!-- Add Content Here -->

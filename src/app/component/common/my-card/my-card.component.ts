@@ -12,26 +12,23 @@ export class MyCardComponent implements OnInit {
   modalForm: FormGroup;
 
   userId = localStorage.getItem('userId');
-  result: any;
-  hideCard = false;
-  borrowDate: any;
   returnDate: any;
   returnMemo: string;
   returnLocation: string;
-  pathImg: string;
   vaildatBT = false;
 
 
-  backupData: any = {
-    memo: '',
-    location: ''
+
+  @Input() 
+  dataObject: any = {
+    name: '',
+    serial:'',
+    spec: '',
+    returnDate: '',
+    img: ''
   };
 
-  data: any = {
-    memo: '',
-    location: ''
 
-  };
 
 
   constructor(
@@ -41,8 +38,9 @@ export class MyCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.test();
     this.createForm();
+    this.returnDate = new Date(this.dataObject.returnDate).toLocaleDateString("pt-PT");
+    console.log(this.dataObject)
   }
 
   private createForm() {
@@ -52,35 +50,7 @@ export class MyCardComponent implements OnInit {
     });
   }
 
-  test() {
-    if (localStorage.getItem('role') === 'admin') {
-      this.hideCard = true;
-      this.result = {};
-      this.pathImg = '';
-    } else {
-      this.macApiService.getData(this.userId).subscribe(data => {
-        this.result = data;
-        if (this.result.status) {
-          this.hideCard = true;
-          this.result = {};
-          this.pathImg = '';
+ 
 
-        } else {
-          this.borrowDate = new Date(this.result.borrowDate).toLocaleDateString("pt-PT");
-          this.returnDate = new Date(this.result.returnDate).toLocaleDateString("pt-PT");
-          this.pathImg = 'http://139.5.146.213/assets/imgs/devices/' + this.result.img
-        }
-      });
-      this.result = {};
-    }
-  }
-
-  validatorMemo() {
-    this.data.memo !== this.backupData.name ? this.vaildatBT = true : this.vaildatBT = false;
-  }
-
-  validatorLocation() {
-    this.data.memo !== this.backupData.name ? this.vaildatBT = true : this.vaildatBT = false;
-  }
 
 }

@@ -13,14 +13,14 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
-  roleCheck : Boolean;
-  rountPath:string;
+  roleCheck: Boolean;
+  rountPath: string;
   name = localStorage.getItem('Username');
   email = localStorage.getItem('email');
   profilePic = localStorage.getItem('image');
   UserRole: any;
   role: any;
-   isHandset: boolean = false;
+  isHandset: boolean = false;
   opened: boolean = true;
 
   @ViewChild('drawer', { static: false }) private sidenav: MatSidenav;
@@ -48,12 +48,12 @@ export class SideNavComponent implements OnInit {
     private router: Router,
     private macApiService: MacinoddsApiService
   ) {
-    
+
     // boolean check role
     breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
       Breakpoints.HandsetPortrait,
-      
+
     ]).subscribe(
       result => {
         if (result.matches) {
@@ -68,31 +68,33 @@ export class SideNavComponent implements OnInit {
       }
     )
   }
-
-
-
-checkRow(){
-   
-  // this.roleCheck = (localStorage.getItem('role') == 'admin');
-  // console.log('roleCheck >>>>>  '+this.roleCheck);
-
-  // console.log('Role >>>>>  '+localStorage.getItem('role') + '>>>>>' +this.role);
-  if (localStorage.getItem('role') == 'admin') {
-    this.menuList = this.menuService.getMenuList();
-
-    this.rountPath = '/admin/'
-
-    console.log('Role top >>>>' +this.rountPath);
-
-  }else {
-    this.menuList = this.menuService.getMenuListUser();
-
-    this.rountPath = '/user/'
-
-    console.log('Role >>>>>  ' +this.rountPath);
-    
+  navigateToHome() {
+    localStorage.getItem('role') == 'admin' ? this.router.navigate(['/admin']) : this.router.navigate(['/user']);
   }
-}
+
+
+  checkRow() {
+
+    // this.roleCheck = (localStorage.getItem('role') == 'admin');
+    // console.log('roleCheck >>>>>  '+this.roleCheck);
+
+    // console.log('Role >>>>>  '+localStorage.getItem('role') + '>>>>>' +this.role);
+    if (localStorage.getItem('role') == 'admin') {
+      this.menuList = this.menuService.getMenuList();
+
+      this.rountPath = '/admin/'
+
+      console.log('Role top >>>>' + this.rountPath);
+
+    } else {
+      this.menuList = this.menuService.getMenuListUser();
+
+      this.rountPath = '/user/'
+
+      console.log('Role >>>>>  ' + this.rountPath);
+
+    }
+  }
 
 
 
