@@ -53,9 +53,12 @@ export class LoginComponent implements OnInit {
       console.log('res : ' + JSON.stringify(res));
       sessionStorage.setItem('token', 'Bearer ' + res.token);
       let decode = JWT(res.token);
-      const role = decode.role;
+      console.log(JSON.stringify(decode)+'??????' + decode)
+      const decodeToString = JSON.stringify(decode);
+      const decodeNew = JSON.parse(decodeToString);
+      const role = decodeNew.role;
       console.log('res.token : ' + res.token);
-      console.log('decode jwt.role:', decode.role);
+      console.log('decode jwt.role:', decodeNew.role);
       console.log('decode jwt:', decode);
       // this.macinoddsService.initDataService();
       // sessionStorage.setItem('idUser', res.user.id);
