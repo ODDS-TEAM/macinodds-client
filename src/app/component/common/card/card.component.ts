@@ -155,6 +155,8 @@ export class CardComponent implements OnInit {
 
   checkBorrow() {
     this.macApiService.getData(this.userId).subscribe(data => {
+      console.log('<<<<<<<< มานี่แล้ว Link' + this.userId);
+
       this.userData = data;
       this.cantBorrow = this.userData.status;
     });
@@ -166,6 +168,8 @@ export class CardComponent implements OnInit {
     } else {
       this.macApiService.getData(this.userId).subscribe(data => {
         this.objectToMyCard = data;
+      console.log('<<<<<<<< มานี่แล้ว Link' + this.userId);
+
         if (this.objectToMyCard.status) {
           this.hiddenMyCard = false;
           this.objectToMyCard = null;

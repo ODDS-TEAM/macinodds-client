@@ -40,7 +40,7 @@ export class MyCardComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.returnDate = new Date(this.dataObject.returnDate).toLocaleDateString('pt-PT');
-    console.log(this.dataObject);
+    
   }
 
   private createForm() {

@@ -241,6 +241,7 @@ export class FormDeviceComponent implements OnInit {
     if (this.editCompoCheck) {
       // formData.append('img', this.fileToUpload);
       this.macApiService.putMacAPI(this.idEditDevice, formData).subscribe(data => {
+      console.log('mmmmm>>>'+ formData)
         this.router.navigate(['/admin']);
       });
     } else {

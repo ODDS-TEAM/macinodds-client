@@ -47,7 +47,7 @@ export class DeviceApiService {
   }
 
   getData(id) {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/myMac/' + id);
+    return this.http.get(this.macDeviceAPI+'/' + id);
     // return this.http.get(this.macDeviceAPI +'/'+ id);
   }
   postBorrowAPI(id, data) {
