@@ -1,7 +1,7 @@
 export class User {
-    name : '';
-    email : '';
-    imgProfile : '';
-    slackAccount : '';
-    tel : '';
+    name ;
+    email ;
+    imgProfile ;
+    slackAccount;
+    tel ;
 }
