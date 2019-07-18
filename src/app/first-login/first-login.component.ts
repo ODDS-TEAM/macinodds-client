@@ -15,55 +15,70 @@ import { error } from 'util';
 })
 export class FirstLoginComponent implements OnInit {
   userResult: any;
-  macinoddsService: MacinoddsApiService;
   private user: SocialUser;
   users: User;
   id = sessionStorage.getItem('idUser');
-  role = sessionStorage.getItem('role');
+  role = localStorage.getItem('role');
+  name = localStorage.getItem('Username');
+  mail = localStorage.getItem('email');
+  imageProfile = localStorage.getItem('image');
   firstLoginForm: FormGroup;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private formBuild: FormBuilder,
+    private macinoddsService: MacinoddsApiService
     // private dialog: MatDialog,
   ) { }
 
+
   nextPage() {
     console.log('valid no get = ' + this.firstLoginForm.valid)
+    console.log('value.name = ' + this.firstLoginForm.get('fullName').value)
     console.log('value = ' + this.firstLoginForm.get('telephoneNumb').value)
     console.log('validator.name = ' + this.firstLoginForm.get('telephoneNumb').validator.name)
     console.log('status = ' + this.firstLoginForm.get('telephoneNumb').status)
     console.log('valid = ' + this.firstLoginForm.get('telephoneNumb').valid)
     console.log('validator.length = ' + this.firstLoginForm.get('telephoneNumb').validator.length)
 
-    const { fullName, emailODDS, slackAccount, telephoneNumb } = this.firstLoginForm.getRawValue();
+    const { slackAccount, telephoneNumb } = this.firstLoginForm.getRawValue();
 
     // tslint:disable-next-line:max-line-length
     if (telephoneNumb && slackAccount
     ) {
+
       this.users = new User();
-      this.users.fullName = fullName;
-      this.users.email = emailODDS;
+      this.users.name = this.name;
+      this.users.email = this.mail;
+      this.users.imgProfile = this.imageProfile;
       this.users.slackAccount = slackAccount;
       this.users.tel = telephoneNumb;
-      this.users.role = this.role;
-      // this.macinoddsService.updateUser(sessionStorage.getItem('idUser'), this.users)
-      //   .subscribe(res => {
+      // console.log(...registerForm);
+      
+      // this.users.role = this.role;
+      // this.macinoddsService.updateUser(registerForm).subscribe(res=>{console.log('toptotptoptotpto')})
+      console.log(this.users+'<<<<<<'+JSON.stringify(this.users))
+      const usersToString =JSON.stringify(this.users)
+      const usersToStringToOBJ = JSON.parse(usersToString);
+      console.log(usersToStringToOBJ+'<<<<testA<<'+JSON.stringify(usersToStringToOBJ))
+
+      this.macinoddsService.updateUser(usersToStringToOBJ).subscribe(res => {
+          console.log('1324567890-'+ res);
           if (this.firstLoginForm.get('slackAccount').valid && this.firstLoginForm.get('telephoneNumb').valid) {
             localStorage.removeItem('userResult');
-            if (this.users.role === 'individual') {
+            if (this.role === 'individual') {
               this.router.navigate(['/user']);
             } else {
               this.router.navigate(['/login']);
-
             }
-          } error => {
-            this.router.navigate(['/login']);
+            // } error => {
+            //   this.router.navigate(['/login']);
+            // }
           }
-        // }, error => {
-        //   this.router.navigate(['/login']);
-        // });
+        }, error => {
+          this.router.navigate(['/login']);
+        });
       // this.macinoddsService.postUsertoMock(id,role,NAME,MAIL,PHOTO)
     } else {
       alert('Please complete the information.');

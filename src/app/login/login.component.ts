@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
 import { forkJoin } from 'rxjs';
 import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
+import * as JWT from 'jwt-decode';
 import { User } from '../shared/user';
 
 
@@ -15,10 +16,11 @@ export class LoginComponent implements OnInit {
   //test
   user: any;
   public name: any;
+  
   constructor(
     private socialAuthService: AuthService,
     private macinoddsService: MacinoddsApiService,
-    private route: Router
+    private route: Router,
   ) { }
 
   ngOnInit() {
@@ -49,26 +51,30 @@ export class LoginComponent implements OnInit {
   loginGoogle(idToken: string) {
     this.macinoddsService.getLoginGoogle(idToken).subscribe(res => {
       console.log('res : ' + JSON.stringify(res));
-      sessionStorage.setItem('token', 'Bearer' + res.token);
+      sessionStorage.setItem('token', 'Bearer ' + res.token);
+      let decode = JWT(res.token);
+      const role = decode.role;
       console.log('res.token : ' + res.token);
+      console.log('decode jwt.role:', decode.role);
+      console.log('decode jwt:', decode);
       // this.macinoddsService.initDataService();
-      sessionStorage.setItem('idUser', res.user.id);
-      sessionStorage.setItem('fullName', res.user.fullName);
-      sessionStorage.setItem('emailODDS', res.user.email)
-      sessionStorage.setItem('role', res.user.role);
-      sessionStorage.setItem('photo', res.user.imageProfile);
+      // sessionStorage.setItem('idUser', res.user.id);
+      // sessionStorage.setItem('fullName', res.user.fullName);
+      // sessionStorage.setItem('emailODDS', res.user.email)
+      // sessionStorage.setItem('role', res.user.role);
+      // sessionStorage.setItem('photo', res.user.imageProfile);
       //................LocalStorage..................
-      localStorage.setItem('role', res.user.role);
+      localStorage.setItem('role', role);
 
       //...............USER...........................
       // console.log('res.user.first : ' + res.user.firstName);
       // console.log('res.user.last : ' + res.user.lastName);
-      console.log('res.user.fullName : ' + res.user.fullName);
-      console.log('res.user.email : ' + res.user.email);
-      console.log('res.user.id : ' + res.user.id);
-      console.log('res.user.role : ' + res.user.role);
-      console.log('res.user.photo : ' + res.user.imageProfile);
-      console.log('res.user : ' + JSON.stringify(res.user));
+      // console.log('res.user.fullName : ' + res.user.fullName);
+      // console.log('res.user.email : ' + res.user.email);
+      // console.log('res.user.id : ' + res.user.id);
+      // console.log('res.user.role : ' + res.user.role);
+      // console.log('res.user.photo : ' + res.user.imageProfile);
+      // console.log('res.user : ' + JSON.stringify(res.user));
       //..............RES............................
       // console.log('res.first : ' + res.firstName);
       // console.log('res.last : ' + res.lastName);
@@ -97,7 +103,7 @@ export class LoginComponent implements OnInit {
         this.route.navigate(['/first-login'])
       } else {
         // this.getUser();
-        if (res.user.role === 'admin') {
+        if (role === 'admin') {
           this.route.navigate(['/admin']);
         } else {
           this.route.navigate(['/user']);
@@ -142,6 +148,19 @@ export class LoginComponent implements OnInit {
       // localStorage.setItem('image', this.user.imgProfile);
       // localStorage.setItem('role', this.user.role);
       this.route.navigate(['/user']);
+    });
+  }
+
+  getAdmin() {
+    this.macinoddsService.getUserAPI().subscribe(data => {
+      console.log(data)
+      this.user = data;
+      localStorage.setItem('userId', this.user._id);
+      // localStorage.setItem('Username', this.user.name);
+      // localStorage.setItem('email', this.user.email);
+      // localStorage.setItem('image', this.user.imgProfile);
+      // localStorage.setItem('role', this.user.role);
+      this.route.navigate(['/admin']);
     });
   }
 

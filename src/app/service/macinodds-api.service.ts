@@ -25,10 +25,9 @@ export class MacinoddsApiService {
   dailyIncome = '';
   id = sessionStorage.getItem('idUser');
   private userId = this.id;
-  private NAME = sessionStorage.getItem('NAME');
-  private MAIL = sessionStorage.getItem('MAIL');
-  private PHOTO = sessionStorage.getItem('PHOTO');
-  private ROLE = sessionStorage.getItem('role');
+  role = localStorage.getItem('role');
+  imageProfile = localStorage.getItem('role');
+  name = localStorage.getItem('role');
   readonly apiPath = environment.api;
   individualListed: User;
   corporateListed: User;
@@ -92,20 +91,13 @@ export class MacinoddsApiService {
     return httpOptions;
   }
 
-  // updateUser(id: string, user: User): Observable<User> {
-  //   return this.http.put<User>(`${this.apiPath}users/${id}`, user,
-  //       this.getHttpHeaderOption()
-  //   );
-  // }
-
+  getLoginGoogle(idtoken: string): Observable<Login> {
+    return this.http.post<Login>(`${this.apiPath}/login`, { 'token': idtoken });
+  }
 
   // getLoginGoogle(idtoken: string): Observable<Login> {
-  //   return this.http.post<Login>(`${this.apiPath}/login` , { 'token': idtoken });
+  //   return this.http.post<Login>('http://localhost:8080/v1/login-google', { 'token': idtoken });
   // }
-
-  getLoginGoogle(idtoken: string): Observable<Login> {
-    return this.http.post<Login>('http://localhost:8080/v1/login-google', { 'token': idtoken });
-  }
 
   postUsertoMock(id: string, role: string, NAME: string, MAIL: string, PHOTO: string): Observable<User> {
     return this.http.post<User>('https://5d008336d021760014b74fa8.mockapi.io/test/user', { '_id': id, 'role': role, 'name': NAME, 'email': MAIL, 'imgProfile': PHOTO });
@@ -121,10 +113,16 @@ export class MacinoddsApiService {
       this.getHttpHeaderOption());
   }
 
-  updateUser(id: string, user: User): Observable<User> {
-    return this.http.put<User>('http://localhost:8080/v1/login-google' + id, user,
-      this.getHttpHeaderOption()
-    );
+  updateUser(user) {
+    console.log('toptopy =' + user);
+    return this.http.put(`${this.apiPath}/register`, user,
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization:  sessionStorage.getItem('token')
+      })
+     } );
+
   }
 
 
