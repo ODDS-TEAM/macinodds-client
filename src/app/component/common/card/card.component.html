@@ -14,14 +14,14 @@
                     <div class="col-lg-6 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
                         <span class="font-weight-bold head-content-card" id="name" id="name-{{i}}">{{ result.name }}
                         </span>
-                        <img *ngIf="result.borrowing" class="icon" src="/assets/imgs/available.ico" alt="icon">
-                        <img *ngIf="!result.borrowing" class="icon" src="/assets/imgs/unavailable.ico" alt="icon">
+                        <img *ngIf="result.borrowing" class="icon" src="/assets/imgs/available.ico" alt="icon" id="status-av-{{i}}">
+                        <img *ngIf="!result.borrowing" class="icon" src="/assets/imgs/unavailable.ico" alt="icon" id="status-uv">
                         <br />
                         <span class="font-weight-bold title-content-card "> Serial </span> <span id="serial-{{i}}">{{ result.serial }}</span>
                         <br />
                         <span class="font-weight-bold title-content-card ">สเปค </span> <span id="spec-{{i}}">
                             {{ result.spec }}</span> <br />
-                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card ">สถานที่ </span>
+                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card">สถานที่ </span>
                             <span id="borrower-{{i}}"> {{ result.location }}</span> <br />
                         </div>
                         <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">ผู้ยืม </span>
