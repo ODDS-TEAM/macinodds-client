@@ -66,7 +66,7 @@ export class CardComponent implements OnInit {
     this.data.currentData.subscribe(data => this.name = data);
     this.createBorrowForm();
     console.log(this.returnDate);
-    this.btnRole = (localStorage.getItem('role') === 'individuel');
+    this.btnRole = (localStorage.getItem('role') === 'individual');
     console.log(this.btnRole + '<<<<<<< here >>>>' + localStorage.getItem('role'));
   }
 

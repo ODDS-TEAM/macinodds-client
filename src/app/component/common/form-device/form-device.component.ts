@@ -42,7 +42,8 @@ export class FormDeviceComponent implements OnInit {
 
   readonly imageDefaultPath: string = '/assets/imgs/add_device.jpg';
 
-
+  disableInput: any;
+  locationInput:any;
 
   addDeviceForm: FormGroup;
 
@@ -147,7 +148,7 @@ export class FormDeviceComponent implements OnInit {
       nameDevice: ['', Validators.required],
       serial: ['', Validators.required],
       spec: ['', Validators.required],
-      location: ['', [Validators.required, Validators.minLength(1)]],
+      location: [{ value: this.locationInput , disabled: this.disableInput }, [Validators.required, Validators.minLength(1)]],
     });
   }
 
@@ -194,6 +195,11 @@ export class FormDeviceComponent implements OnInit {
         this.backupData = Object.assign({}, this.data);
         this.imageDefault = 'http://139.5.146.213/assets/imgs/devices/' + this.data.img;
         this.fileName = this.data.img;
+
+        this.disableInput = !this.data.borrowing;
+        this.locationInput = this.data.location;
+        console.log('disableInput :' +this.disableInput +'>>>>'+JSON.stringify(this.data))
+        this.createForm();
       });
     } else {
       this.CardHeaderLabel = 'ลงทะเบียนอุปกรณ์';

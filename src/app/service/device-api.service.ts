@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 })
 export class DeviceApiService {
 
-  // macDeviceAPI = 'http://mac.odds.team/api/devices';
+  // macDeviceAPI = 'http://mac.odds.team/api/devices';s
   macDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs';
   // historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
   historyDeviceAPI = 'http://mac.odds.team/api/borrowings';
