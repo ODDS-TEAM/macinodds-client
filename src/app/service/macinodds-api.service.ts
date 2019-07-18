@@ -108,20 +108,15 @@ export class MacinoddsApiService {
       this.getHttpHeaderOption());
   }
 
-  getRoleUser(role: string): Observable<User> {
-    return this.http.get<User>('http://localhost:8080/v1/login-google',
-      this.getHttpHeaderOption());
-  }
-
   updateUser(user) {
     console.log('toptopy =' + user);
     return this.http.put(`${this.apiPath}/register`, user,
-    {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization:  sessionStorage.getItem('token')
-      })
-     } );
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: sessionStorage.getItem('token')
+        })
+      });
 
   }
 
