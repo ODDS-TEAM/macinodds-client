@@ -73,7 +73,6 @@ export class FirstLoginComponent implements OnInit {
 
   }
 
-
   ngOnInit() {
     // console.log(this.user + '<<<<<<');
 
