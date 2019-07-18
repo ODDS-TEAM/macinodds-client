@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  oddsSignIn(socialPlatform: string) {
+  oddsSignIn() {
     let socialPlatformProvider;
     console.log(socialPlatformProvider)
     socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
         console.log("User data : ", JSON.stringify(userData));
         if (this.isOddsTeam(userData.email)) {
           this.loginGoogle(userData.idToken)
-          sessionStorage.setItem('photo', userData.image)
+          // sessionStorage.setItem('photo', userData.image)
           //  this.route.navigate(['/first-login']);
-          console.log(socialPlatform + " sign in data : ", userData);
+          console.log(" sign in data : ", userData);
         }
       }
     );
@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
       console.log('res.user.role : ' + res.user.role);
       console.log('res.user.photo : ' + res.user.imageProfile);
       console.log('res.user : ' + JSON.stringify(res.user));
-
       //..............RES............................
       // console.log('res.first : ' + res.firstName);
       // console.log('res.last : ' + res.lastName);
