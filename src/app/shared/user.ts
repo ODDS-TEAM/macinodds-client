@@ -3,5 +3,9 @@ export class User {
     role: string;
     firstName: string;
     lastName: string;
-    photoUrl: string;
+    fullName: string;
+    email: string;
+    slackAccount: string;
+    tel: string;
+    imageProfile: string;
 }

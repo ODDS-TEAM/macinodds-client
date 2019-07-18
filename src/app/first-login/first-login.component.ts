@@ -13,7 +13,7 @@ import { MacinoddsApiService } from '../service/macinodds-api.service';
   styleUrls: ['./first-login.component.css']
 })
 export class FirstLoginComponent implements OnInit {
-
+  userResult: any;
   macinoddsService: MacinoddsApiService;
   private user: SocialUser;
   // users: User;
@@ -65,27 +65,39 @@ export class FirstLoginComponent implements OnInit {
     console.log(this.role);
 
     if (this.firstLoginForm.get('slackAccount').valid && this.firstLoginForm.get('telephoneNumb').valid) {
-       if (this.role === 'admin') {
+      localStorage.removeItem('userResult');
+      if (this.role === 'admin') {
         this.router.navigate(['/admin']);
       } else {
         this.router.navigate(['/user']);
+
       }
     }
+
+
   }
 
   ngOnInit() {
-    console.log(this.user + '<<<<<<');
-    this.setup();
+    // console.log(this.user + '<<<<<<');
+
 
     this.authService.authState.subscribe((users) => {
-      this.user = users;
-      // this.loggedIn = (user != null); 
-      console.log(this.user);
+      this.userResult = users;
+
+      if (this.userResult !== null) {
+        this.user = users;
+        localStorage.setItem('userResult', JSON.stringify(this.user));
+      } else {
+        this.user = JSON.parse(localStorage.getItem('userResult'));
+      }
     });
+
+    this.setup();
+
   }
 
   setup() {
-    this.firstLoginForm  = new FormGroup({
+    this.firstLoginForm = new FormGroup({
       fullName: new FormControl({ value: '', disabled: true }, Validators.required),
       emailODDS: new FormControl({ value: '', disabled: true }, Validators.required),
       slackAccount: new FormControl('', [Validators.email, Validators.required]),

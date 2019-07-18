@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.clear();
+    localStorage.removeItem('userResult');
+
   }
 
 
@@ -49,16 +52,17 @@ export class LoginComponent implements OnInit {
       console.log('res.token : ' + res.token);
       // this.macinoddsService.initDataService();
       sessionStorage.setItem('idUser', res.user.id);
-      sessionStorage.setItem('firstName', res.user.firstName);
+      sessionStorage.setItem('fullName', res.user.fullName);
       sessionStorage.setItem('role', res.user.role);
-      sessionStorage.getItem('photo');
+      sessionStorage.setItem('photo', res.user.imageProfile);
 
       //...............USER...........................
-      console.log('res.user.first : ' + res.user.firstName);
-      console.log('res.user.last : ' + res.user.lastName);
+      // console.log('res.user.first : ' + res.user.firstName);
+      // console.log('res.user.last : ' + res.user.lastName);
+      console.log('res.user.fullName : ' + res.user.fullName);
       console.log('res.user.id : ' + res.user.id);
       console.log('res.user.role : ' + res.user.role);
-      console.log('res.user.photo : ' + res.user.photoUrl);
+      console.log('res.user.photo : ' + res.user.imageProfile);
       console.log('res.user : ' + JSON.stringify(res.user));
 
       //..............RES............................
@@ -81,9 +85,14 @@ export class LoginComponent implements OnInit {
       // console.log('session-photoURL : ' + res.login.token);
       // console.log('session- : ' + res.login.idToken);
 
+
+
+
       if (res.firstLogin === true) {
+
         this.route.navigate(['/first-login'])
       } else {
+        // this.getUser();
         if (res.user.role === 'admin') {
           this.route.navigate(['/admin']);
         } else {
@@ -118,31 +127,18 @@ export class LoginComponent implements OnInit {
   }
 
   //test
-  getAdmin() {
-    this.macinoddsService.getAdminAPI().subscribe(data => {
-      this.user = data;
-      console.log(JSON.stringify(data)  + '<<<<<<YYYY')
-      localStorage.setItem('userId', this.user._id);
-      localStorage.setItem('Username', this.user.name);
-      localStorage.setItem('email', this.user.email);
-      localStorage.setItem('image', this.user.imgProfile);
-      localStorage.setItem('role', this.user.role);
-      this.route.navigate(['/admin']);
 
-    });
-
-  }
-  getUser() {
-    this.macinoddsService.getUserAPI().subscribe(data => {
-      console.log(data)
-      this.user = data;
-      localStorage.setItem('userId', this.user._id);
-      localStorage.setItem('Username', this.user.name);
-      localStorage.setItem('email', this.user.email);
-      localStorage.setItem('image', this.user.imgProfile);
-      localStorage.setItem('role', this.user.role);
-      this.route.navigate(['/user']);
-    });
-  }
+  // getUser() {
+  //   this.macinoddsService.getUserAPI().subscribe(data => {
+  //     console.log(data)
+  //     this.user = data;
+  //     localStorage.setItem('userId', this.user._id);
+  //     localStorage.setItem('Username', this.user.name);
+  //     localStorage.setItem('email', this.user.email);
+  //     localStorage.setItem('image', this.user.imgProfile);
+  //     localStorage.setItem('role', this.user.role);
+  //     this.route.navigate(['/user']);
+  //   });
+  // }
 
 }
