@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 })
 export class DeviceApiService {
 
-  // macDeviceAPI = 'http://mac.odds.team/api/devices';s
+  // macDeviceAPI = 'http://mac.odds.team/api/devices';
   macDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs';
   // historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
   historyDeviceAPI = 'http://mac.odds.team/api/borrowings';
@@ -58,17 +58,7 @@ export class DeviceApiService {
     return this.http.post(this.macDeviceAPI + '/' + id + '/return', data);
   }
 
-  // test mockAPI
-  getAdminAPI() {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d25038577a26e3df3f6eea1');
-  }
-  getUserAPI() {
-    // borrowed user
-    // return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385a67b86e4230cd5d5');
 
-    // not borrow user
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385aa920601650f984d');
-  }
 
 
 }

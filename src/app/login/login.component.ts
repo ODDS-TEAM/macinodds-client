@@ -141,30 +141,5 @@ export class LoginComponent implements OnInit {
 
   //test
 
-  getUser() {
-    this.macinoddsService.getUserAPI().subscribe(data => {
-      console.log(data)
-      this.user = data;
-      localStorage.setItem('userId', this.user._id);
-      // localStorage.setItem('Username', this.user.name);
-      // localStorage.setItem('email', this.user.email);
-      // localStorage.setItem('image', this.user.imgProfile);
-      // localStorage.setItem('role', this.user.role);
-      this.route.navigate(['/user']);
-    });
-  }
-
-  getAdmin() {
-    this.macinoddsService.getUserAPI().subscribe(data => {
-      console.log(data)
-      this.user = data;
-      localStorage.setItem('userId', this.user._id);
-      // localStorage.setItem('Username', this.user.name);
-      // localStorage.setItem('email', this.user.email);
-      // localStorage.setItem('image', this.user.imgProfile);
-      // localStorage.setItem('role', this.user.role);
-      this.route.navigate(['/admin']);
-    });
-  }
 
 }
