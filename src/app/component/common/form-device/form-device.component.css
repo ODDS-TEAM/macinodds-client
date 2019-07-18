@@ -213,14 +213,3 @@ input[type="file"] {
     background-color: #212121;
     border-color: #212121;
 }
-
-::ng-deep .mat-focused .mat-form-field-label {
-    /*change color of label*/
-    color: #0e98d5 !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-    /*change color of underline when focused*/
-    background-color: #0e98d5 !important;
-    ;
-}
