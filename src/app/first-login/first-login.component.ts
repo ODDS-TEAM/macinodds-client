@@ -5,6 +5,7 @@ import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms'
 import { MatRadioButton, MatCardModule, MatDialog } from '@angular/material';
 import { User } from '../shared/user';
 import { MacinoddsApiService } from '../service/macinodds-api.service';
+import { error } from 'util';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class FirstLoginComponent implements OnInit {
   userResult: any;
   macinoddsService: MacinoddsApiService;
   private user: SocialUser;
-  // users: User;
+  users: User;
   id = sessionStorage.getItem('idUser');
   role = sessionStorage.getItem('role');
   firstLoginForm: FormGroup;
@@ -41,41 +42,37 @@ export class FirstLoginComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     if (telephoneNumb && slackAccount
     ) {
-      //   if (this.role === 'corporate') {
-      //   if (corporateName === '') {
-      //     alert('Please complete the information.');
-      //     return;
-      //   }
-      //   this.user.corporateName = corporateName;
-      // }
-      // this.user.firstName = firstName;
-      // this.user.lastName = lastName;
-      // this.user.bankAccountName = bankAccountName;
-      // this.user.bankAccountNumber = bankAccountNumber;
-      // this.user.slackAccount = slackAccount;
-      // this.user.role = this.role;
-      // this.user.vat = this.vat;
-      // this.user.siteId = siteId;
-      // this.user.project = project;
-      // this.updateUser();
+      this.users = new User();
+      this.users.fullName = fullName;
+      this.users.email = emailODDS;
+      this.users.slackAccount = slackAccount;
+      this.users.tel = telephoneNumb;
+      this.users.role = this.role;
+      // this.macinoddsService.updateUser(sessionStorage.getItem('idUser'), this.users)
+      //   .subscribe(res => {
+          if (this.firstLoginForm.get('slackAccount').valid && this.firstLoginForm.get('telephoneNumb').valid) {
+            localStorage.removeItem('userResult');
+            if (this.users.role === 'individual') {
+              this.router.navigate(['/user']);
+            } else {
+              this.router.navigate(['/login']);
+
+            }
+          } error => {
+            this.router.navigate(['/login']);
+          }
+        // }, error => {
+        //   this.router.navigate(['/login']);
+        // });
+      // this.macinoddsService.postUsertoMock(id,role,NAME,MAIL,PHOTO)
     } else {
       alert('Please complete the information.');
     }
 
     console.log(this.role);
 
-    if (this.firstLoginForm.get('slackAccount').valid && this.firstLoginForm.get('telephoneNumb').valid) {
-      localStorage.removeItem('userResult');
-      if (this.role === 'admin') {
-        this.router.navigate(['/admin']);
-      } else {
-        this.router.navigate(['/user']);
-
-      }
-    }
-
-
   }
+
 
   ngOnInit() {
     // console.log(this.user + '<<<<<<');

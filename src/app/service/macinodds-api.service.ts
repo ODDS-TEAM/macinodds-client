@@ -25,6 +25,10 @@ export class MacinoddsApiService {
   dailyIncome = '';
   id = sessionStorage.getItem('idUser');
   private userId = this.id;
+  private NAME = sessionStorage.getItem('NAME');
+  private MAIL = sessionStorage.getItem('MAIL');
+  private PHOTO = sessionStorage.getItem('PHOTO');
+  private ROLE = sessionStorage.getItem('role');
   readonly apiPath = environment.api;
   individualListed: User;
   corporateListed: User;
@@ -95,8 +99,16 @@ export class MacinoddsApiService {
   // }
 
 
+  // getLoginGoogle(idtoken: string): Observable<Login> {
+  //   return this.http.post<Login>(`${this.apiPath}/login` , { 'token': idtoken });
+  // }
+
   getLoginGoogle(idtoken: string): Observable<Login> {
-    return this.http.post<Login>('http://localhost:8080/v1/login-google', { 'token': idtoken });
+    return this.http.post<Login>('http://localhost:8080/v1/login-google' , { 'token': idtoken });
+  }
+
+  postUsertoMock(id: string, role: string, NAME: string, MAIL: string, PHOTO: string): Observable<User> {
+    return this.http.post<User>('https://5d008336d021760014b74fa8.mockapi.io/test/user', { '_id': id, 'role': role, 'name': NAME, 'email': MAIL, 'imgProfile': PHOTO});
   }
 
   getUserbyId(id: string = this.userId) {
@@ -109,11 +121,30 @@ export class MacinoddsApiService {
       this.getHttpHeaderOption());
   }
 
+  updateUser(id: string, user: User): Observable<User> {
+    return this.http.put<User>('http://localhost:8080/v1/login-google' + id, user,
+        this.getHttpHeaderOption()
+    );
+}
+
+
   signOut() {
     this.authService.signOut();
     console.log(' You are sign out ');
     this.route.navigate(['/login']);
     sessionStorage.clear();
 
+  }
+
+
+  getAdminAPI() {
+    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d25038577a26e3df3f6eea1');
+  }
+  getUserAPI() {
+    //borrowed user
+    // return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385a67b86e4230cd5d5');
+
+    //not borrow user
+    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385aa920601650f984d');
   }
 }

@@ -37,7 +37,13 @@ export class LoginComponent implements OnInit {
         console.log("User data : ", JSON.stringify(userData));
         if (this.isOddsTeam(userData.email)) {
           this.loginGoogle(userData.idToken)
-          // sessionStorage.setItem('photo', userData.image)
+          localStorage.setItem('Username', userData.name);
+          localStorage.setItem('email', userData.email);
+          localStorage.setItem('image', userData.image);
+
+          // sessionStorage.setItem('NAME', userData.name);
+          // sessionStorage.setItem('MAIL', userData.email);
+          // sessionStorage.setItem('PHOTO', userData.image);
           //  this.route.navigate(['/first-login']);
           console.log(" sign in data : ", userData);
         }
@@ -53,13 +59,17 @@ export class LoginComponent implements OnInit {
       // this.macinoddsService.initDataService();
       sessionStorage.setItem('idUser', res.user.id);
       sessionStorage.setItem('fullName', res.user.fullName);
+      sessionStorage.setItem('emailODDS', res.user.email)
       sessionStorage.setItem('role', res.user.role);
       sessionStorage.setItem('photo', res.user.imageProfile);
+      //................LocalStorage..................
+      localStorage.setItem('role', res.user.role);
 
       //...............USER...........................
       // console.log('res.user.first : ' + res.user.firstName);
       // console.log('res.user.last : ' + res.user.lastName);
       console.log('res.user.fullName : ' + res.user.fullName);
+      console.log('res.user.email : ' + res.user.email);
       console.log('res.user.id : ' + res.user.id);
       console.log('res.user.role : ' + res.user.role);
       console.log('res.user.photo : ' + res.user.imageProfile);
@@ -127,17 +137,17 @@ export class LoginComponent implements OnInit {
 
   //test
 
-  // getUser() {
-  //   this.macinoddsService.getUserAPI().subscribe(data => {
-  //     console.log(data)
-  //     this.user = data;
-  //     localStorage.setItem('userId', this.user._id);
-  //     localStorage.setItem('Username', this.user.name);
-  //     localStorage.setItem('email', this.user.email);
-  //     localStorage.setItem('image', this.user.imgProfile);
-  //     localStorage.setItem('role', this.user.role);
-  //     this.route.navigate(['/user']);
-  //   });
-  // }
+  getUser() {
+    this.macinoddsService.getUserAPI().subscribe(data => {
+      console.log(data)
+      this.user = data;
+      localStorage.setItem('userId', this.user._id);
+      // localStorage.setItem('Username', this.user.name);
+      // localStorage.setItem('email', this.user.email);
+      // localStorage.setItem('image', this.user.imgProfile);
+      // localStorage.setItem('role', this.user.role);
+      this.route.navigate(['/user']);
+    });
+  }
 
 }
