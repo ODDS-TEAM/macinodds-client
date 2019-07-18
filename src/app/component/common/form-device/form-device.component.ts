@@ -212,7 +212,8 @@ export class FormDeviceComponent implements OnInit {
     const fileName = e.srcElement.value.toString().split('\\');
     this.fileNameEventInput = fileName[fileName.length - 1];
     document.getElementById('openUploadModal').click();
-    document.getElementById('fitScreen').click();
+    // document.getElementById('fitScreen').click();
+    fitToScreen();
   }
 
   cancel() {
