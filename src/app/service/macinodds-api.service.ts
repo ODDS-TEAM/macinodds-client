@@ -25,6 +25,9 @@ export class MacinoddsApiService {
   dailyIncome = '';
   id = sessionStorage.getItem('idUser');
   private userId = this.id;
+  role = localStorage.getItem('role');
+  imageProfile = localStorage.getItem('role');
+  name = localStorage.getItem('role');
   readonly apiPath = environment.api;
   individualListed: User;
   corporateListed: User;
@@ -88,15 +91,16 @@ export class MacinoddsApiService {
     return httpOptions;
   }
 
-  // updateUser(id: string, user: User): Observable<User> {
-  //   return this.http.put<User>(`${this.apiPath}users/${id}`, user,
-  //       this.getHttpHeaderOption()
-  //   );
+  getLoginGoogle(idtoken: string): Observable<Login> {
+    return this.http.post<Login>(`${this.apiPath}/login`, { 'token': idtoken });
+  }
+
+  // getLoginGoogle(idtoken: string): Observable<Login> {
+  //   return this.http.post<Login>('http://localhost:8080/v1/login-google', { 'token': idtoken });
   // }
 
-
-  getLoginGoogle(idtoken: string): Observable<Login> {
-    return this.http.post<Login>('http://localhost:8080/v1/login-google', { 'token': idtoken });
+  postUsertoMock(id: string, role: string, NAME: string, MAIL: string, PHOTO: string): Observable<User> {
+    return this.http.post<User>('https://5d008336d021760014b74fa8.mockapi.io/test/user', { '_id': id, 'role': role, 'name': NAME, 'email': MAIL, 'imgProfile': PHOTO });
   }
 
   getUserbyId(id: string = this.userId) {
@@ -104,10 +108,18 @@ export class MacinoddsApiService {
       this.getHttpHeaderOption());
   }
 
-  getRoleUser(role: string): Observable<User> {
-    return this.http.get<User>('http://localhost:8080/v1/login-google',
-      this.getHttpHeaderOption());
+  updateUser(user) {
+    console.log('toptopy =' + user);
+    return this.http.put(`${this.apiPath}/register`, user,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: sessionStorage.getItem('token')
+        })
+      });
+
   }
+
 
   signOut() {
     this.authService.signOut();
@@ -118,50 +130,6 @@ export class MacinoddsApiService {
   }
 
 
-
-  // Mock API
-  // getMacApi() {
-  //   return this.http.get(this.urlPath);
-  // }
-
-  // getMacIDApi(id) {
-  //   return this.http.get(this.urlPath + '/' + id);
-  // }
-
-  // putMacAPI(id, data) {
-  //   return this.http.put(this.urlPath + '/' + id, data);
-  // }
-
-  // postMacAPI(data) {
-  //   return this.http.post(this.urlPath, data);
-  // }
-
-  // deleteMacAPI(id) {
-  //   return this.http.delete(this.urlPath + '/' + id);
-  // }
-
-  //Real API
-  // getMacApi() {
-  //   return this.http.get('http://mac.odds.team/api/devices');
-  // }
-
-  // getMacIDApi(id) {
-  //   return this.http.get('http://mac.odds.team/api/devices/' + id);
-  // }
-
-  // putMacAPI(id, data) {
-  //   return this.http.put('http://mac.odds.team/api/devices/' + id, data);
-  // }
-
-  // postMacAPI(data) {
-  //   return this.http.post('http://mac.odds.team/api/devices', data);
-  // deleteMacAPI(id) {
-  //       return this.http.delete('http://mac.odds.team/api/devices/' + id);
-  // }
-
-  // End API for Mac device
-
-  //test
   getAdminAPI() {
     return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d25038577a26e3df3f6eea1');
   }
@@ -172,7 +140,4 @@ export class MacinoddsApiService {
     //not borrow user
     return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385aa920601650f984d');
   }
-  // getData(id) {
-  //   return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/myMac/' + id);
-  // }
 }
