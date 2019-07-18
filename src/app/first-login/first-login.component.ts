@@ -115,10 +115,5 @@ export class FirstLoginComponent implements OnInit {
       telephoneNumb: new FormControl('', [Validators.min(10), Validators.pattern('[0-9]{10}'), Validators.required])
     });
   }
-  getRole() {
-    this.macinoddsService.getRoleUser(this.id).subscribe(res => {
-      this.role = res.role;
-    })
-  }
 
 }
