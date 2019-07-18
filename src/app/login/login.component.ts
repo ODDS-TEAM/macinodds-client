@@ -40,11 +40,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('Username', userData.name);
           localStorage.setItem('email', userData.email);
           localStorage.setItem('image', userData.image);
-
-          // sessionStorage.setItem('NAME', userData.name);
-          // sessionStorage.setItem('MAIL', userData.email);
-          // sessionStorage.setItem('PHOTO', userData.image);
-          //  this.route.navigate(['/first-login']);
           console.log(" sign in data : ", userData);
         }
       }
