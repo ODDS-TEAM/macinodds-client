@@ -80,7 +80,7 @@ export class CardComponent implements OnInit {
       // get result from JSON response
       this.results = data;
       // console.log('print get all : ' + JSON.stringify(this.results[0]._id));
-      console.log(this.results);
+      console.log(this.results[0]);
     });
   }
 
@@ -120,7 +120,7 @@ export class CardComponent implements OnInit {
   borrowDevice(id) {
     console.log('click borrow');
     this.idDeviceBorrow = '' + id;
-    console.log('borrow id =====> ' + this.idDeviceBorrow);
+    console.log('borrow Device id =====> ' + this.idDeviceBorrow);
   }
 
   onSubmitBorrow(id) {
@@ -136,15 +136,26 @@ export class CardComponent implements OnInit {
     const borrowData: FormData = new FormData();
     borrowData.append('returnDate', this.returnDate);
     // borrowData.append('token', token);
-
+    console.log('returndate',localISOTime)
+    console.log('borrowdata',borrowData)
+    
     // post method
     if (window.confirm('ยืนยันการยืมเครื่อง')) {
-      this.http.post('https://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData)
-        .subscribe(result => {
+      const data = {
+        "returnDate":localISOTime
+      }
+      console.log(data)
+      this.macApiService.postBorrowAPI(this.idDeviceBorrow,data).subscribe(res =>{
+        console.log("Response ====>" , res)
+        location.reload();
+      })
+      // console.log('post borrow ======>',('http://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData))
+      // this.http.post('http://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData)
+      //   .subscribe(result => {
 
-          console.log(result);
-          this.router.navigate(['/admin/app/menu-view-admin']);
-        });
+      //     console.log(result);
+      //     this.router.navigate(['/admin/app/menu-view-admin']);
+      //   });
     }
 
   }
