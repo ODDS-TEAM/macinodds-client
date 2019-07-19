@@ -68,6 +68,8 @@ export class RegisterComponent implements OnInit {
           // } error => {
           //   this.router.navigate(['/login']);
           // }
+        } else {
+          alert('Please fill your true telephone number');
         }
       }, error => {
         this.router.navigate(['/login']);
