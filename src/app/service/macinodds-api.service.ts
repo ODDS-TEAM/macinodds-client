@@ -41,6 +41,15 @@ export class MacinoddsApiService {
 
   // getIndividualListed = () => this.individualListed;
 
+  getHttpHeaderOption(): { headers: HttpHeaders } {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: sessionStorage.getItem('token')
+      })
+    };
+    return httpOptions;
+  }
 
   forCheckTokenPleaseRemoveMeIfFlowLoginFinnished(): Observable<any> {
     return Observable.create(observer => {
@@ -81,15 +90,7 @@ export class MacinoddsApiService {
 
 
 
-  getHttpHeaderOption(): { headers: HttpHeaders } {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: sessionStorage.getItem('token')
-      })
-    };
-    return httpOptions;
-  }
+
 
   getLoginGoogle(idtoken: string): Observable<Login> {
     return this.http.post<Login>(`${this.apiPath}/login`, { 'token': idtoken });
@@ -110,13 +111,7 @@ export class MacinoddsApiService {
 
   updateUser(user) {
     console.log('toptopy =' + user);
-    return this.http.put(`${this.apiPath}/register`, user,
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: sessionStorage.getItem('token')
-        })
-      });
+    return this.http.put(`${this.apiPath}/register`, user,this.getHttpHeaderOption());
 
   }
 

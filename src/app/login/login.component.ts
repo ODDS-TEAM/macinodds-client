@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       console.log('decode jwt.role:', decodeNew.role);
       console.log('decode jwt:', decode);
       // this.macinoddsService.initDataService();
-      // sessionStorage.setItem('idUser', res.user.id);
+      localStorage.setItem('userId', decodeNew.id);
       // sessionStorage.setItem('fullName', res.user.fullName);
       // sessionStorage.setItem('emailODDS', res.user.email)
       // sessionStorage.setItem('role', res.user.role);
