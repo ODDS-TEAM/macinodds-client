@@ -248,6 +248,7 @@ export class FormDeviceComponent implements OnInit {
       // page is add device
       // post method
       if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
+        console.log(formData);
         this.macApiService.postMacAPI(formData).subscribe(data => {
           console.log(formData);
           this.router.navigate(['/admin']);

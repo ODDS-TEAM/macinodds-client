@@ -35,7 +35,7 @@ export class DeviceApiService {
   }
 
   postMacAPI(data) {
-    return this.http.post(this.macDeviceAPI, data,this.macinoddsService.getHttpHeaderOption());
+    return this.http.post(this.macDeviceAPI, data ,this.macinoddsService.getHttpHeaderOption());
   }
 
   deleteMacAPI(id) {
