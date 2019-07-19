@@ -31,7 +31,7 @@ import { LyButtonModule } from '@alyle/ui/button';
 import { LyToolbarModule } from '@alyle/ui/toolbar';
 import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
 import { LyTypographyModule } from '@alyle/ui/typography';
-import { FirstLoginComponent } from './first-login/first-login.component';
+import { RegisterComponent } from './register/register.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -77,7 +77,7 @@ export class GlobalVariables {
     AppComponent,
     SideNavComponent,
     LoginComponent,
-    FirstLoginComponent,
+    RegisterComponent,
     NotFoundComponent,
     // MenuAddDeviceComponent,
     // MenuViewAdminComponent

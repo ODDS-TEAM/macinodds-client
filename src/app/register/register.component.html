@@ -2,7 +2,7 @@
 
 <mat-card class="card">
   <p class="head-card font-weight-bold">Register</p>
-  <div class="font-style font-weight-bold" [formGroup]="firstLoginForm">
+  <div class="font-style font-weight-bold" [formGroup]="registerForm">
     <div class="card-body">
       <div id="userImage">
         <img [src]="user.image" alt="user.image">
@@ -27,7 +27,7 @@
           placeholder="Your Telephone Number" required>
       </mat-form-field>
       <div id="sub-btn">
-        <button type="button" (click)="nextPage()">Submit</button>
+        <button type="button" (click)="submit()">Submit</button>
       </div>
 
     </div>
@@ -38,7 +38,7 @@
 
 <!-- ***************************** Bootstrap Form ***************************** -->
 <!-- <div class="container font-style">
-  <form class="example-container" [formGroup]="firstLoginForm">
+  <form class="example-container" [formGroup]="registerForm">
     <div style="text-align:center">
 
       <div class="card bg-light shadow-lg " style="max-width: 100%;">

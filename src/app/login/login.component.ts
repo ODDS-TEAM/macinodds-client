@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   //test
   user: any;
   public name: any;
-  
+
   constructor(
     private socialAuthService: AuthService,
     private macinoddsService: MacinoddsApiService,
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       console.log('res : ' + JSON.stringify(res));
       sessionStorage.setItem('token', 'Bearer ' + res.token);
       let decode = JWT(res.token);
-      console.log(JSON.stringify(decode)+'??????' + decode)
+      console.log(JSON.stringify(decode) + '??????' + decode)
       const decodeToString = JSON.stringify(decode);
       const decodeNew = JSON.parse(decodeToString);
       const role = decodeNew.role;
@@ -66,44 +66,11 @@ export class LoginComponent implements OnInit {
       // sessionStorage.setItem('emailODDS', res.user.email)
       // sessionStorage.setItem('role', res.user.role);
       // sessionStorage.setItem('photo', res.user.imageProfile);
-      //................LocalStorage..................
       localStorage.setItem('role', role);
-
-      //...............USER...........................
-      // console.log('res.user.first : ' + res.user.firstName);
-      // console.log('res.user.last : ' + res.user.lastName);
-      // console.log('res.user.fullName : ' + res.user.fullName);
-      // console.log('res.user.email : ' + res.user.email);
-      // console.log('res.user.id : ' + res.user.id);
-      // console.log('res.user.role : ' + res.user.role);
-      // console.log('res.user.photo : ' + res.user.imageProfile);
-      // console.log('res.user : ' + JSON.stringify(res.user));
-      //..............RES............................
-      // console.log('res.first : ' + res.firstName);
-      // console.log('res.last : ' + res.lastName);
-      // console.log('res.id : ' + res.id);
-      // console.log('res.role : ' + res.role);
-      // console.log('res.photo : ' + res.image);
-      // console.log('res.firstLogin : ' + res.firstLogin);
-
-      // //...................LOGIN...................
-      // console.log('res.login : ' + res.login);
-      // console.log('res.login.firstLogin : ' + res.login.firstLogin);
-      // console.log('res.login.token : ' + res.login.token);
-      // console.log('res.login.idToken : ' + res.login.idToken);
-
-      //..............SESSIONSTORAGE.................
-      // console.log('session-idUser : ' + res.login);
-      // console.log('session-firstName : ' + res.login.firstLogin);
-      // console.log('session-photoURL : ' + res.login.token);
-      // console.log('session- : ' + res.login.idToken);
-
-
-
 
       if (res.firstLogin === true) {
 
-        this.route.navigate(['/first-login'])
+        this.route.navigate(['/register'])
       } else {
         // this.getUser();
         if (role === 'admin') {
@@ -112,7 +79,6 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['/user']);
         }
       }
-      //function is empty
       // this.cacheData();
     })
   }
@@ -127,19 +93,15 @@ export class LoginComponent implements OnInit {
   }
 
   // function not complete
-  cacheData() {
-    const individualListed = this.macinoddsService.getListIncomeIndividual();
-    const corporateListed = this.macinoddsService.getListIncomeCorporate();
+  // cacheData() {
+  //   const individualListed = this.macinoddsService.getListIncomeIndividual();
+  //   const corporateListed = this.macinoddsService.getListIncomeCorporate();
 
-    forkJoin([corporateListed, individualListed]).subscribe(
-      result => {
-        this.macinoddsService.corporateListed = result[0];
-        this.macinoddsService.individualListed = result[1];
-      }
-    );
-  }
-
-  //test
-
-
+  //   forkJoin([corporateListed, individualListed]).subscribe(
+  //     result => {
+  //       this.macinoddsService.corporateListed = result[0];
+  //       this.macinoddsService.individualListed = result[1];
+  //     }
+  //   );
+  // }
 }

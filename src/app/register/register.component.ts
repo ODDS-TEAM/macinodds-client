@@ -9,11 +9,11 @@ import { error } from 'util';
 
 
 @Component({
-  selector: 'app-first-login',
-  templateUrl: './first-login.component.html',
-  styleUrls: ['./first-login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class FirstLoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   userResult: any;
   private user: SocialUser;
   users: User;
@@ -22,7 +22,7 @@ export class FirstLoginComponent implements OnInit {
   name = localStorage.getItem('Username');
   mail = localStorage.getItem('email');
   imageProfile = localStorage.getItem('image');
-  firstLoginForm: FormGroup;
+  registerForm: FormGroup;
 
   constructor(
     private authService: AuthService,
@@ -33,16 +33,16 @@ export class FirstLoginComponent implements OnInit {
   ) { }
 
 
-  nextPage() {
-    console.log('valid no get = ' + this.firstLoginForm.valid)
-    console.log('value.name = ' + this.firstLoginForm.get('fullName').value)
-    console.log('value = ' + this.firstLoginForm.get('telephoneNumb').value)
-    console.log('validator.name = ' + this.firstLoginForm.get('telephoneNumb').validator.name)
-    console.log('status = ' + this.firstLoginForm.get('telephoneNumb').status)
-    console.log('valid = ' + this.firstLoginForm.get('telephoneNumb').valid)
-    console.log('validator.length = ' + this.firstLoginForm.get('telephoneNumb').validator.length)
+  submit() {
+    console.log('valid no get = ' + this.registerForm.valid)
+    console.log('value.name = ' + this.registerForm.get('fullName').value)
+    console.log('value = ' + this.registerForm.get('telephoneNumb').value)
+    console.log('validator.name = ' + this.registerForm.get('telephoneNumb').validator.name)
+    console.log('status = ' + this.registerForm.get('telephoneNumb').status)
+    console.log('valid = ' + this.registerForm.get('telephoneNumb').valid)
+    console.log('validator.length = ' + this.registerForm.get('telephoneNumb').validator.length)
 
-    const { slackAccount, telephoneNumb } = this.firstLoginForm.getRawValue();
+    const { slackAccount, telephoneNumb } = this.registerForm.getRawValue();
 
     // tslint:disable-next-line:max-line-length
     if (telephoneNumb && slackAccount
@@ -55,30 +55,30 @@ export class FirstLoginComponent implements OnInit {
       this.users.slackAccount = slackAccount;
       this.users.tel = telephoneNumb;
       // console.log(...registerForm);
-      
+
       // this.users.role = this.role;
       // this.macinoddsService.updateUser(registerForm).subscribe(res=>{console.log('toptotptoptotpto')})
-      console.log(this.users+'<<<<<<'+JSON.stringify(this.users))
-      const usersToString =JSON.stringify(this.users)
+      console.log(this.users + '<<<<<<' + JSON.stringify(this.users))
+      const usersToString = JSON.stringify(this.users)
       const usersToStringToOBJ = JSON.parse(usersToString);
-      console.log(usersToStringToOBJ+'<<<<testA<<'+JSON.stringify(usersToStringToOBJ))
+      console.log(usersToStringToOBJ + '<<<<testA<<' + JSON.stringify(usersToStringToOBJ))
 
       this.macinoddsService.updateUser(usersToStringToOBJ).subscribe(res => {
-          console.log('1324567890-'+ res);
-          if (this.firstLoginForm.get('slackAccount').valid && this.firstLoginForm.get('telephoneNumb').valid) {
-            localStorage.removeItem('userResult');
-            if (this.role === 'individual') {
-              this.router.navigate(['/user']);
-            } else {
-              this.router.navigate(['/login']);
-            }
-            // } error => {
-            //   this.router.navigate(['/login']);
-            // }
+        console.log('1324567890-' + res);
+        if (this.registerForm.get('slackAccount').valid && this.registerForm.get('telephoneNumb').valid) {
+          localStorage.removeItem('userResult');
+          if (this.role === 'individual') {
+            this.router.navigate(['/user']);
+          } else {
+            this.router.navigate(['/login']);
           }
-        }, error => {
-          this.router.navigate(['/login']);
-        });
+          // } error => {
+          //   this.router.navigate(['/login']);
+          // }
+        }
+      }, error => {
+        this.router.navigate(['/login']);
+      });
       // this.macinoddsService.postUsertoMock(id,role,NAME,MAIL,PHOTO)
     } else {
       alert('Please complete the information.');
@@ -108,7 +108,7 @@ export class FirstLoginComponent implements OnInit {
   }
 
   setup() {
-    this.firstLoginForm = new FormGroup({
+    this.registerForm = new FormGroup({
       fullName: new FormControl({ value: '', disabled: true }, Validators.required),
       emailODDS: new FormControl({ value: '', disabled: true }, Validators.required),
       slackAccount: new FormControl('', [Validators.email, Validators.required]),
