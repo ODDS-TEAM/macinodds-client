@@ -44,7 +44,7 @@
                             </button>
                         </div>
                         <div class="col-10 col-lg-8 px-0 mx-auto" [hidden]=btnRole>
-                            <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold" *ngIf="result.borrowing" (click)="deleteDevice(result._id , result.serial)" id="btn-delete-{{i}}">
+                            <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold" *ngIf="!result.borrowing" (click)="deleteDevice(result._id , result.serial)" id="btn-delete-{{i}}">
                                 <i class="fa fa-trash mr-1"> </i>
                                 Delete
                             </button>
