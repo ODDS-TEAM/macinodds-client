@@ -140,7 +140,7 @@ export class CardComponent implements OnInit {
 
     // post method
     if (window.confirm('ยืนยันการยืมเครื่อง')) {
-      this.http.post('http://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData)
+      this.http.post('https://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData)
         .subscribe(result => {
 
           console.log(result);

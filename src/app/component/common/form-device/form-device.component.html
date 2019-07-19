@@ -4,27 +4,25 @@
     <div class="font-style font-weight-bold" [formGroup]="addDeviceForm">
         <p>ชื่ออุปกรณ์</p>
         <mat-form-field [floatLabel]="'never'" class="full">
-            <input  class="full" formControlName="nameDevice" matInput id="name"
-                placeholder="เช่น Macbook Pro 2017 13" [(ngModel)]="data.name" (ngModelChange)="validatorName()"
-                required>
+            <input class="full" formControlName="nameDevice" matInput id="name" placeholder="เช่น Macbook Pro 2017 13"
+                [(ngModel)]="data.name" (ngModelChange)="validatorName()" required>
         </mat-form-field>
         <p>serial</p>
         <mat-form-field [floatLabel]="'never'" class="full">
-            <input  class="full" formControlName="serial" matInput id="serial"
-                placeholder="ระบุ serial เช่น W88401231AX" [(ngModel)]="data.serial" (ngModelChange)="validatorSerial()"
-                required>
+            <input class="full" formControlName="serial" matInput id="serial" placeholder="ระบุ serial เช่น W88401231AX"
+                [(ngModel)]="data.serial" (ngModelChange)="validatorSerial()" required>
         </mat-form-field>
         <p>สเปคเครื่อง</p>
         <mat-form-field [floatLabel]="'never'" class="full">
-            <input  class="full" matInput formControlName="spec" id="spec"
+            <input class="full" matInput formControlName="spec" id="spec"
                 placeholder="ระบุสเปคเครื่อง เช่น Intel i5 2.3 GHz Memory 8 Gb 13 inch" [(ngModel)]="data.spec"
                 (ngModelChange)="validatorSpec()" required>
         </mat-form-field>
 
         <p>ที่อยู่ของอุปกรณ์</p>
         <mat-form-field [floatLabel]="'never'" class="full">
-            <input matInput  formControlName="location" id="location"
-                placeholder=" เช่น The Street" required >
+            <input matInput formControlName="location" id="location" placeholder=" เช่น The Street" required
+                [(ngModel)]="data.location">
         </mat-form-field>
 
 
@@ -56,13 +54,18 @@
                     id="saveBt" style="background-color: #0E98D5;color:white;" (click)="onSubmit()">Save</button>
                 <button class="btn btn-default-black" (click)="_fileInput.value = ''" mat-flat-button id="cancelBt"
                     (click)="cancel()">{{btnLabel}}</button>
+
+               
             </div>
         </div>
 
         <button id="openUploadModal" [hidden]="true" data-toggle="modal" data-target="#uploadModal">Open Modal</button>
 
 
+
     </div>
+
+    <input type="file" id="hello" name="hello" accept="image/png, image/jpeg" [(ngModel)]="hello">
 </mat-card>
 
 

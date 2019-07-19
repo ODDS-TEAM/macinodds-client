@@ -118,9 +118,9 @@ input[type=submit]:hover {
     clear: both;
 }
 
-input[type="file"] {
+/* input[type="file"] {
     display: none;
-}
+} */
 
 .grap-btn {
     margin-right: 23px;

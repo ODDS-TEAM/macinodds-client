@@ -7,10 +7,10 @@ import { MacinoddsApiService } from './macinodds-api.service';
 })
 export class DeviceApiService {
   token = sessionStorage.getItem('token');
-  macDeviceAPI = 'http://mac.odds.team/api/devices';
+  macDeviceAPI = 'https://mac.odds.team/api/devices';
   // macDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs';
   // historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
-  historyDeviceAPI = 'http://mac.odds.team/api/borrowings';
+  historyDeviceAPI = 'https://mac.odds.team/api/borrowings';
 
 
   constructor(
@@ -35,6 +35,8 @@ export class DeviceApiService {
   }
 
   postMacAPI(data) {
+    console.log('*********',JSON.stringify(data),'*******',data);
+    
     return this.http.post(this.macDeviceAPI, data ,this.macinoddsService.getHttpHeaderOption());
   }
 

@@ -41,7 +41,7 @@ const styles = {
 export class FormDeviceComponent implements OnInit {
 
   readonly imageDefaultPath: string = '/assets/imgs/add_device.jpg';
-
+  
   disableInput: any;
   locationInput:any;
 
@@ -73,11 +73,12 @@ export class FormDeviceComponent implements OnInit {
     serial: '',
     spec: '',
     // memo: '',
-    imgs: null,
+    img: null,
     location: ''
 
   };
 
+  hello:any;
 
   imageDefault = this.imageDefaultPath;
   fileToUpload: File = null;
@@ -153,25 +154,25 @@ export class FormDeviceComponent implements OnInit {
   }
 
   onCropped(e) {
-    console.log('eeee');
     this.croppedImage = e.dataURL;
     const cropNew = this.croppedImage.replace(/^data:image\/(png|jpeg);base64,/, '');
-    console.log((cropNew));
 
     const date = new Date().valueOf();
     const text = '';
-    const imageName = date + '.' + text + '.jpeg';
+    const imageName = date +'.jpeg';
     const imageBlob = this.dataURItoBlob(cropNew);
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    this.fileName = this.fileNameEventInput;
+    // this.fileName = this.fileNameEventInput;
     // this.fileToUpload = imageFile;
     this.fileToUpload = imageFile;
     this.imageDefault = this.croppedImage;
     this.vaildatBT = true;
     // this.canSubmit();
-    console.log('fileupload ====> ' + this.fileToUpload);
+    console.log('fileupload ====> ' + this.fileToUpload) ;
+    console.log('>>>>',this.fileToUpload);
+    
     this.data.img = imageFile;
-    console.log('file data ====> ' + this.data.img);
+    console.log('file data ====> ' + this.data.img,'>>>>>',this.data.img);
   }
 
   dataURItoBlob(dataURI) {
@@ -193,7 +194,7 @@ export class FormDeviceComponent implements OnInit {
       this.macApiService.getMacIDApi(id).subscribe(res => {
         this.data = res;
         this.backupData = Object.assign({}, this.data);
-        this.imageDefault = 'http://139.5.146.213/assets/imgs/devices/' + this.data.img;
+        this.imageDefault = 'https://mac.odds.team/assets/imgs/devices/' + this.data.img;
         this.fileName = this.data.img;
 
         this.disableInput = !this.data.borrowing;
@@ -230,12 +231,29 @@ export class FormDeviceComponent implements OnInit {
 
   onSubmit() {
     // create formData to post
-    const formData: FormData = new FormData();
-    formData.append('name', this.data.name);
-    formData.append('serial', this.data.serial);
-    formData.append('spec', this.data.spec);
-    formData.append('img', this.fileToUpload);
-    formData.append('location', this.data.location);
+    const formData = {
+      name: '',
+      serial: '',
+      spec: '',
+      // memo: '',
+      img: null,
+      location: ''
+    }
+    formData.name = this.data.name;
+    formData.serial = this.data.serial;
+    formData.spec =this.data.spec;
+    formData.img = this.hello;
+    formData.location =this.data.location;
+
+    // formData.append('name', this.data.name);
+    // formData.append('serial', this.data.serial);
+    // formData.append('spec', this.data.spec);
+    // formData.append('img', this.fileToUpload);
+    // formData.append('location', this.data.location);
+
+    console.log('data name form >>> ',JSON.stringify(formData),'>>>>>>',formData);
+
+    // console.log(this.data.name,'Create form >>> ',JSON.stringify(formData));
 
     // check page is edit
     if (this.editCompoCheck) {
@@ -248,9 +266,9 @@ export class FormDeviceComponent implements OnInit {
       // page is add device
       // post method
       if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-        console.log(formData);
+    console.log(' form conform >>> ',JSON.stringify(formData),'<<<<<',formData);
         this.macApiService.postMacAPI(formData).subscribe(data => {
-          console.log(formData);
+          console.log('Post laew na',formData);
           this.router.navigate(['/admin']);
         });
       }
