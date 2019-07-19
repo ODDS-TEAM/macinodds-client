@@ -4,6 +4,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'
 import { NotFoundComponent } from './not-found/not-found.component';
+import { GuardService } from './service/guard/guard.service';
 
 const routes: Routes = [
   {
@@ -16,11 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [GuardService]
   },
   {
     path: '404',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    canActivate: [GuardService]
   },
   {
 
@@ -29,7 +32,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './component/component.module#ComponentModule'
+        loadChildren: './component/component.module#ComponentModule',
+        canActivate: [GuardService] 
       }
     ]
   },
@@ -40,12 +44,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './component/component.module#ComponentModule'
+        loadChildren: './component/component.module#ComponentModule',
+        canActivate: [GuardService] 
       }
     ]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/404', pathMatch: 'full' }
+  { path: '**', redirectTo: '/404', pathMatch: 'full', canActivate: [GuardService] 
+}
 
   
 
