@@ -1,82 +1,53 @@
 <!-- ****************************** Material Form ****************************** -->
 
 <mat-card class="card">
-  <p class="head-card font-weight-bold">Register</p>
-  <div class="font-style font-weight-bold" [formGroup]="registerForm">
-    <div class="card-body">
-      <div id="userImage">
-        <img [src]="user.image" alt="user.image">
-      </div>
-      <p>Name</p>
-      <mat-form-field class="full">
-        <input class="full" formControlName="fullName" matInput value="{{ user.name }}">
-      </mat-form-field>
-      <p>Email</p>
-      <mat-form-field class="full">
-        <input class="full" formControlName="emailODDS" matInput value="{{ user.email }}">
-      </mat-form-field>
-      <p>Slack Account</p>
-      <mat-form-field class="full">
-        <input class="full" formControlName="slackAccount" matInput type="email" placeholder="Your Slack Account"
-          required>
-      </mat-form-field>
 
-      <p>Tel.</p>
-      <mat-form-field class="full">
-        <input class="full" formControlName="telephoneNumb" matInput type="tel" pattern="[0-9]{10}"
-          placeholder="Your Telephone Number" required>
-      </mat-form-field>
-      <div id="sub-btn">
-        <button type="button" (click)="submit()">Submit</button>
-      </div>
+  <mat-grid-list cols="1" rowHeight="100px">
+    <mat-grid-tile>
+      <img class="user-img" [src]="user.image" alt="user.image">
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    </div>
+  <mat-grid-list cols="1" rowHeight="37px" class="grab" style="margin-bottom: 30px">
+    <mat-grid-tile>
+      <p class="hi">Hi {{user.name}}</p>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="email-box">
+        <p>{{user.email}}</p>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div [formGroup]="registerForm">
+    <mat-grid-list cols="1" rowHeight="39px">
+      <mat-grid-tile>
+        <p class="label-header">Slack name</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field [floatLabel]="'never'" class="full">
+          <input class="full" formControlName="slackAccount" matInput type="email" placeholder="Your slack name"
+            required>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="39px" class="grab">
+      <mat-grid-tile>
+        <p class="label-header">Tel.</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field [floatLabel]="'never'" class="full">
+          <input class="full" formControlName="telephoneNumb" matInput type="tel" pattern="[0-9]{10}"
+            placeholder="Your Telephone Number" required>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div id="sub-btn">
+    <button mat-flat-button (click)="submit()" color="primary">Go !</button>
   </div>
 </mat-card>
 
 
 
-<!-- ***************************** Bootstrap Form ***************************** -->
-<!-- <div class="container font-style">
-  <form class="example-container" [formGroup]="registerForm">
-    <div style="text-align:center">
-
-      <div class="card bg-light shadow-lg " style="max-width: 100%;">
-        <div class="card-header mb-3 font-weight-bold">Register</div>
-        <div class="card-body">
-
-          <div>
-            <label for="userImage">
-              <img id="userImage" [src]="user.image">
-            </label>
-          </div>
-
-          <div class="form-group text-left">
-            <label for="name" class="font-weight-bold">Name </label>
-            <input class="formcontrol" formControlName="fullName" type="text" name="fullName" id="fullName" value="{{user.name}}"
-              />
-          </div>
-
-          <div class="form-group text-left">
-            <label for="name" class="font-weight-bold">E-mail </label>
-            <input class="formcontrol disabled" formControlName="emailODDS" type="text" name="emailODDS" id="emailODDS" value="{{user.email}}"
-               />
-          </div>
-
-          <div class="form-group text-left">
-            <label for="holder" class="text-left font-weight-bold">Slack Account </label>
-            <input class="formcontrol" formControlName="slackAccount" type="text" id="holder" name="holder" placeholder="Your Slack">
-          </div>
-
-          <div class="form-group text-left">
-            <label for="tel" class="text-left font-weight-bold">Tel. </label>
-            <input class="formcontrol" formControlName="telephoneNumb" type="text" id="tel" name="tel" placeholder="Your Telephone Number" maxLength='10' minlength="10">
-          </div>
-
-          <button type="button" (click)="nextPage()">Submit</button>
-
-        </div>
-      </div>
-    </div>
-  </form>
-</div> -->

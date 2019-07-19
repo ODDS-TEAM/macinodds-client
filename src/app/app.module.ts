@@ -9,6 +9,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
   MatListModule, MatCard, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 // import { MenuAddDeviceComponent } from './component/menu-add-device/menu-add-device.component';
@@ -91,6 +92,7 @@ export class GlobalVariables {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatGridListModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
