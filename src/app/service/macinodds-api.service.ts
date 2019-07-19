@@ -7,9 +7,7 @@ import { Login } from '../shared/login';
 import { User } from '../shared/user';
 import { AuthService } from 'angular-6-social-login';
 import { Router } from '@angular/router';
-
-
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +35,15 @@ export class MacinoddsApiService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private route: Router) { }
+    private route: Router,
+    public jwtHelper: JwtHelperService, ) { }
+
+  public isAuthenticated(): boolean {
+    const token = sessionStorage.getItem('token');
+    // Check whether the token is expired and return
+    // true or false
+    return !this.jwtHelper.isTokenExpired(token);
+  }
 
   // getIndividualListed = () => this.individualListed;
 
@@ -103,7 +109,7 @@ export class MacinoddsApiService {
 
   updateUser(user) {
     console.log('toptopy =' + user);
-    return this.http.put(`${this.apiPath}/register`, user,this.getHttpHeaderOption());
+    return this.http.put(`${this.apiPath}/register`, user, this.getHttpHeaderOption());
 
   }
 
