@@ -196,6 +196,7 @@ export class FormDeviceComponent implements OnInit {
         this.backupData = Object.assign({}, this.data);
         this.imageDefault = 'https://mac.odds.team/assets/imgs/devices/' + this.data.img;
         this.fileName = this.data.img;
+        this.fileToUpload = this.data.img;
 
         this.disableInput = !this.data.borrowing;
         this.locationInput = this.data.location;
