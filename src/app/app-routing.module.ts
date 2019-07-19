@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LoginComponent } from './login/login.component';
-import { FirstLoginComponent } from './first-login/first-login.component'
+import { RegisterComponent } from './register/register.component'
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
@@ -15,8 +15,8 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'first-login',
-    component: FirstLoginComponent
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '404',
