@@ -1,14 +1,12 @@
-import { MacinoddsApiService } from './../../../service/macinodds-api.service';
-import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ViewRef, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatRadioButton, MatCardModule, MatDialog } from '@angular/material';
-import { RouterLink, Router, RouterModule } from '@angular/router';
-
-
-import { LyResizingCroppingImages, ImgCropperConfig, ImgResolution } from '@alyle/ui/resizing-cropping-images';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { ImgCropperConfig } from '@alyle/ui/resizing-cropping-images';
 import { LyTheme2 } from '@alyle/ui';
-import { AutofillMonitor } from '@angular/cdk/text-field';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { DeviceApiService } from 'src/app/service/device-api.service';
 
 
 
@@ -25,6 +23,9 @@ const styles = {
   },
   flex: {
     flex: 1
+  },
+  range: {
+    textAlign: 'center'
   }
 
 };
@@ -40,6 +41,9 @@ const styles = {
 export class FormDeviceComponent implements OnInit {
 
   readonly imageDefaultPath: string = '/assets/imgs/add_device.jpg';
+
+  disableInput: any;
+  locationInput:any;
 
   addDeviceForm: FormGroup;
 
@@ -61,8 +65,7 @@ export class FormDeviceComponent implements OnInit {
     spec: '',
     // memo: '',
     img: '',
-    location: '',
-    status: true
+    location: ''
   };
 
   data: any = {
@@ -71,8 +74,7 @@ export class FormDeviceComponent implements OnInit {
     spec: '',
     // memo: '',
     imgs: null,
-    location: '',
-    status: true
+    location: ''
 
   };
 
@@ -89,28 +91,47 @@ export class FormDeviceComponent implements OnInit {
   croppedImage?: string;
   result: string;
 
+
+  isHandset = false;
+
   myConfig: ImgCropperConfig = {
 
-    autoCrop: false,
+    autoCrop: true,
     // extraZoomOut: true,
     width: 300, // Default `250`
     height: 300, // Default `200`
-    fill: '#fff', // Default transparent if type = png else #000,
+    // fill: '#fff', // Default transparent if type = png else #000,
     // type: 'image/jpeg',
-    extraZoomOut: true
+    extraZoomOut: false
   };
 
   // End set size image at cropping modal
 
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private router: Router,
     private theme: LyTheme2,
-    private macApiService: MacinoddsApiService) {
+    private macApiService: DeviceApiService,
+    public dialog: MatDialog) {
     this.imageDefault === this.imageDefaultPath ? this.vaildatBT = false : this.vaildatBT = true;
-
+    console.log(this.vaildatBT);
+    // boolean check role
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(
+      result => {
+        if (result.matches) {
+          this.isHandset = true;
+        } else {
+          this.isHandset = false;
+        }
+        console.log('isHandSet = ', this.isHandset);
+      }
+    );
 
   }
 
@@ -127,11 +148,12 @@ export class FormDeviceComponent implements OnInit {
       nameDevice: ['', Validators.required],
       serial: ['', Validators.required],
       spec: ['', Validators.required],
-      location: [{ value: 'Hard code', disabled: this.editCompoCheck }, [Validators.required, Validators.minLength(1)]],
+      location: [{ value: this.locationInput , disabled: this.disableInput }, [Validators.required, Validators.minLength(1)]],
     });
   }
 
   onCropped(e) {
+    console.log('eeee');
     this.croppedImage = e.dataURL;
     const cropNew = this.croppedImage.replace(/^data:image\/(png|jpeg);base64,/, '');
     console.log((cropNew));
@@ -141,15 +163,15 @@ export class FormDeviceComponent implements OnInit {
     const imageName = date + '.' + text + '.jpeg';
     const imageBlob = this.dataURItoBlob(cropNew);
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    this.fileName = this.fileNameEventInput
+    this.fileName = this.fileNameEventInput;
     // this.fileToUpload = imageFile;
     this.fileToUpload = imageFile;
     this.imageDefault = this.croppedImage;
     this.vaildatBT = true;
     // this.canSubmit();
-    console.log("fileupload ====> " + this.fileToUpload);
+    console.log('fileupload ====> ' + this.fileToUpload);
     this.data.img = imageFile;
-    console.log("file data ====> " + this.data.img);
+    console.log('file data ====> ' + this.data.img);
   }
 
   dataURItoBlob(dataURI) {
@@ -173,6 +195,11 @@ export class FormDeviceComponent implements OnInit {
         this.backupData = Object.assign({}, this.data);
         this.imageDefault = 'http://139.5.146.213/assets/imgs/devices/' + this.data.img;
         this.fileName = this.data.img;
+
+        this.disableInput = !this.data.borrowing;
+        this.locationInput = this.data.location;
+        console.log('disableInput :' +this.disableInput +'>>>>'+JSON.stringify(this.data))
+        this.createForm();
       });
     } else {
       this.CardHeaderLabel = 'ลงทะเบียนอุปกรณ์';
@@ -181,20 +208,19 @@ export class FormDeviceComponent implements OnInit {
       this.vaildatBT = false;
     }
   }
-
   openUploadModal(e) {
-    const fileName = e.srcElement.value.toString().split("\\");
+    const fileName = e.srcElement.value.toString().split('\\');
     this.fileNameEventInput = fileName[fileName.length - 1];
     document.getElementById('openUploadModal').click();
+    // document.getElementById('fitScreen').click();
   }
 
   cancel() {
     // edit form
     if (this.editCompoCheck) {
-      this.router.navigate(['/admin/app/menu-view-admin']);
-    }
-    // add form 
-    else {
+      this.router.navigate(['/admin']);
+    } else {
+      // add form
       this.addDeviceForm.reset();
       this.imageDefault = this.imageDefaultPath;
       this.fileName = '';
@@ -208,41 +234,50 @@ export class FormDeviceComponent implements OnInit {
     formData.append('name', this.data.name);
     formData.append('serial', this.data.serial);
     formData.append('spec', this.data.spec);
-    formData.append('status', 'true');
     formData.append('img', this.fileToUpload);
+    formData.append('location', this.data.location);
 
     // check page is edit
     if (this.editCompoCheck) {
-      formData.append('img', this.fileToUpload);
+      // formData.append('img', this.fileToUpload);
       this.macApiService.putMacAPI(this.idEditDevice, formData).subscribe(data => {
-        this.router.navigate(['/admin/app/menu-view-admin']);
+      console.log('mmmmm>>>'+ formData)
+        this.router.navigate(['/admin']);
       });
     } else {
       // page is add device
       // post method
       if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-        this.http.post('http://mac.odds.team/api/mac', formData)
-          .subscribe(result => {
-            console.log(result);
-            this.cancel();
-            this.router.navigate(['/admin/app/menu-view-admin']);
-          });
+        console.log(formData);
+        this.macApiService.postMacAPI(formData).subscribe(data => {
+          console.log(formData);
+          this.router.navigate(['/admin']);
+        });
       }
     }
   }
 
   // validat จ้า
   validatorName() {
-    this.data.name !== this.backupData.name ? this.vaildatBT = true : this.vaildatBT = false;
+    if (this.editCompoCheck) {
+      this.data.name !== this.backupData.name ? this.vaildatBT = true : this.vaildatBT = false;
+    }
   }
   validatorSerial() {
-    this.data.serial !== this.backupData.serial ? this.vaildatBT = true : this.vaildatBT = false;
+    if (this.editCompoCheck) {
+      this.data.serial !== this.backupData.serial ? this.vaildatBT = true : this.vaildatBT = false;
+    }
   }
   validatorSpec() {
-    this.data.spec !== this.backupData.spec ? this.vaildatBT = true : this.vaildatBT = false;
+    if (this.editCompoCheck) {
+      this.data.spec !== this.backupData.spec ? this.vaildatBT = true : this.vaildatBT = false;
+    }
   }
   validatorImg() {
-    this.data.img !== this.backupData.img ? this.vaildatBT = true : this.vaildatBT = false;
+    if (this.editCompoCheck) {
+      this.data.img !== this.backupData.img ? this.vaildatBT = true : this.vaildatBT = false;
+    }
   }
 
 }
+

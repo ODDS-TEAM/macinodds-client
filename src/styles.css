@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-html,
-body {
+@import "./app/theme.css";
+html,body {
     height: 100%;
 }
 
@@ -93,7 +93,7 @@ body,div {
     left: 0;
     width: 0%;
     height: 100%;
-    background: #212121;
+    background: #343434;
     z-index: -1;
     transition: 0.8s;
   }
@@ -128,3 +128,4 @@ body,div {
 
 
 
+/* -------------------------- */

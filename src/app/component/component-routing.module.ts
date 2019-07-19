@@ -10,11 +10,11 @@ import { MenuViewHistoryComponent } from './menu-view-history/menu-view-history.
 
 const routes: Routes = [
   //  { path: '' , redirectTo: 'menu-add-device', pathMatch: 'full' },
-  { path: 'menu-add-device', component: MenuAddDeviceComponent },
-  { path: 'menu-view-admin', component: MenuViewAdminComponent },
-  { path: 'edit-admin', component: EditAdminComponent },
-  { path: 'menu-view-user', component: MenuViewUserComponent },
-  { path: 'menu-view-history', component: MenuViewHistoryComponent},
+  { path: 'create', component: MenuAddDeviceComponent },
+  { path: '', component: MenuViewAdminComponent },
+  { path: 'edit', component: EditAdminComponent },
+  { path: '', component: MenuViewUserComponent },
+  { path: 'history', component: MenuViewHistoryComponent},
   // { path: 'path?refresh=1', redirectTo: 'menu-view-admin' },
 
 ];

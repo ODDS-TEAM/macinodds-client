@@ -1,16 +1,10 @@
-import { Component, OnInit, Injectable, Input } from '@angular/core';
-import { MenuViewAdminComponent } from '../../menu-view-admin/menu-view-admin.component';
+import { Component, OnInit, Input } from '@angular/core';
 import { MyDataServiceService } from '../../my-data-service.service';
 import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { MacinoddsApiService } from 'src/app/service/macinodds-api.service';
-import { MenuViewUserComponent } from '../../menu-view-user/menu-view-user.component';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { formatDate } from '@angular/common';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
-
-
+import { DeviceApiService } from 'src/app/service/device-api.service';
 
 
 
@@ -24,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 export class CardComponent implements OnInit {
   @Input() role: boolean;
   btnRole: boolean;
+  @Input() hide = true;
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   public editResults: any; // กำหนดตัวแปร เพื่อรับค่า
@@ -40,14 +35,29 @@ export class CardComponent implements OnInit {
   localtime: any;
   userId = localStorage.getItem('userId');
   userData: any;
-  @Input() cantBorrow: boolean = false;
+  @Input() cantBorrow = false;
+  idDeviceBorrow: any;
+  btnValid = false;
 
-  constructor(private data: MyDataServiceService,
+
+  objectToMyCard: any = {
+    name: '',
+    serial: '',
+    spec: '',
+    returnDate: '',
+    img: ''
+  } ;
+  hiddenMyCard = false;
+
+  constructor(
+    private data: MyDataServiceService,
     private router: Router,
     private breakpointObserver: BreakpointObserver,
-    private macApiService: MacinoddsApiService,
+    private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
-    private http: HttpClient) { }
+    private http: HttpClient) {
+      this.setHiddenMyCard() ;
+     }
 
   ngOnInit() {
     this.editResults = {};
@@ -56,6 +66,8 @@ export class CardComponent implements OnInit {
     this.data.currentData.subscribe(data => this.name = data);
     this.createBorrowForm();
     console.log(this.returnDate);
+    this.btnRole = (localStorage.getItem('role') === 'individual');
+    console.log(this.btnRole + '<<<<<<< here >>>>' + localStorage.getItem('role'));
   }
 
   // public hideButton() {
@@ -68,7 +80,8 @@ export class CardComponent implements OnInit {
     this.macApiService.getMacApi().subscribe(data => {
       // get result from JSON response
       this.results = data;
-      console.log('print get all : ' + JSON.stringify(this.results[0]._id));
+      // console.log('print get all : ' + JSON.stringify(this.results[0]._id));
+      console.log(this.results);
     });
   }
 
@@ -95,7 +108,7 @@ export class CardComponent implements OnInit {
   // method for when click edit button
   editDevice(id) {
     this.data.changeData(id);
-    this.router.navigate(['/admin/app/edit-admin']);
+    this.router.navigate(['/admin/edit']);
   }
 
   createBorrowForm() {
@@ -104,8 +117,14 @@ export class CardComponent implements OnInit {
       // borrow: new FormControl('', Validators.required)
     });
   }
-  onSubmitBorrow() {
 
+  borrowDevice(id) {
+    console.log('click borrow');
+    this.idDeviceBorrow = '' + id;
+    console.log('borrow id =====> ' + this.idDeviceBorrow);
+  }
+
+  onSubmitBorrow(id) {
     const tzoffset = (new Date()).getTimezoneOffset() * 60000;
     this.localtime = (new Date(this.returnDate - tzoffset));
     this.localtime.setHours(12, 0, 0);
@@ -115,11 +134,13 @@ export class CardComponent implements OnInit {
 
     console.log('localISOTime >>>>>>>>>', localISOTime);
 
+    const borrowData: FormData = new FormData();
+    borrowData.append('returnDate', this.returnDate);
+    // borrowData.append('token', token);
 
-    // console.log('form here >>>>>>>' + JSON.stringify( '>>>> date >>>' + localISOTime));
     // post method
-    if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-      this.http.post('http://mac.odds.team/api/mac', localISOTime)
+    if (window.confirm('ยืนยันการยืมเครื่อง')) {
+      this.http.post('http://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData)
         .subscribe(result => {
 
           console.log(result);
@@ -129,14 +150,37 @@ export class CardComponent implements OnInit {
 
   }
   check() {
-    console.log(this.returnDate);
+    this.btnValid = true;
   }
 
   checkBorrow() {
     this.macApiService.getData(this.userId).subscribe(data => {
+      console.log('<<<<<<<< มานี่แล้ว Link' + this.userId);
+
       this.userData = data;
-      this.cantBorrow = this.userData.status;
+      this.cantBorrow = this.userData.borrowing;
     });
   }
+
+  setHiddenMyCard() {
+    if (localStorage.getItem('role') === 'admin') {
+      this.hiddenMyCard = false;
+    } else {
+      this.macApiService.getData(this.userId).subscribe(data => {
+        this.objectToMyCard = data;
+      console.log('<<<<<<<< มานี่แล้ว Link' + this.userId + '>>>>>>'+JSON.stringify(this.objectToMyCard));
+
+        if (!this.objectToMyCard.borrowing) {
+          this.hiddenMyCard = false;
+          this.objectToMyCard = null;
+        } else {
+          this.hiddenMyCard = true;
+        }
+      });
+
+    }
+
+  }
+
 
 }

@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component'
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent,
-  // children: [
-  //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
-  // ]
-},
+  {
+    path: 'login', component: LoginComponent,
+  },
 
   {
     path: '',
     component: LoginComponent,
-    // children: [
-    //   { path: 'apps', loadChildren: './component/component.module#ComponentModule' }
-    // ]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: '404',
+    component: NotFoundComponent
   },
   {
 
@@ -24,7 +28,7 @@ const routes: Routes = [
     component: SideNavComponent,
     children: [
       {
-        path: 'app',
+        path: '',
         loadChildren: './component/component.module#ComponentModule'
       }
     ]
@@ -35,21 +39,15 @@ const routes: Routes = [
     component: SideNavComponent,
     children: [
       {
-        path: 'app',
+        path: '',
         loadChildren: './component/component.module#ComponentModule'
       }
     ]
   },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/404', pathMatch: 'full' }
 
-  // {path: 'viewUser', component: ViewUserComponent},
-  // { path: 'view-user', component: ViewUserComponent },
-   { path: '', redirectTo: 'login' , pathMatch: 'full' }
-
-
-  // { path: 'view-user', component: ViewUserComponent },
-  // { path: '', redirectTo: 'user' , pathMatch: 'full' },
-  //  { path: '**', redirectTo: '' },
-
+  
 
 ];
 

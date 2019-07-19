@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
-  MatListModule, MatCard, MatCardModule } from '@angular/material';
+  MatListModule, MatCard, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 // import { MenuAddDeviceComponent } from './component/menu-add-device/menu-add-device.component';
@@ -20,7 +21,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
-import { SideNavUserComponent } from './side-nav-user/side-nav-user.component';
 import { StorageServiceModule} from 'angular-webstorage-service';
 import { LyThemeModule, LY_THEME , LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
 
@@ -32,12 +32,19 @@ import { LyButtonModule } from '@alyle/ui/button';
 import { LyToolbarModule } from '@alyle/ui/toolbar';
 import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
 import { LyTypographyModule } from '@alyle/ui/typography';
+import { RegisterComponent } from './register/register.component';
+
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { NotFoundComponent } from './not-found/not-found.component';
+
+import { LottieAnimationViewModule } from 'ng-lottie';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
     [
       {
         id: GoogleLoginProvider.PROVIDER_ID,
+        // provider: new GoogleLoginProvider('956316396976-mhb092ad69gn2olis0mtmc1fpe8blgn8.apps.googleusercontent.com')
         provider: new GoogleLoginProvider('15378607653-f9lfgsml8th6lf50jfq93v3v2f4vpkpr.apps.googleusercontent.com')
       },
 
@@ -71,7 +78,8 @@ export class GlobalVariables {
     AppComponent,
     SideNavComponent,
     LoginComponent,
-    SideNavUserComponent,
+    RegisterComponent,
+    NotFoundComponent,
     // MenuAddDeviceComponent,
     // MenuViewAdminComponent
   ],
@@ -84,6 +92,7 @@ export class GlobalVariables {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatGridListModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -98,7 +107,10 @@ export class GlobalVariables {
     LyIconModule,
     LyTypographyModule,
     MatCardModule,
-    StorageServiceModule
+    MatFormFieldModule, MatNativeDateModule, MatInputModule,
+    StorageServiceModule,
+    FlexLayoutModule,
+    LottieAnimationViewModule.forRoot()
   ],
   providers: [
     {provide: LocationStrategy,

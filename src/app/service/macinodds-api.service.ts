@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class MacinoddsApiService {
+  //  urlPath = "https://atb-macinodds.herokuapp.com/devices";
+  urlPath = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs/';
 
   listData: User[] = [];
   siteName: string;
@@ -23,6 +25,9 @@ export class MacinoddsApiService {
   dailyIncome = '';
   id = sessionStorage.getItem('idUser');
   private userId = this.id;
+  role = localStorage.getItem('role');
+  imageProfile = localStorage.getItem('role');
+  name = localStorage.getItem('role');
   readonly apiPath = environment.api;
   individualListed: User;
   corporateListed: User;
@@ -36,6 +41,15 @@ export class MacinoddsApiService {
 
   // getIndividualListed = () => this.individualListed;
 
+  getHttpHeaderOption(): { headers: HttpHeaders } {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: sessionStorage.getItem('token')
+      })
+    };
+    return httpOptions;
+  }
 
   forCheckTokenPleaseRemoveMeIfFlowLoginFinnished(): Observable<any> {
     return Observable.create(observer => {
@@ -76,26 +90,23 @@ export class MacinoddsApiService {
 
 
 
-  getHttpHeaderOption(): { headers: HttpHeaders } {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: sessionStorage.getItem('token')
-      })
-    };
-    return httpOptions;
-  }
-
-  // updateUser(id: string, user: User): Observable<User> {
-  //   return this.http.put<User>(`${this.apiPath}users/${id}`, user,
-  //       this.getHttpHeaderOption()
-  //   );
-  // }
 
 
   getLoginGoogle(idtoken: string): Observable<Login> {
-    return this.http.post<any>(`${this.apiPath}login-google`, { 'token': idtoken });
+    return this.http.post<Login>(`${this.apiPath}/login`, { 'token': idtoken });
   }
+
+  getUserbyId(id: string = this.userId) {
+    return this.http.get<User>('http://localhost:8080/v1/login-google',
+      this.getHttpHeaderOption());
+  }
+
+  updateUser(user) {
+    console.log('toptopy =' + user);
+    return this.http.put(`${this.apiPath}/register`, user,this.getHttpHeaderOption());
+
+  }
+
 
   signOut() {
     this.authService.signOut();
@@ -105,37 +116,4 @@ export class MacinoddsApiService {
 
   }
 
-
-  // API for Mac device
-  getMacApi() {
-    return this.http.get('http://mac.odds.team/api/mac');
-  }
-
-  getMacIDApi(id) {
-    return this.http.get('http://mac.odds.team/api/mac/' + id);
-  }
-
-  putMacAPI(id, data) {
-    return this.http.put('http://mac.odds.team/api/mac/' + id, data);
-  }
-
-  postMacAPI(data) {
-    return this.http.post('http://mac.odds.team/api/mac', data);
-  }
-
-  deleteMacAPI(id) {
-    return this.http.delete('http://mac.odds.team/api/mac/' + id);
-  }
-  // End API for Mac device
-
-  //test
-  getAdminAPI() {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d25038577a26e3df3f6eea1');
-  }
-  getUserAPI() {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/user/5d250385a67b86e4230cd5d5');
-  }
-  getData(id) {
-    return this.http.get('https://5d008336d021760014b74fa8.mockapi.io/test/myMac/' + id);
-  }
 }

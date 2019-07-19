@@ -2,10 +2,20 @@
     box-sizing: border-box;
 }
 
-.modal-popup {
+.modal {
+    padding: 1px;
     position: fixed;
-    translate: (-50%, -50%);
-    top: 70%;
+    /* width: 300px !important; */
+    transform: translate(-50%, -50%);
+    top: 65%;
+    left: 50%;
+    padding-bottom: 50px;
+    z-index: 1000 !important;
+}
+
+.modal-popup {
+    transform: translate(-50%, -50%);
+    margin: auto auto;
 }
 
 body {
@@ -15,9 +25,10 @@ body {
 
 .card {
     padding: 30px 30px;
+    max-width: 886px;
     width: 90%;
     min-width: 300px;
-    margin: 50px auto;
+    margin: 3% auto;
 }
 
 .full {
@@ -30,6 +41,7 @@ body {
 
 .head-card {
     text-align: center;
+    font-size: 18px;
 }
 
 .btn-gruop {
@@ -83,7 +95,7 @@ input[type=submit]:hover {
     border-radius: 10px;
     /* background-color: #f2f2f2; */
     /* background-color:white; */
-    padding: 20px;
+    padding: 15px;
 }
 
 .col-25 {
@@ -110,6 +122,10 @@ input[type="file"] {
     display: none;
 }
 
+.grap-btn {
+    margin-right: 23px;
+}
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 
 @media screen and (max-width: 600px) {
@@ -130,6 +146,11 @@ input[type="file"] {
 }
 
 @media only screen and (min-width: 414px) and (max-width: 736px) {
+    .modal {
+        transform: translate(-50%, -50%);
+    }
+ 
+    
     .sidenav li a {
         float: left;
         padding: 15px;
@@ -149,6 +170,9 @@ input[type="file"] {
 }
 
 @media screen and (max-width: 900px) {
+    .modal {
+        transform: translate(-50%, -50%);
+    }
     .sidenav li a {
         float: left;
         padding: 15px;
@@ -164,6 +188,9 @@ input[type="file"] {
     }
     div.content {
         margin-left: 0;
+    }
+    .grap-btn {
+        margin-right: 3%;
     }
 }
 

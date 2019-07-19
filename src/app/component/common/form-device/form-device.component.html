@@ -1,27 +1,30 @@
 <mat-card class="card">
     <p class="head-card font-weight-bold">{{CardHeaderLabel}}</p>
+    <div style="margin-bottom: 25px;"></div>
     <div class="font-style font-weight-bold" [formGroup]="addDeviceForm">
-        <p>ระบุชื่ออุปกรณ์</p>
+        <p>ชื่ออุปกรณ์</p>
         <mat-form-field [floatLabel]="'never'" class="full">
-            <input onfocus="placeholder=''" class="full" formControlName="nameDevice" matInput name="tester"
+            <input  class="full" formControlName="nameDevice" matInput id="name"
                 placeholder="เช่น Macbook Pro 2017 13" [(ngModel)]="data.name" (ngModelChange)="validatorName()"
                 required>
         </mat-form-field>
-        <p>ระบุ serial</p>
+        <p>serial</p>
         <mat-form-field [floatLabel]="'never'" class="full">
-            <input onfocus="placeholder=''" class="full" formControlName="serial" matInput
-                placeholder="ระบุ serial เช่น W88401231AX" [(ngModel)]="data.serial" (ngModelChange)="validatorSerial()" required>
-        </mat-form-field>
-        <p>ระบุสเปคเครื่อง</p>
-        <mat-form-field [floatLabel]="'never'" class="full">
-            <input onfocus="placeholder=''" class="full" matInput formControlName="spec"
-                placeholder="ระบุสเปคเครื่อง เช่น Intel i5 2.3 GHz Memory 8 Gb 13 inch" [(ngModel)]="data.spec" (ngModelChange)="validatorSpec()"
+            <input  class="full" formControlName="serial" matInput id="serial"
+                placeholder="ระบุ serial เช่น W88401231AX" [(ngModel)]="data.serial" (ngModelChange)="validatorSerial()"
                 required>
+        </mat-form-field>
+        <p>สเปคเครื่อง</p>
+        <mat-form-field [floatLabel]="'never'" class="full">
+            <input  class="full" matInput formControlName="spec" id="spec"
+                placeholder="ระบุสเปคเครื่อง เช่น Intel i5 2.3 GHz Memory 8 Gb 13 inch" [(ngModel)]="data.spec"
+                (ngModelChange)="validatorSpec()" required>
         </mat-form-field>
 
         <p>ที่อยู่ของอุปกรณ์</p>
         <mat-form-field [floatLabel]="'never'" class="full">
-            <input matInput onfocus="placeholder=''" formControlName="location" placeholder=" เช่น The Street" required>
+            <input matInput  formControlName="location" id="location"
+                placeholder=" เช่น The Street" required >
         </mat-form-field>
 
 
@@ -36,20 +39,29 @@
             </div>
         </div>
 
+
         <div class="d-flex flex-row">
             <button id="btn-upload-file" mat-flat-button (click)="_fileInput.click()"
                 style="background-color: #212121;color:white">Upload
                 Image</button>
-            <p style="margin-top: 7px; margin-left: 7px; text-align: center;">{{fileName}}</p>
+            <div *ngIf="!isHandset">
+                <p style="margin-top: 7px; margin-left: 7px; text-align: center;">{{fileName}}</p>
+            </div>
+
+        </div>
+        <div style="margin-top: 25px;">
+
+            <div class="btn-gruop">
+                <button [disabled]="!addDeviceForm.valid || !vaildatBT" type="submit" class="btn" mat-flat-button
+                    id="saveBt" style="background-color: #0E98D5;color:white;" (click)="onSubmit()">Save</button>
+                <button class="btn btn-default-black" (click)="_fileInput.value = ''" mat-flat-button id="cancelBt"
+                    (click)="cancel()">{{btnLabel}}</button>
+            </div>
         </div>
 
-        <div class="btn-gruop">
-            <button [disabled]="!addDeviceForm.valid || !vaildatBT" type="submit" class="btn" mat-flat-button
-                style="background-color: #0E98D5;color:white;" (click)="onSubmit()">Save</button>
-            <button class="btn btn-default-black" (click)="_fileInput.value = ''" mat-flat-button
-                (click)="cancel()">{{btnLabel}}</button>
-        </div>
         <button id="openUploadModal" [hidden]="true" data-toggle="modal" data-target="#uploadModal">Open Modal</button>
+
+
     </div>
 </mat-card>
 
@@ -57,78 +69,43 @@
 <!-- Form -->
 
 
-<div class="modal" id="uploadModal" role="dialog" style="  position: absolute;">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal" id="uploadModal" role="dialog" tabindex="1">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div [className]="classes.actions" class="row">
-
                 <span [className]="classes.flex"></span>
-                <input id="button-select-crop" #_fileInput type="file" (change)="cropping.selectInputEvent($event) || openUploadModal($event)"
-                    accept="image/*" hidden>
+                <input id="button-select-crop" #_fileInput type="file"
+                    (change)="cropping.selectInputEvent($event) || openUploadModal($event)" accept="image/*" hidden>
             </div>
             <div *ngIf="cropping.isLoaded" class="container">
-                <!-- <div class="row">
-                    <div class="col-1 p-0">
-                        <button class="p-0" (click)="cropping.zoomIn()" ly-button appearance="icon">
+                <mat-grid-list cols="1" rowHeight="50px">
+                    <mat-grid-tile>
+                        <button (click)="cropping.zoomIn()" class="grap-btn" ly-button appearance="icon">
                             <ly-icon>zoom_in</ly-icon>
                         </button>
-                    </div>
-                    <div class="col-1 p-0">
-                        <button class="p-0" (click)="cropping.zoomOut()" ly-button appearance="icon">
+                        <button (click)="cropping.zoomOut()" class="grap-btn" ly-button appearance="icon">
                             <ly-icon>zoom_out</ly-icon>
                         </button>
-                    </div>
-                    <div class="col-1 p-0">
-                        <button class="p-0" (click)="cropping.center()" ly-button appearance="icon" id="centerFocus">
+                        <button (click)="cropping.center()" class="grap-btn" ly-button appearance="icon">
                             <ly-icon>filter_center_focus</ly-icon>
                         </button>
-                    </div>
-                    <div class="col-1 p-0">
-                        <button class="p-0" (click)="cropping.rotate(-90)" ly-button appearance="icon">
+                        <button (click)="cropping.rotate(-90)" class="grap-btn" ly-button appearance="icon">
                             <ly-icon>rotate_90_degrees_ccw</ly-icon>
                         </button>
-                    </div>
-                    <div class="col-2 p-0">
-                        <button class="p-0" (click)="cropping.fit()" ly-button>Fit</button>
-                    </div>
-                    <div class="col-2 p-0">
-                        <button class="p-0" (click)="cropping.fitToScreen()" ly-button>Fit to screen</button>
-                    </div>
-                    <div class="col-2 p-0">
-                        <button class="p-0" (click)="cropping.setScale(1)" ly-button>1:1</button>
-                    </div>
-                    <div class="col-2 p-0">
-                        <button class="p-0" (click)="cropping.clean()" ly-button>Clean</button>
-                    </div>
-                </div> -->
-                <div *ngIf="cropping.isLoaded">
-                    <button (click)="cropping.zoomIn()" ly-button appearance="icon">
-                        <ly-icon>zoom_in</ly-icon>
-                    </button>
-                    <button (click)="cropping.zoomOut()" ly-button appearance="icon">
-                        <ly-icon>zoom_out</ly-icon>
-                    </button>
-                    <button (click)="cropping.center()" ly-button appearance="icon">
-                        <ly-icon>filter_center_focus</ly-icon>
-                    </button>
-                    <button (click)="cropping.rotate(-90)" ly-button appearance="icon">
-                        <ly-icon>rotate_90_degrees_ccw</ly-icon>
-                    </button>
-                    <button (click)="cropping.fit()" ly-button>Fit</button>
-                    <button (click)="cropping.fitToScreen()" ly-button>Fit to screen</button>
-                    <button (click)="cropping.setScale(1)" ly-button>1:1</button>
-                    <button (click)="cropping.clean()" ly-button>Clean</button>
-                </div>
+                        <button (click)="cropping.fitToScreen()" class="grap-btn" id="fitScreen" ly-button>Fit</button>
+                        <button *ngIf="!isHandset" class="grap-btn" (click)="cropping.clean()" ly-button>Clean</button>
+                    </mat-grid-tile>
+
+                </mat-grid-list>
+
 
             </div>
-            <ly-img-cropper [withClass]="classes.cropping" #cropping
-            [config]="myConfig"
-            (cropped)="onCropped($event)">
-              <span>Drag and drop image</span>
+            <ly-img-cropper [withClass]="classes.cropping" #cropping [config]="myConfig" (cropped)="onCropped($event)">
+                <span>Drag and drop image</span>
             </ly-img-cropper>
 
-            <button id="button-cropping" *ngIf="cropping.isLoaded" color="accent" (click)="cropping.crop() || cropping.setScale(0)" ly-button
-                data-dismiss="modal">
+            <button id="button-cropping" *ngIf="cropping.isLoaded" color="#212121"
+                (click)="cropping.crop() || cropping.setScale(0)" ly-button data-dismiss="modal">
                 <ly-icon>crop</ly-icon>crop
             </button>
         </div>
