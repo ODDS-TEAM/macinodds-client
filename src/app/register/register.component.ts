@@ -34,13 +34,6 @@ export class RegisterComponent implements OnInit {
 
 
   submit() {
-    console.log('valid no get = ' + this.registerForm.valid)
-    console.log('value.name = ' + this.registerForm.get('fullName').value)
-    console.log('value = ' + this.registerForm.get('telephoneNumb').value)
-    console.log('validator.name = ' + this.registerForm.get('telephoneNumb').validator.name)
-    console.log('status = ' + this.registerForm.get('telephoneNumb').status)
-    console.log('valid = ' + this.registerForm.get('telephoneNumb').valid)
-    console.log('validator.length = ' + this.registerForm.get('telephoneNumb').validator.length)
 
     const { slackAccount, telephoneNumb } = this.registerForm.getRawValue();
 
@@ -109,9 +102,9 @@ export class RegisterComponent implements OnInit {
 
   setup() {
     this.registerForm = new FormGroup({
-      fullName: new FormControl({ value: '', disabled: true }, Validators.required),
-      emailODDS: new FormControl({ value: '', disabled: true }, Validators.required),
-      slackAccount: new FormControl('', [Validators.email, Validators.required]),
+      // fullName: new FormControl({ value: '', disabled: true }, Validators.required),
+      // emailODDS: new FormControl({ value: '', disabled: true }, Validators.required),
+      slackAccount: new FormControl('', [Validators.required]),
       telephoneNumb: new FormControl('', [Validators.min(10), Validators.pattern('[0-9]{10}'), Validators.required])
     });
   }
