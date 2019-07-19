@@ -38,6 +38,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { LottieAnimationViewModule } from 'ng-lottie';
+import { JwtModule } from '@auth0/angular-jwt';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -51,6 +52,10 @@ export function getAuthServiceConfigs() {
     ]
   );
   return config;
+}
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
 }
 
 
@@ -110,7 +115,12 @@ export class GlobalVariables {
     MatFormFieldModule, MatNativeDateModule, MatInputModule,
     StorageServiceModule,
     FlexLayoutModule,
-    LottieAnimationViewModule.forRoot()
+    LottieAnimationViewModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    })
   ],
   providers: [
     {provide: LocationStrategy,
