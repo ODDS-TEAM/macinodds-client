@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MacinoddsApiService } from './macinodds-api.service';
 @Injectable({
@@ -20,9 +20,9 @@ export class DeviceApiService {
   ) { }
 
 
+  
 
-  getMacApi() {
-    console.log(this.macinoddsService.getHttpHeaderOption(),'>>>>++++')    
+  getMacApi() { 
     return this.http.get(this.macDeviceAPI,this.macinoddsService.getHttpHeaderOption());
   }
 
@@ -31,13 +31,24 @@ export class DeviceApiService {
   }
 
   putMacAPI(id, data) {
-    return this.http.put(this.macDeviceAPI + '/' + id, data,this.macinoddsService.getHttpHeaderOption());
+    return this.http.put(this.macDeviceAPI + '/' + id, data, {
+      headers: new HttpHeaders({
+          Authorization: sessionStorage.getItem('token')
+      })
+  }
+);
   }
 
   postMacAPI(data) {
-    console.log('*********',JSON.stringify(data),'*******',data);
-    
-    return this.http.post(this.macDeviceAPI, data ,this.macinoddsService.getHttpHeaderOption());
+    console.log('*********',JSON.stringify(data),'*******',...data);
+    // const test = JSON.parse(JSON.stringify(data))
+
+    return this.http.post(this.macDeviceAPI, data , {
+      headers: new HttpHeaders({
+          Authorization: sessionStorage.getItem('token')
+      })
+  }
+);
   }
 
   deleteMacAPI(id) {
