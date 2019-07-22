@@ -21,7 +21,7 @@
                         <br />
                         <span class="font-weight-bold title-content-card ">สเปค </span> <span id="spec-{{i}}">
                             {{ result.spec }}</span> <br />
-                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card">สถานที่ </span>
+                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card">สถานที่ </span>
                             <span id="borrower-{{i}}"> {{ result.location }}</span> <br />
                         </div>
                         <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card ">ผู้ยืม </span>
