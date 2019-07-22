@@ -24,13 +24,13 @@
                         <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card">สถานที่ </span>
                             <span id="borrower-{{i}}"> {{ result.location }}</span> <br />
                         </div>
-                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">ผู้ยืม </span>
+                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card ">ผู้ยืม </span>
                             <span id="borrower-{{i}}"> {{ result.uname }} ({{ result.slack }})</span> <br />
                         </div>
-                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">โทร </span>
+                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card ">โทร </span>
                             <span id="borrower-{{i}}"> {{ result.tel }}</span> <br />
                         </div>
-                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">กำหนดคืน
+                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card ">กำหนดคืน
                             </span>
                             <span id="borrower-{{i}}"> {{result.returnDate| date:'dd/MM/yyyy'}}</span> <br />
                         </div>
