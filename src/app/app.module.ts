@@ -1,31 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler, Injectable } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
-  MatListModule, MatCard, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+import {
+  MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
+  MatListModule, MatCard, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatInputModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatGridListModule} from '@angular/material/grid-list';
-
-
-// import { MenuAddDeviceComponent } from './component/menu-add-device/menu-add-device.component';
-// import { MenuViewAdminComponent } from './component/menu-view-admin/menu-view-admin.component';
-
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
 import { LoginComponent } from './login/login.component';
-import { from } from 'rxjs';
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
-import { StorageServiceModule} from 'angular-webstorage-service';
-import { LyThemeModule, LY_THEME , LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
-
-import { MacinoddsApiService } from './service/macinodds-api.service';
-
+import { StorageServiceModule } from 'angular-webstorage-service';
+import { LyThemeModule, LY_THEME, LY_THEME_GLOBAL_VARIABLES } from '@alyle/ui';
 import { LyIconModule } from '@alyle/ui/icon';
 import { MinimaLight } from '@alyle/ui/themes/minima';
 import { LyButtonModule } from '@alyle/ui/button';
@@ -33,12 +25,30 @@ import { LyToolbarModule } from '@alyle/ui/toolbar';
 import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images';
 import { LyTypographyModule } from '@alyle/ui/typography';
 import { RegisterComponent } from './register/register.component';
-
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NotFoundComponent } from './not-found/not-found.component';
-
 import { LottieAnimationViewModule } from 'ng-lottie';
 import { JwtModule } from '@auth0/angular-jwt';
+import * as Raven from 'raven-js';
+
+Raven
+  .config('https://de523585870146b080b39534a2b7ce33@sentry.io/1510174')
+  .install();
+
+export class RavenErrorHandler implements ErrorHandler {
+  handleError(err: any): void {
+    Raven.captureException(err.originalError);
+  }
+}
+
+// @Injectable()
+// export class SentryErrorHandler implements ErrorHandler {
+//   constructor() { }
+//   handleError(error) {
+//     const eventId = Sentry.captureException(error.originalError || error);
+//     Sentry.showReportDialog({ eventId });
+//   }
+// }
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -55,7 +65,7 @@ export function getAuthServiceConfigs() {
 }
 
 export function tokenGetter() {
-  return localStorage.getItem("token");
+  return localStorage.getItem('token');
 }
 
 
@@ -104,7 +114,7 @@ export class GlobalVariables {
     MatRadioModule,
     HttpClientModule,
     SocialLoginModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     LyThemeModule.setTheme('minima-light'),
     LyButtonModule,
     LyToolbarModule,
@@ -123,21 +133,13 @@ export class GlobalVariables {
     })
   ],
   providers: [
-    {provide: LocationStrategy,
-     useClass: PathLocationStrategy },
-     {provide: AuthServiceConfig,
-    useFactory: getAuthServiceConfigs},
-     { provide: LY_THEME, useClass: MinimaLight, multi: true },
-     {
-      provide: LY_THEME,
-      useClass: MinimaLight,
-      multi: true
-    },
-    {
-      provide: LY_THEME_GLOBAL_VARIABLES,
-      useClass: GlobalVariables
-    }, // global variables
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs },
+    { provide: LY_THEME, useClass: MinimaLight, multi: true },
+    { provide: LY_THEME, useClass: MinimaLight, multi: true },
+    { provide: LY_THEME_GLOBAL_VARIABLES, useClass: GlobalVariables }, // global variables
+    { provide: ErrorHandler, useClass: RavenErrorHandler },
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
