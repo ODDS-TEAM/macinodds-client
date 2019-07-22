@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GuardService } from './service/guard/guard.service';
+import { RoleGuardService } from './service/guard/role-guard.service';
 
 const routes: Routes = [
   {
@@ -29,11 +30,18 @@ const routes: Routes = [
 
     path: 'admin',
     component: SideNavComponent,
+    canActivate: [RoleGuardService], 
+    data: { 
+      expectedRole: 'admin'
+    } ,
     children: [
       {
         path: '',
         loadChildren: './component/component.module#ComponentModule',
-        canActivate: [GuardService] 
+        canActivate: [GuardService, RoleGuardService],
+        data: {
+          expectedRole: 'admin'
+        }
       }
     ]
   },
@@ -41,19 +49,27 @@ const routes: Routes = [
   {
     path: 'user',
     component: SideNavComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'individual'
+    },
     children: [
       {
         path: '',
         loadChildren: './component/component.module#ComponentModule',
-        canActivate: [GuardService] 
+        canActivate: [GuardService, RoleGuardService],
+        data: {
+          expectedRole: 'individual'
+        }
       }
     ]
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/404', pathMatch: 'full', canActivate: [GuardService] 
-}
+  {
+    path: '**', redirectTo: '/404', pathMatch: 'full', canActivate: [GuardService]
+  }
 
-  
+
 
 ];
 
