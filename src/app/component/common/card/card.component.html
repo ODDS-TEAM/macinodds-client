@@ -14,8 +14,8 @@
                     <div class="col-lg-6 text-left pl-4 pl-lg-5 pt-lg-4 py-3">
                         <span class="font-weight-bold head-content-card" id="name" id="name-{{i}}">{{ result.name }}
                         </span>
-                        <img *ngIf="result.borrowing" class="icon" src="/assets/imgs/available.ico" alt="icon" id="status-av-{{i}}">
-                        <img *ngIf="!result.borrowing" class="icon" src="/assets/imgs/unavailable.ico" alt="icon" id="status-uv">
+                        <img *ngIf="!result.borrowing" class="icon" src="/assets/imgs/available.ico" alt="icon" id="status-av-{{i}}">
+                        <img *ngIf="result.borrowing" class="icon" src="/assets/imgs/unavailable.ico" alt="icon" id="status-uv">
                         <br />
                         <span class="font-weight-bold title-content-card "> Serial </span> <span id="serial-{{i}}">{{ result.serial }}</span>
                         <br />
@@ -24,13 +24,13 @@
                         <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card">สถานที่ </span>
                             <span id="borrower-{{i}}"> {{ result.location }}</span> <br />
                         </div>
-                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">ผู้ยืม </span>
+                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card ">ผู้ยืม </span>
                             <span id="borrower-{{i}}"> {{ result.uname }} ({{ result.slack }})</span> <br />
                         </div>
-                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">โทร </span>
+                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card ">โทร </span>
                             <span id="borrower-{{i}}"> {{ result.tel }}</span> <br />
                         </div>
-                        <div *ngIf="!result.borrowing"><span class="font-weight-bold title-content-card ">กำหนดคืน
+                        <div *ngIf="result.borrowing"><span class="font-weight-bold title-content-card ">กำหนดคืน
                             </span>
                             <span id="borrower-{{i}}"> {{result.returnDate| date:'dd/MM/yyyy'}}</span> <br />
                         </div>
@@ -44,14 +44,14 @@
                             </button>
                         </div>
                         <div class="col-10 col-lg-8 px-0 mx-auto" [hidden]=btnRole>
-                            <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold" *ngIf="result.borrowing" (click)="deleteDevice(result._id , result.serial)" id="btn-delete-{{i}}">
+                            <button class="btn btn-sm btn-dark btn-block my-2 font-weight-bold" *ngIf="!result.borrowing" (click)="deleteDevice(result._id , result.serial)" id="btn-delete-{{i}}">
                                 <i class="fa fa-trash mr-1"> </i>
                                 Delete
                             </button>
                         </div>
                     </div>
                     <div class="col-lg-3 px-0 my-auto" [hidden]=!btnRole>
-                        <div class="col-10 col-lg-8 px-0 mx-auto" *ngIf="!cantBorrow" [hidden]=!result.borrowing>
+                        <div class="col-10 col-lg-8 px-0 mx-auto" *ngIf="!cantBorrow" [hidden]=result.borrowing>
                             <button class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit waves-light" data-toggle="modal" data-target="#BorrowForm" id="btn-borrow-{{i}}" (click)="borrowDevice(result._id)">
                                 <i class="fas fa-laptop mr-1" data-toggle="modal">
                                 </i>Borrow

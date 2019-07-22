@@ -196,6 +196,7 @@ export class FormDeviceComponent implements OnInit {
         this.backupData = Object.assign({}, this.data);
         this.imageDefault = 'https://mac.odds.team/assets/imgs/devices/' + this.data.img;
         this.fileName = this.data.img;
+        this.fileToUpload = this.data.img;
 
         this.disableInput = !this.data.borrowing;
         this.locationInput = this.data.location;
@@ -231,19 +232,14 @@ export class FormDeviceComponent implements OnInit {
 
   onSubmit() {
     // create formData to post
-    const formData = {
-      name: '',
-      serial: '',
-      spec: '',
-      // memo: '',
-      img: null,
-      location: ''
-    }
-    formData.name = this.data.name;
-    formData.serial = this.data.serial;
-    formData.spec =this.data.spec;
-    formData.img = this.hello;
-    formData.location =this.data.location;
+    const formData: FormData = new FormData();
+    formData.append('name', this.data.name);
+    formData.append('serial', this.data.serial);
+    formData.append('spec', this.data.spec);
+    formData.append('img', this.fileToUpload);
+    formData.append('location', this.data.location);
+
+
 
     // formData.append('name', this.data.name);
     // formData.append('serial', this.data.serial);
@@ -251,7 +247,6 @@ export class FormDeviceComponent implements OnInit {
     // formData.append('img', this.fileToUpload);
     // formData.append('location', this.data.location);
 
-    console.log('data name form >>> ',JSON.stringify(formData),'>>>>>>',formData);
 
     // console.log(this.data.name,'Create form >>> ',JSON.stringify(formData));
 
@@ -259,7 +254,7 @@ export class FormDeviceComponent implements OnInit {
     if (this.editCompoCheck) {
       // formData.append('img', this.fileToUpload);
       this.macApiService.putMacAPI(this.idEditDevice, formData).subscribe(data => {
-      console.log('mmmmm>>>'+ formData)
+      console.log('mmmmm>>>'+ data)
         this.router.navigate(['/admin']);
       });
     } else {
@@ -268,7 +263,7 @@ export class FormDeviceComponent implements OnInit {
       if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
     console.log(' form conform >>> ',JSON.stringify(formData),'<<<<<',formData);
         this.macApiService.postMacAPI(formData).subscribe(data => {
-          console.log('Post laew na',formData);
+          console.log('Post laew na',data);
           this.router.navigate(['/admin']);
         });
       }
