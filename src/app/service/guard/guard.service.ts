@@ -13,14 +13,6 @@ export class GuardService implements CanActivate {
     private route: Router,
   ) { }
 
-  // canActivate(): boolean {
-  //   if (!this.macinoddsService.isAuthenticated()) {
-  //     this.route.navigate(['/login']);
-  //     return false;
-  //   }
-  //   return true;
-  // }
-
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.macinoddsService.isAuthenticated()) {
       return true;
