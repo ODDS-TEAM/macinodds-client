@@ -22,7 +22,7 @@ export class RoleGuardService implements CanActivate {
     const decode = JWT(token);
     // const tokenPayload = decode(token);
 
-    if ( this.role !== expectedRole) {
+    if (this.role !== expectedRole) {
       this.route.navigate(['/404']);
       // console.log('tokenplayload +++++++++++++++++ ' + tokenPayload);
 
