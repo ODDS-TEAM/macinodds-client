@@ -1,44 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorHandler } from '@angular/core';
+import * as Raven from 'raven-js';
 
 @Component({
-  selector: 'app-not-found',
-  templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.css']
+    selector: 'app-not-found',
+    templateUrl: './not-found.component.html',
+    styleUrls: ['./not-found.component.css']
 })
-export class NotFoundComponent  {
+export class NotFoundComponent implements OnInit {
 
-  lottieConfig: Object;
+    lottieConfig: Object;
 
-  private anim: any;
-  private animationSpeed: number = 1;
+    private anim: any;
+    private animationSpeed: number = 1;
 
-  constructor() {
-      this.lottieConfig = {
-          path: '/assets/data/404-animation.json', 
-          autoplay: true,
-          loop: true
-      };
-  }
+    constructor() {
+        this.lottieConfig = {
+            path: '/assets/data/404-animation.json',
+            autoplay: true,
+            loop: true
+        };
+    }
 
-  handleAnimation(anim: any) {
-      this.anim = anim;
-  }
+    ngOnInit() {
+        // Raven.captureException('User go to 404 page');
+        Raven.captureMessage('User go to 404');
+    }
 
-  stop() {
-      this.anim.stop();
-  }
 
-  play() {
-      this.anim.play();
-  }
+    handleAnimation(anim: any) {
+        this.anim = anim;
+    }
 
-  pause() {
-      this.anim.pause();
-  }
+    stop() {
+        this.anim.stop();
+    }
 
-  setSpeed(speed: number) {
-      this.animationSpeed = speed;
-      this.anim.setSpeed(speed);
-  }
+    play() {
+        this.anim.play();
+    }
+
+    pause() {
+        this.anim.pause();
+    }
+
+    setSpeed(speed: number) {
+        this.animationSpeed = speed;
+        this.anim.setSpeed(speed);
+    }
 
 }
