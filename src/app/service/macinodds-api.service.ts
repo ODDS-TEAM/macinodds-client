@@ -109,7 +109,7 @@ export class MacinoddsApiService {
 
   updateUser(user) {
     console.log('toptopy =' + user);
-    return this.http.put(`${this.apiPath}/register`, user,{
+    return this.http.patch(`${this.apiPath}/register`, user,{
       headers: new HttpHeaders({
           Authorization: sessionStorage.getItem('token')
       })
