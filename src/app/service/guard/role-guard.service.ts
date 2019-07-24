@@ -21,10 +21,12 @@ export class RoleGuardService implements CanActivate {
     const token = sessionStorage.getItem('token');
     const decode = JWT(token);
     // const tokenPayload = decode(token);
+    console.log('expectRole +++++++++++++++++ ' + expectedRole);
+
 
     if (this.role !== expectedRole) {
       this.route.navigate(['/404']);
-      // console.log('tokenplayload +++++++++++++++++ ' + tokenPayload);
+      console.log('expectRole If 404 +++++++++++++++++ ' + expectedRole);
 
       return false;
     } 
@@ -33,6 +35,8 @@ export class RoleGuardService implements CanActivate {
     // console.log('tokenplayload +++++++++++++++++ ' + tokenPayload);
 
     return true;
+    console.log('tokenplayload +++++++++++++++++ ' + expectedRole);
+
     
   }
 }

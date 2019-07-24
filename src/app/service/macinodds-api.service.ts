@@ -124,6 +124,7 @@ export class MacinoddsApiService {
     console.log(' You are sign out ');
     this.route.navigate(['/login']);
     sessionStorage.clear();
+    localStorage.clear();
 
   }
 
