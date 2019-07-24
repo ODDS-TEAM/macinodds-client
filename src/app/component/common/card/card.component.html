@@ -4,7 +4,7 @@
         <br>
         <ul class="list-group">
             <app-my-card class="mb-3" *ngIf="hiddenMyCard" [dataObject]="objectToMyCard" ></app-my-card>
-            <h5 class="margin-header">All Device</h5>
+            <h5 class="margin-header">All Device ({{results.length}})</h5>
             <li class="card shadow-lg bg-light mb-3 size-card" *ngFor="let result of results ; let i = index">
                 <div class="row justify-content-md-center mx-0 my-6" id="id-card-{{i}}">
                     <div class="col-lg-3 px-0 ">
