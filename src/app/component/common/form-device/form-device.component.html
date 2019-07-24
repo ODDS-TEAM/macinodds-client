@@ -42,10 +42,6 @@
             <button id="btn-upload-file" mat-flat-button (click)="_fileInput.click()"
                 style="background-color: #212121;color:white">Upload
                 Image</button>
-            <div *ngIf="!isHandset">
-                <p style="margin-top: 7px; margin-left: 7px; text-align: center;">{{fileName}}</p>
-            </div>
-
         </div>
         <div style="margin-top: 25px;">
 
@@ -55,7 +51,7 @@
                 <button class="btn btn-default-black" (click)="_fileInput.value = ''" mat-flat-button id="cancelBt"
                     (click)="cancel()">{{btnLabel}}</button>
 
-               
+
             </div>
         </div>
 
@@ -107,7 +103,7 @@
 
             <button id="button-cropping" *ngIf="cropping.isLoaded" color="#212121"
                 (click)="cropping.crop() || cropping.setScale(0)" ly-button data-dismiss="modal">
-                <ly-icon>crop</ly-icon>crop
+                <ly-icon>crop</ly-icon>OK
             </button>
         </div>
     </div>
