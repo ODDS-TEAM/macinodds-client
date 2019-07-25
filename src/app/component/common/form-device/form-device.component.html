@@ -22,7 +22,7 @@
         <p>ที่อยู่ของอุปกรณ์</p>
         <mat-form-field [floatLabel]="'never'" class="full">
             <input matInput formControlName="location" id="location" placeholder=" เช่น The Street" required
-                [(ngModel)]="data.location">
+                [(ngModel)]="data.location" (ngModelChange)="validatorLocation()">
         </mat-form-field>
 
 

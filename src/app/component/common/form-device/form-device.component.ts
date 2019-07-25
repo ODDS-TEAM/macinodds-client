@@ -42,8 +42,8 @@ export class FormDeviceComponent implements OnInit {
 
   readonly imageDefaultPath: string = '/assets/imgs/add_device.jpg';
   
-  disableInput: any;
-  locationInput:any;
+  disableInput: boolean;
+  locationInput:string;
 
   addDeviceForm: FormGroup;
 
@@ -140,8 +140,8 @@ export class FormDeviceComponent implements OnInit {
   checked: boolean;
 
   ngOnInit() {
-    this.createForm();
     this.componentSet(this.idEditDevice);
+    this.createForm();
   }
 
   private createForm() {
@@ -198,8 +198,13 @@ export class FormDeviceComponent implements OnInit {
         this.fileName = this.data.img;
         this.fileToUpload = this.data.img;
 
-        this.disableInput = !this.data.borrowing;
+        this.disableInput = this.data.borrowing;
         this.locationInput = this.data.location;
+        if(this.locationInput.length == 0 &&  !this.disableInput){
+          this.disableInput = false;
+        }else{
+          this.disableInput = true;
+        }
         console.log('disableInput :' +this.disableInput +'>>>>'+JSON.stringify(this.data))
         this.createForm();
       });
@@ -289,6 +294,11 @@ export class FormDeviceComponent implements OnInit {
   validatorImg() {
     if (this.editCompoCheck) {
       this.data.img !== this.backupData.img ? this.vaildatBT = true : this.vaildatBT = false;
+    }
+  }
+  validatorLocation() {
+    if (this.editCompoCheck) {
+      this.data.location !== this.backupData.location ? this.vaildatBT = true : this.vaildatBT = false;
     }
   }
 
