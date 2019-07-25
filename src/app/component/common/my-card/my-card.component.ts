@@ -10,17 +10,13 @@ import { DeviceApiService } from 'src/app/service/device-api.service';
 export class MyCardComponent implements OnInit {
 
   modalForm: FormGroup;
-
-  userId = localStorage.getItem('userId');
   returnDate: any;
   returnMemo: string;
   returnLocation: string;
-  vaildatBT = false;
+  hide: boolean = false;
 
-
-
-  @Input()
   dataObject: any = {
+    _id: '',
     name: '',
     serial: '',
     spec: '',
@@ -28,19 +24,19 @@ export class MyCardComponent implements OnInit {
     img: ''
   };
 
-
-
-
   constructor(
     private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.createForm();
-    this.returnDate = new Date(this.dataObject.returnDate).toLocaleDateString('pt-PT');
-    
+    this.macApiService.getMyDevice().subscribe(res => {
+      this.dataObject = res[0];
+      this.returnDate = new Date(this.dataObject.returnDate).toLocaleDateString('pt-PT');
+      if (this.dataObject)
+        this.hide = true;
+    })
   }
 
   private createForm() {
@@ -51,26 +47,16 @@ export class MyCardComponent implements OnInit {
   }
 
   onSubmitReturn() {
-    console.log('memo' + this.returnMemo);
-    console.log('location' + this.returnLocation);
-    const returnData: FormData = new FormData();
-    returnData.append('returnDate', this.returnMemo);
-    returnData.append('returnDate', this.returnLocation);
-    // borrowData.append('token', token);
-
+    const object: any = {
+      memo: this.returnMemo,
+      location: this.returnLocation
+    }
     // post method
     if (window.confirm('ยืนยันการคืนเครื่อง')) {
-      this.macApiService.postReturn(this.userId, returnData)
+      this.macApiService.postReturn(this.dataObject._id, JSON.stringify(object))
         .subscribe(result => {
-          console.log(result);
           location.reload();
         });
     }
-
-
-
-
   }
-
-
 }
