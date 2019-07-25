@@ -3,9 +3,8 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="!(isHandset$ | async)">
         <mat-toolbar class="odds-logo">
-                <img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
-                    class="d-inline-block align-top logo_center" alt="" (click)="navigateToHome()">
-
+            <img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
+                class="d-inline-block align-top logo_center" alt="" (click)="navigateToHome()">
         </mat-toolbar>
         <div class="bg-profile">
             <img class="img_pro mt-4" [src]="profilePic" alt="Avatar" />
@@ -17,12 +16,10 @@
             </div>
         </div>
         <mat-nav-list>
-            <!-- <a mat-list-item routerLink="/user" routerLinkActive="active-list-item">Device</a>
-            <a mat-list-item routerLink="/history" routerLinkActive="active-list-item">History</a> -->
-           
-           <div *ngFor="let menuGroupUser of menuList ; let i = index">
-                <div *ngIf="menuGroupUser.menus.length == 0 " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a mat-list-item class="line btn-side btn-side1 " 
+            <div *ngFor="let menuGroupUser of menuList ; let i = index">
+                <div *ngIf="menuGroupUser.menus.length == 0 " routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <a mat-list-item class="line btn-side btn-side1 "
                         [routerLink]="[rountPath + menuGroupUser.group.code]" id="botton-{{ menuGroupUser.group.code }}"
                         (click)="openedSide()">
                         <div class="container">
@@ -38,9 +35,7 @@
                         </div>
                     </a>
                 </div>
-            </div> 
-
-
+            </div>
             <div class="container clearfix p-0 ">
                 <a mat-list-item class="line btn-side btn-side1 btn-signout" id="sign-out" (click)="signOut()">
                     <div class="container">
@@ -61,17 +56,9 @@
     <mat-sidenav-content class="p-0">
         <mat-toolbar color="primary">
             <mat-toolbar-row style="height: 70px;">
-
-                <!-- <div class="container clearfix">
-                <button class="btn btn-outline-light  float-right " type="submit"
-                    [routerLink]="['/admin/app/menu-view-admin']" *ngIf="isWeb$ | async">Logout</button>
-            </div> -->
-
                 <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
                     *ngIf="isHandset$ | async">
-
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-
                 </button>
                 <span class="spacer"></span>
                 <img src="/assets/imgs/slack_ico.png" height="22">
@@ -79,7 +66,6 @@
                     target="_blank">@odds.team</a>
             </mat-toolbar-row>
         </mat-toolbar>
-        <!-- Add Content Here -->
         <router-outlet></router-outlet>
 
     </mat-sidenav-content>
