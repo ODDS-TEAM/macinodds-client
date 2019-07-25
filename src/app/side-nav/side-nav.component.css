@@ -20,7 +20,10 @@
   color: #ffffff;
   /* box-shadow: 0px 1px 10px #999; */
 }
-
+.active-list-item {
+  background-color: #555555 !important; /* Note: You could also use a custom theme */
+  color: white !important;
+}
 .mat-toolbar.mat-primary {
   height: 70px;
   position: sticky;
@@ -29,6 +32,10 @@
   background-color: #212121;
   color: #0b98d5;
   box-shadow: 0px 1px 10px #999;
+}
+.active{
+  background-color: #555555 !important; /* Note: You could also use a custom theme */
+  color: white !important;
 }
 
 .body {
