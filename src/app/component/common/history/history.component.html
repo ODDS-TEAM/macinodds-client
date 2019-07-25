@@ -19,7 +19,8 @@
                 <tr *ngFor="let result of results">
                     <td class="text-nowrap text-center">{{result.date| date:'dd/MM/yyyy'}}</td>
                     <td *ngIf="role" class="text-nowrap">{{result.borrower.name}}</td>
-                    <td class="text-nowrap text-center">{{result.activity}}</td>
+                    <td class="text-nowrap text-center" 
+                    [ngStyle]="{'color': (result.activity === 'borrow') ? 'salmon' : ''}">{{result.activity}}</td>
                     <td class="text-nowrap text-center">{{result.device.name}}</td>
                     <td class="text-nowrap text-center w-20">{{result.returnDate| date:'dd/MM/yyyy'}}</td>
                     <td class="td-memo">{{result.memo}}</td>
