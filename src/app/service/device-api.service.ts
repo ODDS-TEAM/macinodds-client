@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MacinoddsApiService } from './macinodds-api.service';
+
+const baseApi = 'https://mac.odds.team/api'
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceApiService {
   token = sessionStorage.getItem('token');
-  macDeviceAPI = 'https://mac.odds.team/api/devices';
+
+  macDeviceApi = baseApi + '/devices';
+  macBorrowApi = baseApi + '/borrow/devices/'
+  macReturnApi = baseApi + '/return/devices/'
   // macDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs';
   // historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
   historyDeviceAPI = 'https://mac.odds.team/api/borrowings';
@@ -20,60 +25,63 @@ export class DeviceApiService {
   ) { }
 
 
-  
 
-  getMacApi() { 
-    return this.http.get(this.macDeviceAPI,this.macinoddsService.getHttpHeaderOption());
+
+  getMacApi() {
+    return this.http.get(this.macDeviceApi, this.macinoddsService.getHttpHeaderOption());
   }
 
   getMacIDApi(id) {
-    return this.http.get(this.macDeviceAPI + '/' + id,this.macinoddsService.getHttpHeaderOption());
+    return this.http.get(this.macDeviceApi + '/' + id, this.macinoddsService.getHttpHeaderOption());
   }
 
   putMacAPI(id, data) {
-    return this.http.put(this.macDeviceAPI + '/' + id, data, {
+    return this.http.put(this.macDeviceApi + '/' + id, data, {
       headers: new HttpHeaders({
-          Authorization: sessionStorage.getItem('token')
+        Authorization: sessionStorage.getItem('token')
       })
-  }
-);
+    }
+    );
   }
 
   postMacAPI(data) {
-    console.log('*********',JSON.stringify(data),'*******',...data);
+    console.log('*********', JSON.stringify(data), '*******', ...data);
     // const test = JSON.parse(JSON.stringify(data))
 
-    return this.http.post(this.macDeviceAPI, data , {
+    return this.http.post(this.macDeviceApi, data, {
       headers: new HttpHeaders({
-          Authorization: sessionStorage.getItem('token')
+        Authorization: sessionStorage.getItem('token')
       })
-  }
-);
+    }
+    );
   }
 
   deleteMacAPI(id) {
-    return this.http.delete(this.macDeviceAPI + '/' + id,this.macinoddsService.getHttpHeaderOption());
+    return this.http.delete(this.macDeviceApi + '/' + id, this.macinoddsService.getHttpHeaderOption());
   }
 
+  getMyDevice(){
+    return this.http.get(this.macDeviceApi + '/users/' + localStorage.getItem("userId"), this.macinoddsService.getHttpHeaderOption());
+  }
 
   getHistoryAPI() {
-    return this.http.get(this.historyDeviceAPI,this.macinoddsService.getHttpHeaderOption());
+    return this.http.get(this.historyDeviceAPI, this.macinoddsService.getHttpHeaderOption());
   }
 
   getHistoryIDApi(id) {
-    return this.http.get(this.historyDeviceAPI + '/users/' + id,this.macinoddsService.getHttpHeaderOption());
+    return this.http.get(this.historyDeviceAPI + '/users/' + id, this.macinoddsService.getHttpHeaderOption());
   }
 
   getData(id) {
-    return this.http.get(this.macDeviceAPI+'/' + id,this.macinoddsService.getHttpHeaderOption());
+    return this.http.get(this.macDeviceApi + '/' + id, this.macinoddsService.getHttpHeaderOption());
     // return this.http.get(this.macDeviceAPI +'/'+ id);
   }
-  postBorrowAPI(id, data) {
-    return this.http.post(this.macDeviceAPI + '/' + id + '/borrow', data,this.macinoddsService.getHttpHeaderOption());
+  postBorrowAPI(deviceID: string, data) {
+    return this.http.post(this.macBorrowApi + deviceID, data, this.macinoddsService.getHttpHeaderOption());
   }
 
-  postReturn(id, data) {
-    return this.http.post(this.macDeviceAPI + '/' + id + '/return', data,this.macinoddsService.getHttpHeaderOption());
+  postReturn(deviceID: string, data) {
+    return this.http.post(this.macReturnApi + deviceID, data, this.macinoddsService.getHttpHeaderOption());
   }
 
 
