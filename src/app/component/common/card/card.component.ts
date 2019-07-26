@@ -1,3 +1,4 @@
+import { MyCardComponent } from './../my-card/my-card.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { MyDataServiceService } from '../../my-data-service.service';
 import { Router } from '@angular/router';
@@ -46,7 +47,7 @@ export class CardComponent implements OnInit {
     spec: '',
     returnDate: '',
     img: ''
-  } ;
+  };
   hiddenMyCard = false;
 
   constructor(
@@ -56,8 +57,8 @@ export class CardComponent implements OnInit {
     private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
     private http: HttpClient) {
-      this.setHiddenMyCard() ;
-     }
+    this.setHiddenMyCard();
+  }
 
   ngOnInit() {
     this.editResults = {};
@@ -137,27 +138,20 @@ export class CardComponent implements OnInit {
     const borrowData: FormData = new FormData();
     borrowData.append('returnDate', this.returnDate);
     // borrowData.append('token', token);
-    console.log('returndate',localISOTime)
-    console.log('borrowdata',borrowData)
-    
-    // post method
-    if (window.confirm('ยืนยันการยืมเครื่อง')) {
-      const data = {
-        "returnDate":localISOTime
-      }
-      console.log(data)
-      this.macApiService.postBorrowAPI(this.idDeviceBorrow,data).subscribe(res =>{
-        console.log("Response ====>" , res)
-        location.reload();
-      })
-      // console.log('post borrow ======>',('http://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData))
-      // this.http.post('http://mac.odds.team/api/' + this.idDeviceBorrow + '/borrow', borrowData)
-      //   .subscribe(result => {
+    console.log('returndate', localISOTime)
+    console.log('borrowdata', borrowData)
 
-      //     console.log(result);
-      //     this.router.navigate(['/admin/app/menu-view-admin']);
-      //   });
+    // post method
+    const data = {
+      "returnDate": localISOTime
     }
+    console.log(data)
+    this.macApiService.postBorrowAPI(this.idDeviceBorrow, data).subscribe(res => {
+      location.reload();
+      this.getDevice();
+    })
+
+
 
   }
   check() {
@@ -179,7 +173,7 @@ export class CardComponent implements OnInit {
     } else {
       this.macApiService.getData(this.userId).subscribe(data => {
         this.objectToMyCard = data;
-      console.log('<<<<<<<< มานี่แล้ว Link' + this.userId + '>>>>>>'+JSON.stringify(this.objectToMyCard));
+        console.log('<<<<<<<< มานี่แล้ว Link' + this.userId + '>>>>>>' + JSON.stringify(this.objectToMyCard));
 
         if (!this.objectToMyCard.borrowing) {
           this.hiddenMyCard = false;
