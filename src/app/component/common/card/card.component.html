@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 px-0 my-auto" [hidden]=!btnRole>
-                        <div class="col-10 col-lg-8 px-0 mx-auto" *ngIf="!cantBorrow" [hidden]=result.borrowing>
+                        <div class="col-10 col-lg-8 px-0 mx-auto" *ngIf="!result.borrowing" [hidden]=btnBorrow>
                             <button class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit waves-light"
                                 data-toggle="modal" data-target="#BorrowForm" id="btn-borrow-{{i}}"
                                 (click)="borrowDevice(result._id)">

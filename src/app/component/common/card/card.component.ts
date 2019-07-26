@@ -35,11 +35,11 @@ export class CardComponent implements OnInit {
   returnDate: any;
   localtime: any;
   userId = localStorage.getItem('userId');
-  userData: any;
   @Input() cantBorrow = false;
   idDeviceBorrow: any;
   btnValid = false;
-
+  myDevice: any;
+  btnBorrow: boolean = false;
 
   objectToMyCard: any = {
     name: '',
@@ -62,17 +62,23 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.editResults = {};
-    this.checkBorrow();
+    this.myDevice = {};
     this.getDevice();
+    this.getMyDevice();
     this.data.currentData.subscribe(data => this.name = data);
     this.createBorrowForm();
     this.btnRole = (localStorage.getItem('role') === 'individual');
-    console.log(this.btnRole + '<<<<<<< here >>>>' + localStorage.getItem('role'));
   }
 
-  // public hideButton() {
-  //   this.hide = !this.hide;
-  // }
+  getMyDevice() {
+    this.macApiService.getMyDevice().subscribe(res => {
+      this.myDevice = res[0];
+      if (this.myDevice.borrowing)
+        this.btnBorrow = true;
+      else
+        this.btnBorrow = false;
+    })
+  }
 
   getDevice() {
     // HTTP request by get() method
@@ -150,21 +156,10 @@ export class CardComponent implements OnInit {
       location.reload();
       this.getDevice();
     })
-
-
-
   }
+  
   check() {
     this.btnValid = true;
-  }
-
-  checkBorrow() {
-    this.macApiService.getData(this.userId).subscribe(data => {
-      console.log('<<<<<<<< มานี่แล้ว Link' + this.userId);
-
-      this.userData = data;
-      this.cantBorrow = this.userData.borrowing;
-    });
   }
 
   setHiddenMyCard() {
@@ -174,18 +169,12 @@ export class CardComponent implements OnInit {
       this.macApiService.getData(this.userId).subscribe(data => {
         this.objectToMyCard = data;
         console.log('<<<<<<<< มานี่แล้ว Link' + this.userId + '>>>>>>' + JSON.stringify(this.objectToMyCard));
-
         if (!this.objectToMyCard.borrowing) {
           this.hiddenMyCard = false;
           this.objectToMyCard = null;
-        } else {
+        } else
           this.hiddenMyCard = true;
-        }
       });
-
     }
-
   }
-
-
 }
