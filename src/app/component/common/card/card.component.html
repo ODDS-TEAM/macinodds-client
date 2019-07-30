@@ -3,7 +3,7 @@
     <div class="container">
         <br>
         <ul class="list-group">
-            <app-my-card  #yourChild class="mb-3"></app-my-card>
+            <app-my-card (toParentEvent)="load()" #yourChild class="mb-3"></app-my-card>
             <h5 class="margin-header">All Device ({{results.length}})</h5>
             <li class="card shadow-lg bg-light mb-3 size-card" *ngFor="let result of results ; let i = index">
                 <div class="row justify-content-md-center mx-0 my-6" id="id-card-{{i}}">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 px-0 my-auto" [hidden]=!btnRole>
-                        <div class="col-10 col-lg-8 px-0 mx-auto" *ngIf="!result.borrowing" [hidden]=btnBorrow>
+                        <div class="col-10 col-lg-8 px-0 mx-auto" [hidden]="btnBorrow || result.borrowing">
                             <button class="btn btn-sm btn-info btn-block my-2 font-weight-bold btn-edit waves-light"
                                 data-toggle="modal" data-target="#BorrowForm" id="btn-borrow-{{i}}"
                                 (click)="borrowDevice(result._id)">
@@ -78,7 +78,7 @@
 </div>
 
 <!-- Modal Borrow -->
-<div class="modal fade" id="BorrowForm" role="dialog">
+<div class="modal" id="BorrowForm" role="dialog">
     <div class="modal-dialog">
 
         <div class="modal-content">

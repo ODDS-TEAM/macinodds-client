@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { DeviceApiService } from 'src/app/service/device-api.service';
 
@@ -15,7 +15,7 @@ export class MyCardComponent implements OnInit {
   returnLocation: string;
   show: boolean = false;
 
-  
+  @Output() toParentEvent = new EventEmitter();
 
   dataObject: any = {
     _id: '',
@@ -56,6 +56,8 @@ export class MyCardComponent implements OnInit {
     // post method
     this.macApiService.postReturn(this.dataObject._id, JSON.stringify(object))
       .subscribe(result => {
+        this.show = false;
+        this.toParentEvent.emit(null);
       });
   }
   showMycard(){
@@ -63,5 +65,8 @@ export class MyCardComponent implements OnInit {
       this.ngOnInit(); 
   }
 
+  isShow(): boolean{
+    return this.show 
+  }
 
 }

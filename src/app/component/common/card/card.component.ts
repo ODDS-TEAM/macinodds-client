@@ -19,11 +19,9 @@ import { DeviceApiService } from 'src/app/service/device-api.service';
 export class CardComponent implements OnInit {
 
   @ViewChild('yourChild',{static: false}) child;
-
   @Input() role: boolean;
   btnRole: boolean;
   showMyCard: boolean = false;
-
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   public editResults: any; // กำหนดตัวแปร เพื่อรับค่า
   name: string;
@@ -63,7 +61,6 @@ export class CardComponent implements OnInit {
     private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
     private http: HttpClient) {
-    this.setHiddenMyCard();
   }
 
   ngOnInit() {
@@ -74,29 +71,24 @@ export class CardComponent implements OnInit {
     this.data.currentData.subscribe(data => this.name = data);
     this.createBorrowForm();
     this.btnRole = (localStorage.getItem('role') === 'individual');
+    
   }
 
   getMyDevice() {
     this.macApiService.getMyDevice().subscribe(res => {
       this.myDevice = res[0];
-      if (this.myDevice.borrowing)
-        this.btnBorrow = true;
-      else
-        this.btnBorrow = false;
+      this.myDevice.borrowing ? this.btnBorrow = true : this.btnBorrow = false;
     })
   }
 
   getDevice() {
-
     this.macApiService.getMacApi().subscribe(data => {
       this.results = data;
-
     });
   }
 
   // get device id for show data
   getDeviceByID(id) {
-    console.log('print id : ' + id);
     this.macApiService.getMacIDApi(id).subscribe(data => {
       // read result form JSON response
       this.editResults = data;
@@ -106,7 +98,6 @@ export class CardComponent implements OnInit {
 
   // delete device when click button by id device
   deleteDevice(id, serial) {
-    console.log('confirem delete : ' + id);
     if (window.confirm('Are you sure, you want to delete device serial number: ' + serial)) {
       this.macApiService.deleteMacAPI(id).subscribe(data => {
         this.getDevice();
@@ -123,14 +114,11 @@ export class CardComponent implements OnInit {
   createBorrowForm() {
     this.borrowForm = this.formBuilder.group({
       borrow: ['', Validators.required]
-      // borrow: new FormControl('', Validators.required)
     });
   }
 
   borrowDevice(id) {
-    console.log('click borrow');
     this.idDeviceBorrow = '' + id;
-    console.log('borrow Device id =====> ' + this.idDeviceBorrow);
   }
 
   onSubmitBorrow() {
@@ -152,19 +140,10 @@ export class CardComponent implements OnInit {
     this.btnValid = true;
   }
 
-  setHiddenMyCard() {
-    if (localStorage.getItem('role') === 'admin') {
-      this.hiddenMyCard = false;
-    } else {
-      this.macApiService.getData(this.userId).subscribe(data => {
-        this.objectToMyCard = data;
-        console.log('<<<<<<<< มานี่แล้ว Link' + this.userId + '>>>>>>' + JSON.stringify(this.objectToMyCard));
-        if (!this.objectToMyCard.borrowing) {
-          this.hiddenMyCard = false;
-          this.objectToMyCard = null;
-        } else
-          this.hiddenMyCard = true;
-      });
-    }
+  load(){
+    this.getDevice();
+    this.btnBorrow = false;
   }
+  
+
 }
