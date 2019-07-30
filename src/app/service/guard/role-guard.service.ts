@@ -18,24 +18,11 @@ export class RoleGuardService implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     const expectedRole = next.data.expectedRole;
+    localStorage.setItem('role',expectedRole);
     const token = sessionStorage.getItem('token');
     const decode = JWT(token);
-    // const tokenPayload = decode(token);
-    console.log('expectRole +++++++++++++++++ ' + expectedRole);
-
-
-    if (this.role !== expectedRole) {
-      this.route.navigate(['/404']);
-      console.log('expectRole If 404 +++++++++++++++++ ' + expectedRole);
-
-      return false;
-    } 
-    // console.log('tokenplayload.role +++++++++++++++++ ' + tokenPayload.role);
-    // // console.log('tokenplayload +++++++++++++++++ ' + tokenPayload.role);
-    // console.log('tokenplayload +++++++++++++++++ ' + tokenPayload);
-
+   
     return true;
-    console.log('tokenplayload +++++++++++++++++ ' + expectedRole);
 
     
   }

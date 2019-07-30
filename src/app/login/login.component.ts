@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginGoogle(idToken: string) {
+    localStorage.clear();
     this.macinoddsService.getLoginGoogle(idToken).subscribe(res => {
       console.log('res : ' + JSON.stringify(res));
       sessionStorage.setItem('token', 'Bearer ' + res.token);
@@ -63,11 +64,13 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('userId', decodeNew.id);
       localStorage.setItem('role', role);
 
-      if (res.firstLogin === true) {
+
+      
+      if (res.firstLogin) {
 
         this.route.navigate(['/register'])
       } else {
-        if (role === 'admin') {
+        if (localStorage.getItem('role') == 'admin') {
           this.route.navigate(['/admin']);
         } else {
           this.route.navigate(['/user']);
