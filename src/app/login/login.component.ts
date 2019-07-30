@@ -60,19 +60,13 @@ export class LoginComponent implements OnInit {
       console.log('res.token : ' + res.token);
       console.log('decode jwt.role:', decodeNew.role);
       console.log('decode jwt:', decode);
-      // this.macinoddsService.initDataService();
       localStorage.setItem('userId', decodeNew.id);
-      // sessionStorage.setItem('fullName', res.user.fullName);
-      // sessionStorage.setItem('emailODDS', res.user.email)
-      // sessionStorage.setItem('role', res.user.role);
-      // sessionStorage.setItem('photo', res.user.imageProfile);
       localStorage.setItem('role', role);
 
       if (res.firstLogin === true) {
 
         this.route.navigate(['/register'])
       } else {
-        // this.getUser();
         if (role === 'admin') {
           this.route.navigate(['/admin']);
         } else {
@@ -91,17 +85,4 @@ export class LoginComponent implements OnInit {
     }
     return true;
   }
-
-  // function not complete
-  // cacheData() {
-  //   const individualListed = this.macinoddsService.getListIncomeIndividual();
-  //   const corporateListed = this.macinoddsService.getListIncomeCorporate();
-
-  //   forkJoin([corporateListed, individualListed]).subscribe(
-  //     result => {
-  //       this.macinoddsService.corporateListed = result[0];
-  //       this.macinoddsService.individualListed = result[1];
-  //     }
-  //   );
-  // }
 }

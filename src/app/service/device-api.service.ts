@@ -9,23 +9,16 @@ const baseApi = 'https://mac.odds.team/api'
 })
 export class DeviceApiService {
   token = sessionStorage.getItem('token');
-
   macDeviceApi = baseApi + '/devices';
   macBorrowApi = baseApi + '/borrow/devices/'
   macReturnApi = baseApi + '/return/devices/'
-  // macDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/macs';
-  // historyDeviceAPI = 'https://5d008336d021760014b74fa8.mockapi.io/test/history';
   historyDeviceAPI = 'https://mac.odds.team/api/borrowings';
-
 
   constructor(
     private http: HttpClient,
     private route: Router,
     private macinoddsService: MacinoddsApiService
   ) { }
-
-
-
 
   getMacApi() {
     return this.http.get(this.macDeviceApi, this.macinoddsService.getHttpHeaderOption());
@@ -60,7 +53,7 @@ export class DeviceApiService {
     return this.http.delete(this.macDeviceApi + '/' + id, this.macinoddsService.getHttpHeaderOption());
   }
 
-  getMyDevice(){
+  getMyDevice() {
     return this.http.get(this.macDeviceApi + '/users/' + localStorage.getItem("userId"), this.macinoddsService.getHttpHeaderOption());
   }
 
@@ -83,8 +76,4 @@ export class DeviceApiService {
   postReturn(deviceID: string, data) {
     return this.http.post(this.macReturnApi + deviceID, data, this.macinoddsService.getHttpHeaderOption());
   }
-
-
-
-
 }

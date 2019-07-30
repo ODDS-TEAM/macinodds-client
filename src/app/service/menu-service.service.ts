@@ -10,15 +10,15 @@ export class MenuServiceService {
   getMenuList() {
     const menuList: MenuItem[] = [
       {
-        group: { code: '', name: 'Devices', icon: 'far fa-list-alt'},
+        group: { code: '', name: 'Devices', icon: 'far fa-list-alt' },
         menus: []
       },
       {
-        group: { code: 'create', name: 'Add device', icon: 'fas fa-file-medical'},
+        group: { code: 'create', name: 'Add device', icon: 'fas fa-file-medical' },
         menus: []
       },
       {
-        group: { code: 'history', name: 'History', icon: 'fas fa-history'},
+        group: { code: 'history', name: 'History', icon: 'fas fa-history' },
         menus: []
       },
 
@@ -33,13 +33,12 @@ export class MenuServiceService {
         menus: []
       },
       {
-        group: { code: 'history', name: 'History', icon: 'fas fa-history'},
+        group: { code: 'history', name: 'History', icon: 'fas fa-history' },
         menus: []
       }
     ];
     return menuList;
   }
-
 
   getSubMenuName(menuCode: string) {
     const menuList = this.getMenuList();
@@ -51,7 +50,6 @@ export class MenuServiceService {
     return '';
   }
 }
-
 
 export interface MenuItem {
   group: Menu;

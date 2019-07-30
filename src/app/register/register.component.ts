@@ -47,10 +47,6 @@ export class RegisterComponent implements OnInit {
       this.users.imgProfile = this.imageProfile;
       this.users.slackAccount = slackAccount;
       this.users.tel = telephoneNumb;
-      // console.log(...registerForm);
-
-      // this.users.role = this.role;
-      // this.macinoddsService.updateUser(registerForm).subscribe(res=>{console.log('toptotptoptotpto')})
       console.log(this.users + '<<<<<<' + JSON.stringify(this.users))
       const usersToString = JSON.stringify(this.users)
       const usersToStringToOBJ = JSON.parse(usersToString);
