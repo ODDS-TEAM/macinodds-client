@@ -39,16 +39,12 @@ export class SideNavComponent implements OnInit {
     .pipe(
       map(result => result.matches)
     );
-
-
-
   constructor(
     private breakpointObserver: BreakpointObserver,
     private menuService: MenuServiceService,
     private router: Router,
     private macApiService: MacinoddsApiService
   ) {
-
     // boolean check role
     breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
@@ -61,42 +57,21 @@ export class SideNavComponent implements OnInit {
         } else {
           this.isHandset = false;
         }
-        console.log('opened = ', this.opened)
-        console.log('isHandSet = ', this.isHandset)
-
-
       }
     )
   }
   navigateToHome() {
     localStorage.getItem('role') == 'admin' ? this.router.navigate(['/admin']) : this.router.navigate(['/user']);
   }
-
-
   checkRow() {
-
-    // this.roleCheck = (localStorage.getItem('role') == 'admin');
-    // console.log('roleCheck >>>>>  '+this.roleCheck);
-
-    // console.log('Role >>>>>  '+localStorage.getItem('role') + '>>>>>' +this.role);
     if (localStorage.getItem('role') == 'admin') {
       this.menuList = this.menuService.getMenuList();
-
       this.rountPath = '/admin/'
-
-      console.log('Role top >>>>' + this.rountPath);
-
     } else {
       this.menuList = this.menuService.getMenuListUser();
-
       this.rountPath = '/user/'
-
-      console.log('Role >>>>>  ' + this.rountPath);
-
     }
   }
-
-
 
   openedSide() {
     if (this.isHandset)
@@ -112,10 +87,5 @@ export class SideNavComponent implements OnInit {
 
   signOut() {
     this.macApiService.signOut();
-  }
-
-
-  test() {
-    console.log("hhh");
   }
 }

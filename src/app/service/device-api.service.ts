@@ -38,8 +38,6 @@ export class DeviceApiService {
   }
 
   postMacAPI(data) {
-    console.log('*********', JSON.stringify(data), '*******', ...data);
-    // const test = JSON.parse(JSON.stringify(data))
 
     return this.http.post(this.macDeviceApi, data, {
       headers: new HttpHeaders({

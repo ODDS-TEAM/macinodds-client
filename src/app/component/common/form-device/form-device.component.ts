@@ -8,10 +8,6 @@ import { LyTheme2 } from '@alyle/ui';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { DeviceApiService } from 'src/app/service/device-api.service';
 
-
-
-
-
 // Set Size of cropping by alyle
 const styles = {
   actions: {
@@ -30,8 +26,6 @@ const styles = {
 
 };
 
-
-
 @Component({
   selector: 'app-form-device',
   templateUrl: './form-device.component.html',
@@ -39,25 +33,17 @@ const styles = {
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormDeviceComponent implements OnInit {
-
   readonly imageDefaultPath: string = '/assets/imgs/add_device.jpg';
-  
   disableInput: boolean;
   locationInput:string;
-
   addDeviceForm: FormGroup;
-
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
-
   @Input()
   idEditDevice: string;
-
   @Input()
   editCompoCheck = false;
-
   btnLabel = 'Cancel';
   CardHeaderLabel = 'ลงทะเบียนอุปกรณ์';
-
 
   backupData: any = {
     name: '',
@@ -78,8 +64,6 @@ export class FormDeviceComponent implements OnInit {
 
   };
 
-  hello:any;
-
   imageDefault = this.imageDefaultPath;
   fileToUpload: File = null;
   vaildatBT = false;
@@ -91,23 +75,14 @@ export class FormDeviceComponent implements OnInit {
   classes = this.theme.addStyleSheet(styles);
   croppedImage?: string;
   result: string;
-
-
   isHandset = false;
-
   myConfig: ImgCropperConfig = {
-
     autoCrop: true,
-    // extraZoomOut: true,
     width: 300, // Default `250`
     height: 300, // Default `200`
-    // fill: '#fff', // Default transparent if type = png else #000,
-    // type: 'image/jpeg',
     extraZoomOut: false
   };
-
   // End set size image at cropping modal
-
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -118,7 +93,6 @@ export class FormDeviceComponent implements OnInit {
     private macApiService: DeviceApiService,
     public dialog: MatDialog) {
     this.imageDefault === this.imageDefaultPath ? this.vaildatBT = false : this.vaildatBT = true;
-    console.log(this.vaildatBT);
     // boolean check role
     breakpointObserver.observe([
       Breakpoints.HandsetLandscape,
@@ -130,10 +104,8 @@ export class FormDeviceComponent implements OnInit {
         } else {
           this.isHandset = false;
         }
-        console.log('isHandSet = ', this.isHandset);
       }
     );
-
   }
 
   @Input()
@@ -162,17 +134,11 @@ export class FormDeviceComponent implements OnInit {
     const imageName = date +'.jpeg';
     const imageBlob = this.dataURItoBlob(cropNew);
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
-    // this.fileName = this.fileNameEventInput;
-    // this.fileToUpload = imageFile;
     this.fileToUpload = imageFile;
     this.imageDefault = this.croppedImage;
     this.vaildatBT = true;
-    // this.canSubmit();
-    console.log('fileupload ====> ' + this.fileToUpload) ;
-    console.log('>>>>',this.fileToUpload);
     
     this.data.img = imageFile;
-    console.log('file data ====> ' + this.data.img,'>>>>>',this.data.img);
   }
 
   dataURItoBlob(dataURI) {
@@ -187,7 +153,6 @@ export class FormDeviceComponent implements OnInit {
   }
 
   componentSet(id) {
-    console.log(id);
     if (this.editCompoCheck) {
       this.btnLabel = 'Cancel';
       this.CardHeaderLabel = 'แก้ไขอุปกรณ์';
@@ -205,7 +170,6 @@ export class FormDeviceComponent implements OnInit {
         }else{
           this.disableInput = true;
         }
-        console.log('disableInput :' +this.disableInput +'>>>>'+JSON.stringify(this.data))
         this.createForm();
       });
     } else {
@@ -244,31 +208,17 @@ export class FormDeviceComponent implements OnInit {
     formData.append('img', this.fileToUpload);
     formData.append('location', this.data.location);
 
-
-
-    // formData.append('name', this.data.name);
-    // formData.append('serial', this.data.serial);
-    // formData.append('spec', this.data.spec);
-    // formData.append('img', this.fileToUpload);
-    // formData.append('location', this.data.location);
-
-
-    // console.log(this.data.name,'Create form >>> ',JSON.stringify(formData));
-
     // check page is edit
     if (this.editCompoCheck) {
       // formData.append('img', this.fileToUpload);
       this.macApiService.putMacAPI(this.idEditDevice, formData).subscribe(data => {
-      console.log('mmmmm>>>'+ data)
         this.router.navigate(['/admin']);
       });
     } else {
       // page is add device
       // post method
       if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-    console.log(' form conform >>> ',JSON.stringify(formData),'<<<<<',formData);
         this.macApiService.postMacAPI(formData).subscribe(data => {
-          console.log('Post laew na',data);
           this.router.navigate(['/admin']);
         });
       }
@@ -301,6 +251,4 @@ export class FormDeviceComponent implements OnInit {
       this.data.location !== this.backupData.location ? this.vaildatBT = true : this.vaildatBT = false;
     }
   }
-
 }
-

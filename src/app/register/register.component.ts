@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private formBuild: FormBuilder,
     private macinoddsService: MacinoddsApiService
-    // private dialog: MatDialog,
   ) { }
 
 
@@ -37,7 +36,6 @@ export class RegisterComponent implements OnInit {
 
     const { slackAccount, telephoneNumb } = this.registerForm.getRawValue();
 
-    // tslint:disable-next-line:max-line-length
     if (telephoneNumb && slackAccount
     ) {
 
@@ -47,13 +45,10 @@ export class RegisterComponent implements OnInit {
       this.users.imgProfile = this.imageProfile;
       this.users.slackAccount = slackAccount;
       this.users.tel = telephoneNumb;
-      console.log(this.users + '<<<<<<' + JSON.stringify(this.users))
       const usersToString = JSON.stringify(this.users)
       const usersToStringToOBJ = JSON.parse(usersToString);
-      console.log(usersToStringToOBJ + '<<<<testA<<' + JSON.stringify(usersToStringToOBJ))
 
       this.macinoddsService.updateUser(usersToStringToOBJ).subscribe(res => {
-        console.log('1324567890-' + res);
         if (this.registerForm.get('slackAccount').valid && this.registerForm.get('telephoneNumb').valid) {
           localStorage.removeItem('userResult');
           if (this.role === 'individual') {
@@ -61,31 +56,20 @@ export class RegisterComponent implements OnInit {
           } else {
             this.router.navigate(['/login']);
           }
-          // } error => {
-          //   this.router.navigate(['/login']);
-          // }
         } else {
           alert('Please fill your true telephone number');
         }
       }, error => {
         this.router.navigate(['/login']);
       });
-      // this.macinoddsService.postUsertoMock(id,role,NAME,MAIL,PHOTO)
     } else {
       alert('Please complete the information.');
     }
-
-    console.log(this.role);
-
   }
 
   ngOnInit() {
-    // console.log(this.user + '<<<<<<');
-
-
     this.authService.authState.subscribe((users) => {
       this.userResult = users;
-
       if (this.userResult !== null) {
         this.user = users;
         localStorage.setItem('userResult', JSON.stringify(this.user));
@@ -93,18 +77,13 @@ export class RegisterComponent implements OnInit {
         this.user = JSON.parse(localStorage.getItem('userResult'));
       }
     });
-
     this.setup();
-
   }
 
   setup() {
     this.registerForm = new FormGroup({
-      // fullName: new FormControl({ value: '', disabled: true }, Validators.required),
-      // emailODDS: new FormControl({ value: '', disabled: true }, Validators.required),
       slackAccount: new FormControl('', [Validators.required]),
       telephoneNumb: new FormControl('', [Validators.min(10), Validators.pattern('[0-9]{10}'), Validators.required])
     });
   }
-
 }

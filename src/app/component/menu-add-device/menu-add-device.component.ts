@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ViewRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 
@@ -12,11 +12,5 @@ export class MenuAddDeviceComponent implements OnInit {
   constructor(private http: HttpClient, private formBuilder: FormBuilder,
   ) { }
 
-  @Input()
-
-
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 }

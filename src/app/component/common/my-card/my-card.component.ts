@@ -32,13 +32,15 @@ export class MyCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (localStorage.getItem('role') === 'individual') {
+      this.macApiService.getMyDevice().subscribe(res => {
+        this.dataObject = res[0];
+        this.returnDate = new Date(this.dataObject.returnDate).toLocaleDateString('pt-PT');
+        if (this.dataObject)
+          this.show = true;
+      })
+    }
     this.createForm();
-    this.macApiService.getMyDevice().subscribe(res => {
-      this.dataObject = res[0];
-      this.returnDate = new Date(this.dataObject.returnDate).toLocaleDateString('pt-PT');
-      if (this.dataObject)
-        this.show = true;
-    })
   }
 
   private createForm() {
@@ -60,13 +62,12 @@ export class MyCardComponent implements OnInit {
         this.toParentEvent.emit(null);
       });
   }
-  showMycard(){
-      this.show = true;
-      this.ngOnInit(); 
+  showMycard() {
+    this.show = true;
+    this.ngOnInit();
   }
 
-  isShow(): boolean{
-    return this.show 
+  isShow(): boolean {
+    return this.show
   }
-
 }
