@@ -56,7 +56,6 @@ export class MyCardComponent implements OnInit {
     // post method
     this.macApiService.postReturn(this.dataObject._id, JSON.stringify(object))
       .subscribe(result => {
-        location.reload();
       });
   }
   showMycard(){

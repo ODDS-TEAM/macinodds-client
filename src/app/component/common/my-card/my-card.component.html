@@ -56,7 +56,7 @@
                         <input matInput placeholder="สถานที่คืน" id="location" [(ngModel)]="returnLocation" formControlName="location" required>
                     </mat-form-field>
                     <div class="d-flex justify-content-end">
-                        <button [disabled]="!modalForm.valid" type="submit" class="btn btn-success waves-light" id="btn-Submit" (click)="onSubmitReturn()">Submit</button>
+                        <button [disabled]="!modalForm.valid" type="submit" data-dismiss="modal" class="btn btn-success waves-light" id="btn-Submit" (click)="onSubmitReturn()">Submit</button>
 
                     </div>
                 </div>
