@@ -35,7 +35,7 @@ const styles = {
 export class FormDeviceComponent implements OnInit {
   readonly imageDefaultPath: string = '/assets/imgs/add_device.jpg';
   disableInput: boolean;
-  locationInput:string;
+  locationInput: string;
   addDeviceForm: FormGroup;
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   @Input()
@@ -121,7 +121,7 @@ export class FormDeviceComponent implements OnInit {
       nameDevice: ['', Validators.required],
       serial: ['', Validators.required],
       spec: ['', Validators.required],
-      location: [{ value: this.locationInput , disabled: this.disableInput }, [Validators.required, Validators.minLength(1)]],
+      location: [{ value: this.locationInput, disabled: this.disableInput }, [Validators.required, Validators.minLength(1)]],
     });
   }
 
@@ -131,13 +131,13 @@ export class FormDeviceComponent implements OnInit {
 
     const date = new Date().valueOf();
     const text = '';
-    const imageName = date +'.jpeg';
+    const imageName = date + '.jpeg';
     const imageBlob = this.dataURItoBlob(cropNew);
     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
     this.fileToUpload = imageFile;
     this.imageDefault = this.croppedImage;
     this.vaildatBT = true;
-    
+
     this.data.img = imageFile;
   }
 
@@ -165,9 +165,9 @@ export class FormDeviceComponent implements OnInit {
 
         this.disableInput = this.data.borrowing;
         this.locationInput = this.data.location;
-        if(this.locationInput.length == 0 &&  !this.disableInput){
+        if (this.locationInput.length == 0 && !this.disableInput) {
           this.disableInput = false;
-        }else{
+        } else {
           this.disableInput = true;
         }
         this.createForm();
@@ -208,6 +208,7 @@ export class FormDeviceComponent implements OnInit {
     formData.append('img', this.fileToUpload);
     formData.append('location', this.data.location);
 
+
     // check page is edit
     if (this.editCompoCheck) {
       // formData.append('img', this.fileToUpload);
@@ -217,12 +218,11 @@ export class FormDeviceComponent implements OnInit {
     } else {
       // page is add device
       // post method
-      if (window.confirm('ยืนยันการบันทึกข้อมูล')) {
-        this.macApiService.postMacAPI(formData).subscribe(data => {
-          this.router.navigate(['/admin']);
-        });
-      }
+      this.macApiService.postMacAPI(formData).subscribe(data => {
+        this.router.navigate(['/admin']);
+      });
     }
+
   }
 
   // validat จ้า
