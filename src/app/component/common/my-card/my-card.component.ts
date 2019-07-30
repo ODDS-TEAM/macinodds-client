@@ -13,7 +13,9 @@ export class MyCardComponent implements OnInit {
   returnDate: any;
   returnMemo: string;
   returnLocation: string;
-  hide: boolean = false;
+  show: boolean = false;
+
+  
 
   dataObject: any = {
     _id: '',
@@ -27,7 +29,7 @@ export class MyCardComponent implements OnInit {
   constructor(
     private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.createForm();
@@ -35,7 +37,7 @@ export class MyCardComponent implements OnInit {
       this.dataObject = res[0];
       this.returnDate = new Date(this.dataObject.returnDate).toLocaleDateString('pt-PT');
       if (this.dataObject)
-        this.hide = true;
+        this.show = true;
     })
   }
 
@@ -52,11 +54,15 @@ export class MyCardComponent implements OnInit {
       location: this.returnLocation
     }
     // post method
-    if (window.confirm('ยืนยันการคืนเครื่อง')) {
-      this.macApiService.postReturn(this.dataObject._id, JSON.stringify(object))
-        .subscribe(result => {
-          location.reload();
-        });
-    }
+    this.macApiService.postReturn(this.dataObject._id, JSON.stringify(object))
+      .subscribe(result => {
+        location.reload();
+      });
   }
+  showMycard(){
+      this.show = true;
+      this.ngOnInit(); 
+  }
+
+
 }

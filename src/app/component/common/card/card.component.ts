@@ -1,5 +1,5 @@
 import { MyCardComponent } from './../my-card/my-card.component';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MyDataServiceService } from '../../my-data-service.service';
 import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -17,9 +17,12 @@ import { DeviceApiService } from 'src/app/service/device-api.service';
 
 
 export class CardComponent implements OnInit {
+
+  @ViewChild('yourChild',{static: false}) child;
+
   @Input() role: boolean;
   btnRole: boolean;
-  @Input() hide = true;
+  showMyCard: boolean = false;
 
   public results: any; // กำหนดตัวแปร เพื่อรับค่า
   public editResults: any; // กำหนดตัวแปร เพื่อรับค่า
@@ -40,6 +43,9 @@ export class CardComponent implements OnInit {
   btnValid = false;
   myDevice: any;
   btnBorrow: boolean = false;
+
+
+
 
   objectToMyCard: any = {
     name: '',
@@ -81,14 +87,10 @@ export class CardComponent implements OnInit {
   }
 
   getDevice() {
-    // HTTP request by get() method
-    // get data from Observable we need subscibe observer to working
+
     this.macApiService.getMacApi().subscribe(data => {
-      // get result from JSON response
       this.results = data;
-      // console.log('print get all : ' + JSON.stringify(this.results[0]._id));
-      console.log(this.results[0]);
-      console.log(this.results);
+
     });
   }
 
@@ -131,33 +133,21 @@ export class CardComponent implements OnInit {
     console.log('borrow Device id =====> ' + this.idDeviceBorrow);
   }
 
-  onSubmitBorrow(id) {
+  onSubmitBorrow() {
     const tzoffset = (new Date()).getTimezoneOffset() * 60000;
     this.localtime = (new Date(this.returnDate - tzoffset));
     this.localtime.setHours(12, 0, 0);
-    console.log('localtime >>>>>>>>>', this.localtime);
-
     const localISOTime = (new Date(this.localtime)).toISOString();
-
-    console.log('localISOTime >>>>>>>>>', localISOTime);
-
-    const borrowData: FormData = new FormData();
-    borrowData.append('returnDate', this.returnDate);
-    // borrowData.append('token', token);
-    console.log('returndate', localISOTime)
-    console.log('borrowdata', borrowData)
-
     // post method
     const data = {
       "returnDate": localISOTime
     }
-    console.log(data)
     this.macApiService.postBorrowAPI(this.idDeviceBorrow, data).subscribe(res => {
-      location.reload();
-      this.getDevice();
+      this.ngOnInit();
+      this.child.showMycard(); 
     })
   }
-  
+
   check() {
     this.btnValid = true;
   }
