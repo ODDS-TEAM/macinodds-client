@@ -51,8 +51,7 @@ export class MacinoddsApiService {
       headers: new HttpHeaders({
         Authorization: sessionStorage.getItem('token')
       })
-    }
-    );
+    });
   }
   signOut() {
     this.authService.signOut();
