@@ -11,17 +11,16 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh "export"
-                    // sh "docker build -t p1 ."
-                    // sh "docker run --rm -d -p 80:80 p1"
                     sh "npm install"
                     sh "npm run build"
-
                 }
             }
         }
         stage ('Push') {
             steps {
+                script {
+                    sh "export"
+                }
             }
         }
 
