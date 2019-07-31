@@ -10,6 +10,7 @@ pipeline {
                     sh "export"
                     sh "npm install"
                     sh "npm run build"
+                    sh "docker run -p 80:80"
                 }
             }
         }
