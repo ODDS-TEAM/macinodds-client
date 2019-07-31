@@ -1,0 +1,53 @@
+<!-- ****************************** Material Form ****************************** -->
+
+<mat-card class="card">
+
+  <mat-grid-list cols="1" rowHeight="100px">
+    <mat-grid-tile>
+      <img class="user-img" [src]="user.image" alt="user.image">
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="1" rowHeight="37px" class="grab" style="margin-bottom: 30px">
+    <mat-grid-tile>
+      <p class="hi">Hi {{user.name}}</p>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="email-box">
+        <p>{{user.email}}</p>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div [formGroup]="registerForm">
+    <mat-grid-list cols="1" rowHeight="39px">
+      <mat-grid-tile>
+        <p class="label-header">Slack name</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field [floatLabel]="'never'" class="full">
+          <input class="full" formControlName="slackAccount" matInput type="email" placeholder="Your slack name"
+            required>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="1" rowHeight="39px" class="grab">
+      <mat-grid-tile>
+        <p class="label-header">Tel.</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field [floatLabel]="'never'" class="full">
+          <input class="full" formControlName="telephoneNumb" matInput type="tel" pattern="[0-9]{10}"
+            placeholder="Your Telephone Number" required>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div id="sub-btn">
+    <button mat-flat-button (click)="submit()" color="primary">Go !</button>
+  </div>
+</mat-card>
+
+
+

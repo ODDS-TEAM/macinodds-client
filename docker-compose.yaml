@@ -1,0 +1,39 @@
+version: "3.6"
+services:
+  web:
+    image: nginx:alpine
+    container_name: macinodds-web
+    ports: 
+      - 443:443
+    volumes:
+      - $HOME/html:/usr/share/nginx/html
+      - $HOME/images:/usr/share/nginx/html/assets/imgs/devices
+      - cert:/etc/letsencrypt
+    networks: 
+      - macinodds-web
+  web-local:
+    image: nginx:alpine
+    port: 80:80
+    volumes:
+      - cert-data:/usr/share/nginx/html
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - cert:/etc/letsencrypt
+      - cert-data:/usr/share/nginx/html
+    command:
+      - certonly
+      - '--webroot'
+      - '--email'
+      - 'p_athibet@odds.team'
+      - '--agree-tos'
+      - '--no-eff-email'
+      - '--webroot-path=/usr/share/nginx/html'
+      - '-d'
+      - mac.odds.team
+volumes:
+  cert:
+  cert-data:
+networks:
+  macinodds-web:
+    external: true

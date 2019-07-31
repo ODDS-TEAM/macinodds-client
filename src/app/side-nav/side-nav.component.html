@@ -1,66 +1,75 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
-    <mat-toolbar><img src="/assets/imgs/logo4.png" width="auto"  class="d-inline-block align-top center" alt=""></mat-toolbar>
-    <mat-nav-list>
-      <h4>menu</h4>
-      <div *ngFor="let menuGroup of menuList">
-        <div *ngIf="menuGroup.menus.length == 0">
-          <a mat-list-item class="line" routerLinkActive="active" [routerLink]="['/app/'+menuGroup.group.code]">
-            <span>{{ menuGroup.group.name }} </span>
-          </a>
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" style="z-index: 5;"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)">
+        <mat-toolbar class="odds-logo">
+            <img src="/assets/imgs/mac_odds_logo_white.png" width="auto" height="50"
+                class="d-inline-block align-top logo_center" alt="" (click)="navigateToHome()">
+        </mat-toolbar>
+        <div class="bg-profile">
+            <img class="img_pro mt-4" [src]="profilePic" alt="Avatar" />
+            <div class="d-flex justify-content-center mt-3">
+                <p><img class="icon" src="/assets/imgs/user.ico" alt="icon"> {{name}}
+            </div>
+            <div class="d-flex justify-content-center mt-n2 mb-4 pb-2">
+                <p><img class="icon" src="/assets/imgs/email.ico" alt="icon"> {{email}}</p>
+            </div>
         </div>
-        <div *ngIf="menuGroup.menus.length > 0" [ngClass]="{'group-menu-selected': menuGroupSelected==menuGroup.group.code}">
-          <a mat-list-item class="line" (click)="selectMenu(menuGroup.group)">
-            <mat-icon>{{menuGroupSelected==menuGroup.group.code? 'keyboard_arrow_down': 'keyboard_arrow_right'}}</mat-icon>
-            <span>{{ menuGroup.group.name }}</span>
-          </a>
-          <div *ngIf="menuGroupSelected==menuGroup.group.code">
-            <a *ngFor="let menu of menuGroup.menus" mat-list-item class="line" routerLinkActive="active" [routerLink]="['/app/'+menuGroup.group.code+'/'+menu.code]">
-              <span>{{ menu.name }}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </mat-nav-list>
-  </mat-sidenav>
+        <mat-nav-list>
+            <div *ngFor="let menuGroupUser of menuList ; let i = index">
+                <div *ngIf="menuGroupUser.menus.length == 0 " routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <a mat-list-item class="line btn-side btn-side1 "
+                        [routerLink]="[rountPath + menuGroupUser.group.code]" id="botton-{{ menuGroupUser.group.code }}"
+                        (click)="openedSide()">
+                        <div class="container">
 
-  <mat-sidenav-content >
-    <mat-toolbar color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="{{ menuGroupUser.group.icon }}"></i>
+                                </div>
+                                <div class="col-10">
+                                    <span>{{ menuGroupUser.group.name }} </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="container clearfix p-0 ">
+                <a mat-list-item class="line btn-side btn-side1 btn-signout" id="sign-out" (click)="signOut()">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-1">
+                                <i class='fas fa-sign-out-alt'></i>
+                            </div>
+                            <div class="col-10">
+                                <span>Sign Out</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="p-0">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row style="height: 70px;">
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                    *ngIf="isHandset$ | async">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+                <span class="spacer"></span>
+                <img src="/assets/imgs/slack_ico.png" height="22">
+                <a class="slacklink" href="https://app.slack.com/client/T8M23SGFQ/C8L3ZDNUB"
+                    target="_blank">@odds.team</a>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
 
 
-      <div class="container">
-        <div class="row">
 
-          <div class="col-sm-9">
-      </div>
-      <div class="col-sm-3">
-      <form class="form-inline md-form form-sm mt-0 control-label pull-right">
-          <i class="fa fa-search" aria-hidden="true"></i>
-          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">&nbsp;
-          <i class="fa fa-user" aria-hidden="true"></i>
-        </form>
-        </div>
-        <!-- <div class="col-sm-3">
-        <form class="form-inline md-form form-sm mt-0 control-label pull-right">
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </form>
-        </div>  -->
-        </div>   
-      </div>
-        
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <router-outlet></router-outlet>
-
-  </mat-sidenav-content>
-
-
-  
 </mat-sidenav-container>

@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+}
+
+.set-table {
+  width: 100%;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.td-memo {
+    min-width: 250px !important;
+    max-width: 250px;
+    
+}
+
+.margin-header {
+  margin-left: 10%;
+}

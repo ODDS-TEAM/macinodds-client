@@ -1,6 +1,131 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "./app/theme.css";
+html,body {
+    height: 100%;
+}
+
+body,div {
+    margin: 0;
+    font-family: 'Boon', sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+.font-style {
+ 
+    /* font-family: 'Sarabun', sans-serif; */
+    font-family: 'Boon', sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+.modal-backdrop.show {
+    opacity: 0.5;
+    z-index: -5 !important;
+}
+
+@media only screen and (min-width: 414px) and (max-width: 736px) {
+    .sidenav-container,
+    .sidenav,
+    li a {
+        float: left;
+        padding: 15px;
+        display: block;
+    }
+    .sidenav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidenav a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .sidenav li a {
+        float: left;
+        padding: 15px;
+        display: block;
+    }
+    .sidenav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidenav a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+}
+
+
+
+
+
+
+
+/* button animation for side-nev */
+.btn-side{
+    background: none;
+    cursor: pointer;
+    transition: 0.8s;
+    position: relative;
+  }
+  .btn-side1,.btn-side2{
+    color: #212121;
+  }
+  
+  .btn-side1:hover,.btn-side2:hover{
+    color: #fff;
+  }
+  
+  .btn-side::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: #343434;
+    z-index: -1;
+    transition: 0.8s;
+  }
+  .btn-side1::before,.btn-side3::before{
+    top: 0;
+    border-radius: 0 5% 5% 0%;
+  }
+  
+  .btn-side1:hover::before,.btn-side2:hover::before{
+    width: 180%;
+  }
+  
+  .btn-side3:hover::before,.btn-side4:hover::before{
+    width: 0%;
+  }
+
+
+
+
+    .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+        
+        background-color: #0e98d5 !important;
+  }
+
+  .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: #0e98d5!important;   /*inner circle color change*/
+  }
+
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+       border-color:#0e98d5!important; /*outer ring color change*/
+  }
+
+
+
+/* -------------------------- */
