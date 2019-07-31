@@ -58,8 +58,8 @@ export class MacinoddsApiService {
     this.authService.signOut();
     sessionStorage.clear();
     localStorage.clear();
-    this.http.post(`${this.apiPath}/logout`,{'token': sessionStorage.getItem('token')}).subscribe( res =>{
-    })
+    // this.http.post(`${this.apiPath}/logout`,{'token': sessionStorage.getItem('token')}).subscribe( res =>{
+    // })
     this.route.navigate(['/login']);
     
   }
