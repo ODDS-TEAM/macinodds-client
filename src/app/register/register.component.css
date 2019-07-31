@@ -1,0 +1,111 @@
+
+.grab{
+    margin-top: 10px;
+}
+
+
+.label-header{
+    position: absolute;
+    left: 0;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 14px;
+}
+.btn{
+    position: absolute;
+    right: 0;
+}
+.card {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 448px;
+    padding: 48px 50px 36px; 
+    border-radius: 10px;
+
+}
+
+.email-box {
+    text-align: center;
+    border-radius: 16px;
+    border: 1px solid #dadce0;
+    padding: 5px 20px 5px 18px;
+}
+.email-box > p {
+    font-size: 14px;
+
+}
+.font-regis{
+    font-family: 'Noto Sans SC', sans-serif;
+
+}
+button {
+    margin-top: 30px;
+    width: 88px;
+    height: 36px;;
+}
+.hi {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 20px;
+}
+
+.user-img {
+    width: 90px;
+    border-radius: 50%;
+}
+
+
+.full {
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+}
+
+.head-card {
+    text-align: center;
+}
+
+.btn-gruop {
+    text-align: right;
+}
+
+.btn {
+    width: 80px;
+    margin-left: 11px;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+
+
+
+/* ----------------- */
+
+
+
+/* Clear floats af
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 600px) {
+    .card {
+        width: 90%;
+        max-width: 448px;
+        padding: 35px 30px; 
+        border-radius: 10px;    
+    }
+    .hi {
+        font-family: 'Noto Sans SC', sans-serif;
+        font-size: 16px;
+    }
+  
+}
+
+
+#sub-btn {
+    text-align: right;
+}

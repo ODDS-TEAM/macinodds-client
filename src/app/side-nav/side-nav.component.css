@@ -1,36 +1,118 @@
 .sidenav-container {
+  padding: 0;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  }
-  .sidenav {
+}
+
+.sidenav {
+  padding: 0;
   width: 250px;
-  background-color: #f3f2f2;
-  color:#ffffff;
-  }
-  .sidenav .mat-toolbar {
+  background-color: #212121;
+  color: #ffffff;
+}
+
+.sidenav .mat-toolbar {
   height: 70px;
-  background-color: white;
-  color:#ffffff;
-  }
-  .mat-toolbar.mat-primary {
+  background-color: #212121;
+  color: #ffffff;
+  /* box-shadow: 0px 1px 10px #999; */
+}
+.active-list-item {
+  background-color: #555555 !important; /* Note: You could also use a custom theme */
+  color: white !important;
+}
+.mat-toolbar.mat-primary {
   height: 70px;
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: white;
-  }
-  .body {
-    background-color: #f9f8f8;
-  }
-  h4 {
-    color: black;
-  }
-  .center{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-  }
+  background-color: #212121;
+  color: #0b98d5;
+  box-shadow: 0px 1px 10px #999;
+}
+.active{
+  background-color: #555555 !important; /* Note: You could also use a custom theme */
+  color: white !important;
+}
+
+.body {
+  background-color: #f9f8f8;
+}
+
+h4 {
+  color: black;
+}
+
+.logo_center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: auto;
+}
+.logo_center:hover{
+  cursor: pointer;
+}
+
+.mat-drawer-side {
+  border-right: solid 0px rgba(197, 30, 30, 0);
+}
+
+.container-full {
+  justify-content: space-between;
+  flex-direction: row;
+  height: 100%;
+  display: flex;
+}
+
+.container-full .btn-holder {
+  justify-content: flex-end;
+  display: flex;
+}
+
+.set-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+span, i {
+  color: #ffffff;
+}
+
+.img_pro {
+  position: relative;
+  border-radius: 50%;
+  width: 50%;
+  height: auto;
+  margin-left: 25%;
+  box-shadow: 0px 0px 0px 10px #343434;
+}
+
+.icon {
+  width: 17px;
+}
+
+.bg-profile {
+  background: linear-gradient(0deg, #343434 75%, #212121 25%);
+}
+
+.btn-signout {
+  cursor:w-resize !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.slacklink{
+  margin: 0 20px 0 10px !important;
+  color: #f9f8f8 !important;
+  font-size: 16px !important;
+}
+.slacklink:hover {
+  cursor: pointer;
+  color: #bdb9b9 !important;
+
+}

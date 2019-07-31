@@ -9,36 +9,31 @@ export class MenuServiceService {
 
   getMenuList() {
     const menuList: MenuItem[] = [
-      // {
-      //   group: { code: 'menu1', name: 'Menu 1' },
-      //   menus: [
-      //     { code: 'subMenu1', name: 'Sub Menu 1' },
-      //     { code: 'subMenu2', name: 'Sub Menu 2' },
-      //     { code: 'subMenu3', name: 'Sub Menu 3' }
-      //   ]
-      // },
-      // {
-      //   group: { code: 'menu2', name: 'Menu 2' },
-      //   menus: [
-      //     { code: 'subMenu1', name: 'Sub Menu 1' },
-      //     { code: 'subMenu2', name: 'Sub Menu 2' },
-      //     { code: 'subMenu3', name: 'Sub Menu 3' }
-      //   ]
-      // },
-      // {
-      //   group: { code: 'menu3', name: 'Menu 3' },
-      //   menus: [
-      //     { code: 'subMenu1', name: 'Sub Menu 1' },
-      //     { code: 'subMenu2', name: 'Sub Menu 2' },
-      //     { code: 'subMenu3', name: 'Sub Menu 3' }
-      //   ]
-      // },
       {
-        group: { code: 'menu-add-device', name: 'Add device' },
+        group: { code: '', name: 'Devices', icon: 'far fa-list-alt' },
         menus: []
       },
       {
-        group: { code: 'menu-view-admin', name: 'View admin' },
+        group: { code: 'create', name: 'Add device', icon: 'fas fa-file-medical' },
+        menus: []
+      },
+      {
+        group: { code: 'history', name: 'History', icon: 'fas fa-history' },
+        menus: []
+      },
+
+    ];
+    return menuList;
+  }
+
+  getMenuListUser() {
+    const menuList: MenuItem[] = [
+      {
+        group: { code: '', name: 'Devices', icon: 'far fa-list-alt' },
+        menus: []
+      },
+      {
+        group: { code: 'history', name: 'History', icon: 'fas fa-history' },
         menus: []
       }
     ];
@@ -64,4 +59,5 @@ export interface MenuItem {
 export interface Menu {
   code: string;
   name: string;
+  icon: string;
 }

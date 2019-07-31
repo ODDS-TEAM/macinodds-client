@@ -1,44 +1,4 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-
-  <div class="container">
-    <div style="text-align:center">
-      <br>
-
-      <!-- <h1>
-        Welcome to <span class="font-weight-bold" style="color:#0b98d5">MacinOdds</span>
-      </h1> -->
-      <br>
-
-        <ul class="list-group">
-            <li class="card shadow-lg bg-light my-3"  *ngFor="let result of results">
-                <div class="row align-items-center my-6">
-                    <div class="col-lg-4">
-                        <img class="img-fluid" src= "{{ result.img }}"  width="100%">
-                </div>  
-                <div class="col-lg-5 text-left mx-4 my-4">
-                  <span class="font-weight-bold" style="color:#53646b"> ID: </span> {{ result._id }} <br/>
-                  <span class="font-weight-bold" style="color:#0b98d5"> Name: </span>  {{ result.name }} <br/>
-                  <span class="font-weight-bold" style="color:#0b98d5">Spec: </span>  {{ result.spec }} <br/>
-                  <span class="font-weight-bold" style="color:#0b98d5">Status: </span>  {{ result.status }} <br/>
-                  <span class="font-weight-bold" style="color:#0b98d5">Holder: </span>  {{ result.holder }} <br/></div>
-                  <div class="col-lg-2 align-self-center my-3">
-                  <a class="btn btn-warning"><i class="fa fa-edit">  Edit</i></a><br><br>
-                  <a class="btn btn-danger" (click)="deleteDevice(result._id , result.serial)" ><i class="fa fa-trash">  Delete</i></a>
-
-                </div>
-              </div>
-            </li>
-          </ul>
-        
-    </div>
-  </div>
-</body>
-
-</html>
+<div>
+    <app-card ></app-card>
+</div>

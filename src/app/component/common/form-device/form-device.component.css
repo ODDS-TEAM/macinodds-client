@@ -1,0 +1,215 @@
+* {
+    box-sizing: border-box;
+}
+
+.modal {
+    padding: 1px;
+    position: fixed;
+    /* width: 300px !important; */
+    transform: translate(-50%, -50%);
+    top: 65%;
+    left: 50%;
+    padding-bottom: 50px;
+    z-index: 1000 !important;
+}
+
+.modal-popup {
+    transform: translate(-50%, -50%);
+    margin: auto auto;
+}
+
+body {
+    margin-left: 10px;
+    background-color: #fafafa;
+}
+
+.card {
+    padding: 30px 30px;
+    max-width: 886px;
+    width: 90%;
+    min-width: 300px;
+    margin: 3% auto;
+}
+
+.full {
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+}
+
+.head-card {
+    text-align: center;
+    font-size: 18px;
+}
+
+.btn-gruop {
+    text-align: right;
+}
+
+.btn {
+    width: 80px;
+    margin-left: 11px;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+
+.mat-form-field-infix {
+    padding: .5em 0;
+    border-top: .64375em solid transparent !important;
+}
+
+/* ----------------- */
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #3f51b5;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #3f51b5;
+}
+
+.container {
+    border-radius: 10px;
+    /* background-color: #f2f2f2; */
+    /* background-color:white; */
+    padding: 15px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* input[type="file"] {
+    display: none;
+} */
+
+.grap-btn {
+    margin-right: 23px;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+.disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.disabledBT {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+@media only screen and (min-width: 414px) and (max-width: 736px) {
+    .modal {
+        transform: translate(-50%, -50%);
+    }
+ 
+    
+    .sidenav li a {
+        float: left;
+        padding: 15px;
+        display: block;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .modal {
+        transform: translate(-50%, -50%);
+    }
+    .sidenav li a {
+        float: left;
+        padding: 15px;
+        display: block;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+    .grap-btn {
+        margin-right: 3%;
+    }
+}
+
+.upload-image {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 5px;
+}
+
+/* Set color btn save and clear */
+
+.btn-default-blue, .btn-default-blue :hover, .btn-default-blue :active, .btn-default-blue :visited, .btn-default-blue :focus {
+    color: #ffffff;
+    background-color: #0e98d5;
+    border-color: #0e98d5;
+}
+
+.btn-default-black, .btn-default-black :hover, .btn-default-black :active, .btn-default-black :visited, .btn-default-black :focus {
+    color: #ffffff;
+    background-color: #212121;
+    border-color: #212121;
+}
