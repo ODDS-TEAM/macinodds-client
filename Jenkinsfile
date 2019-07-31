@@ -1,16 +1,12 @@
 pipeline {
     agent any
-
     tools {nodejs "node12"}
-
     environment {
         sourceFiles	="dist/macinodds/**"
         removePrefix="dist/macinodds"
         remoteDirectory="html/"	
         configName="macinodds.tk"
     }
-
-
     stages {
         stage('Build') {
             steps {
@@ -32,7 +28,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshPublisher(
-                    continueOnError: false, failOnError: true,
                         publishers: [
                             sshPublisherDesc(
                                 configName: "${configName}",
@@ -49,7 +44,6 @@ pipeline {
                                         makeEmptyDirs: false, 
                                         noDefaultExcludes: false, 
                                         remoteDirectorySDF: false
-                                    
                                     )
                                 ]
                             )
