@@ -16,15 +16,8 @@ pipeline {
                 }
             }
         }
-        stage ('Push') {
-            steps {
-                script {
-                    sh "export"
-                }
-            }
-        }
 
-        stage('Deploy') {
+        stage('SSH transfer') {
             steps {
                 sshPublisher(
                         publishers: [
