@@ -14,7 +14,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 
 export class MacinoddsApiService {
-// Comment for push event
+// Comment 
   id = sessionStorage.getItem('idUser');
   private userId = this.id;
   readonly apiPath = environment.api;
