@@ -24,9 +24,13 @@ pipeline {
                 }
             }
         }
+        stage ('Push') {
+            steps {
+            }
+        }
 
-        stage('SSH transfer') {
-            script {
+        stage('Deploy') {
+            steps {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
                         publishers: [
