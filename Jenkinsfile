@@ -7,14 +7,15 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    sh "export"
                     sh "npm install"
                     sh "npm run build"
                 }
             }
         }
-        stage('Test') {
+        stage('Push') {
             steps {
-                echo 'Testing..'
+                echo 'Pushing..'
             }
         }
         stage('Deploy') {
