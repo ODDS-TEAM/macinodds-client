@@ -46,4 +46,28 @@ pipeline {
         
        
     }
+
+    post {
+        success {
+            slackSend teamDomain: 'for-odds-team', 
+                tokenCredentialId: 'slack-for-odds-team', 
+                username: 'admin', 
+                color: "good", 
+                message: "🎉SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} 😀 (<${env.BUILD_URL}|Open>)"
+        }
+        failure {
+            slackSend teamDomain: 'for-odds-team', 
+                tokenCredentialId: 'slack-for-odds-team', 
+                username: 'admin', 
+                color: "danger", 
+                message: "❗️FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER} 🤢 (<${env.BUILD_URL}|Open>)"
+        }
+        unstable {
+            slackSend teamDomain: 'for-odds-team', 
+                tokenCredentialId: 'slack-for-odds-team', 
+                username: 'admin', 
+                color: "warning", 
+                message: "⚠️UNSTABLE: ${env.JOB_NAME} #${env.BUILD_NUMBER} 😕 (<${env.BUILD_URL}|Open>)"
+        }
+    }
 }
