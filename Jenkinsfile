@@ -1,3 +1,4 @@
+def to_push
 pipeline {
     agent any
     tools {nodejs "node12"}
@@ -16,7 +17,7 @@ pipeline {
                     sh "export"
                     // sh "npm install"
                     // sh "npm run build"
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    to_push = docker.build(registry + ":${env.BUILD_NUMBER}") 
 
                 }
             }
@@ -29,7 +30,7 @@ pipeline {
                     // sh "npm run build"
                     // sh "docker push oddsteam/macinodds-web:${env.BUILD_NUMBER} ."
                     docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
+                        to_push.push()
                     }
                 }
             }
