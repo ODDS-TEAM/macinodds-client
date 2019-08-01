@@ -18,7 +18,7 @@ pipeline {
                     sh "export"
                     // sh "npm install"
                     // sh "npm run build"
-                    to_push = docker.build(registry + ":${env.BUILD_NUMBER} .") 
+                    to_push = docker.build(registry + ":${env.BUILD_NUMBER}") 
 
                 }
             }
