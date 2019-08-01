@@ -2,6 +2,8 @@ pipeline {
     agent any
     tools {nodejs "node12"}
     environment {
+        registry = "registry.odds.team/internship/macinodds-web"
+        registryCredential = 'dockerhub'
         sourceFiles	="dist/macinodds/**"
         removePrefix="dist/macinodds"
         remoteDirectory="html/"	
@@ -11,8 +13,24 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh "npm install"
-                    sh "npm run build"
+                    sh "export"
+                    // sh "npm install"
+                    // sh "npm run build"
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+
+                }
+            }
+        }
+        stage('push') {
+            steps {
+                script {
+                    // sh "export"
+                    // sh "npm install"
+                    // sh "npm run build"
+                    // sh "docker push oddsteam/macinodds-web:${env.BUILD_NUMBER} ."
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
                 }
             }
         }

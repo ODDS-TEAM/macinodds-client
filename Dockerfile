@@ -1,13 +1,24 @@
 # base image
-FROM node:latest as node
+FROM node:10.16.0 as BUILDER
 
 # set working directory
 WORKDIR /app
 
-# install and cache app dependencies
-COPY . .
-RUN npm install
-RUN npm run build --prod
+# add `/app/node_modules/.bin` to $PATH
+#ENV PATH /app/node_modules/.bin:$PATH
 
-FROM nginx:alpine
-COPY --from=node /app/dist/macinodds /usr/share/ngnix/html
+# install and cache app dependencies
+COPY package*.json /app/
+RUN npm install @angular/cli --verbose
+RUN npm install --production --verbose
+
+
+# add app
+COPY . /app
+
+# start app
+RUN npm run build 
+
+FROM nginx:alpine AS WEBSERVER
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=BUILDER /app/dist/macinodds/ /usr/share/nginx/html

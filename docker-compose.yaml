@@ -12,8 +12,9 @@ services:
     networks: 
       - macinodds-web
   web-local:
-    image: nginx:alpine
-    port: 80:80
+    image: macinodds-web:v1
+    ports: 
+      - 80:80
     volumes:
       - cert-data:/usr/share/nginx/html
   certbot:
