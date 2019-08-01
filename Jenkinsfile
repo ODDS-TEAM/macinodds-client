@@ -9,6 +9,7 @@ pipeline {
         removePrefix="dist/macinodds"
         remoteDirectory="html/"	
         configName="macinodds.tk"
+        host="https://registry.odds.team"
     }
     stages {
         stage('Build') {
@@ -29,7 +30,8 @@ pipeline {
                     // sh "npm install"
                     // sh "npm run build"
                     // sh "docker push oddsteam/macinodds-web:${env.BUILD_NUMBER} ."
-                    docker.withRegistry( '', registryCredential ) {
+                    docker.withRegistry(credentialsId: "desktop", 
+                        url: host) {
                         to_push.push()
                     }
                 }
