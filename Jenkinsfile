@@ -18,8 +18,8 @@ pipeline {
                     sh "export"
                     // sh "npm install"
                     // sh "npm run build"
-                    to_push = docker.build(registry + ":${env.BUILD_NUMBER}") 
-
+                    sh "docker login registry.odds.team"
+                    sh "docker build -t registry.odds.team/internship/macinodds-web:${env.BUILD_NUMBER} ."
                 }
             }
         }
@@ -30,10 +30,7 @@ pipeline {
                     // sh "npm install"
                     // sh "npm run build"
                     // sh "docker push oddsteam/macinodds-web:${env.BUILD_NUMBER} ."
-                    docker.withRegistry(credentialsId: "desktop", 
-                        url: host) {
-                        to_push.push()
-                    }
+                    sh "docker push registry.odds.team/internship/macinodds-web:${env.BUILD_NUMBER}"
                 }
             }
         }
