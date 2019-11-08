@@ -11,7 +11,7 @@ pipeline {
         sourceFiles	="dist/macinodds/**"
         removePrefix="dist/macinodds"
         remoteDirectory="html/"	
-        configName="macinodds.tk"
+        configName="macinodds"
         host="https://registry.odds.team"
     }
     stages {
