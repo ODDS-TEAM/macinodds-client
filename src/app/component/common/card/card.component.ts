@@ -13,6 +13,7 @@ import { BreakpointObserver } from "@angular/cdk/layout";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { DeviceApiService } from "src/app/service/device-api.service";
+import { CheckRoleTokenService } from 'src/app/service/check-role-token.service';
 
 @Component({
   selector: "app-card",
@@ -59,7 +60,8 @@ export class CardComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private checkTokenRole: CheckRoleTokenService
   ) {}
 
   ngOnInit() {
@@ -69,7 +71,7 @@ export class CardComponent implements OnInit {
     this.getMyDevice();
     this.data.currentData.subscribe(data => (this.name = data));
     this.createBorrowForm();
-    this.btnRole = localStorage.getItem("role") === "individual";
+    this.btnRole = this.checkTokenRole.checkRoleByToken() === "individual";
   }
 
   getMyDevice() {

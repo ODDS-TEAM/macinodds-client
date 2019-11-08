@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { DeviceApiService } from 'src/app/service/device-api.service';
 import { Token } from 'src/app/shared/token';
 import * as JWT from 'jwt-decode';
+import { CheckRoleTokenService } from 'src/app/service/check-role-token.service';
 
 @Component({
   selector: 'app-my-card',
@@ -31,13 +32,11 @@ export class MyCardComponent implements OnInit {
   constructor(
     private macApiService: DeviceApiService,
     private formBuilder: FormBuilder,
+    private checkRoleToken: CheckRoleTokenService
   ) { }
 
   ngOnInit() {
-    let tokenDecode: Token;
-    const token = sessionStorage.getItem('token');
-    tokenDecode =  JWT(token);
-    if (tokenDecode.role === 'individual') {
+    if (this.checkRoleToken.checkRoleByToken() === 'individual') {
       this.macApiService.getMyDevice().subscribe(res => {
         this.dataObject = res[0];
         this.returnDate = new Date(this.dataObject.returnDate).toLocaleDateString('pt-PT');
