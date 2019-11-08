@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    sessionStorage.clear();
     localStorage.clear();
     localStorage.removeItem('userResult');
 

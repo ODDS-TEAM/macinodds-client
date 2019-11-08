@@ -30,7 +30,7 @@ const routes: Routes = [
 
     path: 'admin',
     component: SideNavComponent,
-    canActivate: [RoleGuardService], 
+    canActivate: [RoleGuardService, GuardService], 
     data: { 
       expectedRole: 'admin'
     } ,
@@ -49,7 +49,7 @@ const routes: Routes = [
   {
     path: 'user',
     component: SideNavComponent,
-    canActivate: [RoleGuardService],
+    canActivate: [RoleGuardService, GuardService],
     data: {
       expectedRole: 'individual'
     },
