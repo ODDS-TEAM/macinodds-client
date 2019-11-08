@@ -39,26 +39,34 @@ pipeline {
         stage('SSH transfer') {
             steps {
                 sshPublisher(
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: "${configName}",
-                                verbose: false,
-                                transfers: [
-                                    sshTransfer(
-                                        sourceFiles: "${sourceFiles}",
-                                        removePrefix: "${removePrefix}",
-                                        remoteDirectory: "${remoteDirectory}",
-                                        patternSeparator: '[, ]+',
-                                        execTimeout: 120000,
-                                        cleanRemote: false, 
-                                        flatten: false,
-                                        makeEmptyDirs: false, 
-                                        noDefaultExcludes: false, 
-                                        remoteDirectorySDF: false
-                                    )
-                                ]
-                            )
-                        ]
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: "${configName}",
+                            transfers: [
+                                sshTransfer(
+                                    cleanRemote: false,
+                                    excludes: '',
+                                    execCommand: '''
+                                        cd macinodds
+                                        docker-compose pull
+                                        docker-compose up -d
+                                    ''',
+                                    execTimeout: 120000,
+                                    flatten: false,
+                                    makeEmptyDirs: false,
+                                    noDefaultExcludes: false,
+                                    patternSeparator: '[, ]+',
+                                    remoteDirectory: '',
+                                    remoteDirectorySDF: false,
+                                    removePrefix: '',
+                                    sourceFiles: ''
+                                )
+                            ],
+                            usePromotionTimestamp: false,
+                            useWorkspaceInPromotion: false,
+                            verbose: false
+                        )
+                    ]
                 )
             }
         }
