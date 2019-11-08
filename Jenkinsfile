@@ -2,6 +2,9 @@ def to_push
 pipeline {
     agent any
     tools {nodejs "node12"}
+    options {
+        ansiColor('xterm')
+    }
     environment {
         registry = "registry.odds.team/internship/macinodds-web"
         registryCredential = 'dockerhub'
@@ -26,11 +29,9 @@ pipeline {
         stage('push') {
             steps {
                 script {
-                    // sh "export"
-                    // sh "npm install"
-                    // sh "npm run build"
-                    // sh "docker push oddsteam/macinodds-web:${env.BUILD_NUMBER} ."
-                    sh "docker push registry.odds.team/internship/macinodds-web:${env.BUILD_NUMBER}"
+                    withDockerRegistry(credentialsId: 'mac-in-odds', url: 'https://registry.odds.team') {
+                        sh "docker push registry.odds.team/internship/macinodds-web:${env.BUILD_NUMBER}"
+                    }
                 }
             }
         }
