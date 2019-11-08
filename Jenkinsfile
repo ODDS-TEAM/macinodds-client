@@ -22,7 +22,7 @@ pipeline {
                     // sh "npm install"
                     // sh "npm run build"
                     sh "docker login registry.odds.team"
-                    sh "docker build -t registry.odds.team/internship/macinodds-web:${env.BUILD_NUMBER} ."
+                    sh "docker build -t registry.odds.team/internship/macinodds-web:${env.BUILD_NUMBER} -t registry.odds.team/internship/macinodds-web:dev ."
                 }
             }
         }
@@ -31,6 +31,7 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'mac-in-odds', url: 'https://registry.odds.team') {
                         sh "docker push registry.odds.team/internship/macinodds-web:${env.BUILD_NUMBER}"
+                        sh "docker push registry.odds.team/internship/macinodds-web:dev"
                     }
                 }
             }
