@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { DeviceApiService } from 'src/app/service/device-api.service';
+import { CheckRoleTokenService } from 'src/app/service/check-role-token.service';
 
 @Component({
   selector: 'app-history',
@@ -14,14 +15,14 @@ export class HistoryComponent implements OnInit {
   role = true;
   userId = localStorage.getItem('userId');
 
-  constructor(private macApiService: DeviceApiService) { }
+  constructor(private macApiService: DeviceApiService, private checkRoleToken: CheckRoleTokenService) { }
 
   ngOnInit() {
     this.checkRole();
   }
 
   checkRole() {
-    if (localStorage.getItem('role') === 'admin') {
+    if (this.checkRoleToken.checkRoleByToken() === 'admin') {
       this.getHistory();
     } else {
       this.role = false;

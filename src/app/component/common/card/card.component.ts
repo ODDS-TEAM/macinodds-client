@@ -13,7 +13,7 @@ import { BreakpointObserver } from "@angular/cdk/layout";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { DeviceApiService } from "src/app/service/device-api.service";
-import { CheckRoleTokenService } from 'src/app/service/check-role-token.service';
+import { CheckRoleTokenService } from "src/app/service/check-role-token.service";
 
 @Component({
   selector: "app-card",
