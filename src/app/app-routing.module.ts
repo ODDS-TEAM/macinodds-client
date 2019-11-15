@@ -30,18 +30,14 @@ const routes: Routes = [
 
     path: 'admin',
     component: SideNavComponent,
-    canActivate: [RoleGuardService, GuardService], 
-    data: { 
-      expectedRole: 'admin'
-    } ,
+    canActivate: [GuardService], 
+     
     children: [
       {
         path: '',
         loadChildren: './component/component.module#ComponentModule',
-        canActivate: [GuardService, RoleGuardService],
-        data: {
-          expectedRole: 'admin'
-        }
+        canActivate: [GuardService],
+
       }
     ]
   },

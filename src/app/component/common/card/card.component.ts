@@ -71,7 +71,7 @@ export class CardComponent implements OnInit {
     this.getMyDevice();
     this.data.currentData.subscribe(data => (this.name = data));
     this.createBorrowForm();
-    this.btnRole = this.checkTokenRole.checkRoleByToken() === "individual";
+    this.btnRole =  false;
   }
 
   getMyDevice() {
