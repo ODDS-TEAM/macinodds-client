@@ -121,7 +121,7 @@ export class FormDeviceComponent implements OnInit {
       nameDevice: ['', Validators.required],
       serial: ['', Validators.required],
       spec: ['', Validators.required],
-      location: [{ value: this.locationInput, disabled: this.disableInput }, [Validators.required, Validators.minLength(1)]],
+      location: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
