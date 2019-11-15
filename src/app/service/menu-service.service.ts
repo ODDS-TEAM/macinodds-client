@@ -33,6 +33,10 @@ export class MenuServiceService {
         menus: []
       },
       {
+        group: { code: 'create', name: 'Add device', icon: 'fas fa-file-medical' },
+        menus: []
+      },
+      {
         group: { code: 'history', name: 'History', icon: 'fas fa-history' },
         menus: []
       }
